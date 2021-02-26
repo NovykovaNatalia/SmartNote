@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="Everyday notes">
+
+        <menu>
+            <item android:id="@+id/shopping"
+                android:title="Shoppings"
+                android:icon="@drawable/shopping_cart"/>
+            <item android:id="@+id/holidays"
+                android:title="Holidays"
+                android:icon="@drawable/ic_baseline_cake"/>
+            <item android:id="@+id/bankAccounts"
+                android:title="Bank Accounts"
+                android:icon="@drawable/ic_baseline_credit_card_24"/>
+            <item android:id="@+id/sales"
+                android:title="Sales"
+                android:icon="@drawable/ic_baseline_attach_money_"/>
+            <item android:id="@+id/credentials"
+                android:title="Credentials"
+                android:icon="@drawable/ic_baseline_contact_mail"/>
+        </menu>
+    </item>
+    <item android:title="Text Notes">
+        <menu>
+            <item android:id="@+id/textNote"
+                android:title="Text Note"
+                android:icon="@drawable/ic_baseline_note"/>
+        </menu>
+    </item>
+    <item android:title="Another">
+        <menu>
+            <item android:id="@+id/settings"
+                android:title="Settings"
+                android:icon="@drawable/ic_baseline_settings"/>
+        </menu>
+    </item>
+
+</menu>
