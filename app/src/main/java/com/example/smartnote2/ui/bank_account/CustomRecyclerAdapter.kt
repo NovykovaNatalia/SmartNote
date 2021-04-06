@@ -1,4 +1,8 @@
+import android.app.Activity
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -6,10 +10,11 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote2.R
+import com.example.smartnote2.ui.bank_account.BankAccountFragment
 import com.example.smartnote2.ui.bank_account.Card
 import org.w3c.dom.Text
 
-class CustomAdapter(private val items: List<Card> ):
+class CustomAdapter(private val items: ArrayList<Card> ):
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -17,7 +22,6 @@ class CustomAdapter(private val items: List<Card> ):
         val bankNameTV: TextView
         val numberTV: TextView
         val personNameSurnameTV: TextView
-
         init {
             // Define click listener for the ViewHolder's View.
             salaryAcountTV = view.findViewById(R.id.salary_account_tv)
@@ -30,7 +34,6 @@ class CustomAdapter(private val items: List<Card> ):
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_bank_account, parent, false)
-
         return ViewHolder(view)
     }
 
@@ -39,12 +42,33 @@ class CustomAdapter(private val items: List<Card> ):
     }
 
     override fun onBindViewHolder(holder: CustomAdapter.ViewHolder, position: Int) {
-        holder.salaryAcountTV.setText(items[position].account)
-        holder.numberTV.setText(items[position].accountNumber)
-        holder.bankNameTV.setText(items[position].bankName)
-        holder.personNameSurnameTV.setText(items[position].nameSurname)
+        holder.run {
+            salaryAcountTV.setText(items[position].account)
+            numberTV.setText(items[position].accountNumber)
+            bankNameTV.setText(items[position].bankName)
+            personNameSurnameTV.setText(items[position].nameSurname)
+//            itemView.setOnLongClickListener(View.OnLongClickListener {
+//                items.remove(items[position])
+//            })
+            itemView.setOnClickListener {
+                val builder = AlertDialog.Builder(holder.bankNameTV.context)
+
+                builder.setMessage("Delete the god?")
+
+                builder.setPositiveButton("YES") { dialog, which ->
+                    items.remove(items[position])
+                    notifyDataSetChanged()
+
+                }
+                builder.setNegativeButton("No") { dialog, which ->
+
+                }
+                val dialog: AlertDialog = builder.create()
+
+                dialog.show()
+            }
+        }
 
     }
-
 
 }
