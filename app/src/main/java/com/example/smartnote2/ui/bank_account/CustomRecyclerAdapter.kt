@@ -1,18 +1,11 @@
-import android.app.Activity
 import android.app.AlertDialog
-import android.app.Dialog
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote2.R
-import com.example.smartnote2.ui.bank_account.BankAccountFragment
 import com.example.smartnote2.ui.bank_account.Card
-import org.w3c.dom.Text
 
 class CustomAdapter(private val items: ArrayList<Card> ):
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
@@ -66,6 +59,7 @@ class CustomAdapter(private val items: ArrayList<Card> ):
                 val dialog: AlertDialog = builder.create()
 
                 dialog.show()
+                notifyDataSetChanged()
             }
         }
 

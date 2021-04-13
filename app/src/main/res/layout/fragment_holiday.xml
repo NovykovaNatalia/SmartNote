@@ -6,10 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewHoiday"
-        android:text="Holiday"/>
+   <CalendarView
+       android:id="@+id/calendarView"
+       android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="25dp"
+      android:layout_marginTop="5dp"/>
+
+   <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/floating_btn_event"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:src="@drawable/ic_baseline_add_circle_outline"
+       android:layout_alignParentBottom="true"
+      android:layout_margin="80dp"
+       android:layout_alignParentRight="true"/>
+
 
 </RelativeLayout>

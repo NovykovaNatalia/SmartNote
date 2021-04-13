@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+    <LinearLayout
+        android:id="@+id/line_one_sales"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchView"
+        android:layout_margin="30dp"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/brend"
+            android:layout_weight="2"
+            android:hint="Brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/thing_name"
+            android:layout_weight="2"
+            android:hint="Things"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/line_two_sales"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchView"
+        android:layout_margin="30dp"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/sales_price"
+            android:layout_weight="2"
+            android:hint="Sales"
+            android:numeric="decimal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/true_price"
+            android:layout_weight="2"
+            android:numeric="decimal"
+            android:hint="True price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Save"
+            android:id="@+id/save_dialog_sales"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Cancel"
+            android:id="@+id/cancel_dialog_sales"/>
+    </LinearLayout>
+
+
+</LinearLayout>
