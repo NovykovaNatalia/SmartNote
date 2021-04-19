@@ -13,7 +13,7 @@
         android:layout_margin="30dp"
         android:orientation="horizontal">
         <EditText
-            android:id="@+id/brend"
+            android:id="@+id/brand"
             android:layout_weight="2"
             android:hint="Brand"
             android:layout_width="wrap_content"
