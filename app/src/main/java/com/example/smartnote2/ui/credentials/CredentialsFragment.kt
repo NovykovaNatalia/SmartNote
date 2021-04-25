@@ -2,15 +2,13 @@ package com.example.smartnote2.ui.credentials
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote2.R
@@ -26,7 +24,9 @@ class CredentialsFragment : Fragment() {
     lateinit var reference_tv: TextView
     lateinit var recyclerViewCredentials: RecyclerView
     var cardListCredentials: ArrayList<CardCredentials> = ArrayList()
+    var displayCardListCredentials: ArrayList<CardCredentials> = ArrayList()
     lateinit var customAdapterCredentials: CustomAdapterCredentials
+
 
     @SuppressLint("WrongConstant")
     override fun onCreateView(
@@ -38,7 +38,9 @@ class CredentialsFragment : Fragment() {
         recyclerViewCredentials = root.findViewById<RecyclerView>(R.id.recyclerViewCredentials)
 
         recyclerViewCredentials.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        customAdapterCredentials = CustomAdapterCredentials(cardListCredentials)
+        recyclerViewCredentials.adapter = CustomAdapterCredentials(displayCardListCredentials)
+
+        customAdapterCredentials = CustomAdapterCredentials(displayCardListCredentials)
         recyclerViewCredentials.adapter = customAdapterCredentials
         customAdapterCredentials.notifyDataSetChanged()
         floatingActionButtonCredentials = root.findViewById(R.id.floating_btn_credentials)
@@ -68,6 +70,8 @@ class CredentialsFragment : Fragment() {
 
 
                 cardListCredentials.add(cardCredentils)
+                displayCardListCredentials.add(cardCredentils)
+
                 println(cardListCredentials.toMutableList())
                 println(cardListCredentials)
                 customAdapterCredentials.notifyDataSetChanged()
@@ -82,3 +86,4 @@ class CredentialsFragment : Fragment() {
         return root
     }
 }
+

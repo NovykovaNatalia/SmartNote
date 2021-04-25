@@ -39,7 +39,7 @@ class CustomAdapterSales(private val items: ArrayList<CardSales> ):
 
     override fun onBindViewHolder(holder: CustomAdapterSales.ViewHolder, position: Int) {
         holder.run {
-            brend_tv.setText(items[position].brend)
+            brend_tv.setText(items[position].brand)
             thing_tv.setText(items[position].thing)
             sale_tv.setText(items[position].sale.toString())
             true_price_tv.setText(items[position].true_price.toString())

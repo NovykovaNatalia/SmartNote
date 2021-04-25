@@ -56,7 +56,7 @@ class SalesFragment : Fragment() {
                     .setTitle("Sales")
             val mAlertDialog = mBuilder.show()
 
-            brand = mDialogViewSales.findViewById(R.id.brend)
+            brand = mDialogViewSales.findViewById(R.id.brand)
             thing = mDialogViewSales.findViewById(R.id.thing_name)
             sales = mDialogViewSales.findViewById(R.id.sales_price)
             truePrice = mDialogViewSales.findViewById(R.id.true_price)
@@ -74,7 +74,7 @@ class SalesFragment : Fragment() {
             saveActionButtonSales.setOnClickListener {
                 mAlertDialog.dismiss()
                 var  cardSales = CardSales()
-                cardSales.brend = brand.text.toString()
+                cardSales.brand = brand.text.toString()
                 cardSales.thing = thing.text.toString()
                 cardSales.sale = sales.text.toString().toDouble()
                 cardSales.true_price = truePrice.text.toString().toDouble()
