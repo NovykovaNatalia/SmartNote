@@ -8,9 +8,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.smartnote2.R
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -20,7 +22,7 @@ import java.lang.reflect.Type
 class ShoppingFragment : Fragment() {
     lateinit var editText: EditText
     lateinit var listView: ListView
-    lateinit var fab: FloatingActionButton
+    lateinit var fab: ExtendedFloatingActionButton
     var list: ArrayList<String> = ArrayList()
     val SP_LIST_KEY = "SP_LIST_KEY"
     lateinit var arrayAdapter: ArrayAdapter<String>
@@ -41,6 +43,16 @@ class ShoppingFragment : Fragment() {
         fab = root.findViewById(R.id.btnAdd)
 
 
+        val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
+        val atb = AnimationUtils.loadAnimation(context, R.anim.atb)
+        val btt = AnimationUtils.loadAnimation(context, R.anim.btt)
+        val btn = AnimationUtils.loadAnimation(context, R.anim.btn)
+
+        fab.startAnimation(ttb)
+        editText.startAnimation(btt)
+        listView.startAnimation(btn)
+
+
         clearElements()
         arrayAdapter=
             context?.let { ArrayAdapter<String>(it, android.R.layout.simple_list_item_1, list) }!!
@@ -49,6 +61,7 @@ class ShoppingFragment : Fragment() {
         listView.adapter = arrayAdapter
 
         fab.setOnClickListener {
+            fab.startAnimation(atb)
             if(editText.length() > 0) {
             list.add(editText.text.toString())
             }
