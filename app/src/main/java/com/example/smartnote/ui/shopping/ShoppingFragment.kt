@@ -14,6 +14,8 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.smartnote.DataStoreHandler
+import com.example.smartnote.MyApplication
 import com.example.smartnote.R
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.gson.Gson
@@ -25,11 +27,8 @@ class ShoppingFragment : Fragment() {
     lateinit var editText: EditText
     lateinit var recyclerViewShopping: RecyclerView
     lateinit var addBtn: ExtendedFloatingActionButton
-    var list: ArrayList<ShoppingItem> = ArrayList()
+    lateinit var list: ArrayList<ShoppingItem>
     lateinit var customAdapterShopping: CustomAdapterShopping
-    val SP_LIST_KEY = "SP_LIST_KEY"
-
-
 
     @SuppressLint("WrongConstant")
     override fun onCreateView(
@@ -37,6 +36,8 @@ class ShoppingFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        list = DataStoreHandler.shopingItems
+
         val root = inflater.inflate(R.layout.fragment_shopping, container, false)
         recyclerViewShopping = root.findViewById(R.id.recyclerViewShopping)
         recyclerViewShopping.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
@@ -75,28 +76,5 @@ class ShoppingFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        saveArrayList(list, SP_LIST_KEY)
     }
-
-    fun saveArrayList(list: ArrayList<ShoppingItem>, key: String?) {
-        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
-        val editor: SharedPreferences.Editor = prefs.edit()
-        val gson = Gson()
-        val json: String = gson.toJson(list)
-        editor.putString(key, json)
-        editor.apply()
-    }
-
-    fun getArrayList(key: String?): ArrayList<ShoppingItem> {
-        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
-        val gson = Gson()
-        val json: String? = prefs.getString(key, null)
-        Log.e("dnovykov", "JSON FROM sp: " + json)
-        val type: Type = object : TypeToken<ArrayList<ShoppingItem?>?>() {}.getType()
-        if (json != null) {
-            return gson.fromJson(json, type)
-        }
-        return ArrayList()
-    }
-
 }

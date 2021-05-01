@@ -12,6 +12,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.smartnote.DataStoreHandler
 import com.example.smartnote.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -40,7 +41,6 @@ class BankAccountFragment : Fragment() {
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_bank_account, container, false)
-
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
         val atb = AnimationUtils.loadAnimation(context, R.anim.atb)
         val btt = AnimationUtils.loadAnimation(context, R.anim.btt)
