@@ -7,39 +7,39 @@
 
     <fragment
         android:id="@+id/holidays"
-        android:name="com.example.smartnote2.ui.holiday.HolidayFragment"
+        android:name="com.example.smartnote.ui.holiday.HolidayFragment"
         android:label="@string/menu_holiday"
         tools:layout="@layout/fragment_holiday" />
 
     <fragment
         android:id="@+id/shopping"
-        android:name="com.example.smartnote2.ui.shopping.ShoppingFragment"
+        android:name="com.example.smartnote.ui.shopping.ShoppingFragment"
         android:label="@string/menu_shopping"
         tools:layout="@layout/fragment_shopping" />
 
     <fragment
         android:id="@+id/bankAccounts"
-        android:name="com.example.smartnote2.ui.bank_account.BankAccountFragment"
+        android:name="com.example.smartnote.ui.bank_account.BankAccountFragment"
         android:label="@string/menu_bank_accounts"
         tools:layout="@layout/fragment_bank_account" />
     <fragment
         android:id="@+id/credentials"
-        android:name="com.example.smartnote2.ui.credentials.CredentialsFragment"
+        android:name="com.example.smartnote.ui.credentials.CredentialsFragment"
         android:label="@string/menu_credentias"
         tools:layout="@layout/fragment_credentials" />
     <fragment
         android:id="@+id/sales"
-        android:name="com.example.smartnote2.ui.sales.SalesFragment"
+        android:name="com.example.smartnote.ui.sales.SalesFragment"
         android:label="@string/menu_sales"
         tools:layout="@layout/fragment_sales" />
     <fragment
         android:id="@+id/settings"
-        android:name="com.example.smartnote2.ui.settings.SettingsFragment"
+        android:name="com.example.smartnote.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/textNote"
-        android:name="com.example.smartnote2.ui.text_note.TextNoteFragment"
+        android:name="com.example.smartnote.ui.text_note.TextNoteFragment"
         android:label="@string/menu_notes"
         tools:layout="@layout/fragment_text_note" />
 </navigation>
