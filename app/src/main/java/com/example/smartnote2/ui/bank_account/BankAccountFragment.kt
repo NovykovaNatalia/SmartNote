@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +31,7 @@ class BankAccountFragment : Fragment() {
     lateinit var recyclerView: RecyclerView
     var cardList:ArrayList<Card> = ArrayList()
     lateinit var customAdapter: CustomAdapter
+    lateinit var searchViewBankAccount: SearchView
 
     @SuppressLint("WrongConstant")
     override fun onCreateView(
@@ -39,15 +41,24 @@ class BankAccountFragment : Fragment() {
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_bank_account, container, false)
-        recyclerView = root.findViewById<RecyclerView>(R.id.recyclerView)
 
+        val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
+        val atb = AnimationUtils.loadAnimation(context, R.anim.atb)
+        val btt = AnimationUtils.loadAnimation(context, R.anim.btt)
+        val btn = AnimationUtils.loadAnimation(context, R.anim.btn)
+
+        recyclerView = root.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         customAdapter = CustomAdapter(cardList)
         recyclerView.adapter = customAdapter
         customAdapter.notifyDataSetChanged()
 
-
+        searchViewBankAccount = root.findViewById(R.id.searchView)
+        searchViewBankAccount.startAnimation(ttb)
         floatingActionButton = root.findViewById(R.id.floating_btn_bank_account)
+        floatingActionButton.startAnimation(ttb)
+        recyclerView.startAnimation(ttb)
+
         floatingActionButton.setOnClickListener{
             val mDialogView = LayoutInflater.from( context).inflate(R.layout.bank_account_dialog, null);
             val mItemView = LayoutInflater.from(context).inflate(R.layout.item_bank_account, null )
@@ -57,20 +68,22 @@ class BankAccountFragment : Fragment() {
                     .setTitle("Bank Account")
             val mAlertDialog = mBuilder.show()
 
-            salaryAccount = mDialogView.findViewById(R.id.salary_account)
-            bankName = mDialogView.findViewById(R.id.bank_name)
-            number = mDialogView.findViewById(R.id.number)
-            nameSurname = mDialogView.findViewById(R.id.person_name_surname)
+        salaryAccount = mDialogView.findViewById(R.id.salary_account)
+        bankName = mDialogView.findViewById(R.id.bank_name)
+        number = mDialogView.findViewById(R.id.number)
+        nameSurname = mDialogView.findViewById(R.id.person_name_surname)
 
-            salaryAcountTV = mItemView.findViewById(R.id.salary_account_tv)
-            bankNameTv = mItemView.findViewById(R.id.bank_name_tv)
-            numberTV = mItemView.findViewById(R.id.number_tv)
-            nameSurnameTV = mItemView.findViewById(R.id.person_name_surname_tv)
+        salaryAcountTV = mItemView.findViewById(R.id.salary_account_tv)
+        bankNameTv = mItemView.findViewById(R.id.bank_name_tv)
+        numberTV = mItemView.findViewById(R.id.number_tv)
+        nameSurnameTV = mItemView.findViewById(R.id.person_name_surname_tv)
 
-            cancelActionButton = mDialogView.findViewById(R.id.cancel_dialog_btn)
-            saveActionButton = mDialogView.findViewById<Button>(R.id.save_dialog_btn);
+        cancelActionButton = mDialogView.findViewById(R.id.cancel_dialog_btn)
+        saveActionButton = mDialogView.findViewById<Button>(R.id.save_dialog_btn);
+
 
             saveActionButton.setOnClickListener {
+                saveActionButton.startAnimation(atb)
                 mAlertDialog.dismiss()
                 var  card = Card()
                 card.account = salaryAccount.text.toString()
@@ -79,8 +92,6 @@ class BankAccountFragment : Fragment() {
                 card.nameSurname = nameSurname.text.toString()
 
                 cardList.add(card)
-                println(cardList.toMutableList())
-                println(cardList)
                 customAdapter.notifyDataSetChanged()
                 println("end")
 

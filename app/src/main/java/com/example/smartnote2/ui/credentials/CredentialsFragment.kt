@@ -6,6 +6,7 @@ import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import android.widget.*
 import androidx.core.content.ContextCompat.getSystemService
@@ -23,6 +24,7 @@ class CredentialsFragment : Fragment() {
     lateinit var credential_tv: TextView
     lateinit var reference_tv: TextView
     lateinit var recyclerViewCredentials: RecyclerView
+    lateinit var searchViewCredentials: SearchView
     var cardListCredentials: ArrayList<CardCredentials> = ArrayList()
     var displayCardListCredentials: ArrayList<CardCredentials> = ArrayList()
     lateinit var customAdapterCredentials: CustomAdapterCredentials
@@ -35,15 +37,25 @@ class CredentialsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_credentials, container, false)
-        recyclerViewCredentials = root.findViewById<RecyclerView>(R.id.recyclerViewCredentials)
 
+        searchViewCredentials = root.findViewById(R.id.searchViewCredentials)
+        recyclerViewCredentials = root.findViewById<RecyclerView>(R.id.recyclerViewCredentials)
         recyclerViewCredentials.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         recyclerViewCredentials.adapter = CustomAdapterCredentials(displayCardListCredentials)
-
         customAdapterCredentials = CustomAdapterCredentials(displayCardListCredentials)
         recyclerViewCredentials.adapter = customAdapterCredentials
         customAdapterCredentials.notifyDataSetChanged()
         floatingActionButtonCredentials = root.findViewById(R.id.floating_btn_credentials)
+
+        val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
+        val atb = AnimationUtils.loadAnimation(context, R.anim.atb)
+        val btt = AnimationUtils.loadAnimation(context, R.anim.btt)
+        val btn = AnimationUtils.loadAnimation(context, R.anim.btn)
+
+        searchViewCredentials.startAnimation(ttb)
+        recyclerViewCredentials.startAnimation(btt)
+        floatingActionButtonCredentials.startAnimation(ttb)
+
         floatingActionButtonCredentials.setOnClickListener {
             val mDialogViewCredentials = LayoutInflater.from(context).inflate(R.layout.credentials_dialog, null);
             val mItemViewCredentials = LayoutInflater.from(context).inflate(R.layout.item_credentials, null)
@@ -78,6 +90,7 @@ class CredentialsFragment : Fragment() {
 
             }
             cancelActionButtonCredentials.setOnClickListener() {
+                cancelActionButtonCredentials.startAnimation(ttb)
                 mAlertDialog.dismiss()
             }
 

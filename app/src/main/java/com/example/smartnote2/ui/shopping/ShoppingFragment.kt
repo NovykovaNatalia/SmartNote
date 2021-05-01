@@ -57,7 +57,7 @@ class ShoppingFragment : Fragment() {
         val btn = AnimationUtils.loadAnimation(context, R.anim.btn)
 
         addBtn.startAnimation(ttb)
-        editText.startAnimation(btt)
+        editText.startAnimation(ttb)
         recyclerViewShopping.startAnimation(btn)
 
 

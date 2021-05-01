@@ -7,10 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.view.animation.AnimationUtils
+import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote2.R
@@ -21,6 +19,7 @@ class SalesFragment : Fragment() {
     lateinit var floatingActionButtonSalesFragment: FloatingActionButton
     lateinit var saveActionButtonSales: Button
     lateinit var cancelActionButtonSales: Button
+    lateinit var searchViewSales: SearchView
     lateinit var brand: EditText
     lateinit var thing: EditText
     lateinit var sales: EditText
@@ -40,13 +39,23 @@ class SalesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_sales, container, false)
+        val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
+        val atb = AnimationUtils.loadAnimation(context, R.anim.atb)
+        val btt = AnimationUtils.loadAnimation(context, R.anim.btt)
+        val btn = AnimationUtils.loadAnimation(context, R.anim.btn)
+
         recyclerViewSales = view.findViewById<RecyclerView>(R.id.recyclerViewSales)
+        recyclerViewSales.startAnimation(ttb)
+        searchViewSales = view.findViewById(R.id.searchViewSales)
+        searchViewSales.startAnimation(ttb)
 
         recyclerViewSales.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         customAdapterSales = CustomAdapterSales(cardListSales)
         recyclerViewSales.adapter = customAdapterSales
         customAdapterSales.notifyDataSetChanged()
+
         floatingActionButtonSalesFragment = view.findViewById(R.id.floating_btn_sales)
+        floatingActionButtonSalesFragment.startAnimation(ttb)
         floatingActionButtonSalesFragment.setOnClickListener{
             val mDialogViewSales = LayoutInflater.from( context).inflate(R.layout.sales_dialog, null);
             val mItemViewSales = LayoutInflater.from(context).inflate(R.layout.item_sales, null )
