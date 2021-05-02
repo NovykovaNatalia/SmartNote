@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.R
 
-class CustomAdapterSales(private val items: ArrayList<CardSales> ):
+class CustomAdapterSales(private val items: ArrayList<Sale> ):
         RecyclerView.Adapter<CustomAdapterSales.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.R
 
-class CustomAdapterCredentials(private val items: ArrayList<CardCredentials> ):
+class CustomAdapterCredentials(private val items: ArrayList<Credentials> ):
         RecyclerView.Adapter<CustomAdapterCredentials.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

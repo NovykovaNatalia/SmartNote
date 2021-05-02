@@ -1,6 +1,6 @@
 package com.example.smartnote.ui.sales
 
-class CardSales {
+class Sale {
     lateinit var brand: String
     lateinit var thing: String
     var sale: Double = 0.0

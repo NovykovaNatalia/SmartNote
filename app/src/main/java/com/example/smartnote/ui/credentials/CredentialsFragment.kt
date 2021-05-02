@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.smartnote.DataStoreHandler
 import com.example.smartnote.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -22,8 +23,7 @@ class CredentialsFragment : Fragment() {
     lateinit var reference_tv: TextView
     lateinit var recyclerViewCredentials: RecyclerView
     lateinit var searchViewCredentials: SearchView
-    var cardListCredentials: ArrayList<CardCredentials> = ArrayList()
-    var displayCardListCredentials: ArrayList<CardCredentials> = ArrayList()
+    lateinit var listCredentials: ArrayList<Credentials>
     lateinit var customAdapterCredentials: CustomAdapterCredentials
 
 
@@ -33,14 +33,15 @@ class CredentialsFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        listCredentials = DataStoreHandler.credentials
         val root = inflater.inflate(R.layout.fragment_credentials, container, false)
 
         searchViewCredentials = root.findViewById(R.id.searchViewCredentials)
         recyclerViewCredentials = root.findViewById<RecyclerView>(R.id.recyclerViewCredentials)
         recyclerViewCredentials.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        recyclerViewCredentials.adapter = CustomAdapterCredentials(displayCardListCredentials)
-        customAdapterCredentials = CustomAdapterCredentials(displayCardListCredentials)
+        customAdapterCredentials = CustomAdapterCredentials(listCredentials)
         recyclerViewCredentials.adapter = customAdapterCredentials
+
         customAdapterCredentials.notifyDataSetChanged()
         floatingActionButtonCredentials = root.findViewById(R.id.floating_btn_credentials)
 
@@ -73,16 +74,12 @@ class CredentialsFragment : Fragment() {
 
             saveActionButtonCredentials.setOnClickListener {
                 mAlertDialog.dismiss()
-                var cardCredentils = CardCredentials()
+                var cardCredentils = Credentials()
                 cardCredentils.credential = credentials.text.toString()
                 cardCredentils.reference = reference.text.toString()
 
 
-                cardListCredentials.add(cardCredentils)
-                displayCardListCredentials.add(cardCredentils)
-
-                println(cardListCredentials.toMutableList())
-                println(cardListCredentials)
+                listCredentials.add(cardCredentils)
                 customAdapterCredentials.notifyDataSetChanged()
 
             }

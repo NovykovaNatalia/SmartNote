@@ -29,7 +29,7 @@ class BankAccountFragment : Fragment() {
     lateinit var numberTV: TextView
     lateinit var nameSurnameTV: TextView
     lateinit var recyclerView: RecyclerView
-    var cardList:ArrayList<Card> = ArrayList()
+    lateinit var cardList: ArrayList<Card>
     lateinit var customAdapter: CustomAdapter
     lateinit var searchViewBankAccount: SearchView
 
@@ -39,6 +39,7 @@ class BankAccountFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        cardList = DataStoreHandler.cards
 
         val root = inflater.inflate(R.layout.fragment_bank_account, container, false)
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
