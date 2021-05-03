@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.smartnote.DataStoreHandler
 import com.example.smartnote.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -30,7 +31,7 @@ class SalesFragment : Fragment() {
     lateinit var true_price_tv: TextView
     lateinit var economy_tv: TextView
     lateinit var recyclerViewSales: RecyclerView
-    var cardListSales:ArrayList<CardSales> = ArrayList()
+    lateinit var cardListSales:ArrayList<Sale>
     lateinit var customAdapterSales: CustomAdapterSales
 
     @SuppressLint("WrongConstant")
@@ -38,6 +39,7 @@ class SalesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        cardListSales = DataStoreHandler.sales
         val view = inflater.inflate(R.layout.fragment_sales, container, false)
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
         val atb = AnimationUtils.loadAnimation(context, R.anim.atb)
@@ -82,7 +84,7 @@ class SalesFragment : Fragment() {
 
             saveActionButtonSales.setOnClickListener {
                 mAlertDialog.dismiss()
-                var  cardSales = CardSales()
+                var  cardSales = Sale()
                 cardSales.brand = brand.text.toString()
                 cardSales.thing = thing.text.toString()
                 cardSales.sale = sales.text.toString().toDouble()
