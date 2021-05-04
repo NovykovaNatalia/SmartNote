@@ -37,5 +37,12 @@
                 android:icon="@drawable/ic_baseline_settings"/>
         </menu>
     </item>
+    <item android:title="Setting">
+        <menu>
+            <item android:id="@+id/setting"
+                android:title="Setting"
+                android:icon="@drawable/ic_baseline_settings"/>
+        </menu>
+    </item>
 
 </menu>
