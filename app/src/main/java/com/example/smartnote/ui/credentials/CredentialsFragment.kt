@@ -17,8 +17,8 @@ class CredentialsFragment : Fragment() {
     lateinit var floatingActionButtonCredentials: FloatingActionButton
     lateinit var saveActionButtonCredentials: Button
     lateinit var cancelActionButtonCredentials: Button
-    lateinit var credentials: EditText
-    lateinit var reference: EditText
+    lateinit var dialog_et_credentials: EditText
+    lateinit var dialog_et_refetence: EditText
     lateinit var credential_tv: TextView
     lateinit var reference_tv: TextView
     lateinit var recyclerViewCredentials: RecyclerView
@@ -32,26 +32,24 @@ class CredentialsFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         listCredentials = DataStoreHandler.credentials
+        val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
+        val atb = AnimationUtils.loadAnimation(context, R.anim.atb)
+        val btt = AnimationUtils.loadAnimation(context, R.anim.btt)
+        val btn = AnimationUtils.loadAnimation(context, R.anim.btn)
         val root = inflater.inflate(R.layout.fragment_credentials, container, false)
 
         searchViewCredentials = root.findViewById(R.id.searchViewCredentials)
-        recyclerViewCredentials = root.findViewById<RecyclerView>(R.id.recyclerViewCredentials)
+        recyclerViewCredentials = root.findViewById(R.id.recyclerViewCredentials)
         recyclerViewCredentials.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         customAdapterCredentials = CustomAdapterCredentials(listCredentials)
         recyclerViewCredentials.adapter = customAdapterCredentials
 
         customAdapterCredentials.notifyDataSetChanged()
+
         floatingActionButtonCredentials = root.findViewById(R.id.floating_btn_credentials)
-
-        val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
-        val atb = AnimationUtils.loadAnimation(context, R.anim.atb)
-        val btt = AnimationUtils.loadAnimation(context, R.anim.btt)
-        val btn = AnimationUtils.loadAnimation(context, R.anim.btn)
-
         searchViewCredentials.startAnimation(ttb)
-        recyclerViewCredentials.startAnimation(btt)
+        recyclerViewCredentials.startAnimation(ttb)
         floatingActionButtonCredentials.startAnimation(ttb)
 
         floatingActionButtonCredentials.setOnClickListener {
@@ -63,8 +61,8 @@ class CredentialsFragment : Fragment() {
                     .setTitle("Credentials")
             val mAlertDialog = mBuilder.show()
 
-            credentials = mDialogViewCredentials.findViewById(R.id.credential)
-            reference = mDialogViewCredentials.findViewById(R.id.reference)
+            dialog_et_credentials = mDialogViewCredentials.findViewById(R.id.credential)
+            dialog_et_refetence = mDialogViewCredentials.findViewById(R.id.reference)
 
             credential_tv = mItemViewCredentials.findViewById(R.id.name_credentials_tv)
             reference_tv = mItemViewCredentials.findViewById(R.id.reference_credential_tv)
@@ -74,17 +72,20 @@ class CredentialsFragment : Fragment() {
 
             saveActionButtonCredentials.setOnClickListener {
                 mAlertDialog.dismiss()
-                var cardCredentils = Credentials()
-                cardCredentils.credential = credentials.text.toString()
-                cardCredentils.reference = reference.text.toString()
+                if(dialog_et_credentials.text.isNotEmpty() && dialog_et_refetence.text.isNotEmpty()) {
+                    var cardCredentils = Credentials()
+                    cardCredentils.credential = dialog_et_credentials.text.toString()
+                    cardCredentils.reference = dialog_et_refetence.text.toString()
 
+                    listCredentials.add(cardCredentils)
+                } else {
+                    Toast.makeText(context, "Put value!", Toast.LENGTH_LONG).show()
+                }
 
-                listCredentials.add(cardCredentils)
                 customAdapterCredentials.notifyDataSetChanged()
-
             }
+
             cancelActionButtonCredentials.setOnClickListener() {
-                cancelActionButtonCredentials.startAnimation(ttb)
                 mAlertDialog.dismiss()
             }
 

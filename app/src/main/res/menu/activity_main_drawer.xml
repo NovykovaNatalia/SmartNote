@@ -3,24 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item android:title="Everyday notes">
-
+    <item
+        android:id="@+id/everyday_note"
+        android:title="Everyday notes">
         <menu>
-            <item android:id="@+id/shopping"
-                android:title="Shoppings"
-                android:icon="@drawable/shopping_cart"/>
-            <item android:id="@+id/holidays"
-                android:title="Holidays"
-                android:icon="@drawable/ic_baseline_cake"/>
-            <item android:id="@+id/bankAccounts"
-                android:title="Bank Accounts"
-                android:icon="@drawable/ic_baseline_credit_card_24"/>
-            <item android:id="@+id/sales"
-                android:title="Sales"
-                android:icon="@drawable/ic_baseline_attach_money_"/>
-            <item android:id="@+id/credentials"
-                android:title="Credentials"
-                android:icon="@drawable/ic_baseline_contact_mail"/>
+            <item
+                android:id="@+id/shopping"
+                android:icon="@drawable/shopping_cart"
+                android:title="Shoppings" />
+            <item
+                android:id="@+id/holidays"
+                android:icon="@drawable/ic_baseline_cake"
+                android:title="Holidays" />
+            <item
+                android:id="@+id/bankAccounts"
+                android:icon="@drawable/ic_baseline_credit_card_24"
+                android:title="Bank Accounts" />
+            <item
+                android:id="@+id/sales"
+                android:icon="@drawable/ic_baseline_attach_money_"
+                android:title="Sales" />
+            <item
+                android:id="@+id/credentials"
+                android:icon="@drawable/ic_baseline_contact_mail"
+                android:title="Credentials" />
         </menu>
     </item>
     <item android:title="Text Notes">

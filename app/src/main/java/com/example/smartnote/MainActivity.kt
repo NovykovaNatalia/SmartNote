@@ -1,26 +1,28 @@
 package com.example.smartnote
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import com.google.android.material.navigation.NavigationView
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.ui.*
+import com.example.smartnote.ui.settings.Settings
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    lateinit var dataModel: DataModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        dataModel = DataModel()
+
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         getSharedPreferences("AppSettingPref", 0)
@@ -29,9 +31,19 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.shopping, R.id.holidays, R.id.bankAccounts, R.id.credentials, R.id.sales, R.id.settings, R.id.textNote, R.id.setting),
-            drawerLayout)
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.shopping,
+                R.id.holidays,
+                R.id.bankAccounts,
+                R.id.credentials,
+                R.id.sales,
+                R.id.settings,
+                R.id.textNote,
+                R.id.setting
+            ),
+            drawerLayout
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
@@ -48,7 +60,32 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
+        val itemShare = menu.findItem(R.id.share)
+        itemShare.setOnMenuItemClickListener {
+            val shareIntent = Intent(Intent.ACTION_SEND)
+            shareIntent.type = "text/plain"
+            val shareBody = "Your body hear"
+            val shareSub = "Your subject hear"
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+            startActivity(Intent.createChooser(shareIntent, "choose one"))
+            true
+        }
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.setting -> {
+                startActivity(Intent(this, Settings::class.java))
+                return true
+            }
+            R.id.share -> {
+                Toast.makeText(applicationContext, "click on share", Toast.LENGTH_LONG).show()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

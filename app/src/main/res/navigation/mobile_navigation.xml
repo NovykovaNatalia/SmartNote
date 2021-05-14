@@ -42,6 +42,11 @@
         android:name="com.example.smartnote.ui.text_note.TextNoteFragment"
         android:label="@string/menu_notes"
         tools:layout="@layout/fragment_text_note" />
+    <fragment
+        android:id="@+id/share"
+        android:name="com.example.smartnote.ui.share.ShareFragment"
+        android:label="@string/menu_share"
+        tools:layout="@layout/fragment_share" />
     <activity
         android:id="@+id/setting"
         android:name="com.example.smartnote.ui.settings.Settings"

@@ -14,23 +14,27 @@
         <EditText
             android:id="@+id/editText"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:layout_marginStart="5dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
+            android:layout_weight="3"
+            android:background="@drawable/radius"
             android:hint="Enter an item here"
+            android:paddingLeft="10dp"
             android:inputType="text" />
 
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        <Button
             android:id="@+id/btnAdd"
-            android:text="Add"
+            android:text=" + Add"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/editText"
+            android:layout_height="40dp"
+            android:layout_weight="1"
             android:layout_marginRight="10dp"
+            android:textColor="@color/teal_700"
             android:layout_marginTop="20dp"
-            android:layout_toRightOf="@+id/editText"
-            app:icon="@drawable/add" />
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_toRightOf="@+id/editText" />
+
 
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView

@@ -65,13 +65,15 @@ class TextNoteFragment : Fragment() {
             saveActionButtonNote = mDialogViewNote.findViewById<Button>(R.id.save_dialog_note);
 
             saveActionButtonNote.setOnClickListener {
-                mAlertDialog.dismiss()
-                var  cardNote = CardNote()
-                cardNote.note = note.text.toString()
+                    mAlertDialog.dismiss()
+                if(note.text.isNotEmpty()) {
+                    var cardNote = CardNote()
+                    cardNote.note = note.text.toString()
 
-                cardListNote.add(cardNote)
-                println(cardListNote.toMutableList())
-                println(cardListNote)
+                    cardListNote.add(cardNote)
+                } else {
+                    Toast.makeText(context, "Put value", Toast.LENGTH_LONG).show()
+                }
                 customAdapterNote.notifyDataSetChanged()
 
             }

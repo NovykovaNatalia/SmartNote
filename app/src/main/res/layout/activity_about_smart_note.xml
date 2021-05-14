@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.settings.AboutSmartNote">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="162dp"
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/robot"
+        tools:layout_editor_absoluteX="124dp"
+        tools:layout_editor_absoluteY="189dp"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/version"
+        android:layout_width="126dp"
+        android:layout_height="47dp"
+        android:text="Version 1.0.0"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        tools:layout_editor_absoluteX="142dp"
+        tools:layout_editor_absoluteY="342dp" />
+
+    <TextView
+        android:id="@+id/privacy_policy"
+        android:layout_width="102dp"
+        android:layout_height="26dp"
+        android:text="Privacy Policy"
+        android:layout_below="@+id/version"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        tools:layout_editor_absoluteX="154dp"
+        tools:layout_editor_absoluteY="418dp" />
+</RelativeLayout>

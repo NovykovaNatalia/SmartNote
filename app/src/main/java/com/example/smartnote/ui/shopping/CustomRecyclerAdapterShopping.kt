@@ -1,21 +1,31 @@
+import android.app.Activity
 import android.app.AlertDialog
+import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.smartnote.BuildConfig
+import com.example.smartnote.MyApplication
 import com.example.smartnote.R
 import com.example.smartnote.ui.shopping.ShoppingItem
 
-class CustomAdapterShopping(private val items: ArrayList<ShoppingItem> ):
+
+class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
     RecyclerView.Adapter<CustomAdapterShopping.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val goods_tv: TextView
         val quantity_et: EditText
         val delete_btn: ImageButton
+
         init {
             // Define click listener for the ViewHolder's View.
             goods_tv = view.findViewById(R.id.good_tv)
@@ -24,7 +34,10 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem> ):
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapterShopping.ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): CustomAdapterShopping.ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_shopping, parent, false)
         return ViewHolder(view)
@@ -39,9 +52,9 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem> ):
             goods_tv.setText(items[position].itemname)
             quantity_et.setText(items[position].quantity.toString())
 
-            quantity_et.addTextChangedListener(object : TextWatcher{
+            quantity_et.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(p0: Editable?) {
-                    if(!quantity_et.text.toString().equals("")){
+                    if (!quantity_et.text.toString().equals("")) {
                         items[position].quantity = quantity_et.text.toString().toInt()
                     }
                 }
@@ -72,8 +85,11 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem> ):
                 notifyDataSetChanged()
             }
 
-
-            }
         }
 
     }
+
+
+}
+
+

@@ -26,7 +26,7 @@ import java.lang.reflect.Type
 class ShoppingFragment : Fragment() {
     lateinit var editText: EditText
     lateinit var recyclerViewShopping: RecyclerView
-    lateinit var addBtn: ExtendedFloatingActionButton
+    lateinit var addBtn: Button
     lateinit var list: ArrayList<ShoppingItem>
     lateinit var customAdapterShopping: CustomAdapterShopping
 
@@ -56,7 +56,7 @@ class ShoppingFragment : Fragment() {
 
         addBtn.startAnimation(ttb)
         editText.startAnimation(ttb)
-        recyclerViewShopping.startAnimation(btn)
+        recyclerViewShopping.startAnimation(ttb)
 
 
         addBtn.setOnClickListener {

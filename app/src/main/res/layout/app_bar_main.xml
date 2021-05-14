@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.SmartNote2.PopupOverlay" />
+            app:popupTheme="@style/Theme.SmartNote2.NoActionBar" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -84,16 +84,17 @@ class SalesFragment : Fragment() {
 
             saveActionButtonSales.setOnClickListener {
                 mAlertDialog.dismiss()
-                var  cardSales = Sale()
-                cardSales.brand = brand.text.toString()
-                cardSales.thing = thing.text.toString()
-                cardSales.sale = sales.text.toString().toDouble()
-                cardSales.true_price = truePrice.text.toString().toDouble()
+                if(brand.text.isNotEmpty() && thing.text.isNotEmpty() && sales.text.isNotEmpty() && truePrice.text.isNotEmpty()) {
+                    var cardSales = Sale()
+                    cardSales.brand = brand.text.toString()
+                    cardSales.thing = thing.text.toString()
+                    cardSales.sale = sales.text.toString().toDouble()
+                    cardSales.true_price = truePrice.text.toString().toDouble()
 
-
-                cardListSales.add(cardSales)
-                println(cardListSales.toMutableList())
-                println(cardListSales)
+                    cardListSales.add(cardSales)
+                } else {
+                    Toast.makeText(context, "Put values!", Toast.LENGTH_LONG).show()
+                }
                 customAdapterSales.notifyDataSetChanged()
 
             }

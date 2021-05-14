@@ -40,9 +40,7 @@ class CustomAdapter(private val items: ArrayList<Card> ):
             numberTV.setText(items[position].accountNumber)
             bankNameTV.setText(items[position].bankName)
             personNameSurnameTV.setText(items[position].nameSurname)
-//            itemView.setOnLongClickListener(View.OnLongClickListener {
-//                items.remove(items[position])
-//            })
+
             itemView.setOnClickListener {
                 val builder = AlertDialog.Builder(holder.bankNameTV.context)
 

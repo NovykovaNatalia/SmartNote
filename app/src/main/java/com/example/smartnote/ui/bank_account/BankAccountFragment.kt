@@ -3,6 +3,7 @@ package com.example.smartnote.ui.bank_account
 import CustomAdapter
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -32,6 +33,8 @@ class BankAccountFragment : Fragment() {
     lateinit var cardList: ArrayList<Card>
     lateinit var customAdapter: CustomAdapter
     lateinit var searchViewBankAccount: SearchView
+
+
 
     @SuppressLint("WrongConstant")
     override fun onCreateView(
@@ -68,6 +71,7 @@ class BankAccountFragment : Fragment() {
                     .setTitle("Bank Account")
             val mAlertDialog = mBuilder.show()
 
+
         salaryAccount = mDialogView.findViewById(R.id.salary_account)
         bankName = mDialogView.findViewById(R.id.bank_name)
         number = mDialogView.findViewById(R.id.number)
@@ -79,22 +83,24 @@ class BankAccountFragment : Fragment() {
         nameSurnameTV = mItemView.findViewById(R.id.person_name_surname_tv)
 
         cancelActionButton = mDialogView.findViewById(R.id.cancel_dialog_btn)
-        saveActionButton = mDialogView.findViewById<Button>(R.id.save_dialog_btn);
+        saveActionButton = mDialogView.findViewById(R.id.save_dialog_btn);
 
 
             saveActionButton.setOnClickListener {
-                saveActionButton.startAnimation(atb)
-                mAlertDialog.dismiss()
-                var  card = Card()
-                card.account = salaryAccount.text.toString()
-                card.bankName = bankName.text.toString()
-                card.accountNumber = number.text.toString()
-                card.nameSurname = nameSurname.text.toString()
+                if(salaryAccount.text.isNotEmpty() && bankName.text.isNotEmpty() && number.text.isNotEmpty()
+                        && nameSurname.text.isNotEmpty()) {
+                    mAlertDialog.dismiss()
+                    var card = Card()
+                    card.account = salaryAccount.text.toString()
+                    card.bankName = bankName.text.toString()
+                    card.accountNumber = number.text.toString()
+                    card.nameSurname = nameSurname.text.toString()
 
-                cardList.add(card)
+                    cardList.add(card)
+                } else {
+                    Toast.makeText(context, "Put values!", Toast.LENGTH_LONG).show()
+                }
                 customAdapter.notifyDataSetChanged()
-                println("end")
-
             }
             cancelActionButton.setOnClickListener() {
                 mAlertDialog.dismiss()

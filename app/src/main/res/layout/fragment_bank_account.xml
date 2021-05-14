@@ -8,8 +8,13 @@
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_height="45dp"
+        android:layout_marginRight="10dp"
         android:layout_alignParentTop="true"
+        android:queryBackground="@android:color/transparent"
+        android:background="@drawable/radius"
+        android:layout_marginLeft="10dp"
         android:iconifiedByDefault="false"
         android:queryHint="Search Here" />
 
