@@ -33,11 +33,11 @@ class CredentialsFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         listCredentials = DataStoreHandler.credentials
+        val root = inflater.inflate(R.layout.fragment_credentials, container, false)
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
         val atb = AnimationUtils.loadAnimation(context, R.anim.atb)
         val btt = AnimationUtils.loadAnimation(context, R.anim.btt)
         val btn = AnimationUtils.loadAnimation(context, R.anim.btn)
-        val root = inflater.inflate(R.layout.fragment_credentials, container, false)
 
         searchViewCredentials = root.findViewById(R.id.searchViewCredentials)
         recyclerViewCredentials = root.findViewById(R.id.recyclerViewCredentials)

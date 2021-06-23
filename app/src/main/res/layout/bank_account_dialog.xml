@@ -11,7 +11,7 @@
         android:orientation="horizontal">
         <EditText
             android:id="@+id/salary_account"
-            android:hint="Salary Account"
+            android:hint="Type Account"
             android:inputType="text"
             android:textColor="@color/teal_700"
             android:layout_width="match_parent"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/teal_700"
             android:id="@+id/person_name_surname"
-            android:hint="Name Surname "
+            android:hint="Name, Surname "
             android:layout_weight="2"/>
     </LinearLayout>
     <LinearLayout

@@ -1,4 +1,7 @@
 import android.app.AlertDialog
+import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -6,9 +9,19 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.R
 import com.example.smartnote.ui.bank_account.Card
+import org.w3c.dom.Text
 
-class CustomAdapter(private val items: ArrayList<Card> ):
+class CustomAdapter(private var items: ArrayList<Card>):
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+    lateinit var context: Context;
+
+    constructor(items: ArrayList<Card>, context: Context?): this(items) {
+
+//        this.items = items
+        if (context != null ) {
+            this.context = context
+        }
+    }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val salaryAcountTV: TextView
@@ -52,7 +65,16 @@ class CustomAdapter(private val items: ArrayList<Card> ):
 
                 }
                 builder.setNegativeButton("No") { dialog, which ->
-
+                }
+                builder.setNeutralButton("Share") { dialog, which ->
+                        val shareIntent = Intent(Intent.ACTION_SEND)
+                        shareIntent.type = "text/plain"
+                        val shareBody =  items.toString()
+                        val shareSub = "items[position]"
+                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                        context.startActivity(Intent.createChooser(shareIntent, "choose one"))
+                        true
                 }
                 val dialog: AlertDialog = builder.create()
 

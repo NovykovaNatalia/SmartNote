@@ -1,18 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/frame_settings"
     android:layout_height="match_parent"
-    tools:context=".ui.settings.SettingsFragment">
-
-    <ExpandableListView
-        android:id="@+id/expandablLanguage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" />
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_btn_setting_activity"
+    tools:context=".MainActivity">
+    <Switch
+        android:id="@+id/switchModeFr"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Day Mode"
+        tools:ignore="MissingConstraints" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shared"
+        android:id="@+id/shared_tv_fr"
+        android:textColor="@color/black"
+        android:layout_below="@+id/switchModeFr"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"/>
+
+    <TextView
+        android:id="@+id/about_sn_tv_fr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shared_tv_fr"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="80dp"
+        android:text="About Smart Note"
+        android:textColor="@color/black" />
+
+</FrameLayout>

@@ -8,11 +8,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
-import com.example.smartnote.ui.settings.Settings
+import com.example.smartnote.ui.settings.SettingsFragment
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.sales,
                 R.id.settings,
                 R.id.textNote,
-                R.id.setting
+                R.id.settings
             ),
             drawerLayout
         )
@@ -76,8 +76,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.setting -> {
-                startActivity(Intent(this, Settings::class.java))
+            R.id.settings -> {
+                val fragmentManager: FragmentManager = supportFragmentManager
+                val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+                val setFragment = SettingsFragment()
+                fragmentTransaction.replace(R.id.settings, setFragment)
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
                 return true
             }
             R.id.share -> {

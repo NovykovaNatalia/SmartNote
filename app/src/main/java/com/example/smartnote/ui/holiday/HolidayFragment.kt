@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.CalendarView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -22,8 +23,15 @@ class HolidayFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_holiday, container, false)
+        val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
+        val atb = AnimationUtils.loadAnimation(context, R.anim.atb)
+        val btt = AnimationUtils.loadAnimation(context, R.anim.btt)
+        val btn = AnimationUtils.loadAnimation(context, R.anim.btn)
+
         floating_btn_event = root.findViewById(R.id.floating_btn_event);
+        floating_btn_event.startAnimation(ttb)
         calendarView = root.findViewById(R.id.calendarView)
+        calendarView.startAnimation(ttb)
         floating_btn_event.setOnClickListener(View.OnClickListener {
             addNote()
         })

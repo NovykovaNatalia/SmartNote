@@ -3,7 +3,6 @@ package com.example.smartnote.ui.bank_account
 import CustomAdapter
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -52,7 +51,8 @@ class BankAccountFragment : Fragment() {
 
         recyclerView = root.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        customAdapter = CustomAdapter(cardList)
+
+        customAdapter = CustomAdapter(cardList, context)
         recyclerView.adapter = customAdapter
         customAdapter.notifyDataSetChanged()
 
@@ -95,7 +95,6 @@ class BankAccountFragment : Fragment() {
                     card.bankName = bankName.text.toString()
                     card.accountNumber = number.text.toString()
                     card.nameSurname = nameSurname.text.toString()
-
                     cardList.add(card)
                 } else {
                     Toast.makeText(context, "Put values!", Toast.LENGTH_LONG).show()
@@ -105,8 +104,6 @@ class BankAccountFragment : Fragment() {
             cancelActionButton.setOnClickListener() {
                 mAlertDialog.dismiss()
             }
-
-
         }
         return root
     }
