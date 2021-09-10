@@ -17,7 +17,6 @@ class CustomAdapter(private var items: ArrayList<Card>):
 
     constructor(items: ArrayList<Card>, context: Context?): this(items) {
 
-//        this.items = items
         if (context != null ) {
             this.context = context
         }
@@ -66,10 +65,11 @@ class CustomAdapter(private var items: ArrayList<Card>):
                 }
                 builder.setNegativeButton("No") { dialog, which ->
                 }
+
                 builder.setNeutralButton("Share") { dialog, which ->
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "text/plain"
-                        val shareBody =  items.toString()
+                        val shareBody =  items[position].toString()
                         val shareSub = "items[position]"
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
                         shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)

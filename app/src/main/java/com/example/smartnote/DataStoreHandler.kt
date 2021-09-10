@@ -5,6 +5,7 @@ import android.preference.PreferenceManager
 import android.util.Log
 import com.example.smartnote.ui.bank_account.Card
 import com.example.smartnote.ui.credentials.Credentials
+import com.example.smartnote.ui.holiday.Holiday
 import com.example.smartnote.ui.sales.Sale
 import com.example.smartnote.ui.shopping.ShoppingItem
 import com.example.smartnote.ui.text_note.CardNote
@@ -18,11 +19,13 @@ object DataStoreHandler {
     val SP_CREDENTIALS_KEY = "SP_CREDENTIALS"
     val SP_SALES_KEY = "SP_SALES"
     val SP_NOTES_KEY = "SP_NOTES"
+    val SP_HOLIDAY_KEY = "SP_HOLIDAY"
     lateinit var shopingItems: ArrayList<ShoppingItem>
     lateinit var cards: ArrayList<Card>
     lateinit var credentials: ArrayList<Credentials>
     lateinit var sales: ArrayList<Sale>
     lateinit var notes: ArrayList<CardNote>
+    lateinit var holiday: ArrayList<Holiday>
 
     init {
         shopingItems = getArrayList()
@@ -30,8 +33,29 @@ object DataStoreHandler {
         credentials =  getArrayListCredentials()
         sales = getArrayListSales()
         notes =  getArrayListNotes()
+        holiday = getArrayListHolidays()
     }
 
+
+    fun saveArrayListHoliday() {
+        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
+        val editor: SharedPreferences.Editor = prefs.edit()
+        val gson = Gson()
+        val json: String = gson.toJson(holiday)
+        editor.putString(SP_HOLIDAY_KEY, json)
+        editor.apply()
+    }
+
+    fun getArrayListHolidays(): ArrayList<Holiday> {
+        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
+        val gson = Gson()
+        val json: String? = prefs.getString(SP_HOLIDAY_KEY, null)
+        val type: Type = object : TypeToken<ArrayList<Holiday?>?>() {}.getType()
+        if (json != null) {
+            return gson.fromJson(json, type)
+        }
+        return ArrayList()
+    }
     fun saveArrayList() {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
         val editor: SharedPreferences.Editor = prefs.edit()

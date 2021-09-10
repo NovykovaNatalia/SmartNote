@@ -1,4 +1,4 @@
-package com.example.smartnote.ui.sales
+package com.example.smartnote.ui.holiday
 
 import android.app.AlertDialog
 import android.content.Context
@@ -9,17 +9,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.R
-import com.example.smartnote.ui.bank_account.Card
+import java.util.ArrayList
 
-class CustomAdapterSales(private val items: ArrayList<Sale> ):
-        RecyclerView.Adapter<CustomAdapterSales.ViewHolder>() {
+class CustomAdapterHoliday(private val items: ArrayList<Holiday>):
+    RecyclerView.Adapter<CustomAdapterHoliday.ViewHolder>() {
     lateinit var context: Context;
     companion object{
 
         const val MY_CONSTANT = 100
 
     }
-    constructor(items: ArrayList<Sale>, context: Context?): this(items) {
+    constructor(items: java.util.ArrayList<Holiday>, context: Context?): this(items) {
 
         if (context != null ) {
             this.context = context
@@ -27,27 +27,20 @@ class CustomAdapterSales(private val items: ArrayList<Sale> ):
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val brend_tv: TextView
-        val thing_tv: TextView
-        val sale_tv: TextView
-        val true_price_tv: TextView
-        val economy_tv: TextView
-        val percentage_tv: TextView
+        val date_tv: TextView
+        val event_tv: TextView
 
         init {
             // Define click listener for the ViewHolder's View.
-            brend_tv = view.findViewById(R.id.brend_tv)
-            thing_tv = view.findViewById(R.id.thing_name_tv)
-            sale_tv = view.findViewById(R.id.sales_price_tv)
-            true_price_tv= view.findViewById(R.id.true_price_tv)
-            economy_tv = view.findViewById(R.id.economy_tv)
-            percentage_tv = view.findViewById(R.id.percenage_tv)
+            date_tv = view.findViewById(R.id.date_holiday_tv)
+            event_tv = view.findViewById(R.id.event_holiday_tv)
+
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapterSales.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapterHoliday.ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_sales, parent, false)
+            .inflate(R.layout.item_holiday, parent, false)
         return ViewHolder(view)
     }
 
@@ -55,18 +48,13 @@ class CustomAdapterSales(private val items: ArrayList<Sale> ):
         return items.size
     }
 
-    override fun onBindViewHolder(holder: CustomAdapterSales.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CustomAdapterHoliday.ViewHolder, position: Int) {
         holder.run {
-            brend_tv.setText(items[position].brand)
-            thing_tv.setText(items[position].thing)
-            sale_tv.setText(items[position].sale.toString())
-            true_price_tv.setText(items[position].true_price.toString())
-            economy_tv.setText(items[position].economy.toString())
-            percentage_tv.setText(items[position].percentage.toString())
-
+            date_tv.setText(items[position].date)
+            event_tv.setText(items[position].event)
 
             itemView.setOnClickListener {
-                val builder = AlertDialog.Builder(holder.brend_tv.context)
+                val builder = AlertDialog.Builder(holder.date_tv.context)
 
                 builder.setMessage("Delete the god?")
 

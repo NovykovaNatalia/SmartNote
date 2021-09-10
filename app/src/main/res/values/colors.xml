@@ -4,10 +4,10 @@
     <color name="purple_500">#68bec3</color>
     <color name="purple_700">#B1EFEF</color>
     <color name="teal_200">#04dec6</color>
-    <color name="teal_700">#004664</color>
+    <color name="teal_700">#43768C</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="fone">#f6f7f1</color>
+    <color name="white">#5A99A1</color>
+    <color name="fone">#B3F0F8</color>
 
 
 </resources>

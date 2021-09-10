@@ -52,7 +52,7 @@ class SalesFragment : Fragment() {
         searchViewSales.startAnimation(ttb)
 
         recyclerViewSales.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        customAdapterSales = CustomAdapterSales(cardListSales)
+        customAdapterSales = CustomAdapterSales(cardListSales, context)
         recyclerViewSales.adapter = customAdapterSales
         customAdapterSales.notifyDataSetChanged()
 
@@ -72,6 +72,7 @@ class SalesFragment : Fragment() {
             sales = mDialogViewSales.findViewById(R.id.sales_price)
             truePrice = mDialogViewSales.findViewById(R.id.true_price)
 
+
             brand_tv = mItemViewSales.findViewById(R.id.brend_tv)
             thing_tv = mItemViewSales.findViewById(R.id.thing_name_tv)
             sales_tv = mItemViewSales.findViewById(R.id.sales_price_tv)
@@ -90,6 +91,8 @@ class SalesFragment : Fragment() {
                     cardSales.thing = thing.text.toString()
                     cardSales.sale = sales.text.toString().toDouble()
                     cardSales.true_price = truePrice.text.toString().toDouble()
+
+                    cardSales.calculateData()
 
                     cardListSales.add(cardSales)
                 } else {

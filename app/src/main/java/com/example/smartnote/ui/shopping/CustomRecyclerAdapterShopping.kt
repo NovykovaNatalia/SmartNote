@@ -1,36 +1,60 @@
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.NumberPicker
 import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.BuildConfig
 import com.example.smartnote.MyApplication
 import com.example.smartnote.R
+import com.example.smartnote.ui.bank_account.Card
 import com.example.smartnote.ui.shopping.ShoppingItem
+import org.w3c.dom.Text
 
 
 class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
     RecyclerView.Adapter<CustomAdapterShopping.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    lateinit var context: Context;
+
+    constructor(items: ArrayList<ShoppingItem>, context: Context?): this(items) {
+
+        if (context != null ) {
+            this.context = context
+        }
+    }
+
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view), NumberPicker.OnValueChangeListener {
         val goods_tv: TextView
-        val quantity_et: EditText
-        val delete_btn: ImageButton
+        val quantity_np: NumberPicker
+        val  quantity_tv: TextView
+
 
         init {
             // Define click listener for the ViewHolder's View.
             goods_tv = view.findViewById(R.id.good_tv)
-            quantity_et = view.findViewById(R.id.quantityEt)
-            delete_btn = view.findViewById(R.id.deleteBtn)
+            quantity_tv = view.findViewById(R.id.quantity_tv)
+            quantity_np = view.findViewById(R.id.quantityNumberPicker)
+            quantity_np.minValue = 1
+            quantity_np.maxValue = 23
+            quantity_np.setOnValueChangedListener(this)
+
+        }
+
+        override fun onValueChange(p0: NumberPicker?, p1: Int, p2: Int) {
+            quantity_tv.setText("" + p2)
         }
     }
 
@@ -50,12 +74,12 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
     override fun onBindViewHolder(holder: CustomAdapterShopping.ViewHolder, position: Int) {
         holder.run {
             goods_tv.setText(items[position].itemname)
-            quantity_et.setText(items[position].quantity.toString())
+            quantity_np.setOnValueChangedListener(items[position].quantity.toString())
 
-            quantity_et.addTextChangedListener(object : TextWatcher {
+            quantity_np.addOnLayoutChangeListener(object : TextWatcher {
                 override fun afterTextChanged(p0: Editable?) {
-                    if (!quantity_et.text.toString().equals("")) {
-                        items[position].quantity = quantity_et.text.toString().toInt()
+                    if (!quantity_np.toString().equals("")) {
+                        items[position].quantity = quantity_np.toString().toInt()
                     }
                 }
 
@@ -66,18 +90,28 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
                 }
             })
 
-            delete_btn.setOnClickListener {
+            itemView.setOnClickListener {
                 val builder = AlertDialog.Builder(holder.goods_tv.context)
-
                 builder.setMessage("Delete the god?")
+                Log.e("natlight", "Delete option")
 
                 builder.setPositiveButton("YES") { dialog, which ->
                     items.remove(items[position])
                     notifyDataSetChanged()
-
+                    Log.e("natlight", "Deleted option")
                 }
                 builder.setNegativeButton("No") { dialog, which ->
 
+                }
+                builder.setNeutralButton("Share") { dialog, which ->
+                    val shareIntent = Intent(Intent.ACTION_SEND)
+                    shareIntent.type = "text/plain"
+                    val shareBody= items.toString()
+                    val shareSub = "items[position]"
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                    context.startActivity(Intent.createChooser(shareIntent, "choose one"))
+                    true
                 }
                 val dialog: AlertDialog = builder.create()
 
@@ -89,6 +123,13 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
 
     }
 
+}
+
+private fun NumberPicker.addOnLayoutChangeListener(textWatcher: TextWatcher) {
+
+}
+
+private fun NumberPicker.setOnValueChangedListener(toString: String) {
 
 }
 

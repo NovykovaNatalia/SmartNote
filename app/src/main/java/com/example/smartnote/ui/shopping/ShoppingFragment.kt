@@ -41,7 +41,7 @@ class ShoppingFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_shopping, container, false)
         recyclerViewShopping = root.findViewById(R.id.recyclerViewShopping)
         recyclerViewShopping.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        customAdapterShopping = CustomAdapterShopping(list)
+        customAdapterShopping = CustomAdapterShopping(list, context)
         recyclerViewShopping.adapter = customAdapterShopping
         customAdapterShopping.notifyDataSetChanged()
         editText = root.findViewById(R.id.editText)
@@ -70,7 +70,6 @@ class ShoppingFragment : Fragment() {
             editText.setText("")
             customAdapterShopping.notifyDataSetChanged()
         }
-
         return root
     }
 

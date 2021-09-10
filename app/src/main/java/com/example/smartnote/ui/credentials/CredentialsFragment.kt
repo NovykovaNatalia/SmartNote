@@ -42,7 +42,8 @@ class CredentialsFragment : Fragment() {
         searchViewCredentials = root.findViewById(R.id.searchViewCredentials)
         recyclerViewCredentials = root.findViewById(R.id.recyclerViewCredentials)
         recyclerViewCredentials.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        customAdapterCredentials = CustomAdapterCredentials(listCredentials)
+        customAdapterCredentials = CustomAdapterCredentials(listCredentials, context)
+       //* Check send one item
         recyclerViewCredentials.adapter = customAdapterCredentials
 
         customAdapterCredentials.notifyDataSetChanged()

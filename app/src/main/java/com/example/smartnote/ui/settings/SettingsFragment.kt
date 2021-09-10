@@ -1,5 +1,6 @@
 package com.example.smartnote.ui.settings
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -36,13 +37,14 @@ class SettingsFragment : Fragment() {
         shareFr.setOnClickListener {
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "text/plain"
-            val shareBody = "Your body hear"
-            val shareSub = "Your subject hear"
+            val shareBody = "Your body here"
+            val shareSub = "Your subject here"
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
             startActivity(Intent.createChooser(shareIntent, "choose one"))
             true
         }
+
         about_snFr.setOnClickListener {
             val intent = Intent(activity, AboutSmartNote::class.java)
             intent.putExtra("key", "Kotlin")
@@ -53,6 +55,7 @@ class SettingsFragment : Fragment() {
         val sharedPrefsEdit:SharedPreferences.Editor = appSettingPref.edit()
 
         val isNightModeOn: Boolean = appSettingPref.getBoolean("NightMode", false)
+
         if (isNightModeOn) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             switchModeFr.text = "Disable Dark Mode"
@@ -60,6 +63,7 @@ class SettingsFragment : Fragment() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             switchModeFr.text = "Enable Dark Mode"
         }
+
         switchModeFr.setOnClickListener() {
             if(isNightModeOn) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
