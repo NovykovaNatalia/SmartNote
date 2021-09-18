@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="10dp">
     <LinearLayout
@@ -46,24 +47,38 @@
             android:hint="Name, Surname "
             android:layout_weight="2"/>
     </LinearLayout>
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
         <Button
-            android:layout_width="wrap_content"
+            android:id="@+id/save_dialog_bank"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_margin="10dp"
             android:text="Save"
-            android:id="@+id/save_dialog_btn"/>
+            app:layout_constraintEnd_toStartOf="@+id/cancel_dialog_bank"
+            app:layout_constraintHorizontal_bias="0.346"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="4dp"
+            tools:ignore="MissingConstraints" />
+
         <Button
-            android:layout_width="wrap_content"
+            android:id="@+id/cancel_dialog_bank"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_toRightOf="@+id/save_dialog_bank"
             android:text="Cancel"
-            android:id="@+id/cancel_dialog_btn"/>
-    </LinearLayout>
+            android:layout_marginLeft="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.849"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="4dp"
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </LinearLayout>

@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="120dp"
     android:background="@drawable/border"
-    android:backgroundTint="@color/fone"
     android:layout_marginRight="10dp"
     android:layout_marginBottom="10dp"
     android:layout_marginLeft="10dp"
@@ -27,8 +26,7 @@
             android:layout_width="128dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_weight="2"
-            android:textColor="@color/teal_700" />
+            android:layout_weight="2" />
 
     </LinearLayout>
 
@@ -52,10 +50,9 @@
             android:id="@+id/quantity_tv"
             android:layout_width="128dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:layout_marginTop="10dp"
-            android:text="1"
-            android:textColor="@color/teal_700" />
+            android:layout_weight="2"
+            android:text="1" />
 
     </LinearLayout>
     <LinearLayout
@@ -64,21 +61,14 @@
         android:layout_height="match_parent"
         android:paddingTop="20dp"
         android:layout_toRightOf="@+id/line_2">
-<!--        <TextView-->
-<!--            android:layout_width="128dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="2"-->
-<!--            android:text="Set amount"-->
-<!--            android:id="@+id/amount_tv"/>-->
+
         <NumberPicker
             android:id="@+id/quantityNumberPicker"
             android:layout_width="128dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:textAlignment="center"
-            android:layout_marginRight="30dp"
-            android:outlineAmbientShadowColor="@color/teal_700"
-            android:textColor="@color/teal_700" />
+            android:layout_marginRight="30dp" />
     </LinearLayout>
 
 </RelativeLayout>

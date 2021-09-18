@@ -6,22 +6,22 @@
     android:id="@+id/frame_settings"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <Switch
         android:id="@+id/switchModeFr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="@string/day_mode"
-        tools:ignore="MissingConstraints" />
+        android:text="@string/day_mode" />
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Shared"
         android:id="@+id/shared_tv_fr"
-        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="29dp"
         android:layout_below="@+id/switchModeFr"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="50dp"
-        android:layout_marginLeft="20dp"/>
+        android:text="Shared" />
 
     <TextView
         android:id="@+id/about_sn_tv_fr"
@@ -30,7 +30,6 @@
         android:layout_below="@id/shared_tv_fr"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="80dp"
-        android:text="About Smart Note"
-        android:textColor="@color/black" />
+        android:text="About Smart Note" />
 
 </FrameLayout>
