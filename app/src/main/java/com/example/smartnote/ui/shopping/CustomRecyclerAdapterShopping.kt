@@ -36,10 +36,11 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
         }
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view), NumberPicker.OnValueChangeListener {
+    class ViewHolder(view: View, ctx:Context) : RecyclerView.ViewHolder(view), NumberPicker.OnValueChangeListener {
         val goods_tv: TextView
         val quantity_np: NumberPicker
         val  quantity_tv: TextView
+        lateinit var context:Context
 
 
         init {
@@ -50,7 +51,20 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
             quantity_np.minValue = 1
             quantity_np.maxValue = 23
             quantity_np.setOnValueChangedListener(this)
+            context= ctx;
 
+        }
+        fun onCreateDialogQuantityPicker() {
+            quantity_tv.setOnClickListener{
+                val mDialogViewDatePicker = LayoutInflater.from(context).inflate(R.layout.shopping_dialog, null);
+                val mItemViewShoppingItem = LayoutInflater.from(context).inflate(R.layout.item_shopping, null )
+
+                val mBuilder = AlertDialog.Builder(context)
+                        .setView(mDialogViewDatePicker)
+                        .setTitle("Set quantity")
+                val mAlertDialog = mBuilder.show()
+
+            }
         }
 
         override fun onValueChange(p0: NumberPicker?, p1: Int, p2: Int) {
@@ -64,7 +78,7 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
     ): CustomAdapterShopping.ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_shopping, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view, context)
     }
 
     override fun getItemCount(): Int {
@@ -75,7 +89,6 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
         holder.run {
             goods_tv.setText(items[position].itemname)
             quantity_np.setOnValueChangedListener(items[position].quantity.toString())
-
             quantity_np.addOnLayoutChangeListener(object : TextWatcher {
                 override fun afterTextChanged(p0: Editable?) {
                     if (!quantity_np.toString().equals("")) {

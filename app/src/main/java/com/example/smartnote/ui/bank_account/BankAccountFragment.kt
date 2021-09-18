@@ -82,8 +82,8 @@ class BankAccountFragment : Fragment() {
         numberTV = mItemView.findViewById(R.id.number_tv)
         nameSurnameTV = mItemView.findViewById(R.id.person_name_surname_tv)
 
-        cancelActionButton = mDialogView.findViewById(R.id.cancel_dialog_btn)
-        saveActionButton = mDialogView.findViewById(R.id.save_dialog_btn);
+        cancelActionButton = mDialogView.findViewById(R.id.cancel_dialog_bank)
+        saveActionButton = mDialogView.findViewById(R.id.save_dialog_bank );
 
 
             saveActionButton.setOnClickListener {
