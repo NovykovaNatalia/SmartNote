@@ -12,21 +12,21 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SmartNote2" >
+        android:theme="@style/Theme.SmartNote" >
         <activity
             android:name=".ui.settings.PrivacyPolicy"
             android:label="@string/title_activity_privacy_policy"
-            android:theme="@style/Theme.SmartNote2.NoActionBar" >
+            android:theme="@style/Theme.SmartNote.NoActionBar" >
         </activity>
         <activity
             android:name=".ui.settings.Version"
             android:label="@string/title_activity_version"
-            android:theme="@style/Theme.SmartNote2.NoActionBar" />
+            android:theme="@style/Theme.SmartNote.NoActionBar" />
         <activity android:name=".ui.settings.AboutSmartNote" />
         <activity
             android:name=".SplashScreen"
             android:label="@string/app_name"
-            android:theme="@style/Theme.SmartNote2.NoActionBar" >
+            android:theme="@style/Theme.SmartNote.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,7 +36,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.SmartNote2.NoActionBar" />
+            android:theme="@style/Theme.SmartNote.NoActionBar" />
     </application>
 
 </manifest>
