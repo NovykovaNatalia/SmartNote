@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        DataStoreHandler.saveArrayList()
+        DataStoreHandler.saveShoppings()
         DataStoreHandler.saveArrayListCards()
         DataStoreHandler.saveArrayListCredentials()
         DataStoreHandler.saveArrayListSales()

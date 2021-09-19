@@ -88,20 +88,12 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
     override fun onBindViewHolder(holder: CustomAdapterShopping.ViewHolder, position: Int) {
         holder.run {
             goods_tv.setText(items[position].itemname)
-            quantity_np.setOnValueChangedListener(items[position].quantity.toString())
-            quantity_np.addOnLayoutChangeListener(object : TextWatcher {
-                override fun afterTextChanged(p0: Editable?) {
-                    if (!quantity_np.toString().equals("")) {
-                        items[position].quantity = quantity_np.toString().toInt()
-                    }
-                }
-
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                }
-
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                }
-            })
+            quantity_np.value = items[position].quantity
+            quantity_tv.setText(items[position].quantity.toString())
+            quantity_np.setOnValueChangedListener{ picker, oldVal, newVal ->
+                quantity_tv.setText(newVal.toString())
+                items[position].quantity = newVal
+            }
 
             itemView.setOnClickListener {
                 val builder = AlertDialog.Builder(holder.goods_tv.context)

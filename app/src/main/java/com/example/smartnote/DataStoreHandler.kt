@@ -2,7 +2,6 @@ package com.example.smartnote
 
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import android.util.Log
 import com.example.smartnote.ui.bank_account.Card
 import com.example.smartnote.ui.credentials.Credentials
 import com.example.smartnote.ui.holiday.Holiday
@@ -28,7 +27,7 @@ object DataStoreHandler {
     lateinit var holiday: ArrayList<Holiday>
 
     init {
-        shopingItems = getArrayList()
+        shopingItems = getShoppings()
         cards = getArrayListCards()
         credentials =  getArrayListCredentials()
         sales = getArrayListSales()
@@ -56,7 +55,7 @@ object DataStoreHandler {
         }
         return ArrayList()
     }
-    fun saveArrayList() {
+    fun saveShoppings() {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
         val editor: SharedPreferences.Editor = prefs.edit()
         val gson = Gson()
@@ -65,7 +64,7 @@ object DataStoreHandler {
         editor.apply()
     }
 
-    fun getArrayList(): ArrayList<ShoppingItem> {
+    fun getShoppings(): ArrayList<ShoppingItem> {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
         val gson = Gson()
         val json: String? = prefs.getString(SP_SHOPING_ITEMS_KEY, null)
