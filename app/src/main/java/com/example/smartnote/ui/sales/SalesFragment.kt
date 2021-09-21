@@ -81,7 +81,7 @@ class SalesFragment : Fragment() {
 
 
             cancelActionButtonSales = mDialogViewSales.findViewById(R.id.cancel_dialog_sales)
-            saveActionButtonSales = mDialogViewSales.findViewById<Button>(R.id.save_dialog_sales);
+            saveActionButtonSales = mDialogViewSales.findViewById<Button>(R.id.save_dialog_sales)
 
             saveActionButtonSales.setOnClickListener {
                 mAlertDialog.dismiss()

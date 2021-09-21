@@ -2,7 +2,6 @@ package com.example.smartnote.ui.shopping
 
 class ShoppingItem {
     lateinit var itemname: String
-    lateinit var count: String
     var quantity: Int = 1
 
 

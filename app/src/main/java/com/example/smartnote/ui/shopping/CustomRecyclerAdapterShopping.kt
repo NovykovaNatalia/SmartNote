@@ -2,16 +2,14 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.NumberPicker
-import android.widget.TextView
+import android.widget.*
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.FragmentActivity
@@ -20,6 +18,7 @@ import com.example.smartnote.BuildConfig
 import com.example.smartnote.MyApplication
 import com.example.smartnote.R
 import com.example.smartnote.ui.bank_account.Card
+import com.example.smartnote.ui.sales.Sale
 import com.example.smartnote.ui.shopping.ShoppingItem
 import org.w3c.dom.Text
 
@@ -38,7 +37,7 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
 
     class ViewHolder(view: View, ctx:Context) : RecyclerView.ViewHolder(view), NumberPicker.OnValueChangeListener {
         val goods_tv: TextView
-        val quantity_np: NumberPicker
+        lateinit var quantity_np: NumberPicker
         val  quantity_tv: TextView
         lateinit var context:Context
 
@@ -53,18 +52,6 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
             quantity_np.setOnValueChangedListener(this)
             context= ctx;
 
-        }
-        fun onCreateDialogQuantityPicker() {
-            quantity_tv.setOnClickListener{
-                val mDialogViewDatePicker = LayoutInflater.from(context).inflate(R.layout.shopping_dialog, null);
-                val mItemViewShoppingItem = LayoutInflater.from(context).inflate(R.layout.item_shopping, null )
-
-                val mBuilder = AlertDialog.Builder(context)
-                        .setView(mDialogViewDatePicker)
-                        .setTitle("Set quantity")
-                val mAlertDialog = mBuilder.show()
-
-            }
         }
 
         override fun onValueChange(p0: NumberPicker?, p1: Int, p2: Int) {
@@ -94,6 +81,40 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
                 quantity_tv.setText(newVal.toString())
                 items[position].quantity = newVal
             }
+
+            quantity_tv.setOnClickListener{
+                val mDialogViewShopping = LayoutInflater.from(context).inflate(R.layout.shopping_dialog, null)
+//                val mItemViewShopping = LayoutInflater.from(context).inflate(R.layout.item_shopping, null)
+                val mBuilder = AlertDialog.Builder(context)
+                        .setView(mDialogViewShopping)
+                        .setTitle("Shopping")
+                val mAlertDialog = mBuilder.show()
+
+                val quantity_adnp = mDialogViewShopping.findViewById<NumberPicker>(R.id.quantityNumberPickerDialog)
+                quantity_adnp.minValue = 1
+                quantity_adnp.maxValue = 23
+
+                val cancelActionButtonShopping = mDialogViewShopping.findViewById<Button>(R.id.cancel_dialog_shopping)
+                val saveActionButtonShopping = mDialogViewShopping.findViewById<Button>(R.id.save_dialog_shopping)
+
+                saveActionButtonShopping.setOnClickListener{
+
+                    if (quantity_adnp.value.toString().isNotEmpty()) {
+                        quantity_tv.setText(quantity_adnp.value.toString())
+                        items[position].quantity = quantity_adnp.value
+                        quantity_np.value = quantity_adnp.value
+                    } else {
+                        Toast.makeText(context, "Put values!", Toast.LENGTH_LONG).show()
+                    }
+                    mAlertDialog.dismiss()
+                }
+                cancelActionButtonShopping.setOnClickListener{
+                    mAlertDialog.dismiss()
+                }
+
+            }
+
+
 
             itemView.setOnClickListener {
                 val builder = AlertDialog.Builder(holder.goods_tv.context)
