@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="180dp"
-    android:padding="6dp"
-    android:background="@drawable/students"
+    android:layout_width="wrap_content"
+    android:layout_height="150dp"
+    android:layout_centerHorizontal="true"
+    android:background="@drawable/student"
+    android:layout_marginTop="20dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 </LinearLayout>

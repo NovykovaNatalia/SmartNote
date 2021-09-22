@@ -9,39 +9,29 @@
         android:id="@+id/quantityNumberPickerDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textAlignment="center" />
-    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/quantityNumberPickerDialog"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
-
+        android:layout_below="@+id/quantityNumberPickerDialog">
         <Button
             android:id="@+id/save_dialog_shopping"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Save"
-            app:layout_constraintEnd_toStartOf="@+id/cancel_dialog_shopping"
-            app:layout_constraintHorizontal_bias="0.346"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="4dp"
-            tools:ignore="MissingConstraints" />
+            android:layout_weight="2"
+            android:text="Save" />
 
         <Button
             android:id="@+id/cancel_dialog_shopping"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="2"
             android:layout_toRightOf="@+id/save_dialog_shopping"
-            android:text="Cancel"
-            android:layout_marginLeft="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.849"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="4dp"
-            tools:ignore="MissingConstraints" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:text="Cancel" />
+    </LinearLayout>
+
 
 </RelativeLayout>

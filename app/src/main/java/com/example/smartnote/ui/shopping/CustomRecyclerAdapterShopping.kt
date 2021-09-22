@@ -37,7 +37,7 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
 
     class ViewHolder(view: View, ctx:Context) : RecyclerView.ViewHolder(view), NumberPicker.OnValueChangeListener {
         val goods_tv: TextView
-        lateinit var quantity_np: NumberPicker
+//        lateinit var quantity_np: NumberPicker
         val  quantity_tv: TextView
         lateinit var context:Context
 
@@ -46,10 +46,10 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
             // Define click listener for the ViewHolder's View.
             goods_tv = view.findViewById(R.id.good_tv)
             quantity_tv = view.findViewById(R.id.quantity_tv)
-            quantity_np = view.findViewById(R.id.quantityNumberPicker)
-            quantity_np.minValue = 1
-            quantity_np.maxValue = 23
-            quantity_np.setOnValueChangedListener(this)
+//            quantity_np = view.findViewById(R.id.quantityNumberPicker)
+//            quantity_np.minValue = 1
+//            quantity_np.maxValue = 23
+//            quantity_np.setOnValueChangedListener(this)
             context= ctx;
 
         }
@@ -75,16 +75,15 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
     override fun onBindViewHolder(holder: CustomAdapterShopping.ViewHolder, position: Int) {
         holder.run {
             goods_tv.setText(items[position].itemname)
-            quantity_np.value = items[position].quantity
+//            quantity_np.value = items[position].quantity
             quantity_tv.setText(items[position].quantity.toString())
-            quantity_np.setOnValueChangedListener{ picker, oldVal, newVal ->
-                quantity_tv.setText(newVal.toString())
-                items[position].quantity = newVal
-            }
+//            quantity_np.setOnValueChangedListener{ picker, oldVal, newVal ->
+//                quantity_tv.setText(newVal.toString())
+//                items[position].quantity = newVal
+//            }
 
             quantity_tv.setOnClickListener{
                 val mDialogViewShopping = LayoutInflater.from(context).inflate(R.layout.shopping_dialog, null)
-//                val mItemViewShopping = LayoutInflater.from(context).inflate(R.layout.item_shopping, null)
                 val mBuilder = AlertDialog.Builder(context)
                         .setView(mDialogViewShopping)
                         .setTitle("Shopping")
@@ -102,7 +101,7 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
                     if (quantity_adnp.value.toString().isNotEmpty()) {
                         quantity_tv.setText(quantity_adnp.value.toString())
                         items[position].quantity = quantity_adnp.value
-                        quantity_np.value = quantity_adnp.value
+//                        quantity_np.value = quantity_adnp.value
                     } else {
                         Toast.makeText(context, "Put values!", Toast.LENGTH_LONG).show()
                     }
@@ -113,8 +112,6 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
                 }
 
             }
-
-
 
             itemView.setOnClickListener {
                 val builder = AlertDialog.Builder(holder.goods_tv.context)
