@@ -17,10 +17,10 @@ class Sale {
         val builder = StringBuilder()
         builder.append("Brand" + " : " + brand + "\n")
             .append("Thing" + " : " + thing + "\n")
-            .append("Sale" + " : " + sale + "\n")
-            .append("True price" + " : " + true_price + "\n")
-            .append("Economy" + " : " + economy + "\n")
-            .append("Economy percentage" + " : " + percentage + " %" + "\n")
+            .append("Sale" + " : " + sale.toInt() + "\n")
+            .append("True price" + " : " + true_price.toInt() + "\n")
+            .append("Economy" + " : " + economy.toInt() + "\n")
+            .append("Economy percentage" + " : " + percentage.toInt() + " %" + "\n")
         return builder.toString()
     }
 }

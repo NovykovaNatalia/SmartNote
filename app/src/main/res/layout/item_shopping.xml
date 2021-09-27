@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="wrap_content"
     android:background="@drawable/border"
     android:layout_marginRight="10dp"
     android:layout_marginBottom="10dp"
@@ -9,8 +9,8 @@
     tools:context=".MainActivity">
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/line_1"
+        android:layout_height="wrap_content"
+        android:id="@+id/line_one"
         android:layout_marginLeft="30dp"
         android:paddingTop="20dp"
         android:layout_marginBottom="10dp"
@@ -19,8 +19,8 @@
             android:id="@+id/good_name_tv"
             android:text="Goods"
             android:layout_width="170dp"
-            android:layout_weight="2"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
         <TextView
             android:id="@+id/good_tv"
             android:layout_width="170dp"
@@ -31,12 +31,12 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/line_2"
+        android:id="@+id/line_two"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:paddingTop="20dp"
         android:layout_marginBottom="10dp"
-        android:layout_toRightOf="@+id/line_1"
+        android:layout_toRightOf="@+id/line_one"
         android:orientation="vertical">
 
         <TextView
@@ -49,12 +49,28 @@
         <TextView
             android:id="@+id/quantity_tv"
             android:layout_width="170dp"
-            android:layout_height="29dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_weight="2"
             android:text="1" />
 
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/line_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignBottom="@+id/line_two">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_more_horiz_24" />
+    </LinearLayout>
+
 
 
 </RelativeLayout>

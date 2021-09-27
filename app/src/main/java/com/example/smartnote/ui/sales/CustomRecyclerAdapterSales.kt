@@ -59,10 +59,10 @@ class CustomAdapterSales(private val items: ArrayList<Sale> ):
         holder.run {
             brend_tv.setText(items[position].brand)
             thing_tv.setText(items[position].thing)
-            sale_tv.setText(items[position].sale.toString())
-            true_price_tv.setText(items[position].true_price.toString())
-            economy_tv.setText(items[position].economy.toString())
-            percentage_tv.setText(items[position].percentage.toString())
+            sale_tv.setText(items[position].sale.toInt().toString())
+            true_price_tv.setText(items[position].true_price.toInt().toString())
+            economy_tv.setText(items[position].economy.toInt().toString())
+            percentage_tv.setText(items[position].percentage.toInt().toString() + "%")
 
 
             itemView.setOnClickListener {

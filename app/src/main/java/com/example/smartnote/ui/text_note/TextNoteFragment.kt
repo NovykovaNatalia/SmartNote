@@ -42,7 +42,7 @@ class TextNoteFragment : Fragment() {
         recyclerViewNote = view.findViewById<RecyclerView>(R.id.recyclerViewNote)
         recyclerViewNote.startAnimation(ttb)
         recyclerViewNote.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        customAdapterNote = CustomAdapterNote(cardListNote)
+        customAdapterNote = CustomAdapterNote(cardListNote, context)
         recyclerViewNote.adapter = customAdapterNote
         customAdapterNote.notifyDataSetChanged()
         searchViewNote = view.findViewById(R.id.searchViewNote)
