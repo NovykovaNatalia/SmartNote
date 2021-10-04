@@ -14,7 +14,6 @@
             android:id="@+id/note"
             android:hint="Note"
             android:inputType="text"
-            android:textColor="@color/teal_700"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>

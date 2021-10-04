@@ -6,7 +6,7 @@
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#23B3A5</item>
+        <item name="colorSecondary">#2f79d8</item>
         <item name="colorSecondaryVariant">#14B8A6</item>
         <item name="colorOnSecondary">@color/fone</item>
         <!-- Status bar color. -->

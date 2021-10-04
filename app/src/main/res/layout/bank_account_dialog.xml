@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="10dp">
@@ -12,9 +12,8 @@
         android:orientation="horizontal">
         <EditText
             android:id="@+id/salary_account"
-            android:hint="Type Account"
+            android:hint="Account Type"
             android:inputType="text"
-            android:textColor="@color/teal_700"
             android:layout_width="match_parent"
             android:layout_weight="2"
             android:layout_height="wrap_content"/>
@@ -22,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:textColor="@color/teal_700"
             android:id="@+id/bank_name"
             android:inputType="text"
             android:hint="Bank Name"/>
@@ -36,13 +34,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/number"
-            android:textColor="@color/teal_700"
             android:hint="Account Number "
             android:layout_weight="2"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/teal_700"
             android:id="@+id/person_name_surname"
             android:hint="Name, Surname "
             android:layout_weight="2"/>

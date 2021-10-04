@@ -17,13 +17,11 @@
             android:inputType="date"
             android:layout_weight="2"
             android:hint="Date"
-            android:textColor="@color/teal_700"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <EditText
             android:id="@+id/event"
             android:layout_weight="2"
-            android:textColor="@color/teal_700"
             android:hint="Event"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

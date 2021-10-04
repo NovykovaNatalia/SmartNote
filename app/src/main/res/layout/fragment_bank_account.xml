@@ -3,19 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
         android:layout_height="45dp"
-        android:layout_marginRight="10dp"
         android:layout_alignParentTop="true"
-        android:queryBackground="@android:color/transparent"
-        android:background="@drawable/radius"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/radius"
         android:iconifiedByDefault="false"
+        android:queryBackground="@android:color/transparent"
         android:queryHint="Search Here" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -23,14 +25,14 @@
         android:layout_width="match_parent"
         android:layout_height="450dp"
         android:layout_margin="5dp"
-        tools:listitem="@layout/item_bank_account" />
+        tools:listitem="@layout/item_bank_account"></androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_btn_bank_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="260dp"
+        android:layout_marginTop="5dp"
         android:src="@drawable/ic_baseline_add_circle_outline" />
 
 </LinearLayout>
