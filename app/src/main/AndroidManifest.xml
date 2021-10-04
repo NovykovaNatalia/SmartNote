@@ -23,6 +23,7 @@
             android:label="@string/title_activity_version"
             android:theme="@style/Theme.SmartNote.NoActionBar" />
         <activity android:name=".ui.settings.AboutSmartNote" />
+        <activity android:name=".ui.settings.Contact" />
         <activity
             android:name=".SplashScreen"
             android:label="@string/app_name"
