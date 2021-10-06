@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smartnote" >
-
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
@@ -23,7 +23,7 @@
             android:label="@string/title_activity_version"
             android:theme="@style/Theme.SmartNote.NoActionBar" />
         <activity android:name=".ui.settings.AboutSmartNote" />
-        <activity android:name=".ui.settings.Contact" />
+        <activity android:name=".ui.settings.Rate" />
         <activity
             android:name=".SplashScreen"
             android:label="@string/app_name"

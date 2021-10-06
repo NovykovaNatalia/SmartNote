@@ -1,5 +1,6 @@
 package com.example.smartnote.ui.settings
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
@@ -7,9 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.Switch
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.smartnote.R
@@ -20,6 +19,7 @@ class SettingsFragment : Fragment() {
     lateinit var about_snFr: TextView
     lateinit var frame_settings: FrameLayout
     lateinit var contact: TextView
+    lateinit var rate: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,12 +27,39 @@ class SettingsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
     val  view =  inflater.inflate(R.layout.fragment_settings, container, false)
+    val viewRate = inflater.inflate(R.layout.rate_dialog, container, false)
 
         switchModeFr = view.findViewById(R.id.switchModeFr)
         shareFr = view.findViewById(R.id.shared_tv_fr)
         about_snFr = view.findViewById(R.id.about_sn_tv_fr)
         frame_settings = view.findViewById(R.id.frame_settings)
         contact = view.findViewById(R.id.contact)
+        rate = view.findViewById(R.id.rate)
+
+        val mRatingBar = viewRate.findViewById<View>(R.id.ratingBar) as RatingBar
+        val mRatingScale = viewRate.findViewById<View>(R.id.tvRatingScale) as TextView
+        val mSendFeedback: Button = viewRate.findViewById<View>(R.id.btnSubmit) as Button
+
+        rate.setOnClickListener {
+            val mDialogViewRate = LayoutInflater.from(context).inflate(R.layout.rate_dialog, null)
+            val mBuilder = AlertDialog.Builder(context)
+                    .setView(mDialogViewRate)
+                    .setTitle("Rate us!")
+            val mAlertDialog = mBuilder.show()
+
+            mRatingBar.onRatingBarChangeListener = RatingBar.OnRatingBarChangeListener { ratingBar, v, b ->
+                mRatingScale.text = v.toString()
+                when (ratingBar.rating.toInt()) {
+                    1 -> mRatingScale.text = "Very bad"
+                    2 -> mRatingScale.text = "Need some improvement"
+                    3 -> mRatingScale.text = "Good"
+                    4 -> mRatingScale.text = "Great"
+                    5 -> mRatingScale.text = "Awesome. I love it"
+                    else -> mRatingScale.text = ""
+                }
+            }
+        }
+
 
         contact.setOnClickListener {
             val intent = Intent(Intent.ACTION_SENDTO)

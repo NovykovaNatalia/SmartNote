@@ -31,4 +31,7 @@
     <string name="title_activity_privacy_policy">PrivacyPolicy</string>
     <string name="info">What information do we collect? When ordering or registering on our apps or website, as appropriate, you may be asked to enter your e-mail address. Some apps or services may acquire your location data, but this data is obtained after a clear explanation and your consent to start using it.</string>
     <string name="day_mode">Day Mode</string>
+    <string name="rate">Rate</string>
+    <string name="if_you_likethis_app_please_rate_us_5_stars">If you like this app, please rate us 5 stars</string>
+    <string name="we_hope_you_enjoyed_our_app">We hope you enjoyed our app</string>
 </resources>
