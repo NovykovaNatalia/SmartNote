@@ -30,23 +30,6 @@
             android:layout_height="wrap_content"
             android:hint="Note" />
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/line_three_note"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="50dp"
-        android:orientation="vertical">
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:id="@+id/voice_image"
-            android:src="@drawable/ic_baseline_keyboard_voice_24" />
-    </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/line_two_note"

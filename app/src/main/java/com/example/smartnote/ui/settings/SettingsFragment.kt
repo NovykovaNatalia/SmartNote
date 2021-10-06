@@ -38,14 +38,13 @@ class SettingsFragment : Fragment() {
 
         val mRatingBar = viewRate.findViewById<View>(R.id.ratingBar) as RatingBar
         val mRatingScale = viewRate.findViewById<View>(R.id.tvRatingScale) as TextView
-        val mSendFeedback: Button = viewRate.findViewById<View>(R.id.btnSubmit) as Button
 
         rate.setOnClickListener {
             val mDialogViewRate = LayoutInflater.from(context).inflate(R.layout.rate_dialog, null)
             val mBuilder = AlertDialog.Builder(context)
                     .setView(mDialogViewRate)
                     .setTitle("Rate us!")
-            val mAlertDialog = mBuilder.show()
+            mBuilder.show()
 
             mRatingBar.onRatingBarChangeListener = RatingBar.OnRatingBarChangeListener { ratingBar, v, b ->
                 mRatingScale.text = v.toString()
@@ -59,7 +58,6 @@ class SettingsFragment : Fragment() {
                 }
             }
         }
-
 
         contact.setOnClickListener {
             val intent = Intent(Intent.ACTION_SENDTO)
