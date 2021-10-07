@@ -1,10 +1,12 @@
 package com.example.smartnote.ui.text_note
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +31,9 @@ class TextNoteFragment : Fragment() {
     lateinit var saveActionButtonNote: Button
     lateinit var cancelActionButtonNote: Button
     lateinit var searchViewNote: SearchView
+    lateinit var image_voice: ImageView
+
+    private val  REQUEST_CODE_SPEECH = 100
 
     @SuppressLint("WrongConstant")
     override fun onCreateView(
@@ -64,6 +69,11 @@ class TextNoteFragment : Fragment() {
 
             note = mDialogViewNote.findViewById(R.id.note)
             note_tv = mItemViewNote.findViewById(R.id.note_tv)
+            image_voice = mDialogViewNote.findViewById(R.id.image_voice)
+
+            image_voice.setOnClickListener{
+                speak()
+            }
 
             cancelActionButtonNote = mDialogViewNote.findViewById(R.id.cancel_dialog_note)
             saveActionButtonNote = mDialogViewNote.findViewById<Button>(R.id.save_dialog_note);
@@ -90,6 +100,40 @@ class TextNoteFragment : Fragment() {
         return view
     }
 
-}
+    private fun speak() {
+        val mIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+        mIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+        mIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+        mIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Hi, speak something")
 
+        try{
+            startActivityForResult(mIntent, REQUEST_CODE_SPEECH)
+        }
+        catch (e: Exception) {
+            Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            // Handle the result for our request code.
+            REQUEST_CODE_SPEECH -> {
+                // Safety checks to ensure data is available.
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    // Retrieve the result array.
+                    val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+                    // Ensure result array is not null or empty to avoid errors.
+                    if (!result.isNullOrEmpty()) {
+                        // Recognized text is in the first position.
+                        val recognizedText = result[0]
+                        // Do what you want with the recognized text.
+                        note.setText(recognizedText)
+                    }
+                }
+            }
+        }
+    }
+}
 

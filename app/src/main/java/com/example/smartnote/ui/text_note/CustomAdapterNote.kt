@@ -3,12 +3,18 @@ package com.example.smartnote.ui.text_note
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.speech.RecognizerIntent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.R
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CustomAdapterNote(private val items: ArrayList<CardNote>) :
         RecyclerView.Adapter<CustomAdapterNote.ViewHolder>() {
@@ -72,7 +78,9 @@ class CustomAdapterNote(private val items: ArrayList<CardNote>) :
                 dialog.show()
                 notifyDataSetChanged()
             }
+
         }
     }
+
 
 }
