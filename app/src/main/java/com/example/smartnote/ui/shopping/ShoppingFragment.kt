@@ -115,7 +115,7 @@ class ShoppingFragment : Fragment() {
                         // Recognized text is in the first position.
                         val recognizedText = result[0]
                         // Do what you want with the recognized text.
-                        editText.setText(recognizedText)
+                        editText .setText(recognizedText)
                     }
                 }
             }
