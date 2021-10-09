@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="Account Type"
-            android:textSize="8sp" />
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/salary_account_tv"
@@ -43,7 +43,7 @@
             android:layout_weight="2"
             android:hint="Account Number"
             android:text="Account Number"
-            android:textSize="8sp" />
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/number_tv"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="Bank Name"
-            android:textSize="8sp" />
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/bank_name_tv"
@@ -88,7 +88,7 @@
             android:layout_marginTop="10dp"
             android:layout_weight="2"
             android:text="Name, Surname"
-            android:textSize="8sp" />
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/person_name_surname_tv"

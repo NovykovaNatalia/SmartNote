@@ -56,6 +56,21 @@ class TextNoteFragment : Fragment() {
         customAdapterNote.notifyDataSetChanged()
         searchViewNote = view.findViewById(R.id.searchViewNote)
         searchViewNote.startAnimation(ttb)
+        searchViewNote.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                // task HERE
+                return false
+            }
+            override fun onQueryTextChange(newText: String): Boolean {
+                val searchText = newText!!.toLowerCase(Locale.getDefault())
+                if(searchText.isNotEmpty()) {
+
+                }
+                return false
+            }
+
+        })
+
         floatingActionButtonNote = view.findViewById(R.id.floating_btn_note)
         floatingActionButtonNote.startAnimation(ttb)
         floatingActionButtonNote.setOnClickListener{
@@ -136,4 +151,5 @@ class TextNoteFragment : Fragment() {
         }
     }
 }
+
 

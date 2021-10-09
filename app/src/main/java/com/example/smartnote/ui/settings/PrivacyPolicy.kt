@@ -29,7 +29,7 @@ class PrivacyPolicy : AppCompatActivity() {
         //adding some dummy data to the list
         users.add(User("\n" + "Privacy Policy",  "Last updated: October 10, 2021\n" +
                 "\n" +
-                "User privacy is the top priority. We (“3ND Tech Co., \"We\", \"Us\", or \"Our\") value your (\"User\", \"You\" or \"Your\") " +
+                "User privacy is the top priority. We (“3ND Tech Co, \"We\", \"Us\", or \"Our\") value your (\"User\", \"You\" or \"Your\") " +
                 "privacy and recognize the sensitivity of your personal information. We are committed to protecting your personal information " +
                 "and using it only when appropriate to provide you with the best possible services and products.\n" +
                 "\n" +

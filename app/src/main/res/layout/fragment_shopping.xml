@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     tools:context=".ui.shopping.ShoppingFragment">
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout"
         android:orientation="horizontal">
 
         <EditText
@@ -21,29 +22,31 @@
             android:layout_weight="3"
             android:background="@drawable/radius"
             android:hint="Enter an item here"
-            android:paddingLeft="10dp"
-            android:inputType="text" />
+            android:inputType="text"
+            android:paddingLeft="10dp" />
+
         <ImageView
             android:id="@+id/btn_speach"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:layout_marginTop="20dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_baseline_keyboard_voice_24"/>
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_baseline_keyboard_voice_24" />
 
         <Button
             android:id="@+id/btnAdd"
-            android:text=" + Add"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:layout_marginRight="10dp"
-            android:textColor="@color/teal_700"
+            android:layout_height="45dp"
             android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/editText"
+            android:layout_weight="1"
             android:background="?android:attr/selectableItemBackground"
-            android:layout_toRightOf="@+id/editText" />
-
+            android:text=" + Add"
+            android:textColor="@color/purple_700"
+            android:textSize="16sp" />
 
 
     </LinearLayout>
