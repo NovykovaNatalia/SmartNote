@@ -62,11 +62,10 @@ class TextNoteFragment : Fragment() {
                 return false
             }
             override fun onQueryTextChange(newText: String): Boolean {
-                val searchText = newText!!.toLowerCase(Locale.getDefault())
-                if(searchText.isNotEmpty()) {
-
-                }
-                return false
+                var filteredList:ArrayList<CardNote> = filter(cardListNote, newText)
+                recyclerViewNote.adapter = CustomAdapterNote(filteredList, context)
+                (recyclerViewNote.adapter as CustomAdapterNote).notifyDataSetChanged()
+                return true
             }
 
         })
@@ -149,6 +148,17 @@ class TextNoteFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun filter (cardList:ArrayList<CardNote>, query: String): ArrayList<CardNote> {
+        var resultList:ArrayList<CardNote> = java.util.ArrayList()
+
+        for (cardNote in cardList) {
+            if(cardNote.note.contains(query.toLowerCase())) {
+                resultList.add(cardNote)
+            }
+        }
+        return resultList
     }
 }
 
