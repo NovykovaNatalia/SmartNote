@@ -48,17 +48,17 @@
 
 
    </androidx.core.widget.NestedScrollView>
+   <com.google.android.material.floatingactionbutton.FloatingActionButton
+       android:id="@+id/floating_btn_event"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:src="@drawable/ic_baseline_add_circle_outline"
+       android:layout_alignParentBottom="true"
+       android:layout_marginTop="20dp"
+       android:layout_margin="80dp"
+       android:layout_alignParentRight="true"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/floating_btn_event"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:src="@drawable/ic_baseline_add_circle_outline"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:layout_margin="80dp"-->
-<!--        android:layout_alignParentRight="true"/>-->

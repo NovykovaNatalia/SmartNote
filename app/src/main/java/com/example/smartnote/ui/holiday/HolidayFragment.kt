@@ -49,8 +49,66 @@ class HolidayFragment : Fragment() {
         cardListHoliday = DataStoreHandler.holiday
 
         val root = inflater.inflate(R.layout.fragment_holiday, container, false)
+        val mDialogViewHoliday = inflater.inflate(R.layout.holiday_dialog,container, false)
+        val mItemViewHoliday = inflater.inflate(R.layout.item_holiday, container, false)
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
-//        floating_btn_event = root.findViewById(R.id.floating_btn_event);
+        floating_btn_event = root.findViewById(R.id.floating_btn_event)
+
+
+        floating_btn_event.startAnimation(ttb)
+        calendarView = root.findViewById(R.id.calendarView)
+        recyclerViwHoliday = root.findViewById(R.id.recyclerViewHoliday)
+
+        saveActionButtonHoliday = mDialogViewHoliday.findViewById(R.id.save_dialog_holiday)
+        cancelActionButtonHoliday = mDialogViewHoliday.findViewById(R.id.cancel_dialog_holiday)
+        date = mDialogViewHoliday.findViewById(R.id.date)
+        event = mDialogViewHoliday.findViewById(R.id.event)
+
+        date_tv = mItemViewHoliday.findViewById(R.id.date_holiday_tv)
+        event_tv = mItemViewHoliday.findViewById(R.id.event_holiday_tv)
+
+        calendarView.startAnimation(ttb)
+
+        recyclerViwHoliday.layoutManager =
+            LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+
+        customAdapterHoliday = CustomAdapterHoliday(cardListHoliday, context)
+
+        recyclerViwHoliday.adapter = customAdapterHoliday
+        customAdapterHoliday.notifyDataSetChanged()
+
+        floating_btn_event.setOnClickListener(View.OnClickListener {
+            floating_btn_event.startAnimation(ttb)
+
+            val mBuilder = AlertDialog.Builder(context)
+                .setView(mDialogViewHoliday)
+                .setTitle("Holiday")
+            val mAlertDialog = mBuilder.show()
+
+
+
+            cancelActionButtonHoliday = mDialogViewHoliday.findViewById(R.id.cancel_dialog_holiday)
+            saveActionButtonHoliday = mDialogViewHoliday.findViewById<Button>(R.id.save_dialog_holiday);
+
+                saveActionButtonHoliday.setOnClickListener {
+                    mAlertDialog.dismiss()
+                    if (date.text.isNotEmpty() && event.text.isNotEmpty()) {
+                        var cardHoliday = Holiday()
+                        cardHoliday.date = date.text.toString()
+                        cardHoliday.event = event.text.toString()
+
+                        cardListHoliday.add(cardHoliday)
+                    } else {
+                        Toast.makeText(context, "Put values!", Toast.LENGTH_LONG).show()
+                    }
+                    customAdapterHoliday.notifyDataSetChanged()
+
+                }
+                cancelActionButtonHoliday.setOnClickListener() {
+                    mAlertDialog.dismiss()
+                }
+        })
+
         collapsing_toolbar = root.findViewById(R.id.collapsing_toolbar)
         collapsing_toolbar.setTitle(getResources().getString(R.string.user_name));
 //        dynamicToolbarColor()
@@ -77,59 +135,5 @@ class HolidayFragment : Fragment() {
         collapsing_toolbar.setExpandedTitleTextAppearance(R.style.expandedappbar)
     }
 }
-//
-//        floating_btn_event.startAnimation(ttb)
-//        calendarView = root.findViewById(R.id.calendarView)
-////        recyclerViwHoliday = root.findViewById(R.id.recyclerViewHoliday)
-//
-//        saveActionButtonHoliday = mDialogViewHoliday.findViewById(R.id.save_dialog_holiday)
-//        cancelActionButtonHoliday = mDialogViewHoliday.findViewById(R.id.cancel_dialog_holiday)
-//        date = mDialogViewHoliday.findViewById(R.id.date)
-//        event = mDialogViewHoliday.findViewById(R.id.event)
-//
-//        date_tv = mItemViewHoliday.findViewById(R.id.date_holiday_tv)
-//        event_tv = mItemViewHoliday.findViewById(R.id.event_holiday_tv)
-//
-//        calendarView.startAnimation(ttb)
-//
-//        recyclerViwHoliday.layoutManager =
-//            LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-//
-//        customAdapterHoliday = CustomAdapterHoliday(cardListHoliday, context)
-//
-//        recyclerViwHoliday.adapter = customAdapterHoliday
-//        customAdapterHoliday.notifyDataSetChanged()
-//
-//        floating_btn_event.setOnClickListener(View.OnClickListener {
-//            floating_btn_event.startAnimation(ttb)
-//
-//            val mBuilder = AlertDialog.Builder(context)
-//                .setView(mDialogViewHoliday)
-//                .setTitle("Holiday")
-//            val mAlertDialog = mBuilder.show()
-//
-//
-//
-//            cancelActionButtonHoliday = mDialogViewHoliday.findViewById(R.id.cancel_dialog_holiday)
-//            saveActionButtonHoliday = mDialogViewHoliday.findViewById<Button>(R.id.save_dialog_holiday);
-//
-//                saveActionButtonHoliday.setOnClickListener {
-//                    mAlertDialog.dismiss()
-//                    if (date.text.isNotEmpty() && event.text.isNotEmpty()) {
-//                        var cardHoliday = Holiday()
-//                        cardHoliday.date = date.text.toString()
-//                        cardHoliday.event = event.text.toString()
-//
-//                        cardListHoliday.add(cardHoliday)
-//                    } else {
-//                        Toast.makeText(context, "Put values!", Toast.LENGTH_LONG).show()
-//                    }
-//                    customAdapterHoliday.notifyDataSetChanged()
-//
-//                }
-//                cancelActionButtonHoliday.setOnClickListener() {
-//                    mAlertDialog.dismiss()
-//                }
-//        })
 
 
