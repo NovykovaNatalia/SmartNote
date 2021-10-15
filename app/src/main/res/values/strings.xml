@@ -35,5 +35,5 @@
     <string name="if_you_likethis_app_please_rate_us_5_stars">If you like this app, please rate us 5 stars</string>
     <string name="we_hope_you_enjoyed_our_app">We hope you enjoyed our app</string>
     <string name="text_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consectetur diam id aliquam scelerisque. Donec ultrices lacus vel </string>
-    <string name="user_name">Pawan Deshpande</string>
+    <string name="event_text">Add event..</string>
 </resources>

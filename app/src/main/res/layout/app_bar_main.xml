@@ -16,7 +16,16 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.SmartNote.NoActionBar" />
+            app:popupTheme="@style/Theme.SmartNote.NoActionBar">
+            <ImageView
+                android:id="@+id/add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foregroundGravity="right"
+                android:layout_marginLeft="220dp"
+                android:src="@drawable/ic_baseline_add_circle_outline"/>
+        </androidx.appcompat.widget.Toolbar>
+
 
     </com.google.android.material.appbar.AppBarLayout>
 

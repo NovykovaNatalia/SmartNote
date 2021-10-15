@@ -2,10 +2,6 @@ package com.example.smartnote.ui.holiday
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.app.DatePickerDialog
-import android.content.Context
-import android.content.Intent
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -22,14 +18,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
 import com.example.smartnote.R
 import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fragment_holiday.*
 import java.text.DateFormat
 import java.util.*
 
 
 class HolidayFragment : Fragment() {
-    lateinit var floating_btn_event: FloatingActionButton
+//    lateinit var floating_btn_event: FloatingActionButton
     lateinit var calendarView: CalendarView
     lateinit var recyclerViwHoliday: RecyclerView
     lateinit var cardListHoliday: ArrayList<Holiday>
@@ -41,6 +37,7 @@ class HolidayFragment : Fragment() {
     lateinit var cancelActionButtonHoliday: Button
     lateinit var collapsing_toolbar: CollapsingToolbarLayout
     lateinit var date_ev: String
+    lateinit var add_btn: ImageView
 
     @SuppressLint("WrongConstant")
     override fun onCreateView(
@@ -53,10 +50,10 @@ class HolidayFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_holiday, container, false)
 
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
-        floating_btn_event = root.findViewById(R.id.floating_btn_event)
-        floating_btn_event.startAnimation(ttb)
         calendarView = root.findViewById(R.id.calendarView)
 
+
+        add_btn  = activity?.findViewById(R.id.add_btn) ?: ImageView(context)
         recyclerViwHoliday = root.findViewById(R.id.recyclerViewHoliday)
         recyclerViwHoliday.layoutManager =
                 LinearLayoutManager(context, LinearLayout.VERTICAL, false)
@@ -66,8 +63,9 @@ class HolidayFragment : Fragment() {
         recyclerViwHoliday.adapter = customAdapterHoliday
         customAdapterHoliday.notifyDataSetChanged()
 
-        floating_btn_event.setOnClickListener(View.OnClickListener {
-            floating_btn_event.startAnimation(ttb)
+        add_btn.setOnClickListener(View.OnClickListener {
+            add_btn.startAnimation(ttb)
+            Log.e("natl", "asasas")
             val mDialogViewHoliday = inflater.inflate(R.layout.holiday_dialog, container, false)
             val mItemViewHoliday = inflater.inflate(R.layout.item_holiday, container, false)
             event = mDialogViewHoliday.findViewById(R.id.event)
@@ -112,7 +110,7 @@ class HolidayFragment : Fragment() {
         })
 
         collapsing_toolbar = root.findViewById(R.id.collapsing_toolbar)
-        collapsing_toolbar.setTitle(getResources().getString(R.string.user_name));
+        collapsing_toolbar.setTitle(getResources().getString(R.string.event_text));
         toolbarTextAppernce()
         return root
     }
