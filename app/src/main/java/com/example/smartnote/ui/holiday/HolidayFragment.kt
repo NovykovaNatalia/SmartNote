@@ -5,8 +5,10 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +24,7 @@ import com.example.smartnote.R
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_holiday.*
+import java.text.DateFormat
 import java.util.*
 
 
@@ -30,21 +33,20 @@ class HolidayFragment : Fragment() {
     lateinit var calendarView: CalendarView
     lateinit var recyclerViwHoliday: RecyclerView
     lateinit var cardListHoliday: ArrayList<Holiday>
-
     lateinit var customAdapterHoliday: CustomAdapterHoliday
-    lateinit var date: EditText
     lateinit var event: EditText
     lateinit var date_tv: TextView
     lateinit var event_tv: TextView
     lateinit var saveActionButtonHoliday: Button
     lateinit var cancelActionButtonHoliday: Button
     lateinit var collapsing_toolbar: CollapsingToolbarLayout
+    lateinit var date_ev: String
 
     @SuppressLint("WrongConstant")
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         cardListHoliday = DataStoreHandler.holiday
 
@@ -52,17 +54,12 @@ class HolidayFragment : Fragment() {
 
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
         floating_btn_event = root.findViewById(R.id.floating_btn_event)
-
-
         floating_btn_event.startAnimation(ttb)
         calendarView = root.findViewById(R.id.calendarView)
 
         recyclerViwHoliday = root.findViewById(R.id.recyclerViewHoliday)
-
-        calendarView.startAnimation(ttb)
-
         recyclerViwHoliday.layoutManager =
-            LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+                LinearLayoutManager(context, LinearLayout.VERTICAL, false)
 
         customAdapterHoliday = CustomAdapterHoliday(cardListHoliday, context)
 
@@ -71,44 +68,51 @@ class HolidayFragment : Fragment() {
 
         floating_btn_event.setOnClickListener(View.OnClickListener {
             floating_btn_event.startAnimation(ttb)
-            val mDialogViewHoliday = inflater.inflate(R.layout.holiday_dialog,container, false)
+            val mDialogViewHoliday = inflater.inflate(R.layout.holiday_dialog, container, false)
             val mItemViewHoliday = inflater.inflate(R.layout.item_holiday, container, false)
-            date = mDialogViewHoliday.findViewById(R.id.date)
             event = mDialogViewHoliday.findViewById(R.id.event)
 
             date_tv = mItemViewHoliday.findViewById(R.id.date_holiday_tv)
             event_tv = mItemViewHoliday.findViewById(R.id.event_holiday_tv)
 
             val mBuilder = AlertDialog.Builder(context)
-                .setView(mDialogViewHoliday)
-                .setTitle("Holiday")
+                    .setView(mDialogViewHoliday)
+                    .setTitle("Holiday")
             val mAlertDialog = mBuilder.show()
 
             cancelActionButtonHoliday = mDialogViewHoliday.findViewById(R.id.cancel_dialog_holiday)
             saveActionButtonHoliday = mDialogViewHoliday.findViewById<Button>(R.id.save_dialog_holiday);
 
-                saveActionButtonHoliday.setOnClickListener {
-                    mAlertDialog.dismiss()
-                    if (date.text.isNotEmpty() && event.text.isNotEmpty()) {
-                        var cardHoliday = Holiday()
-                        cardHoliday.date = date.text.toString()
-                        cardHoliday.event = event.text.toString()
+            saveActionButtonHoliday.setOnClickListener {
+                mAlertDialog.dismiss()
+                if (event.text.isNotEmpty()) {
+                    var cardHoliday = Holiday()
 
-                        cardListHoliday.add(cardHoliday)
-                    } else {
-                        Toast.makeText(context, "Put values!", Toast.LENGTH_LONG).show()
+                    val calendar = Calendar.getInstance()
+                    val dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
+                    calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+                        calendar.set(year, month, dayOfMonth)
+
+                        calendarView.date = calendar.timeInMillis
                     }
-                    customAdapterHoliday.notifyDataSetChanged()
+                    date_ev = dateFormatter.format(calendarView.date)
 
+                    cardHoliday.event = event.text.toString()
+                    cardHoliday.date_ev = date_ev
+                    cardListHoliday.add(cardHoliday)
+                } else {
+                    Toast.makeText(context, "Put values!", Toast.LENGTH_LONG).show()
                 }
-                cancelActionButtonHoliday.setOnClickListener() {
-                    mAlertDialog.dismiss()
-                }
+                customAdapterHoliday.notifyDataSetChanged()
+
+            }
+            cancelActionButtonHoliday.setOnClickListener() {
+                mAlertDialog.dismiss()
+            }
         })
 
         collapsing_toolbar = root.findViewById(R.id.collapsing_toolbar)
         collapsing_toolbar.setTitle(getResources().getString(R.string.user_name));
-//        dynamicToolbarColor()
         toolbarTextAppernce()
         return root
     }

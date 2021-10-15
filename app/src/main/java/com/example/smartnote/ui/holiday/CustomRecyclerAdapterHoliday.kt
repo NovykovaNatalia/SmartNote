@@ -11,17 +11,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.R
 import java.util.ArrayList
 
-class CustomAdapterHoliday(private val items: ArrayList<Holiday>):
-    RecyclerView.Adapter<CustomAdapterHoliday.ViewHolder>() {
+class CustomAdapterHoliday(private val items: ArrayList<Holiday>) :
+        RecyclerView.Adapter<CustomAdapterHoliday.ViewHolder>() {
     lateinit var context: Context;
-    companion object{
+
+    companion object {
 
         const val MY_CONSTANT = 100
 
     }
-    constructor(items: java.util.ArrayList<Holiday>, context: Context?): this(items) {
 
-        if (context != null ) {
+    constructor(items: java.util.ArrayList<Holiday>, context: Context?) : this(items) {
+
+        if (context != null) {
             this.context = context
         }
     }
@@ -31,16 +33,14 @@ class CustomAdapterHoliday(private val items: ArrayList<Holiday>):
         val event_tv: TextView
 
         init {
-            // Define click listener for the ViewHolder's View.
             date_tv = view.findViewById(R.id.date_holiday_tv)
             event_tv = view.findViewById(R.id.event_holiday_tv)
-
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapterHoliday.ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_holiday, parent, false)
+                .inflate(R.layout.item_holiday, parent, false)
         return ViewHolder(view)
     }
 
@@ -50,8 +50,8 @@ class CustomAdapterHoliday(private val items: ArrayList<Holiday>):
 
     override fun onBindViewHolder(holder: CustomAdapterHoliday.ViewHolder, position: Int) {
         holder.run {
-            date_tv.setText(items[position].date)
             event_tv.setText(items[position].event)
+            date_tv.setText(items[position].date_ev)
 
             itemView.setOnClickListener {
                 val builder = AlertDialog.Builder(holder.date_tv.context)
@@ -70,7 +70,7 @@ class CustomAdapterHoliday(private val items: ArrayList<Holiday>):
                 builder.setNeutralButton("Share") { dialog, which ->
                     val shareIntent = Intent(Intent.ACTION_SEND)
                     shareIntent.type = "text/plain"
-                    val shareBody =  items[position].toString()
+                    val shareBody = items[position].toString()
                     val shareSub = "items[position]"
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
