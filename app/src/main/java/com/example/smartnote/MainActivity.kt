@@ -2,6 +2,7 @@ package com.example.smartnote
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -11,8 +12,15 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
+import com.example.smartnote.ui.bank_account.BankAccountFragment
+import com.example.smartnote.ui.credentials.CredentialsFragment
+import com.example.smartnote.ui.holiday.HolidayFragment
+import com.example.smartnote.ui.sales.SalesFragment
 import com.example.smartnote.ui.settings.SettingsFragment
+import com.example.smartnote.ui.shopping.ShoppingFragment
+import com.example.smartnote.ui.text_note.TextNoteFragment
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -60,21 +68,22 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
-        val itemShare = menu.findItem(R.id.share)
-        itemShare.setOnMenuItemClickListener {
-            val shareIntent = Intent(Intent.ACTION_SEND)
-            shareIntent.type = "text/plain"
-            val shareBody = "Your body hear"
-            val shareSub = "Your subject hear"
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
-            shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
-            startActivity(Intent.createChooser(shareIntent, "choose one"))
-            true
-        }
+//        val itemShare = menu.findItem(R.id.share)
+//        itemShare.setOnMenuItemClickListener {
+//            val shareIntent = Intent(Intent.ACTION_SEND)
+//            shareIntent.type = "text/plain"
+//            val shareBody = "Your body hear"
+//            val shareSub = "Your subject hear"
+//            shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
+//            shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+//            startActivity(Intent.createChooser(shareIntent, "choose one"))
+//            true
+//        }
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.e("DEN", "items " + item.itemId)
         return when (item.itemId) {
             R.id.settings -> {
                 val fragmentManager: FragmentManager = supportFragmentManager
@@ -86,6 +95,35 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.share -> {
+                Log.e("DEN", "frag is ")
+                val currentFragment = supportFragmentManager.fragments.first().childFragmentManager.fragments.first()
+                when(currentFragment) {
+                    is ShoppingFragment -> {
+                        Log.e("Fragment", " shoping")
+                        val shareIntent = Intent(Intent.ACTION_SEND)
+                        shareIntent.type = "text/plain"
+                        val shareBody = DataStoreHandler.getShoppings().toString()
+                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                        startActivity(Intent.createChooser(shareIntent, "choose one"))
+                    }
+                    is HolidayFragment -> {
+                        Log.e("Fragment", " Holiday")
+                    }
+                    is BankAccountFragment -> {
+                        Log.e("Fragment", " BankAccountFragment")
+                    }
+                    is SalesFragment -> {
+                        Log.e("Fragment", " SalesFragment")
+                    }
+                    is CredentialsFragment -> {
+                        Log.e("Fragment", " CredentialsFragment")
+                    }
+                    is TextNoteFragment -> {
+                        Log.e("Fragment", " TextNoteFragment")
+                    }
+                }
+
                 Toast.makeText(applicationContext, "click on share", Toast.LENGTH_LONG).show()
                 return true
             }
@@ -97,6 +135,5 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
 
 }
