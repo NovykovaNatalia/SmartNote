@@ -18,8 +18,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
 import com.example.smartnote.R
 import com.google.android.material.appbar.CollapsingToolbarLayout
-import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.fragment_holiday.*
 import java.text.DateFormat
 import java.util.*
 
@@ -45,7 +43,7 @@ class HolidayFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        cardListHoliday = DataStoreHandler.holiday
+        cardListHoliday = DataStoreHandler.holidays
 
         val root = inflater.inflate(R.layout.fragment_holiday, container, false)
 

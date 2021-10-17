@@ -19,20 +19,20 @@ object DataStoreHandler {
     val SP_SALES_KEY = "SP_SALES"
     val SP_NOTES_KEY = "SP_NOTES"
     val SP_HOLIDAY_KEY = "SP_HOLIDAY"
-    lateinit var shopingItems: ArrayList<ShoppingItem>
+    lateinit var shoppingItems: ArrayList<ShoppingItem>
     lateinit var cards: ArrayList<Card>
     lateinit var credentials: ArrayList<Credentials>
     lateinit var sales: ArrayList<Sale>
     lateinit var notes: ArrayList<CardNote>
-    lateinit var holiday: ArrayList<Holiday>
+    lateinit var holidays: ArrayList<Holiday>
 
     init {
-        shopingItems = getShoppings()
+        shoppingItems = getShoppings()
         cards = getArrayListCards()
         credentials =  getArrayListCredentials()
         sales = getArrayListSales()
         notes =  getArrayListNotes()
-        holiday = getArrayListHolidays()
+        holidays = getArrayListHolidays()
     }
 
 
@@ -40,7 +40,7 @@ object DataStoreHandler {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
         val editor: SharedPreferences.Editor = prefs.edit()
         val gson = Gson()
-        val json: String = gson.toJson(holiday)
+        val json: String = gson.toJson(holidays)
         editor.putString(SP_HOLIDAY_KEY, json)
         editor.apply()
     }
@@ -59,7 +59,7 @@ object DataStoreHandler {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
         val editor: SharedPreferences.Editor = prefs.edit()
         val gson = Gson()
-        val json: String = gson.toJson(shopingItems)
+        val json: String = gson.toJson(shoppingItems)
         editor.putString(SP_SHOPING_ITEMS_KEY, json)
         editor.apply()
     }

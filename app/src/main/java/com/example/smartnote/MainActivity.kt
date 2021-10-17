@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
 import com.example.smartnote.ui.bank_account.BankAccountFragment
 import com.example.smartnote.ui.credentials.CredentialsFragment
@@ -40,17 +38,17 @@ class MainActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.shopping,
-                R.id.holidays,
-                R.id.bankAccounts,
-                R.id.credentials,
-                R.id.sales,
-                R.id.settings,
-                R.id.textNote,
-                R.id.settings
-            ),
-            drawerLayout
+                setOf(
+                        R.id.shopping,
+                        R.id.holidays,
+                        R.id.bankAccounts,
+                        R.id.credentials,
+                        R.id.sales,
+                        R.id.settings,
+                        R.id.textNote,
+                        R.id.settings
+                ),
+                drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
@@ -63,22 +61,12 @@ class MainActivity : AppCompatActivity() {
         DataStoreHandler.saveArrayListCredentials()
         DataStoreHandler.saveArrayListSales()
         DataStoreHandler.saveArrayListNotes()
+        DataStoreHandler.saveArrayListHoliday()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
-//        val itemShare = menu.findItem(R.id.share)
-//        itemShare.setOnMenuItemClickListener {
-//            val shareIntent = Intent(Intent.ACTION_SEND)
-//            shareIntent.type = "text/plain"
-//            val shareBody = "Your body hear"
-//            val shareSub = "Your subject hear"
-//            shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
-//            shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
-//            startActivity(Intent.createChooser(shareIntent, "choose one"))
-//            true
-//        }
         return true
     }
 
@@ -95,11 +83,9 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.share -> {
-                Log.e("DEN", "frag is ")
                 val currentFragment = supportFragmentManager.fragments.first().childFragmentManager.fragments.first()
-                when(currentFragment) {
+                when (currentFragment) {
                     is ShoppingFragment -> {
-                        Log.e("Fragment", " shoping")
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "text/plain"
                         val shareBody = DataStoreHandler.getShoppings().toString()
@@ -108,23 +94,79 @@ class MainActivity : AppCompatActivity() {
                         startActivity(Intent.createChooser(shareIntent, "choose one"))
                     }
                     is HolidayFragment -> {
-                        Log.e("Fragment", " Holiday")
+                        val shareIntent = Intent(Intent.ACTION_SEND)
+                        shareIntent.type = "text/plain"
+                        val shareBody = DataStoreHandler.getArrayListHolidays().toString()
+                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                        startActivity(Intent.createChooser(shareIntent, "choose one"))
                     }
                     is BankAccountFragment -> {
-                        Log.e("Fragment", " BankAccountFragment")
+                        val shareIntent = Intent(Intent.ACTION_SEND)
+                        shareIntent.type = "text/plain"
+                        val shareBody = DataStoreHandler.getArrayListCards().toString()
+                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                        startActivity(Intent.createChooser(shareIntent, "choose one"))
                     }
                     is SalesFragment -> {
-                        Log.e("Fragment", " SalesFragment")
+                        val shareIntent = Intent(Intent.ACTION_SEND)
+                        shareIntent.type = "text/plain"
+                        val shareBody = DataStoreHandler.getArrayListSales().toString()
+                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                        startActivity(Intent.createChooser(shareIntent, "choose one"))
                     }
                     is CredentialsFragment -> {
-                        Log.e("Fragment", " CredentialsFragment")
+                        val shareIntent = Intent(Intent.ACTION_SEND)
+                        shareIntent.type = "text/plain"
+                        val shareBody = DataStoreHandler.getArrayListCredentials().toString()
+                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                        startActivity(Intent.createChooser(shareIntent, "choose one"))
                     }
                     is TextNoteFragment -> {
-                        Log.e("Fragment", " TextNoteFragment")
+                        val shareIntent = Intent(Intent.ACTION_SEND)
+                        shareIntent.type = "text/plain"
+                        val shareBody = DataStoreHandler.getArrayListNotes().toString()
+                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                        startActivity(Intent.createChooser(shareIntent, "choose one"))
                     }
                 }
+                return true
+            }
+            R.id.delete -> {
+                val currentFragment = supportFragmentManager.fragments.first().childFragmentManager.fragments.first()
+                when (currentFragment) {
+                    is ShoppingFragment -> {
+                        DataStoreHandler.shoppingItems.removeAll(DataStoreHandler.shoppingItems)
+                        currentFragment.customAdapterShopping.notifyDataSetChanged()
+                    }
+                    is HolidayFragment -> {
+                        DataStoreHandler.holidays.removeAll(DataStoreHandler.holidays)
+                        currentFragment.customAdapterHoliday.notifyDataSetChanged()
+                    }
+                    is BankAccountFragment -> {
+                        DataStoreHandler.cards.removeAll(DataStoreHandler.cards)
+                        currentFragment.customAdapter.notifyDataSetChanged()
 
-                Toast.makeText(applicationContext, "click on share", Toast.LENGTH_LONG).show()
+                    }
+                    is SalesFragment -> {
+                        DataStoreHandler.sales.removeAll(DataStoreHandler.sales)
+                        currentFragment.customAdapterSales.notifyDataSetChanged()
+
+                    }
+                    is CredentialsFragment -> {
+                        DataStoreHandler.credentials.removeAll(DataStoreHandler.credentials)
+                        currentFragment.customAdapterCredentials.notifyDataSetChanged()
+
+                    }
+                    is TextNoteFragment -> {
+                        DataStoreHandler.notes.removeAll(DataStoreHandler.notes)
+                        currentFragment.customAdapterNote.notifyDataSetChanged()
+                    }
+                }
                 return true
             }
             else -> super.onOptionsItemSelected(item)

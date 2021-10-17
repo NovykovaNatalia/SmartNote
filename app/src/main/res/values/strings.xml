@@ -14,7 +14,8 @@
     <string name="menu_setting">Setting</string>
     <string name="menu_sales">Sales</string>
     <string name="menu_notes">Text Notes</string>
-    <string name="menu_share">Share</string>
+    <string name="menu_share">Share list</string>
+    <string name="menu_delete">Delete list</string>
     <string name="menu_bank_accounts">Bank Accounts</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
