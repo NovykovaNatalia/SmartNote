@@ -120,7 +120,7 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
                 builder.setNeutralButton("Share") { dialog, which ->
                     val shareIntent = Intent(Intent.ACTION_SEND)
                     shareIntent.type = "text/plain"
-                    val shareBody= items.toString()
+                    val shareBody= items[position].toString()
                     val shareSub = "items[position]"
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
