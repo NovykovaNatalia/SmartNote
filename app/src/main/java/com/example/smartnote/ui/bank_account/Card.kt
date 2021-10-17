@@ -13,7 +13,7 @@ class Card : Serializable{
         builder.append("Account" + " : " + account + "\n")
                 .append("Bank Name" + " : " + bankName + "\n")
                 .append("Account Number" + " : " + accountNumber + "\n")
-                .append("Name, Surname" + " : " + nameSurname + "\n")
+                .append("Name, Surname" + " : " + nameSurname + "\n" + "\n")
         return builder.toString()
     }
   }

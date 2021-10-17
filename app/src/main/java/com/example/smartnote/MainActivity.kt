@@ -65,7 +65,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
@@ -88,7 +87,11 @@ class MainActivity : AppCompatActivity() {
                     is ShoppingFragment -> {
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "text/plain"
-                        val shareBody = DataStoreHandler.getShoppings().toString()
+                        var sharStr = DataStoreHandler.shoppingItems.toString()
+                        sharStr = sharStr.replace('[', ' ')
+                        sharStr = sharStr.replace(']', ' ')
+                        sharStr = sharStr.replace(",", "")
+                        val shareBody = sharStr
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
                         shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
                         startActivity(Intent.createChooser(shareIntent, "choose one"))
@@ -96,7 +99,11 @@ class MainActivity : AppCompatActivity() {
                     is HolidayFragment -> {
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "text/plain"
-                        val shareBody = DataStoreHandler.getArrayListHolidays().toString()
+                        var sharStr = DataStoreHandler.holidays.toString()
+                        sharStr = sharStr.replace('[', ' ')
+                        sharStr = sharStr.replace(']', ' ')
+                        sharStr = sharStr.replace(",", "")
+                        val shareBody = sharStr
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
                         shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
                         startActivity(Intent.createChooser(shareIntent, "choose one"))
@@ -104,7 +111,11 @@ class MainActivity : AppCompatActivity() {
                     is BankAccountFragment -> {
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "text/plain"
-                        val shareBody = DataStoreHandler.getArrayListCards().toString()
+                        var sharStr = DataStoreHandler.cards.toString()
+                        sharStr = sharStr.replace('[', ' ')
+                        sharStr = sharStr.replace(']', ' ')
+                        sharStr = sharStr.replace(",", "")
+                        val shareBody = sharStr
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
                         shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
                         startActivity(Intent.createChooser(shareIntent, "choose one"))
@@ -112,7 +123,11 @@ class MainActivity : AppCompatActivity() {
                     is SalesFragment -> {
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "text/plain"
-                        val shareBody = DataStoreHandler.getArrayListSales().toString()
+                        var sharStr = DataStoreHandler.sales.toString()
+                        sharStr = sharStr.replace('[', ' ')
+                        sharStr = sharStr.replace(']', ' ')
+                        sharStr = sharStr.replace(",", "")
+                        val shareBody = sharStr
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
                         shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
                         startActivity(Intent.createChooser(shareIntent, "choose one"))
@@ -120,7 +135,11 @@ class MainActivity : AppCompatActivity() {
                     is CredentialsFragment -> {
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "text/plain"
-                        val shareBody = DataStoreHandler.getArrayListCredentials().toString()
+                        var sharStr = DataStoreHandler.credentials.toString()
+                        sharStr = sharStr.replace('[', ' ')
+                        sharStr = sharStr.replace(']', ' ')
+                        sharStr = sharStr.replace(",", "")
+                        val shareBody = sharStr
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
                         shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
                         startActivity(Intent.createChooser(shareIntent, "choose one"))
@@ -128,7 +147,11 @@ class MainActivity : AppCompatActivity() {
                     is TextNoteFragment -> {
                         val shareIntent = Intent(Intent.ACTION_SEND)
                         shareIntent.type = "text/plain"
-                        val shareBody = DataStoreHandler.getArrayListNotes().toString()
+                        var sharStr = DataStoreHandler.notes.toString()
+                        sharStr = sharStr.replace('[', ' ')
+                        sharStr = sharStr.replace(']', ' ')
+                        sharStr = sharStr.replace(",", "")
+                        val shareBody = sharStr
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
                         shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
                         startActivity(Intent.createChooser(shareIntent, "choose one"))

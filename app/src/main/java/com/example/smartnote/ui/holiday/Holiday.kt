@@ -9,7 +9,7 @@ class Holiday : Serializable {
     override fun toString(): String {
         val builder = StringBuilder()
         builder.append("Date" + " : " + date_ev + "\n")
-                .append("Event" + " : " + event + "\n")
+                .append("Event" + " : " + event + "\n" + "\n")
         return builder.toString()
     }
 }

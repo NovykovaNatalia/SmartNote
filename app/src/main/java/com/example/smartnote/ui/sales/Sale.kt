@@ -20,7 +20,7 @@ class Sale {
             .append("Sale" + " : " + sale.toInt() + "\n")
             .append("True price" + " : " + true_price.toInt() + "\n")
             .append("Economy" + " : " + economy.toInt() + "\n")
-            .append("Economy percentage" + " : " + percentage.toInt() + " %" + "\n")
+            .append("Economy percentage" + " : " + percentage.toInt() + " %" + "\n" + "\n")
         return builder.toString()
     }
 }

@@ -5,7 +5,7 @@ class CardNote {
 
     override fun toString(): String {
         val builder = StringBuilder()
-        builder.append("Note" + " : " + note + "\n")
+        builder.append("Note" + " : " + note + "\n" + "\n")
 
         return builder.toString()
     }

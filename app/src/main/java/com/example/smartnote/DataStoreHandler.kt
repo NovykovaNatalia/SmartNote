@@ -64,7 +64,7 @@ object DataStoreHandler {
         editor.apply()
     }
 
-    fun getShoppings(): ArrayList<ShoppingItem> {
+    fun  getShoppings(): ArrayList<ShoppingItem> {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
         val gson = Gson()
         val json: String? = prefs.getString(SP_SHOPING_ITEMS_KEY, null)
