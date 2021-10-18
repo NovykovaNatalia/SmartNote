@@ -3,17 +3,24 @@ package com.example.smartnote.ui.bank_account
 import CustomAdapter
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
 import com.example.smartnote.R
+import com.example.smartnote.ui.credentials.CredentialsFragment
+import com.example.smartnote.ui.holiday.HolidayFragment
+import com.example.smartnote.ui.sales.SalesFragment
+import com.example.smartnote.ui.settings.SettingsFragment
+import com.example.smartnote.ui.shopping.ShoppingFragment
+import com.example.smartnote.ui.text_note.TextNoteFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class BankAccountFragment : Fragment() {
@@ -62,6 +69,7 @@ class BankAccountFragment : Fragment() {
         floatingActionButton.startAnimation(ttb)
         recyclerView.startAnimation(ttb)
 
+
         floatingActionButton.setOnClickListener{
             val mDialogView = LayoutInflater.from( context).inflate(R.layout.bank_account_dialog, null);
             val mItemView = LayoutInflater.from(context).inflate(R.layout.item_bank_account, null )
@@ -106,6 +114,62 @@ class BankAccountFragment : Fragment() {
             }
         }
         return root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main, menu)
+        menu.findItem(R.id.add).setVisible(false)
+        super.onCreateOptionsMenu(menu, inflater)
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        var id = item.itemId
+        if (id == R.id.settings) {
+            val fragmentManager: FragmentManager = activity?.supportFragmentManager!!
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            val setFragment = SettingsFragment()
+            fragmentTransaction.replace(R.id.settings, setFragment)
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+            return true
+        }
+        if (id == R.id.share) {
+            val currentFragment = activity?.supportFragmentManager!!.fragments.first().childFragmentManager.fragments.first()
+            when (currentFragment) {
+                is BankAccountFragment -> {
+                    val shareIntent = Intent(Intent.ACTION_SEND)
+                    shareIntent.type = "text/plain"
+                    var sharStr = DataStoreHandler.cards.toString()
+                    sharStr = sharStr.replace('[', ' ')
+                    sharStr = sharStr.replace(']', ' ')
+                    sharStr = sharStr.replace(",", "")
+                    val shareBody = sharStr
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                    startActivity(Intent.createChooser(shareIntent, "choose one"))
+                }
+            }
+            return true
+        }
+        if (id == R.id.delete) {
+            val currentFragment = activity?.supportFragmentManager!!.fragments.first().childFragmentManager.fragments.first()
+            when (currentFragment) {
+                is BankAccountFragment -> {
+                    DataStoreHandler.cards.removeAll(DataStoreHandler.cards)
+                    currentFragment.customAdapter.notifyDataSetChanged()
+                    DataStoreHandler.saveArrayListCards()
+                }
+            }
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }
 

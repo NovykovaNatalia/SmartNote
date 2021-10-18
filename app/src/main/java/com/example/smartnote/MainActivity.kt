@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -35,8 +36,7 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         appBarConfiguration = AppBarConfiguration(
                 setOf(
                         R.id.shopping,
@@ -62,138 +62,6 @@ class MainActivity : AppCompatActivity() {
         DataStoreHandler.saveArrayListSales()
         DataStoreHandler.saveArrayListNotes()
         DataStoreHandler.saveArrayListHoliday()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        Log.e("DEN", "items " + item.itemId)
-        return when (item.itemId) {
-            R.id.settings -> {
-                val fragmentManager: FragmentManager = supportFragmentManager
-                val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-                val setFragment = SettingsFragment()
-                fragmentTransaction.replace(R.id.settings, setFragment)
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-                return true
-            }
-            R.id.share -> {
-                val currentFragment = supportFragmentManager.fragments.first().childFragmentManager.fragments.first()
-                when (currentFragment) {
-                    is ShoppingFragment -> {
-                        val shareIntent = Intent(Intent.ACTION_SEND)
-                        shareIntent.type = "text/plain"
-                        var sharStr = DataStoreHandler.shoppingItems.toString()
-                        sharStr = sharStr.replace('[', ' ')
-                        sharStr = sharStr.replace(']', ' ')
-                        sharStr = sharStr.replace(",", "")
-                        val shareBody = sharStr
-                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
-                        shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
-                        startActivity(Intent.createChooser(shareIntent, "choose one"))
-                    }
-                    is HolidayFragment -> {
-                        val shareIntent = Intent(Intent.ACTION_SEND)
-                        shareIntent.type = "text/plain"
-                        var sharStr = DataStoreHandler.holidays.toString()
-                        sharStr = sharStr.replace('[', ' ')
-                        sharStr = sharStr.replace(']', ' ')
-                        sharStr = sharStr.replace(",", "")
-                        val shareBody = sharStr
-                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
-                        shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
-                        startActivity(Intent.createChooser(shareIntent, "choose one"))
-                    }
-                    is BankAccountFragment -> {
-                        val shareIntent = Intent(Intent.ACTION_SEND)
-                        shareIntent.type = "text/plain"
-                        var sharStr = DataStoreHandler.cards.toString()
-                        sharStr = sharStr.replace('[', ' ')
-                        sharStr = sharStr.replace(']', ' ')
-                        sharStr = sharStr.replace(",", "")
-                        val shareBody = sharStr
-                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
-                        shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
-                        startActivity(Intent.createChooser(shareIntent, "choose one"))
-                    }
-                    is SalesFragment -> {
-                        val shareIntent = Intent(Intent.ACTION_SEND)
-                        shareIntent.type = "text/plain"
-                        var sharStr = DataStoreHandler.sales.toString()
-                        sharStr = sharStr.replace('[', ' ')
-                        sharStr = sharStr.replace(']', ' ')
-                        sharStr = sharStr.replace(",", "")
-                        val shareBody = sharStr
-                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
-                        shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
-                        startActivity(Intent.createChooser(shareIntent, "choose one"))
-                    }
-                    is CredentialsFragment -> {
-                        val shareIntent = Intent(Intent.ACTION_SEND)
-                        shareIntent.type = "text/plain"
-                        var sharStr = DataStoreHandler.credentials.toString()
-                        sharStr = sharStr.replace('[', ' ')
-                        sharStr = sharStr.replace(']', ' ')
-                        sharStr = sharStr.replace(",", "")
-                        val shareBody = sharStr
-                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
-                        shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
-                        startActivity(Intent.createChooser(shareIntent, "choose one"))
-                    }
-                    is TextNoteFragment -> {
-                        val shareIntent = Intent(Intent.ACTION_SEND)
-                        shareIntent.type = "text/plain"
-                        var sharStr = DataStoreHandler.notes.toString()
-                        sharStr = sharStr.replace('[', ' ')
-                        sharStr = sharStr.replace(']', ' ')
-                        sharStr = sharStr.replace(",", "")
-                        val shareBody = sharStr
-                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
-                        shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
-                        startActivity(Intent.createChooser(shareIntent, "choose one"))
-                    }
-                }
-                return true
-            }
-            R.id.delete -> {
-                val currentFragment = supportFragmentManager.fragments.first().childFragmentManager.fragments.first()
-                when (currentFragment) {
-                    is ShoppingFragment -> {
-                        DataStoreHandler.shoppingItems.removeAll(DataStoreHandler.shoppingItems)
-                        currentFragment.customAdapterShopping.notifyDataSetChanged()
-                    }
-                    is HolidayFragment -> {
-                        DataStoreHandler.holidays.removeAll(DataStoreHandler.holidays)
-                        currentFragment.customAdapterHoliday.notifyDataSetChanged()
-                    }
-                    is BankAccountFragment -> {
-                        DataStoreHandler.cards.removeAll(DataStoreHandler.cards)
-                        currentFragment.customAdapter.notifyDataSetChanged()
-
-                    }
-                    is SalesFragment -> {
-                        DataStoreHandler.sales.removeAll(DataStoreHandler.sales)
-                        currentFragment.customAdapterSales.notifyDataSetChanged()
-
-                    }
-                    is CredentialsFragment -> {
-                        DataStoreHandler.credentials.removeAll(DataStoreHandler.credentials)
-                        currentFragment.customAdapterCredentials.notifyDataSetChanged()
-
-                    }
-                    is TextNoteFragment -> {
-                        DataStoreHandler.notes.removeAll(DataStoreHandler.notes)
-                        currentFragment.customAdapterNote.notifyDataSetChanged()
-                    }
-                }
-                return true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

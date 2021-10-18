@@ -2,28 +2,35 @@ package com.example.smartnote.ui.holiday
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
 import com.example.smartnote.R
+import com.example.smartnote.ui.bank_account.BankAccountFragment
+import com.example.smartnote.ui.credentials.CredentialsFragment
+import com.example.smartnote.ui.sales.SalesFragment
+import com.example.smartnote.ui.settings.SettingsFragment
+import com.example.smartnote.ui.shopping.ShoppingFragment
+import com.example.smartnote.ui.text_note.TextNoteFragment
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import java.text.DateFormat
 import java.util.*
 
 
 class HolidayFragment : Fragment() {
-//    lateinit var floating_btn_event: FloatingActionButton
     lateinit var calendarView: CalendarView
     lateinit var recyclerViwHoliday: RecyclerView
     lateinit var cardListHoliday: ArrayList<Holiday>
@@ -35,7 +42,13 @@ class HolidayFragment : Fragment() {
     lateinit var cancelActionButtonHoliday: Button
     lateinit var collapsing_toolbar: CollapsingToolbarLayout
     lateinit var date_ev: String
-    lateinit var add_btn: ImageView
+
+    private var handlerAnimation = Handler()
+    private var statusAnimation = false
+    lateinit var imgAnimation: ImageView
+    lateinit var imgAnimation1: ImageView
+    lateinit var inflater:LayoutInflater
+    lateinit var container: ViewGroup
 
     @SuppressLint("WrongConstant")
     override fun onCreateView(
@@ -44,14 +57,19 @@ class HolidayFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         cardListHoliday = DataStoreHandler.holidays
+        this.inflater = inflater
+        if (container != null) {
+            this.container = container
+        }
 
         val root = inflater.inflate(R.layout.fragment_holiday, container, false)
 
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
         calendarView = root.findViewById(R.id.calendarView)
+        collapsing_toolbar = root.findViewById(R.id.collapsing_toolbar)
+        collapsing_toolbar.setTitle(getResources().getString(R.string.event_text));
+        toolbarTextAppernce()
 
-
-        add_btn  = activity?.findViewById(R.id.add_btn) ?: ImageView(context)
         recyclerViwHoliday = root.findViewById(R.id.recyclerViewHoliday)
         recyclerViwHoliday.layoutManager =
                 LinearLayoutManager(context, LinearLayout.VERTICAL, false)
@@ -60,10 +78,61 @@ class HolidayFragment : Fragment() {
 
         recyclerViwHoliday.adapter = customAdapterHoliday
         customAdapterHoliday.notifyDataSetChanged()
+        return root
+    }
 
-        add_btn.setOnClickListener(View.OnClickListener {
-            add_btn.startAnimation(ttb)
-            Log.e("natl", "asasas")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        var id = item.itemId
+        if (id == R.id.settings) {
+            val fragmentManager: FragmentManager = activity?.supportFragmentManager!!
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            val setFragment = SettingsFragment()
+            fragmentTransaction.replace(R.id.settings, setFragment)
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+            return true
+        }
+        if (id == R.id.share) {
+            val currentFragment = activity?.supportFragmentManager!!.fragments.first().childFragmentManager.fragments.first()
+            when (currentFragment) {
+                is HolidayFragment -> {
+                    val shareIntent = Intent(Intent.ACTION_SEND)
+                    shareIntent.type = "text/plain"
+                    var sharStr = DataStoreHandler.holidays.toString()
+                    sharStr = sharStr.replace('[', ' ')
+                    sharStr = sharStr.replace(']', ' ')
+                    sharStr = sharStr.replace(",", "")
+                    val shareBody = sharStr
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                    startActivity(Intent.createChooser(shareIntent, "choose one"))
+                }
+            }
+            return true
+        }
+        if (id == R.id.delete) {
+            val currentFragment = activity?.supportFragmentManager!!.fragments.first().childFragmentManager.fragments.first()
+            when (currentFragment) {
+                is HolidayFragment -> {
+                    DataStoreHandler.holidays.removeAll(DataStoreHandler.holidays)
+                    currentFragment.customAdapterHoliday.notifyDataSetChanged()
+                    DataStoreHandler.saveArrayListNotes()
+                }
+            }
+            return true
+        }
+
+        if (id == R.id.add) {
             val mDialogViewHoliday = inflater.inflate(R.layout.holiday_dialog, container, false)
             val mItemViewHoliday = inflater.inflate(R.layout.item_holiday, container, false)
             event = mDialogViewHoliday.findViewById(R.id.event)
@@ -105,13 +174,14 @@ class HolidayFragment : Fragment() {
             cancelActionButtonHoliday.setOnClickListener() {
                 mAlertDialog.dismiss()
             }
-        })
 
-        collapsing_toolbar = root.findViewById(R.id.collapsing_toolbar)
-        collapsing_toolbar.setTitle(getResources().getString(R.string.event_text));
-        toolbarTextAppernce()
-        return root
+
+        }
+
+        return super.onOptionsItemSelected(item)
     }
+
+
 
     private fun dynamicToolbarColor() {
 

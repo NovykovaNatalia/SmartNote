@@ -17,11 +17,13 @@
           app:contentScrim="?attr/colorPrimary"
           app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
+
          <CalendarView
              android:id="@+id/calendarView"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:layout_marginBottom="20dp"/>
+
 
          <androidx.appcompat.widget.Toolbar
              android:id="@+id/toolbar_holiday"
@@ -31,7 +33,41 @@
              tools:visibility="visible">
          </androidx.appcompat.widget.Toolbar>
 
+
       </com.google.android.material.appbar.CollapsingToolbarLayout>
+<!--<androidx.constraintlayout.widget.ConstraintLayout-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content">-->
+<!--   <ImageView-->
+<!--       android:id="@+id/imgAnimation"-->
+<!--       android:layout_width="100dp"-->
+<!--       android:layout_height="100dp"-->
+<!--       android:src="@drawable/circle"-->
+<!--       app:layout_constraintTop_toBottomOf="parent"-->
+<!--       app:layout_constraintEnd_toEndOf="parent"-->
+<!--       app:layout_constraintStart_toStartOf="parent"-->
+<!--       app:layout_constraintTop_toTopOf="parent"/>-->
+<!--   <ImageView-->
+<!--       android:id="@+id/imgAnimation1"-->
+<!--       android:layout_width="100dp"-->
+<!--       android:layout_height="100dp"-->
+<!--       android:src="@drawable/circle"-->
+<!--       app:layout_constraintTop_toBottomOf="parent"-->
+<!--       app:layout_constraintEnd_toEndOf="parent"-->
+<!--       app:layout_constraintStart_toStartOf="parent"-->
+<!--       app:layout_constraintTop_toTopOf="parent"/>-->
+<!--   <Button-->
+<!--       android:id="@+id/button"-->
+<!--       android:layout_width="100dp"-->
+<!--       android:layout_height="100dp"-->
+<!--       style="@style/AppTheme.ButtonStyle"-->
+<!--       app:layout_constraintTop_toBottomOf="parent"-->
+<!--       app:layout_constraintEnd_toEndOf="parent"-->
+<!--       app:layout_constraintStart_toStartOf="parent"-->
+<!--       android:text="Start"-->
+<!--       app:layout_constraintTop_toTopOf="parent"/>-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
 
    </com.google.android.material.appbar.AppBarLayout>
 
@@ -60,6 +96,7 @@
 <!--       android:layout_marginTop="20dp"-->
 <!--       android:layout_margin="80dp"-->
 <!--       android:layout_alignParentRight="true"/>-->
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
