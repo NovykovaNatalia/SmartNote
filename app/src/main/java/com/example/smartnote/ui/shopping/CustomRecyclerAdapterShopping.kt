@@ -94,7 +94,7 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
                         items[position].quantity = quantity_adnp.value
 //                        quantity_np.value = quantity_adnp.value
                     } else {
-                        Toast.makeText(context, "Put values!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, context.getString(R.string.put_value), Toast.LENGTH_LONG).show()
                     }
                     mAlertDialog.dismiss()
                 }
@@ -106,13 +106,10 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
 
             itemView.setOnClickListener {
                 val builder = AlertDialog.Builder(holder.goods_tv.context)
-                builder.setMessage("Delete the god?")
-                Log.e("natlight", "Delete option")
-
-                builder.setPositiveButton("YES") { dialog, which ->
+                builder.setMessage("Delete the goods?")
+                builder.setPositiveButton("Yes") { dialog, which ->
                     items.remove(items[position])
                     notifyDataSetChanged()
-                    Log.e("natlight", "Deleted option")
                 }
                 builder.setNegativeButton("No") { dialog, which ->
 

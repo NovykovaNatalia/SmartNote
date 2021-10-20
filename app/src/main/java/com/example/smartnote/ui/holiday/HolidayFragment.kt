@@ -42,13 +42,11 @@ class HolidayFragment : Fragment() {
     lateinit var cancelActionButtonHoliday: Button
     lateinit var collapsing_toolbar: CollapsingToolbarLayout
     lateinit var date_ev: String
-
-    private var handlerAnimation = Handler()
-    private var statusAnimation = false
-    lateinit var imgAnimation: ImageView
-    lateinit var imgAnimation1: ImageView
     lateinit var inflater:LayoutInflater
     lateinit var container: ViewGroup
+    lateinit var event_day: TextView
+    lateinit var event_week: TextView
+    lateinit var event_month: TextView
 
     @SuppressLint("WrongConstant")
     override fun onCreateView(
@@ -64,10 +62,12 @@ class HolidayFragment : Fragment() {
 
         val root = inflater.inflate(R.layout.fragment_holiday, container, false)
 
-        val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
         calendarView = root.findViewById(R.id.calendarView)
         collapsing_toolbar = root.findViewById(R.id.collapsing_toolbar)
-        collapsing_toolbar.setTitle(getResources().getString(R.string.event_text));
+        event_day = root.findViewById(R.id.event_day)
+        event_week = root.findViewById(R.id.event_week)
+        event_month = root.findViewById(R.id.event_month)
+//        collapsing_toolbar.setTitle(getResources().getString(R.string.event_text));
         toolbarTextAppernce()
 
         recyclerViwHoliday = root.findViewById(R.id.recyclerViewHoliday)

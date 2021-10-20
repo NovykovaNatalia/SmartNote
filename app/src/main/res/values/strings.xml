@@ -37,4 +37,6 @@
     <string name="we_hope_you_enjoyed_our_app">We hope you enjoyed our app</string>
     <string name="text_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consectetur diam id aliquam scelerisque. Donec ultrices lacus vel </string>
     <string name="event_text">Add event..</string>
+    <string name="amount">Amount</string>
+    <string name="put_value">Put values!</string>
 </resources>
