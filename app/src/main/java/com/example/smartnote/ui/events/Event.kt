@@ -1,9 +1,10 @@
 package com.example.smartnote.ui.events
 
 import java.io.Serializable
+import java.util.*
 
 class Event : Serializable {
-    lateinit var date_ev: String
+    var date_ev: Long = 0
     lateinit var event: String
     lateinit var time: String
 

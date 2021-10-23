@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import com.example.smartnote.R
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import java.text.DateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class EventsFragment : Fragment() {
@@ -28,13 +30,16 @@ class EventsFragment : Fragment() {
     lateinit var actionButtonSaveEvent: Button
     lateinit var actionButtonCancelEvent: Button
     lateinit var collapsing_toolbar: CollapsingToolbarLayout
-    lateinit var date_ev: String
+//    lateinit var date_ev: String
     lateinit var inflater:LayoutInflater
     lateinit var container: ViewGroup
+    lateinit var event_all: TextView
     lateinit var event_day: TextView
     lateinit var event_week: TextView
     lateinit var event_month: TextView
+    lateinit var event_custom: TextView
     lateinit var time_picker: TimePicker
+
 
     @SuppressLint("WrongConstant")
     override fun onCreateView(
@@ -51,10 +56,25 @@ class EventsFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_event, container, false)
 
         calendarView = root.findViewById(R.id.calendarView)
+
+//                    val dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
+        calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            val calendar = Calendar.getInstance()
+            calendar.set(year, month, dayOfMonth)
+
+            calendarView.date = calendar.timeInMillis
+            Log.e("den", " changed " + calendarView.date)
+        }
+
         collapsing_toolbar = root.findViewById(R.id.collapsing_toolbar)
+
+        event_all = root.findViewById(R.id.event_all)
         event_day = root.findViewById(R.id.event_day)
         event_week = root.findViewById(R.id.event_week)
         event_month = root.findViewById(R.id.event_month)
+        event_custom = root.findViewById(R.id.event_custom)
+        setFiltersClickListeners()
+
         toolbarTextAppernce()
 
         recyclerViwEvents = root.findViewById(R.id.recyclerViewEvents)
@@ -134,17 +154,17 @@ class EventsFragment : Fragment() {
                 if (event.text.isNotEmpty() && time_tv.text.isNotEmpty()) {
                     var newEvent = Event()
 
-                    val calendar = Calendar.getInstance()
-                    val dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
-                    calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-                        calendar.set(year, month, dayOfMonth)
-
-                        calendarView.date = calendar.timeInMillis
-                    }
-                    date_ev = dateFormatter.format(calendarView.date)
+//                    val calendar = Calendar.getInstance()
+////                    val dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
+//                    calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+//                        calendar.set(year, month, dayOfMonth)
+//
+//                        calendarView.date = calendar.timeInMillis
+//                    }
+//                    date_ev = dateFormatter.format(calendarView.date)
 
                     newEvent.event = event.text.toString()
-                    newEvent.date_ev = date_ev
+                    newEvent.date_ev = calendarView.date
                     newEvent.time = time_tv.text.toString()
                     cardListEvent.add(newEvent)
                 } else {
@@ -192,6 +212,79 @@ class EventsFragment : Fragment() {
                 time_tv.visibility = ViewGroup.VISIBLE
             }
         }
+    }
+
+    private fun setFiltersClickListeners() {
+        Log.e("den", "start function")
+        val dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
+
+        event_all.setOnClickListener {
+            adapterEvent = AdapterEvent(cardListEvent, context)
+
+            recyclerViwEvents.adapter = adapterEvent
+            adapterEvent.notifyDataSetChanged()
+
+        }
+        event_day.setOnClickListener {
+            var filterCollectionByDay = ArrayList<Event>()
+            for(event in cardListEvent) {
+                if(dateFormatter.format(event.date_ev).equals(dateFormatter.format(calendarView.date))) {
+                    filterCollectionByDay.add(event)
+                }
+            }
+            adapterEvent = AdapterEvent(filterCollectionByDay, context)
+
+            recyclerViwEvents.adapter = adapterEvent
+            adapterEvent.notifyDataSetChanged()
+        }
+        event_week.setOnClickListener {
+            var calendar = Calendar.getInstance()
+            calendar.clear();
+            calendar.setTimeInMillis(calendarView.date);
+            calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+            var startWeek = calendar.getTimeInMillis()
+            calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+            var endWeek = calendar.getTimeInMillis()
+            var filterCollectionByWeek = ArrayList<Event>()
+
+            for(event in cardListEvent) {
+                if(event.date_ev >= startWeek && event.date_ev <= endWeek) {
+                    filterCollectionByWeek.add(event)
+                }
+            }
+            adapterEvent = AdapterEvent(filterCollectionByWeek, context)
+
+            recyclerViwEvents.adapter = adapterEvent
+            adapterEvent.notifyDataSetChanged()
+        }
+        event_month.setOnClickListener {
+            var calendar = Calendar.getInstance()
+            calendar.clear();
+            calendar.setTimeInMillis(calendarView.date);
+            calendar.set(Calendar.DAY_OF_MONTH, 1);
+            var startMonth = calendar.getTimeInMillis()
+            calendar.add(Calendar.MONTH,1 );
+            var endMonth = calendar.getTimeInMillis()
+            var filterCollectionByMonth = ArrayList<Event>()
+
+            for(event in cardListEvent) {
+                if(event.date_ev >= startMonth && event.date_ev < endMonth) {
+                    filterCollectionByMonth.add(event)
+                }
+            }
+            adapterEvent = AdapterEvent(filterCollectionByMonth, context)
+
+            recyclerViwEvents.adapter = adapterEvent
+            adapterEvent.notifyDataSetChanged()
+
+        }
+        event_custom.setOnClickListener {
+//            var filterCollectionByCustom = ArrayList<Event>()
+//            //TODO: filtering
+//            recyclerViwEvents.adapter.items = filterCollectionByCustom
+//            recyclerViwEvents.adapter.notifyDataSetChanged()
+        }
+
     }
 }
 
