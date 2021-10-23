@@ -15,27 +15,25 @@
 
         <EditText
             android:id="@+id/editText"
-            android:layout_width="wrap_content"
+            android:layout_width="260dp"
             android:layout_height="40dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:layout_weight="3"
-            android:background="@drawable/radius"
+            android:background="@drawable/border"
+            android:padding="10dp"
             android:hint="Enter an item here"
-            android:inputType="text"
-            android:paddingLeft="10dp" />
+            android:inputType="text" />
 
         <ImageView
             android:id="@+id/btn_speach"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="25dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:src="@drawable/ic_baseline_keyboard_voice_24" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btnAdd"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
@@ -43,8 +41,8 @@
             android:layout_marginRight="10dp"
             android:layout_toRightOf="@+id/editText"
             android:layout_weight="1"
+            android:src="@drawable/baseline_add"
             android:background="?android:attr/selectableItemBackground"
-            android:text=" + Add"
             android:textColor="@color/purple_700"
             android:textSize="16sp" />
 

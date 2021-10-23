@@ -31,7 +31,7 @@ import kotlin.collections.ArrayList
 class ShoppingFragment : Fragment() {
     lateinit var editText: EditText
     lateinit var recyclerViewShopping: RecyclerView
-    lateinit var addBtn: Button
+    lateinit var addBtn: ImageButton
     lateinit var list: ArrayList<ShoppingItem>
     lateinit var customAdapterShopping: CustomAdapterShopping
     lateinit var btnSpeach: ImageView

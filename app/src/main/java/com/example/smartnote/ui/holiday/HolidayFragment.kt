@@ -36,6 +36,7 @@ class HolidayFragment : Fragment() {
     lateinit var cardListHoliday: ArrayList<Holiday>
     lateinit var customAdapterHoliday: CustomAdapterHoliday
     lateinit var event: EditText
+    lateinit var time_tv: TextView
     lateinit var date_tv: TextView
     lateinit var event_tv: TextView
     lateinit var saveActionButtonHoliday: Button
@@ -47,6 +48,7 @@ class HolidayFragment : Fragment() {
     lateinit var event_day: TextView
     lateinit var event_week: TextView
     lateinit var event_month: TextView
+    lateinit var time_picker: TimePicker
 
     @SuppressLint("WrongConstant")
     override fun onCreateView(
@@ -67,7 +69,7 @@ class HolidayFragment : Fragment() {
         event_day = root.findViewById(R.id.event_day)
         event_week = root.findViewById(R.id.event_week)
         event_month = root.findViewById(R.id.event_month)
-//        collapsing_toolbar.setTitle(getResources().getString(R.string.event_text));
+//        time_picker = root.findViewById(R.id.timePicker1)
         toolbarTextAppernce()
 
         recyclerViwHoliday = root.findViewById(R.id.recyclerViewHoliday)
@@ -93,15 +95,15 @@ class HolidayFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         var id = item.itemId
-        if (id == R.id.settings) {
-            val fragmentManager: FragmentManager = activity?.supportFragmentManager!!
-            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            val setFragment = SettingsFragment()
-            fragmentTransaction.replace(R.id.settings, setFragment)
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-            return true
-        }
+//        if (id == R.id.settings) {
+//            val fragmentManager: FragmentManager = activity?.supportFragmentManager!!
+//            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+//            val setFragment = SettingsFragment()
+//            fragmentTransaction.replace(R.id.settings, setFragment)
+//            fragmentTransaction.addToBackStack(null);
+//            fragmentTransaction.commit();
+//            return true
+//        }
         if (id == R.id.share) {
             val currentFragment = activity?.supportFragmentManager!!.fragments.first().childFragmentManager.fragments.first()
             when (currentFragment) {
@@ -136,7 +138,8 @@ class HolidayFragment : Fragment() {
             val mDialogViewHoliday = inflater.inflate(R.layout.holiday_dialog, container, false)
             val mItemViewHoliday = inflater.inflate(R.layout.item_holiday, container, false)
             event = mDialogViewHoliday.findViewById(R.id.event)
-
+            time_tv = mItemViewHoliday.findViewById(R.id.time_holiday_tv)
+            time_picker = mDialogViewHoliday.findViewById(R.id.timePicker1)
             date_tv = mItemViewHoliday.findViewById(R.id.date_holiday_tv)
             event_tv = mItemViewHoliday.findViewById(R.id.event_holiday_tv)
 
@@ -150,7 +153,7 @@ class HolidayFragment : Fragment() {
 
             saveActionButtonHoliday.setOnClickListener {
                 mAlertDialog.dismiss()
-                if (event.text.isNotEmpty()) {
+                if (event.text.isNotEmpty() && time_tv.text.isNotEmpty()) {
                     var cardHoliday = Holiday()
 
                     val calendar = Calendar.getInstance()
@@ -164,6 +167,7 @@ class HolidayFragment : Fragment() {
 
                     cardHoliday.event = event.text.toString()
                     cardHoliday.date_ev = date_ev
+                    cardHoliday.time = time_tv.text.toString()
                     cardListHoliday.add(cardHoliday)
                 } else {
                     Toast.makeText(context, "Put values!", Toast.LENGTH_LONG).show()
@@ -200,6 +204,31 @@ class HolidayFragment : Fragment() {
     private fun toolbarTextAppernce() {
         collapsing_toolbar.setCollapsedTitleTextAppearance(R.style.collapsedappbar)
         collapsing_toolbar.setExpandedTitleTextAppearance(R.style.expandedappbar)
+    }
+
+    private fun OnClickTime() {
+
+        time_picker.setOnTimeChangedListener { _, hour, minute -> var hour = hour
+            var am_pm = ""
+            // AM_PM decider logic
+            when {hour == 0 -> { hour += 12
+                am_pm = "AM"
+            }
+                hour == 12 -> am_pm = "PM"
+                hour > 12 -> { hour -= 12
+                    am_pm = "PM"
+                }
+                else -> am_pm = "AM"
+            }
+            if (time_tv != null) {
+                val hour = if (hour < 10) "0" + hour else hour
+                val min = if (minute < 10) "0" + minute else minute
+                // display format of time
+                val msg = "Time is: $hour : $min $am_pm"
+                time_tv.text = msg
+                time_tv.visibility = ViewGroup.VISIBLE
+            }
+        }
     }
 }
 

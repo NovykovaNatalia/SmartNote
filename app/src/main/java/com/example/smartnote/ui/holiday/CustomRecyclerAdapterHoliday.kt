@@ -31,10 +31,12 @@ class CustomAdapterHoliday(private val items: ArrayList<Holiday>) :
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val date_tv: TextView
         val event_tv: TextView
+        val time_tv: TextView
 
         init {
             date_tv = view.findViewById(R.id.date_holiday_tv)
             event_tv = view.findViewById(R.id.event_holiday_tv)
+            time_tv = view.findViewById(R.id.time_holiday_tv)
         }
     }
 
@@ -52,6 +54,7 @@ class CustomAdapterHoliday(private val items: ArrayList<Holiday>) :
         holder.run {
             event_tv.setText(items[position].event)
             date_tv.setText(items[position].date_ev)
+            time_tv.setText(items[position].time)
 
             itemView.setOnClickListener {
                 val builder = AlertDialog.Builder(holder.date_tv.context)

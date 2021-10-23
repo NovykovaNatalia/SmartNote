@@ -7,24 +7,28 @@
     android:orientation="vertical"
     android:padding="10dp">
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/event"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Event" />
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/line_one_holiday"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
         android:orientation="horizontal">
-<!--        <EditText-->
-<!--            android:id="@+id/date"-->
-<!--            android:inputType="date"-->
-<!--            android:layout_weight="2"-->
-<!--            android:hint="Date"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"/>-->
-        <EditText
-            android:id="@+id/event"
-            android:layout_weight="2"
-            android:hint="Event"
+
+        <TimePicker
+            android:id="@+id/timePicker1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:timePickerMode="clock" />
 
     </LinearLayout>
 
