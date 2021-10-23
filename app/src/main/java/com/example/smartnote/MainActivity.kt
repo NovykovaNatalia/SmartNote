@@ -1,25 +1,11 @@
 package com.example.smartnote
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
-import com.example.smartnote.ui.bank_account.BankAccountFragment
-import com.example.smartnote.ui.credentials.CredentialsFragment
-import com.example.smartnote.ui.holiday.HolidayFragment
-import com.example.smartnote.ui.sales.SalesFragment
-import com.example.smartnote.ui.settings.SettingsFragment
-import com.example.smartnote.ui.shopping.ShoppingFragment
-import com.example.smartnote.ui.text_note.TextNoteFragment
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -40,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
                 setOf(
                         R.id.shopping,
-                        R.id.holidays,
+                        R.id.events,
                         R.id.bankAccounts,
                         R.id.credentials,
                         R.id.sales,
@@ -61,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         DataStoreHandler.saveArrayListCredentials()
         DataStoreHandler.saveArrayListSales()
         DataStoreHandler.saveArrayListNotes()
-        DataStoreHandler.saveArrayListHoliday()
+        DataStoreHandler.saveArrayListEvents()
     }
 
     override fun onSupportNavigateUp(): Boolean {

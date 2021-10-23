@@ -9,8 +9,8 @@
         <item android:id="@+id/shopping"
             android:title="Shoppings"
             android:icon="@drawable/shopping_cart"/>
-        <item android:id="@+id/holidays"
-            android:title="Holidays"
+        <item android:id="@+id/events"
+            android:title="Events"
             android:icon="@drawable/ic_baseline_cake"/>
         <item android:id="@+id/bankAccounts"
             android:title="Bank Accounts"

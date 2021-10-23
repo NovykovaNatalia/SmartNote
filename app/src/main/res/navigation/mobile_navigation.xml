@@ -6,10 +6,10 @@
     app:startDestination="@+id/shopping">
 
     <fragment
-        android:id="@+id/holidays"
-        android:name="com.example.smartnote.ui.holiday.HolidayFragment"
-        android:label="@string/menu_holiday"
-        tools:layout="@layout/fragment_holiday" />
+        android:id="@+id/events"
+        android:name="com.example.smartnote.ui.events.EventsFragment"
+        android:label="@string/menu_events"
+        tools:layout="@layout/fragment_event" />
 
     <fragment
         android:id="@+id/shopping"

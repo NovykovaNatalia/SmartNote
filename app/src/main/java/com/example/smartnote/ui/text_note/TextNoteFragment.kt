@@ -6,7 +6,6 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.view.animation.AnimationUtils
@@ -17,12 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
 import com.example.smartnote.R
-import com.example.smartnote.ui.bank_account.BankAccountFragment
-import com.example.smartnote.ui.credentials.CredentialsFragment
-import com.example.smartnote.ui.holiday.HolidayFragment
-import com.example.smartnote.ui.sales.SalesFragment
 import com.example.smartnote.ui.settings.SettingsFragment
-import com.example.smartnote.ui.shopping.ShoppingFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
 import kotlin.collections.ArrayList

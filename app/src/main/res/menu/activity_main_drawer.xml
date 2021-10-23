@@ -12,9 +12,9 @@
                 android:icon="@drawable/shopping_cart"
                 android:title="Shoppings" />
             <item
-                android:id="@+id/holidays"
+                android:id="@+id/events"
                 android:icon="@drawable/ic_baseline_cake"
-                android:title="Holidays" />
+                android:title="Events" />
             <item
                 android:id="@+id/bankAccounts"
                 android:icon="@drawable/ic_baseline_credit_card_24"

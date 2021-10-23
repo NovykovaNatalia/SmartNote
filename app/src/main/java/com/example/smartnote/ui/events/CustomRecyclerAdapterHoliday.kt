@@ -1,4 +1,4 @@
-package com.example.smartnote.ui.holiday
+package com.example.smartnote.ui.events
 
 import android.app.AlertDialog
 import android.content.Context
@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.R
 import java.util.ArrayList
 
-class CustomAdapterHoliday(private val items: ArrayList<Holiday>) :
-        RecyclerView.Adapter<CustomAdapterHoliday.ViewHolder>() {
+class AdapterEvent(private val items: ArrayList<Event>) :
+        RecyclerView.Adapter<AdapterEvent.ViewHolder>() {
     lateinit var context: Context;
 
     companion object {
@@ -21,7 +21,7 @@ class CustomAdapterHoliday(private val items: ArrayList<Holiday>) :
 
     }
 
-    constructor(items: java.util.ArrayList<Holiday>, context: Context?) : this(items) {
+    constructor(items: java.util.ArrayList<Event>, context: Context?) : this(items) {
 
         if (context != null) {
             this.context = context
@@ -34,15 +34,15 @@ class CustomAdapterHoliday(private val items: ArrayList<Holiday>) :
         val time_tv: TextView
 
         init {
-            date_tv = view.findViewById(R.id.date_holiday_tv)
-            event_tv = view.findViewById(R.id.event_holiday_tv)
-            time_tv = view.findViewById(R.id.time_holiday_tv)
+            date_tv = view.findViewById(R.id.date_event_tv)
+            event_tv = view.findViewById(R.id.text_event_tv)
+            time_tv = view.findViewById(R.id.time_event_tv)
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapterHoliday.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterEvent.ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_holiday, parent, false)
+                .inflate(R.layout.item_event, parent, false)
         return ViewHolder(view)
     }
 
@@ -50,7 +50,7 @@ class CustomAdapterHoliday(private val items: ArrayList<Holiday>) :
         return items.size
     }
 
-    override fun onBindViewHolder(holder: CustomAdapterHoliday.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AdapterEvent.ViewHolder, position: Int) {
         holder.run {
             event_tv.setText(items[position].event)
             date_tv.setText(items[position].date_ev)

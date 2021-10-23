@@ -10,7 +10,6 @@ import android.util.Log
 import android.view.*
 import android.view.animation.AnimationUtils
 import android.widget.*
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -18,12 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
 import com.example.smartnote.R
-import com.example.smartnote.ui.bank_account.BankAccountFragment
-import com.example.smartnote.ui.credentials.CredentialsFragment
-import com.example.smartnote.ui.holiday.HolidayFragment
-import com.example.smartnote.ui.sales.SalesFragment
 import com.example.smartnote.ui.settings.SettingsFragment
-import com.example.smartnote.ui.text_note.TextNoteFragment
 import java.util.*
 import kotlin.collections.ArrayList
 

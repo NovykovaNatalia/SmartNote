@@ -30,30 +30,44 @@
           android:layout_height="30dp"
           android:layout_marginTop="10dp"
           android:layout_below="@+id/app_bar_layout"
-          app:layout_anchor="@+id/toolbar_holiday"
+          app:layout_anchor="@+id/toolbar_event"
           app:layout_anchorGravity="top|center">
+
+         <TextView
+             android:id="@+id/event_all"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="35dp"
+             android:layout_weight="1"
+             android:text="All" />
 
          <TextView
              android:id="@+id/event_day"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:layout_marginLeft="35dp"
              android:layout_weight="1"
-             android:text="Event Day" />
+             android:text="Day" />
 
          <TextView
              android:id="@+id/event_week"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_weight="1"
-             android:text="Event Week" />
+             android:text="Week" />
 
          <TextView
              android:id="@+id/event_month"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_weight="1"
-             android:text="Event Month" />
+             android:text="Month" />
+
+         <TextView
+             android:id="@+id/event_custom"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:text="Custom" />
       </LinearLayout>
 
 
@@ -69,7 +83,7 @@
 
 
       <androidx.recyclerview.widget.RecyclerView
-          android:id="@+id/recyclerViewHoliday"
+          android:id="@+id/recyclerViewEvents"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"/>
 
@@ -77,7 +91,7 @@
    </androidx.core.widget.NestedScrollView>
 
    <androidx.appcompat.widget.Toolbar
-       android:id="@+id/toolbar_holiday"
+       android:id="@+id/toolbar_event"
        android:layout_width="match_parent"
        android:layout_height="?attr/actionBarSize"
        app:layout_anchor="@+id/app_bar_layout"

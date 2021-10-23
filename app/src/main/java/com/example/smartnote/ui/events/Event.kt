@@ -1,8 +1,8 @@
-package com.example.smartnote.ui.holiday
+package com.example.smartnote.ui.events
 
 import java.io.Serializable
 
-class Holiday : Serializable {
+class Event : Serializable {
     lateinit var date_ev: String
     lateinit var event: String
     lateinit var time: String

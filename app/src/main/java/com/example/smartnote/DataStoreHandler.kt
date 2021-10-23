@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import com.example.smartnote.ui.bank_account.Card
 import com.example.smartnote.ui.credentials.Credentials
-import com.example.smartnote.ui.holiday.Holiday
+import com.example.smartnote.ui.events.Event
 import com.example.smartnote.ui.sales.Sale
 import com.example.smartnote.ui.shopping.ShoppingItem
 import com.example.smartnote.ui.text_note.CardNote
@@ -18,13 +18,13 @@ object DataStoreHandler {
     val SP_CREDENTIALS_KEY = "SP_CREDENTIALS"
     val SP_SALES_KEY = "SP_SALES"
     val SP_NOTES_KEY = "SP_NOTES"
-    val SP_HOLIDAY_KEY = "SP_HOLIDAY"
+    val SP_EVENTS_KEY = "SP_EVENTS"
     lateinit var shoppingItems: ArrayList<ShoppingItem>
     lateinit var cards: ArrayList<Card>
     lateinit var credentials: ArrayList<Credentials>
     lateinit var sales: ArrayList<Sale>
     lateinit var notes: ArrayList<CardNote>
-    lateinit var holidays: ArrayList<Holiday>
+    lateinit var events: ArrayList<Event>
 
     init {
         shoppingItems = getShoppings()
@@ -32,24 +32,24 @@ object DataStoreHandler {
         credentials =  getArrayListCredentials()
         sales = getArrayListSales()
         notes =  getArrayListNotes()
-        holidays = getArrayListHolidays()
+        events = getArrayListEvents()
     }
 
 
-    fun saveArrayListHoliday() {
+    fun saveArrayListEvents() {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
         val editor: SharedPreferences.Editor = prefs.edit()
         val gson = Gson()
-        val json: String = gson.toJson(holidays)
-        editor.putString(SP_HOLIDAY_KEY, json)
+        val json: String = gson.toJson(events)
+        editor.putString(SP_EVENTS_KEY, json)
         editor.apply()
     }
 
-    fun getArrayListHolidays(): ArrayList<Holiday> {
+    fun getArrayListEvents(): ArrayList<Event> {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
         val gson = Gson()
-        val json: String? = prefs.getString(SP_HOLIDAY_KEY, null)
-        val type: Type = object : TypeToken<ArrayList<Holiday?>?>() {}.getType()
+        val json: String? = prefs.getString(SP_EVENTS_KEY, null)
+        val type: Type = object : TypeToken<ArrayList<Event?>?>() {}.getType()
         if (json != null) {
             return gson.fromJson(json, type)
         }
