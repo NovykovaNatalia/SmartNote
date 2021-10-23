@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.R
+import java.text.DateFormat
 import java.util.ArrayList
 
 class AdapterEvent(private val items: ArrayList<Event>) :
@@ -22,7 +23,6 @@ class AdapterEvent(private val items: ArrayList<Event>) :
     }
 
     constructor(items: java.util.ArrayList<Event>, context: Context?) : this(items) {
-
         if (context != null) {
             this.context = context
         }
@@ -52,8 +52,9 @@ class AdapterEvent(private val items: ArrayList<Event>) :
 
     override fun onBindViewHolder(holder: AdapterEvent.ViewHolder, position: Int) {
         holder.run {
+            val dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
             event_tv.setText(items[position].event)
-            date_tv.setText(items[position].date_ev)
+            date_tv.setText(dateFormatter.format(items[position].date_ev))
             time_tv.setText(items[position].time)
 
             itemView.setOnClickListener {
