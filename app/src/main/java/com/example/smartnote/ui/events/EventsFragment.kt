@@ -3,6 +3,7 @@ package com.example.smartnote.ui.events
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -39,6 +40,7 @@ class EventsFragment : Fragment() {
     lateinit var event_month: TextView
     lateinit var event_custom: TextView
     lateinit var time_picker: TimePicker
+    var color: Int = 0
 
 
     @SuppressLint("WrongConstant")
@@ -215,15 +217,17 @@ class EventsFragment : Fragment() {
     }
 
     private fun setFiltersClickListeners() {
+       color =  event_all.textColors.defaultColor
         Log.e("den", "start function")
         val dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
 
-        event_all.setOnClickListener {
-            adapterEvent = AdapterEvent(cardListEvent, context)
 
+        event_all.setOnClickListener {
+            resetHighlightFilter()
+            event_all.setTextColor(Color.WHITE)
+            adapterEvent = AdapterEvent(cardListEvent, context)
             recyclerViwEvents.adapter = adapterEvent
             adapterEvent.notifyDataSetChanged()
-
         }
         event_day.setOnClickListener {
             var filterCollectionByDay = ArrayList<Event>()
@@ -232,8 +236,9 @@ class EventsFragment : Fragment() {
                     filterCollectionByDay.add(event)
                 }
             }
+            resetHighlightFilter()
+            event_day.setTextColor(Color.WHITE)
             adapterEvent = AdapterEvent(filterCollectionByDay, context)
-
             recyclerViwEvents.adapter = adapterEvent
             adapterEvent.notifyDataSetChanged()
         }
@@ -252,6 +257,8 @@ class EventsFragment : Fragment() {
                     filterCollectionByWeek.add(event)
                 }
             }
+            resetHighlightFilter()
+            event_week.setTextColor(Color.WHITE)
             adapterEvent = AdapterEvent(filterCollectionByWeek, context)
 
             recyclerViwEvents.adapter = adapterEvent
@@ -272,6 +279,8 @@ class EventsFragment : Fragment() {
                     filterCollectionByMonth.add(event)
                 }
             }
+            resetHighlightFilter()
+            event_month.setTextColor(Color.WHITE)
             adapterEvent = AdapterEvent(filterCollectionByMonth, context)
 
             recyclerViwEvents.adapter = adapterEvent
@@ -284,6 +293,14 @@ class EventsFragment : Fragment() {
 //            recyclerViwEvents.adapter.items = filterCollectionByCustom
 //            recyclerViwEvents.adapter.notifyDataSetChanged()
         }
+
+    }
+    fun resetHighlightFilter() {
+        event_all.setTextColor(color)
+        event_day.setTextColor(color)
+        event_week.setTextColor(color)
+        event_custom.setTextColor(color)
+        event_month.setTextColor(color)
 
     }
 }
