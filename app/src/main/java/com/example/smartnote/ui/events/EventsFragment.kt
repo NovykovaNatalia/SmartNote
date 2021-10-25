@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
 import com.example.smartnote.R
 import com.google.android.material.appbar.CollapsingToolbarLayout
+import kotlinx.android.synthetic.main.date_picker.*
 import java.text.DateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -31,7 +32,6 @@ class EventsFragment : Fragment() {
     lateinit var actionButtonSaveEvent: Button
     lateinit var actionButtonCancelEvent: Button
     lateinit var collapsing_toolbar: CollapsingToolbarLayout
-//    lateinit var date_ev: String
     lateinit var inflater:LayoutInflater
     lateinit var container: ViewGroup
     lateinit var event_all: TextView
@@ -39,8 +39,14 @@ class EventsFragment : Fragment() {
     lateinit var event_week: TextView
     lateinit var event_month: TextView
     lateinit var event_custom: TextView
+    var color : Int = 0
     lateinit var time_picker: TimePicker
-    var color: Int = 0
+    lateinit var submitBtn: Button
+    lateinit var cancelBtn: Button
+    lateinit var toDate:TextView
+    lateinit var fromDate: TextView
+    lateinit var line_one_event: RelativeLayout
+    lateinit var line_two_event: RelativeLayout
 
 
     @SuppressLint("WrongConstant")
@@ -56,6 +62,8 @@ class EventsFragment : Fragment() {
         }
 
         val root = inflater.inflate(R.layout.fragment_event, container, false)
+//        val dialogDatePicker = inflater.inflate(R.layout.date_picker, container, false)
+
 
         calendarView = root.findViewById(R.id.calendarView)
 
@@ -67,6 +75,7 @@ class EventsFragment : Fragment() {
             calendarView.date = calendar.timeInMillis
             Log.e("den", " changed " + calendarView.date)
         }
+
 
         collapsing_toolbar = root.findViewById(R.id.collapsing_toolbar)
 
@@ -148,7 +157,7 @@ class EventsFragment : Fragment() {
                     .setTitle("Event")
             val mAlertDialog = mBuilder.show()
 
-            actionButtonCancelEvent = dialogViewEvemt.findViewById(R.id.cancel_dialog_event)
+            actionButtonCancelEvent = dialogViewEvemt.findViewById(R.id.cancel_date_btn)
             actionButtonSaveEvent = dialogViewEvemt.findViewById<Button>(R.id.save_dialog_event);
 
             actionButtonSaveEvent.setOnClickListener {
@@ -156,14 +165,6 @@ class EventsFragment : Fragment() {
                 if (event.text.isNotEmpty() && time_tv.text.isNotEmpty()) {
                     var newEvent = Event()
 
-//                    val calendar = Calendar.getInstance()
-////                    val dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
-//                    calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-//                        calendar.set(year, month, dayOfMonth)
-//
-//                        calendarView.date = calendar.timeInMillis
-//                    }
-//                    date_ev = dateFormatter.format(calendarView.date)
 
                     newEvent.event = event.text.toString()
                     newEvent.date_ev = calendarView.date
@@ -219,7 +220,7 @@ class EventsFragment : Fragment() {
     private fun setFiltersClickListeners() {
        color =  event_all.textColors.defaultColor
         Log.e("den", "start function")
-        val dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
+        var dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
 
 
         event_all.setOnClickListener {
@@ -270,7 +271,7 @@ class EventsFragment : Fragment() {
             calendar.setTimeInMillis(calendarView.date);
             calendar.set(Calendar.DAY_OF_MONTH, 1);
             var startMonth = calendar.getTimeInMillis()
-            calendar.add(Calendar.MONTH,1 );
+            calendar.add(Calendar.MONTH, 1);
             var endMonth = calendar.getTimeInMillis()
             var filterCollectionByMonth = ArrayList<Event>()
 
@@ -288,10 +289,44 @@ class EventsFragment : Fragment() {
 
         }
         event_custom.setOnClickListener {
-//            var filterCollectionByCustom = ArrayList<Event>()
-//            //TODO: filtering
-//            recyclerViwEvents.adapter.items = filterCollectionByCustom
-//            recyclerViwEvents.adapter.notifyDataSetChanged()
+            val dialogDatePicker = inflater.inflate(R.layout.date_picker, container, false)
+            submitBtn = dialogDatePicker.findViewById(R.id.send_date_btn)
+            cancelBtn = dialogDatePicker.findViewById(R.id.cancel_date_btn)
+            fromDate = dialogDatePicker.findViewById(R.id.from_date)
+            toDate = dialogDatePicker.findViewById(R.id.to_date)
+            line_one_event = dialogDatePicker.findViewById(R.id.line_one_date_picker)
+            line_two_event = dialogDatePicker.findViewById(R.id.line_two_time_picker)
+
+
+            line_one_event.setOnClickListener{
+                val dialogDatePicker = inflater.inflate(R.layout.date_from, container, false)
+
+                val mBuilder = AlertDialog.Builder(context)
+                        .setView(dialogDatePicker)
+                val mAlertDialog = mBuilder.show()
+
+
+            }
+
+            line_two_event.setOnClickListener {
+                val dialogDatePicker = inflater.inflate(R.layout.date_to, container, false)
+
+                val mBuilder = AlertDialog.Builder(context)
+                        .setView(dialogDatePicker)
+                val mAlertDialog = mBuilder.show()
+            }
+
+            submitBtn.setOnClickListener {
+
+            }
+
+
+            val mBuilder = AlertDialog.Builder(context)
+                    .setView(dialogDatePicker)
+            val mAlertDialog = mBuilder.show()
+            val c = Calendar.getInstance()
+
+
         }
 
     }

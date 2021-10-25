@@ -39,4 +39,7 @@
     <string name="event_text">Add event..</string>
     <string name="amount">Amount</string>
     <string name="put_value">Put values!</string>
+    <string name="from">From</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>

@@ -23,8 +23,11 @@
             android:name=".ui.settings.Version"
             android:label="@string/title_activity_version"
             android:theme="@style/Theme.SmartNote.NoActionBar" />
+        <activity
+            android:name=".ui.events.DatePicker"
+            android:label="@string/title_activity_version"
+            android:theme="@style/Theme.SmartNote.NoActionBar" />
         <activity android:name=".ui.settings.AboutSmartNote" />
-        <activity android:name=".ui.settings.Rate" />
         <activity
             android:name=".SplashScreen"
             android:label="@string/app_name"
