@@ -1,15 +1,10 @@
 package com.example.smartnote.ui.events
 
 import android.app.DatePickerDialog
-import android.os.Build
 import android.os.Bundle
-import android.text.InputType
-import android.view.View
 import android.widget.*
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.smartnote.R
-import kotlinx.android.synthetic.main.date_picker.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,7 +20,7 @@ class DatePicker : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.date_picker)
 
-        sendButton = findViewById(R.id.send_date_btn)
+        sendButton = findViewById(R.id.button_filter)
         fromDate = findViewById(R.id.from_date)
         toDate = findViewById(R.id.to_date)
 //        image_cal_from = findViewById(R.id.image_calendar)

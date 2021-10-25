@@ -8,13 +8,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.*
+import android.widget.DatePicker
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
 import com.example.smartnote.R
 import com.google.android.material.appbar.CollapsingToolbarLayout
-import kotlinx.android.synthetic.main.date_picker.*
 import java.text.DateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -41,7 +41,7 @@ class EventsFragment : Fragment() {
     lateinit var event_custom: TextView
     var color : Int = 0
     lateinit var time_picker: TimePicker
-    lateinit var submitBtn: Button
+    lateinit var buttonFilter: Button
     lateinit var cancelBtn: Button
     lateinit var toDate:TextView
     lateinit var fromDate: TextView
@@ -290,41 +290,90 @@ class EventsFragment : Fragment() {
         }
         event_custom.setOnClickListener {
             val dialogDatePicker = inflater.inflate(R.layout.date_picker, container, false)
-            submitBtn = dialogDatePicker.findViewById(R.id.send_date_btn)
+            buttonFilter = dialogDatePicker.findViewById(R.id.button_filter)
             cancelBtn = dialogDatePicker.findViewById(R.id.cancel_date_btn)
+            val calendar = Calendar.getInstance()
+
             fromDate = dialogDatePicker.findViewById(R.id.from_date)
             toDate = dialogDatePicker.findViewById(R.id.to_date)
-            line_one_event = dialogDatePicker.findViewById(R.id.line_one_date_picker)
-            line_two_event = dialogDatePicker.findViewById(R.id.line_two_time_picker)
-
-
-            line_one_event.setOnClickListener{
-                val dialogDatePicker = inflater.inflate(R.layout.date_from, container, false)
-
-                val mBuilder = AlertDialog.Builder(context)
-                        .setView(dialogDatePicker)
-                val mAlertDialog = mBuilder.show()
-
-
-            }
-
-            line_two_event.setOnClickListener {
-                val dialogDatePicker = inflater.inflate(R.layout.date_to, container, false)
-
-                val mBuilder = AlertDialog.Builder(context)
-                        .setView(dialogDatePicker)
-                val mAlertDialog = mBuilder.show()
-            }
-
-            submitBtn.setOnClickListener {
-
-            }
-
+            fromDate.setText(dateFormatter.format(calendar.timeInMillis))
+            toDate.setText(dateFormatter.format(calendar.timeInMillis))
 
             val mBuilder = AlertDialog.Builder(context)
                     .setView(dialogDatePicker)
-            val mAlertDialog = mBuilder.show()
-            val c = Calendar.getInstance()
+            val alertdlg = mBuilder.show()
+
+            line_one_event = dialogDatePicker.findViewById(R.id.line_one_date_picker)
+            line_two_event = dialogDatePicker.findViewById(R.id.line_two_time_picker)
+            line_one_event.setOnClickListener{
+                val dialogDatePicker = inflater.inflate(R.layout.date_from, container, false)
+                val mBuilder = AlertDialog.Builder(context)
+                        .setView(dialogDatePicker)
+                val alertDialog = mBuilder.show()
+
+                val buttonOk = dialogDatePicker.findViewById<Button>(R.id.button_ok_from)
+                buttonOk.setOnClickListener {
+                    val datePicker = dialogDatePicker.findViewById<DatePicker>(R.id.date_from_date_picker)
+                    val day = datePicker.dayOfMonth
+                    val month = datePicker.month
+                    val year = datePicker.year
+
+                    calendar.set(year, month, day)
+                    fromDate.setText(dateFormatter.format(calendar.timeInMillis))
+                    alertDialog.dismiss()
+                }
+                val buttonCancel = dialogDatePicker.findViewById<Button>(R.id.button_cancel_from)
+                buttonCancel.setOnClickListener {
+                    alertDialog.dismiss()
+                }
+
+
+            }
+            line_two_event.setOnClickListener {
+                val dialogDatePicker = inflater.inflate(R.layout.date_to, container, false)
+                val mBuilder = AlertDialog.Builder(context)
+                        .setView(dialogDatePicker)
+                val alertDialog = mBuilder.show()
+
+                val buttonOk = dialogDatePicker.findViewById<Button>(R.id.button_ok)
+                buttonOk.setOnClickListener {
+                    val datePicker = dialogDatePicker.findViewById<DatePicker>(R.id.date_to_date_picker)
+                    val day = datePicker.dayOfMonth
+                    val month = datePicker.month
+                    val year = datePicker.year
+
+                    calendar.set(year, month, day)
+                    toDate.setText(dateFormatter.format(calendar.timeInMillis))
+                    alertDialog.dismiss()
+                }
+                val buttonCancel = dialogDatePicker.findViewById<Button>(R.id.button_cancel)
+                buttonCancel.setOnClickListener {
+                    alertDialog.dismiss()
+                }
+            }
+
+            buttonFilter.setOnClickListener {
+                var startDate = dateFormatter.parse(fromDate.text.toString()).time
+                var endDate = dateFormatter.parse(toDate.text.toString()).time
+                var filterCollectionByCustom = ArrayList<Event>()
+//
+                for(event in cardListEvent) {
+                    if(event.date_ev >= startDate && event.date_ev <= endDate) {
+                        filterCollectionByCustom.add(event)
+                    }
+                }
+                resetHighlightFilter()
+                event_custom.setTextColor(Color.WHITE)
+                adapterEvent = AdapterEvent(filterCollectionByCustom, context)
+
+                recyclerViwEvents.adapter = adapterEvent
+                adapterEvent.notifyDataSetChanged()
+                alertdlg.dismiss()
+            }
+            cancelBtn.setOnClickListener {
+                alertdlg.dismiss()
+            }
+
 
 
         }
