@@ -221,7 +221,7 @@ class EventsFragment : Fragment() {
        color =  event_all.textColors.defaultColor
         Log.e("den", "start function")
         var dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
-
+        event_all.setTextColor(Color.WHITE)
 
         event_all.setOnClickListener {
             resetHighlightFilter()

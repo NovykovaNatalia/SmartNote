@@ -24,11 +24,11 @@
              android:layout_height="match_parent" />
 
       </com.google.android.material.appbar.CollapsingToolbarLayout>
+
       <LinearLayout
           android:id="@+id/lin_layout"
           android:layout_width="match_parent"
           android:layout_height="30dp"
-          android:layout_marginTop="10dp"
           android:layout_below="@+id/app_bar_layout"
           app:layout_anchor="@+id/toolbar_event"
           app:layout_anchorGravity="top|center">
@@ -36,7 +36,8 @@
          <TextView
              android:id="@+id/event_all"
              android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_marginTop="3dp"
              android:layout_marginLeft="35dp"
              android:layout_weight="1"
              android:text="All" />
@@ -44,28 +45,32 @@
          <TextView
              android:id="@+id/event_day"
              android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_marginTop="3dp"
              android:layout_weight="1"
              android:text="Day" />
 
          <TextView
              android:id="@+id/event_week"
              android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_marginTop="3dp"
              android:layout_weight="1"
              android:text="Week" />
 
          <TextView
              android:id="@+id/event_month"
              android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_marginTop="3dp"
              android:layout_weight="1"
              android:text="Month" />
 
          <TextView
              android:id="@+id/event_custom"
              android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_marginTop="3dp"
              android:layout_weight="1"
              android:text="Custom" />
       </LinearLayout>
@@ -89,15 +94,6 @@
 
 
    </androidx.core.widget.NestedScrollView>
-
-   <androidx.appcompat.widget.Toolbar
-       android:id="@+id/toolbar_event"
-       android:layout_width="match_parent"
-       android:layout_height="?attr/actionBarSize"
-       app:layout_anchor="@+id/app_bar_layout"
-       app:layout_anchorGravity="bottom|center"
-       app:layout_collapseMode="pin"
-       tools:visibility="visible"></androidx.appcompat.widget.Toolbar>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
