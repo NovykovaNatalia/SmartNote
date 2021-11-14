@@ -68,7 +68,7 @@ class CardAdapter(private var items: ArrayList<Card>):
                         shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
                         context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.choose_one)))
                 }
-                
+
                 val dialog: AlertDialog = builder.create()
                 dialog.show()
                 notifyDataSetChanged()
