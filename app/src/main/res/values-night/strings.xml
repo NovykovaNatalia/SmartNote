@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bank_account">Bank Account</string>
+    <string name="put_values">Put values!</string>
+    <string name="choose_one">Choose one</string>
+    <string name="delete_goods">Delete the goods?</string>
+    <string name="no">NO</string>
+</resources>

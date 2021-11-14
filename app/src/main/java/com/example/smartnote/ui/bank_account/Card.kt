@@ -3,7 +3,7 @@ package com.example.smartnote.ui.bank_account
 import java.io.Serializable
 
 class Card : Serializable{
-   lateinit var account: String
+    lateinit var account: String
     lateinit var bankName: String
     lateinit var accountNumber:String
     lateinit var nameSurname: String
