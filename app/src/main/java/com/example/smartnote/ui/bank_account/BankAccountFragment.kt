@@ -16,7 +16,6 @@ import com.example.smartnote.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class BankAccountFragment : Fragment() {
-    lateinit var fab: FloatingActionButton
     lateinit var cardAdapter: CardAdapter
 
     @SuppressLint("WrongConstant")
@@ -41,7 +40,7 @@ class BankAccountFragment : Fragment() {
         val bankAccountSv : SearchView = root.findViewById(R.id.searchView)
         bankAccountSv.startAnimation(ttb)
 
-        fab = root.findViewById(R.id.floating_btn_bank_account)
+        val fab: FloatingActionButton = root.findViewById(R.id.floating_btn_bank_account)
         fab.startAnimation(ttb)
         fab.setOnClickListener {
             val dialogView = LayoutInflater.from( context).inflate(R.layout.bank_account_dialog, null);

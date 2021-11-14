@@ -49,4 +49,6 @@
     <string name="yes">YES</string>
     <string name="no">NO</string>
     <string name="share">Share</string>
+    <string name="credentials">Credentials</string>
+    <string name="delete_credentials">Delete this credentials?</string>
 </resources>

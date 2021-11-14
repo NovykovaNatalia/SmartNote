@@ -9,30 +9,28 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.R
-import com.example.smartnote.ui.bank_account.Card
 
-class CustomAdapterCredentials(private val items: ArrayList<Credentials> ):
-        RecyclerView.Adapter<CustomAdapterCredentials.ViewHolder>() {
-    lateinit var context: Context;
+class CredentialsAdapter(private val items: ArrayList<Credentials> ) :
+        RecyclerView.Adapter<CredentialsAdapter.ViewHolder>() {
+    lateinit var context: Context
 
     constructor(items: ArrayList<Credentials>, context: Context?): this(items) {
-
         if (context != null ) {
             this.context = context
         }
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val credentials_tv: TextView
-        val reference_tv: TextView
+        val credentialsTv: TextView
+        val referenceTv: TextView
 
         init {
-            credentials_tv = view.findViewById(R.id.name_credentials_tv)
-            reference_tv = view.findViewById(R.id.reference_credential_tv)
+            credentialsTv = view.findViewById(R.id.name_credentials_tv)
+            referenceTv = view.findViewById(R.id.reference_credential_tv)
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapterCredentials.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CredentialsAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_credentials, parent, false)
         return ViewHolder(view)
@@ -42,45 +40,37 @@ class CustomAdapterCredentials(private val items: ArrayList<Credentials> ):
         return items.size
     }
 
-    override fun onBindViewHolder(holder: CustomAdapterCredentials.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CredentialsAdapter.ViewHolder, position: Int) {
         holder.run {
-            credentials_tv.setText(items[position].credential)
-            reference_tv.setText(items[position].reference)
-
+            credentialsTv.setText(items[position].credential)
+            referenceTv.setText(items[position].reference)
 
             itemView.setOnClickListener {
-                val builder = AlertDialog.Builder(holder.credentials_tv.context)
-
-                builder.setMessage("Delete the god?")
-
-                builder.setPositiveButton("YES") { dialog, which ->
+                val builder = AlertDialog.Builder(holder.credentialsTv.context)
+                builder.setMessage(context.getString(R.string.delete_credentials))
+                builder.setPositiveButton(context.getString(R.string.yes)) { dialog, which ->
                     items.remove(items[position])
                     notifyDataSetChanged()
 
                 }
-                builder.setNegativeButton("No") { dialog, which ->
 
+                builder.setNegativeButton(context.getString(R.string.no)) { dialog, which ->
                 }
 
-                builder.setNeutralButton("Share") { dialog, which ->
+                builder.setNeutralButton(context.getString(R.string.share)) { dialog, which ->
                     val shareIntent = Intent(Intent.ACTION_SEND)
                     shareIntent.type = "text/plain"
                     val shareBody =  items[position].toString()
                     val shareSub = "items[position]"
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
-                    context.startActivity(Intent.createChooser(shareIntent, "choose one"))
-                    true
+                    context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.choose_one)))
                 }
 
                 val dialog: AlertDialog = builder.create()
-
                 dialog.show()
                 notifyDataSetChanged()
             }
-
         }
-
     }
-    
 }

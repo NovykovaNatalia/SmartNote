@@ -18,86 +18,64 @@ import com.example.smartnote.ui.settings.SettingsFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CredentialsFragment : Fragment() {
-    lateinit var floatingActionButtonCredentials: FloatingActionButton
-    lateinit var saveActionButtonCredentials: Button
-    lateinit var cancelActionButtonCredentials: Button
-    lateinit var dialog_et_credentials: EditText
-    lateinit var dialog_et_refetence: EditText
-    lateinit var credential_tv: TextView
-    lateinit var reference_tv: TextView
-    lateinit var recyclerViewCredentials: RecyclerView
-    lateinit var searchViewCredentials: SearchView
     lateinit var listCredentials: ArrayList<Credentials>
-    lateinit var customAdapterCredentials: CustomAdapterCredentials
+    lateinit var credentialsAdapter: CredentialsAdapter
 
 
     @SuppressLint("WrongConstant")
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
+            inflater: LayoutInflater,
+            container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
         listCredentials = DataStoreHandler.credentials
         val root = inflater.inflate(R.layout.fragment_credentials, container, false)
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
-        val atb = AnimationUtils.loadAnimation(context, R.anim.atb)
-        val btt = AnimationUtils.loadAnimation(context, R.anim.btt)
-        val btn = AnimationUtils.loadAnimation(context, R.anim.btn)
 
+        val credentialsSv: SearchView = root.findViewById(R.id.searchViewCredentials)
+        credentialsSv.startAnimation(ttb)
 
+        val credentialsRv: RecyclerView = root.findViewById(R.id.recyclerViewCredentials)
+        credentialsRv.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+        credentialsAdapter = CredentialsAdapter(listCredentials, context)
+        credentialsRv.adapter = credentialsAdapter
+        credentialsRv.startAnimation(ttb)
+        credentialsAdapter.notifyDataSetChanged()
 
-        searchViewCredentials = root.findViewById(R.id.searchViewCredentials)
-        recyclerViewCredentials = root.findViewById(R.id.recyclerViewCredentials)
-        recyclerViewCredentials.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        customAdapterCredentials = CustomAdapterCredentials(listCredentials, context)
-       //* Check send one item
-        recyclerViewCredentials.adapter = customAdapterCredentials
+        val fab : FloatingActionButton = root.findViewById(R.id.floating_btn_credentials)
+        fab.startAnimation(ttb)
+        fab.setOnClickListener {
+            val credentialsDv = LayoutInflater.from(context)
+                    .inflate(R.layout.credentials_dialog, null);
 
-        customAdapterCredentials.notifyDataSetChanged()
+            val builder = AlertDialog.Builder(context)
+                    .setView(credentialsDv)
+                    .setTitle(getString(R.string.credentials))
+            val alertDialog = builder.show()
 
-        floatingActionButtonCredentials = root.findViewById(R.id.floating_btn_credentials)
-        searchViewCredentials.startAnimation(ttb)
-        recyclerViewCredentials.startAnimation(ttb)
-        floatingActionButtonCredentials.startAnimation(ttb)
+            val dialogCredentialsEt: EditText = credentialsDv.findViewById(R.id.credential)
+            val dialogReferenceEt: EditText = credentialsDv.findViewById(R.id.reference)
 
-        floatingActionButtonCredentials.setOnClickListener {
-            val mDialogViewCredentials = LayoutInflater.from(context).inflate(R.layout.credentials_dialog, null);
-            val mItemViewCredentials = LayoutInflater.from(context).inflate(R.layout.item_credentials, null)
+            val saveBtn: Button = credentialsDv.findViewById(R.id.save_dialog_credentials);
+            saveBtn.setOnClickListener {
+                alertDialog.dismiss()
+                if(dialogCredentialsEt.text.isNotEmpty() && dialogReferenceEt.text.isNotEmpty()) {
+                    val credentials = Credentials()
+                    credentials.credential = dialogCredentialsEt.text.toString()
+                    credentials.reference = dialogReferenceEt.text.toString()
 
-            val mBuilder = AlertDialog.Builder(context)
-                    .setView(mDialogViewCredentials)
-                    .setTitle("Credentials")
-            val mAlertDialog = mBuilder.show()
-
-            dialog_et_credentials = mDialogViewCredentials.findViewById(R.id.credential)
-            dialog_et_refetence = mDialogViewCredentials.findViewById(R.id.reference)
-
-            credential_tv = mItemViewCredentials.findViewById(R.id.name_credentials_tv)
-            reference_tv = mItemViewCredentials.findViewById(R.id.reference_credential_tv)
-
-            cancelActionButtonCredentials = mDialogViewCredentials.findViewById(R.id.cancel_dialog_credentials)
-            saveActionButtonCredentials = mDialogViewCredentials.findViewById(R.id.save_dialog_credentials);
-
-            saveActionButtonCredentials.setOnClickListener {
-                mAlertDialog.dismiss()
-                if(dialog_et_credentials.text.isNotEmpty() && dialog_et_refetence.text.isNotEmpty()) {
-                    var cardCredentils = Credentials()
-                    cardCredentils.credential = dialog_et_credentials.text.toString()
-                    cardCredentils.reference = dialog_et_refetence.text.toString()
-
-                    listCredentials.add(cardCredentils)
+                    listCredentials.add(credentials)
                 } else {
                     Toast.makeText(context, "Put value!", Toast.LENGTH_LONG).show()
                 }
-
-                customAdapterCredentials.notifyDataSetChanged()
+                credentialsAdapter.notifyDataSetChanged()
             }
 
-            cancelActionButtonCredentials.setOnClickListener() {
-                mAlertDialog.dismiss()
+            val  cancelBtn: Button = credentialsDv.findViewById(R.id.cancel_dialog_credentials)
+            cancelBtn.setOnClickListener() {
+                alertDialog.dismiss()
             }
-
         }
-
         return root
     }
 
@@ -110,22 +88,12 @@ class CredentialsFragment : Fragment() {
         inflater.inflate(R.menu.main, menu)
         menu.findItem(R.id.add).setVisible(false)
         super.onCreateOptionsMenu(menu, inflater)
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         var id = item.itemId
-        if (id == R.id.settings) {
-            val fragmentManager: FragmentManager = activity?.supportFragmentManager!!
-            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            val setFragment = SettingsFragment()
-            fragmentTransaction.replace(R.id.settings, setFragment)
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-            return true
-        }
+        val currentFragment = activity?.supportFragmentManager!!.fragments.first().childFragmentManager.fragments.first()
         if (id == R.id.share) {
-            val currentFragment = activity?.supportFragmentManager!!.fragments.first().childFragmentManager.fragments.first()
             when (currentFragment) {
                 is CredentialsFragment -> {
                     val shareIntent = Intent(Intent.ACTION_SEND)
@@ -134,20 +102,18 @@ class CredentialsFragment : Fragment() {
                     sharStr = sharStr.replace('[', ' ')
                     sharStr = sharStr.replace(']', ' ')
                     sharStr = sharStr.replace(",", "")
-                    val shareBody = sharStr
-                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
-                    startActivity(Intent.createChooser(shareIntent, "choose one"))
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, sharStr)
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, sharStr)
+                    startActivity(Intent.createChooser(shareIntent, getString(R.string.choose_one)))
                 }
             }
             return true
         }
         if (id == R.id.delete) {
-            val currentFragment = activity?.supportFragmentManager!!.fragments.first().childFragmentManager.fragments.first()
             when (currentFragment) {
                 is CredentialsFragment -> {
                     DataStoreHandler.credentials.removeAll(DataStoreHandler.credentials)
-                    currentFragment.customAdapterCredentials.notifyDataSetChanged()
+                    currentFragment.credentialsAdapter.notifyDataSetChanged()
                     DataStoreHandler.saveArrayListCredentials()
                 }
             }

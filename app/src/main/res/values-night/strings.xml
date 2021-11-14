@@ -5,4 +5,5 @@
     <string name="choose_one">Choose one</string>
     <string name="delete_goods">Delete the goods?</string>
     <string name="no">NO</string>
+    <string name="delete_credentials">Delete this credentials?</string>
 </resources>
