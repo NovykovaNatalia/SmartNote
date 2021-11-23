@@ -362,6 +362,7 @@ class EventsFragment : Fragment() {
                 var filterCollectionByCustom = ArrayList<Event>()
                 for(event in cardListEvent) {
                     if(event.date_ev >= startDate && event.date_ev <= endDate) {
+
                         filterCollectionByCustom.add(event)
                     }
                 }

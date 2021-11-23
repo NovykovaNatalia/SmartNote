@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Smart Note</string>
     <string name="choose_one">"Виберіть "</string>
-    <string name="navigation_drawer_open">Відкрийте панель навігації</string>
+    <string name="navigation_drawer_open">Відкрити панель навігації</string>
     <string name="navigation_drawer_close">Закрийте панель навігації</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
@@ -17,7 +17,7 @@
     <string name="menu_share">Поширити список</string>
     <string name="menu_delete">Видалити список</string>
     <string name="menu_bank_accounts">Банківські рахунки</string>
-    <string name="menu_credentias">облікові дані</string>
+    <string name="menu_credentias">Облікові дані</string>
     <string name="title_activity_version">Версія</string>
     <string name="first_fragment_label">Перший фрагмент</string>
     <string name="second_fragment_label">Другий фрагмент</string>
@@ -91,5 +91,5 @@
     <string name="delete_the_goods">Видалити товар?</string>
     <string name="everyday_notes">Повсякденні нотатки</string>
     <string name="delete_the_note">Delete the note?</string>
-    <string name="delete_the_item">Delete the item?</string>
+    <string name="delete_the_item">Видалити елемент?</string>
 </resources>

@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/searchView"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical"
             android:weightSum="2">
 
@@ -62,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:layout_toRightOf="@+id/line_one"
             android:orientation="vertical">
@@ -101,20 +102,13 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/line_three_credentials"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:layout_marginBottom="20dp"
-            android:layout_toRightOf="@+id/line_four"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_baseline_more_horiz_24" />
-        </LinearLayout>
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_baseline_more_horiz_24" />
 
     </RelativeLayout>
 
