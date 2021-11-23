@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp">
+
     <LinearLayout
         android:id="@+id/line_one_sales"
         android:layout_width="match_parent"
@@ -13,22 +14,25 @@
         android:layout_below="@+id/searchView"
         android:layout_margin="30dp"
         android:orientation="horizontal">
+
         <EditText
             android:id="@+id/thing_name"
-            android:layout_weight="2"
-            android:hint="Things"
-            android:textColor="@color/teal_700"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="@string/things"
+            android:textColor="@color/teal_700" />
+
         <EditText
             android:id="@+id/brand"
-            android:layout_weight="2"
-            android:textColor="@color/teal_700"
-            android:hint="Brand"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="@string/brand"
+            android:textColor="@color/teal_700" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/line_two_sales"
         android:layout_width="match_parent"
@@ -36,22 +40,24 @@
         android:layout_below="@+id/searchView"
         android:layout_margin="30dp"
         android:orientation="horizontal">
+
         <EditText
             android:id="@+id/sales_price"
-            android:layout_weight="2"
-            android:hint="Sales"
-            android:numeric="decimal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="@string/sales"
+            android:numeric="decimal" />
+
         <EditText
             android:id="@+id/true_price"
-            android:layout_weight="2"
-            android:numeric="decimal"
-            android:hint="True price"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="@string/true_price"
+            android:numeric="decimal" />
 
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -64,27 +70,26 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Save"
+            android:text="@string/save"
             app:layout_constraintEnd_toStartOf="@+id/cancel_dialog_sales"
             app:layout_constraintHorizontal_bias="0.346"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="4dp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="4dp" />
 
         <Button
             android:id="@+id/cancel_dialog_sales"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/save_dialog_sales"
-            android:text="Cancel"
             android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/save_dialog_sales"
+            android:text="@string/cancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.849"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="4dp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="4dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </LinearLayout>

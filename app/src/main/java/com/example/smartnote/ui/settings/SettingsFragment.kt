@@ -32,7 +32,7 @@ class SettingsFragment : Fragment() {
         switchModeFr = view.findViewById(R.id.switchModeFr)
         shareFr = view.findViewById(R.id.shared_tv_fr)
         about_snFr = view.findViewById(R.id.about_sn_tv_fr)
-        frame_settings = view.findViewById(R.id.frame_settings)
+        frame_settings = view.findViewById(R.id.settings)
         contact = view.findViewById(R.id.contact)
         rate = view.findViewById(R.id.rate)
 

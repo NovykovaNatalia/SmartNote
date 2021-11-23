@@ -21,14 +21,14 @@
             android:id="@+id/note_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Note"
+            android:text="@string/note"
             android:textSize="10sp" />
 
         <TextView
             android:id="@+id/note_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Note" />
+            android:hint="@string/note" />
     </LinearLayout>
 
     <LinearLayout

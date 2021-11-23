@@ -40,7 +40,7 @@
              android:layout_marginTop="3dp"
              android:layout_marginLeft="35dp"
              android:layout_weight="1"
-             android:text="All" />
+             android:text="@string/all" />
 
          <TextView
              android:id="@+id/event_day"
@@ -48,7 +48,7 @@
              android:layout_height="match_parent"
              android:layout_marginTop="3dp"
              android:layout_weight="1"
-             android:text="Day" />
+             android:text="@string/day" />
 
          <TextView
              android:id="@+id/event_week"
@@ -56,7 +56,7 @@
              android:layout_height="match_parent"
              android:layout_marginTop="3dp"
              android:layout_weight="1"
-             android:text="Week" />
+             android:text="@string/week" />
 
          <TextView
              android:id="@+id/event_month"
@@ -64,7 +64,7 @@
              android:layout_height="match_parent"
              android:layout_marginTop="3dp"
              android:layout_weight="1"
-             android:text="Month" />
+             android:text="@string/month" />
 
          <TextView
              android:id="@+id/event_custom"
@@ -72,7 +72,7 @@
              android:layout_height="match_parent"
              android:layout_marginTop="3dp"
              android:layout_weight="1"
-             android:text="Custom" />
+             android:text="@string/custom" />
       </LinearLayout>
 
 
@@ -91,7 +91,6 @@
           android:id="@+id/recyclerViewEvents"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"/>
-
 
    </androidx.core.widget.NestedScrollView>
 

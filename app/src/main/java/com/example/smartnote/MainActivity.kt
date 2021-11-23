@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
                         R.id.bankAccounts,
                         R.id.credentials,
                         R.id.sales,
-                        R.id.settings,
                         R.id.textNote,
                         R.id.settings
                 ),

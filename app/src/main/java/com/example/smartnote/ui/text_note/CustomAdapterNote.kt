@@ -53,17 +53,17 @@ class CustomAdapterNote(private val items: ArrayList<CardNote>) :
             itemView.setOnClickListener {
                 val builder = AlertDialog.Builder(holder.note_tv.context)
 
-                builder.setMessage("Delete the god?")
+                builder.setMessage(context.getString(R.string.delete_the_note))
 
-                builder.setPositiveButton("YES") { dialog, which ->
+                builder.setPositiveButton(R.string.yes) { dialog, which ->
                     items.remove(items[position])
                     notifyDataSetChanged()
                 }
 
-                builder.setNegativeButton("No") { dialog, which ->
+                builder.setNegativeButton(R.string.no) { dialog, which ->
 
                 }
-                builder.setNeutralButton("Share") { dialog, which ->
+                builder.setNeutralButton(R.string.share) { dialog, which ->
                     val shareIntent = Intent(Intent.ACTION_SEND)
                     shareIntent.type = "text/plain"
                     val shareBody = items[position].toString()

@@ -38,7 +38,7 @@ class CustomAdapterSales(private val items: ArrayList<Sale> ):
             // Define click listener for the ViewHolder's View.
             brend_tv = view.findViewById(R.id.brend_tv)
             thing_tv = view.findViewById(R.id.thing_name_tv)
-            sale_tv = view.findViewById(R.id.sales_price_tv)
+            sale_tv = view.findViewById(R.id.sales_tv)
             true_price_tv= view.findViewById(R.id.true_price_tv)
             economy_tv = view.findViewById(R.id.economy_tv)
             percentage_tv = view.findViewById(R.id.percenage_tv)
@@ -68,18 +68,18 @@ class CustomAdapterSales(private val items: ArrayList<Sale> ):
             itemView.setOnClickListener {
                 val builder = AlertDialog.Builder(holder.brend_tv.context)
 
-                builder.setMessage("Delete the god?")
+                builder.setMessage(context.getString(R.string.delete_the_item))
 
-                builder.setPositiveButton("YES") { dialog, which ->
+                builder.setPositiveButton(R.string.yes) { dialog, which ->
                     items.remove(items[position])
                     notifyDataSetChanged()
 
                 }
-                builder.setNegativeButton("No") { dialog, which ->
+                builder.setNegativeButton(R.string.no) { dialog, which ->
 
                 }
 
-                builder.setNeutralButton("Share") { dialog, which ->
+                builder.setNeutralButton(R.string.share) { dialog, which ->
                     val shareIntent = Intent(Intent.ACTION_SEND)
                     shareIntent.type = "text/plain"
                     val shareBody =  items[position].toString()

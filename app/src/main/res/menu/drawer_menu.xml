@@ -7,33 +7,33 @@
 
    <menu>
         <item android:id="@+id/shopping"
-            android:title="Shoppings"
+            android:title="@string/shoppings"
             android:icon="@drawable/shopping_cart"/>
         <item android:id="@+id/events"
-            android:title="Events"
+            android:title="@string/events"
             android:icon="@drawable/ic_baseline_cake"/>
         <item android:id="@+id/bankAccounts"
-            android:title="Bank Accounts"
+            android:title="@string/bank_accounts"
             android:icon="@drawable/ic_baseline_credit_card_24"/>
         <item android:id="@+id/sales"
-            android:title="Sales"
+            android:title="@string/sales"
             android:icon="@drawable/ic_baseline_attach_money_"/>
         <item android:id="@+id/credentials"
-            android:title="Credentials"
+            android:title="@string/credentials"
             android:icon="@drawable/ic_baseline_contact_mail"/>
     </menu>
     </item>
     <item android:title="Text Notes">
         <menu>
             <item android:id="@+id/textNote"
-                android:title="Text Note"
+                android:title="@string/text_note"
                 android:icon="@drawable/ic_baseline_note"/>
         </menu>
     </item>
-    <item android:title="Another">
+    <item android:title="@string/another">
         <menu>
             <item android:id="@+id/settings"
-                android:title="Settings"
+                android:title="@string/settings"
                 android:icon="@drawable/ic_baseline_settings"/>
         </menu>
     </item>

@@ -5,41 +5,41 @@
 
     <item
         android:id="@+id/everyday_note"
-        android:title="Everyday notes">
+        android:title="@string/everyday_notes">
         <menu>
             <item
                 android:id="@+id/shopping"
                 android:icon="@drawable/shopping_cart"
-                android:title="Shoppings" />
+                android:title="@string/shoppings" />
             <item
                 android:id="@+id/events"
                 android:icon="@drawable/ic_baseline_cake"
-                android:title="Events" />
+                android:title="@string/events" />
             <item
                 android:id="@+id/bankAccounts"
                 android:icon="@drawable/ic_baseline_credit_card_24"
-                android:title="Bank Accounts" />
+                android:title="@string/bank_accounts" />
             <item
                 android:id="@+id/sales"
                 android:icon="@drawable/ic_baseline_attach_money_"
-                android:title="Sales" />
+                android:title="@string/sales" />
             <item
                 android:id="@+id/credentials"
                 android:icon="@drawable/ic_baseline_contact_mail"
-                android:title="Credentials" />
+                android:title="@string/credentials" />
         </menu>
     </item>
-    <item android:title="Text Notes">
+    <item android:title="@string/text_notes">
         <menu>
             <item android:id="@+id/textNote"
-                android:title="Text Note"
+                android:title="@string/text_note"
                 android:icon="@drawable/ic_baseline_note"/>
         </menu>
     </item>
-    <item android:title="Another">
+    <item android:title="@string/another">
         <menu>
             <item android:id="@+id/settings"
-                android:title="Settings"
+                android:title="@string/settings"
                 android:icon="@drawable/ic_baseline_settings"/>
         </menu>
     </item>

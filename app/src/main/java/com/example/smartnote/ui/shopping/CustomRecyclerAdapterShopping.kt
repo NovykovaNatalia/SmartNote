@@ -106,15 +106,15 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
 
             itemView.setOnClickListener {
                 val builder = AlertDialog.Builder(holder.goods_tv.context)
-                builder.setMessage("Delete the goods?")
-                builder.setPositiveButton("Yes") { dialog, which ->
+                builder.setMessage(context.getString(R.string.delete_the_goods))
+                builder.setPositiveButton(R.string.yes) { dialog, which ->
                     items.remove(items[position])
                     notifyDataSetChanged()
                 }
-                builder.setNegativeButton("No") { dialog, which ->
+                builder.setNegativeButton(R.string.no) { dialog, which ->
 
                 }
-                builder.setNeutralButton("Share") { dialog, which ->
+                builder.setNeutralButton(R.string.share) { dialog, which ->
                     val shareIntent = Intent(Intent.ACTION_SEND)
                     shareIntent.type = "text/plain"
                     val shareBody= items[position].toString()

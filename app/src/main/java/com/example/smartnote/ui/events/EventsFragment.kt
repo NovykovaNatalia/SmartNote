@@ -7,9 +7,12 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.view.animation.AnimationUtils
 import android.widget.*
 import android.widget.DatePicker
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
@@ -56,18 +59,17 @@ class EventsFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         cardListEvent = DataStoreHandler.events
+        val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
         this.inflater = inflater
         if (container != null) {
             this.container = container
         }
 
         val root = inflater.inflate(R.layout.fragment_event, container, false)
-//        val dialogDatePicker = inflater.inflate(R.layout.date_picker, container, false)
 
 
         calendarView = root.findViewById(R.id.calendarView)
-
-//                    val dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
+        calendarView.startAnimation(ttb)
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             val calendar = Calendar.getInstance()
             calendar.set(year, month, dayOfMonth)
@@ -89,6 +91,7 @@ class EventsFragment : Fragment() {
         toolbarTextAppernce()
 
         recyclerViwEvents = root.findViewById(R.id.recyclerViewEvents)
+        recyclerViwEvents.startAnimation(ttb)
         recyclerViwEvents.layoutManager =
                 LinearLayoutManager(context, LinearLayout.VERTICAL, false)
 
@@ -111,7 +114,9 @@ class EventsFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         var id = item.itemId
-
+        if (id == R.id.settings) {
+            return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+        }
         if (id == R.id.share) {
             val currentFragment = activity?.supportFragmentManager!!.fragments.first().childFragmentManager.fragments.first()
             when (currentFragment) {
@@ -154,7 +159,6 @@ class EventsFragment : Fragment() {
 
             val mBuilder = AlertDialog.Builder(context)
                     .setView(dialogViewEvemt)
-                    .setTitle("Event")
             val mAlertDialog = mBuilder.show()
 
             actionButtonCancelEvent = dialogViewEvemt.findViewById(R.id.cancel_date_btn)
@@ -356,7 +360,6 @@ class EventsFragment : Fragment() {
                 var startDate = dateFormatter.parse(fromDate.text.toString()).time
                 var endDate = dateFormatter.parse(toDate.text.toString()).time
                 var filterCollectionByCustom = ArrayList<Event>()
-//
                 for(event in cardListEvent) {
                     if(event.date_ev >= startDate && event.date_ev <= endDate) {
                         filterCollectionByCustom.add(event)

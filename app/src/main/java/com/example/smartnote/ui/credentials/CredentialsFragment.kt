@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import android.widget.*
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
@@ -92,6 +94,9 @@ class CredentialsFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         var id = item.itemId
+        if (id == R.id.settings) {
+            return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+        }
         val currentFragment = activity?.supportFragmentManager!!.fragments.first().childFragmentManager.fragments.first()
         if (id == R.id.share) {
             when (currentFragment) {

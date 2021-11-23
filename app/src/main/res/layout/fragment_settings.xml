@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:id="@+id/frame_settings"
+    android:id="@+id/settings"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
@@ -21,7 +21,7 @@
         android:layout_below="@+id/switchModeFr"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="50dp"
-        android:text="Shared" />
+        android:text="@string/shared" />
 
     <TextView
         android:id="@+id/about_sn_tv_fr"
@@ -30,18 +30,18 @@
         android:layout_below="@id/shared_tv_fr"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="80dp"
-        android:text="About Smart Note" />
+        android:text="@string/about_smart_note" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contact"
+        android:text="@string/contact"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="110dp"
         android:id="@+id/contact"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rate us"
+        android:text="@string/rate_us"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="140dp"
         android:id="@+id/rate"/>
