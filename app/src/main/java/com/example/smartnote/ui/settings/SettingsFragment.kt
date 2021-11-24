@@ -1,5 +1,6 @@
 package com.example.smartnote.ui.settings
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.SharedPreferences
@@ -12,29 +13,31 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.smartnote.R
+import android.widget.ArrayAdapter
 
 class SettingsFragment : Fragment() {
-    lateinit var  switchModeFr: Switch
-    lateinit var shareFr: TextView
-    lateinit var about_snFr: TextView
-    lateinit var frame_settings: FrameLayout
-    lateinit var contact: TextView
-    lateinit var rate: TextView
-
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
+
     val  view =  inflater.inflate(R.layout.fragment_settings, container, false)
     val viewRate = inflater.inflate(R.layout.rate_dialog, container, false)
 
-        switchModeFr = view.findViewById(R.id.switchModeFr)
-        shareFr = view.findViewById(R.id.shared_tv_fr)
-        about_snFr = view.findViewById(R.id.about_sn_tv_fr)
-        frame_settings = view.findViewById(R.id.settings)
-        contact = view.findViewById(R.id.contact)
-        rate = view.findViewById(R.id.rate)
+       var switchModeFr : Switch = view.findViewById(R.id.switchModeFr)
+       var shareFr : TextView = view.findViewById(R.id.shared_tv_fr)
+       var about_snFr : TextView = view.findViewById(R.id.about_sn_tv_fr)
+       var contact : TextView = view.findViewById(R.id.contact)
+       var rate : TextView = view.findViewById(R.id.rate)
+       var select_lang : TextView = view.findViewById(R.id.select_lang)
+
+        about_snFr.setOnClickListener {
+            val intent = Intent(activity, AboutSmartNote::class.java)
+            intent.putExtra("key", "Kotlin")
+            startActivity(intent)
+        }
 
         val mRatingBar = viewRate.findViewById<View>(R.id.ratingBar) as RatingBar
         val mRatingScale = viewRate.findViewById<View>(R.id.tvRatingScale) as TextView
@@ -43,17 +46,17 @@ class SettingsFragment : Fragment() {
             val mDialogViewRate = LayoutInflater.from(context).inflate(R.layout.rate_dialog, null)
             val mBuilder = AlertDialog.Builder(context)
                     .setView(mDialogViewRate)
-                    .setTitle("Rate us!")
+                    .setTitle(R.string.rate_us)
             mBuilder.show()
 
             mRatingBar.onRatingBarChangeListener = RatingBar.OnRatingBarChangeListener { ratingBar, v, b ->
                 mRatingScale.text = v.toString()
                 when (ratingBar.rating.toInt()) {
-                    1 -> mRatingScale.text = "Very bad"
-                    2 -> mRatingScale.text = "Need some improvement"
-                    3 -> mRatingScale.text = "Good"
-                    4 -> mRatingScale.text = "Great"
-                    5 -> mRatingScale.text = "Awesome. I love it"
+                    1 -> mRatingScale.text = getString(R.string.very_bad)
+                    2 -> mRatingScale.text = getString(R.string.need_some_impovement)
+                    3 -> mRatingScale.text = getString(R.string.good)
+                    4 -> mRatingScale.text = getString(R.string.great)
+                    5 -> mRatingScale.text = getString(R.string.awesome)
                     else -> mRatingScale.text = ""
                 }
             }
@@ -79,8 +82,8 @@ class SettingsFragment : Fragment() {
             true
         }
 
-        about_snFr.setOnClickListener {
-            val intent = Intent(activity, AboutSmartNote::class.java)
+        select_lang.setOnClickListener {
+            val intent = Intent(activity, Language::class.java)
             intent.putExtra("key", "Kotlin")
             startActivity(intent)
         }

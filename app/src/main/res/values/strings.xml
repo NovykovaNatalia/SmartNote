@@ -98,4 +98,10 @@
     <string name="everyday_notes">Everyday Notes</string>
     <string name="delete_the_note">Delete the note?</string>
     <string name="delete_the_item">Delete the item?</string>
+    <string name="select_language">Select Language</string>
+    <string name="very_bad">Very bad</string>
+    <string name="need_some_impovement">Need some improvement</string>
+    <string name="good">Good</string>
+    <string name="great">Great</string>
+    <string name="awesome">Awesome. I love it</string>
 </resources>

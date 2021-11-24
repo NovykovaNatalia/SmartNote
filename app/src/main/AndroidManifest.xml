@@ -24,8 +24,12 @@
             android:label="@string/title_activity_version"
             android:theme="@style/Theme.SmartNote.NoActionBar" />
         <activity
+            android:name=".ui.settings.Language"
+            android:label="Language"
+            android:theme="@style/Theme.SmartNote.NoActionBar" />
+        <activity
             android:name=".ui.events.DatePicker"
-            android:label="@string/title_activity_version"
+            android:label="Date Picker"
             android:theme="@style/Theme.SmartNote.NoActionBar" />
         <activity android:name=".ui.settings.AboutSmartNote" />
         <activity

@@ -90,6 +90,12 @@
     <string name="settings">Налаштування</string>
     <string name="delete_the_goods">Видалити товар?</string>
     <string name="everyday_notes">Повсякденні нотатки</string>
-    <string name="delete_the_note">Delete the note?</string>
+    <string name="delete_the_note">Видалити нотатку?</string>
     <string name="delete_the_item">Видалити елемент?</string>
+    <string name="select_language">Оберіть мову</string>
+    <string name="very_bad">Very bad</string>
+    <string name="need_some_impovement">Need some improvement</string>
+    <string name="good">Good</string>
+    <string name="great">Great</string>
+    <string name="awesome">Awesome. I love it</string>
 </resources>
