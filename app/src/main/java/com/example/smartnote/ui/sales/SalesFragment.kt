@@ -46,6 +46,9 @@ class SalesFragment : Fragment() {
         cardListSales = DataStoreHandler.sales
         val view = inflater.inflate(R.layout.fragment_sales, container, false)
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
+        val atb = AnimationUtils.loadAnimation(context, R.anim.atb)
+        val btt = AnimationUtils.loadAnimation(context, R.anim.btt)
+        val btn = AnimationUtils.loadAnimation(context, R.anim.btn)
 
         recyclerViewSales = view.findViewById<RecyclerView>(R.id.recyclerViewSales)
         recyclerViewSales.startAnimation(ttb)

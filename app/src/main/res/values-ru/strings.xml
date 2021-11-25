@@ -93,9 +93,19 @@
     <string name="delete_the_note">Удалить заметку?</string>
     <string name="delete_the_item">Удалить элемент?</string>
     <string name="select_language">Выбрать язык</string>
-    <string name="very_bad">Very bad</string>
-    <string name="need_some_impovement">Need some improvement</string>
-    <string name="good">Good</string>
-    <string name="great">Great</string>
-    <string name="awesome">Awesome. I love it</string>
+    <string name="very_bad">Очень плохо</string>
+    <string name="need_some_impovement">Нужно немного улучшить</string>
+    <string name="good">Хорошо</string>
+    <string name="great">Отличнo</string>
+    <string name="awesome">Потрясающе. Я люблю это</string>
+    <string name="notes">Записи</string>
+    <string name="select_lang">Выберите язык</string>
+    <string name="english">Английский</string>
+    <string name="ukrainian">Украинский</string>
+    <string name="russian">Русский</string>
+    <string name="polish">Польский</string>
+    <string name="delete_event">Удалить событие?</string>
+    <string name="event_string">Событие</string>
+    <string name="time_string">Время</string>
+    <string name="date_string">Дата</string>
 </resources>
