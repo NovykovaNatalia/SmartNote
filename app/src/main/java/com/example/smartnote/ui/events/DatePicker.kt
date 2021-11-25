@@ -13,8 +13,6 @@ class DatePicker : AppCompatActivity() {
     lateinit var sendButton: Button
     lateinit var toDate:TextView
     lateinit var fromDate: TextView
-//    lateinit var image_cal_from: ImageView
-//    lateinit var image_cal_to: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +21,6 @@ class DatePicker : AppCompatActivity() {
         sendButton = findViewById(R.id.button_filter)
         fromDate = findViewById(R.id.from_date)
         toDate = findViewById(R.id.to_date)
-//        image_cal_from = findViewById(R.id.image_calendar)
-//        image_cal_from = findViewById(R.id.image_date)
-
         val calendar = Calendar.getInstance(Locale.getDefault())
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)

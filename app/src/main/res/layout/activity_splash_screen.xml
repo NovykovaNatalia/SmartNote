@@ -15,7 +15,7 @@
         android:layout_margin="70dp"
         android:fontFamily="monospace"
         android:paddingTop="110dp"
-        android:text="Smart Note"
+        android:text="@string/smart_note"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#2C3E40"
         android:textSize="36sp"

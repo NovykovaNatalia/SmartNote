@@ -8,5 +8,4 @@
     android:background="@drawable/student"
     android:layout_marginTop="20dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
-
 </LinearLayout>

@@ -1,118 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/parentRelative"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:background="@drawable/border"
-    tools:context=".MainActivity">
-
-    <LinearLayout
-        android:id="@+id/line_one"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/parentRelative"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/searchView"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
-        android:orientation="vertical"
-        android:weightSum="2">
+        android:layout_margin="5dp"
+        android:background="@drawable/border"
+        tools:context=".MainActivity">
 
-        <TextView
-            android:id="@+id/salary_account_title"
+        <LinearLayout
+            android:id="@+id/line_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="Account Type"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/salary_account_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:hint="Account Type"
-            android:text="Salary Account" />
-
-        <TextView
-            android:id="@+id/number_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_below="@+id/searchView"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="2"
-            android:hint="Account Number"
-            android:text="Account Number"
-            android:textSize="10sp" />
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            android:weightSum="2">
 
-        <TextView
-            android:id="@+id/number_tv"
+            <TextView
+                android:id="@+id/salary_account_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/account_type"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/salary_account_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="@string/account_type"
+                android:text="@string/salary_account" />
+
+            <TextView
+                android:id="@+id/number_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="2"
+                android:hint="@string/account_number"
+                android:text="@string/account_number"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/number_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="@string/account_number" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/line_four"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:hint="Account Number" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/line_four"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="20dp"
-        android:layout_toRightOf="@+id/line_one"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/bank_name_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="Bank Name"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/bank_name_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:hint="Bank Name"
-            android:text="Bank" />
-
-        <TextView
-            android:id="@+id/person_name_surname_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="2"
-            android:text="Name, Surname"
-            android:textSize="10sp" />
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@+id/line_one"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/person_name_surname_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:hint="Name, Surname " />
+            <TextView
+                android:id="@+id/bank_name_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/bank_name"
+                android:textSize="10sp" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/bank_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="@string/bank_name"
+                android:text="@string/bank" />
 
-    <LinearLayout
-        android:id="@+id/line_three_credentials"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="20dp"
-        android:layout_toRightOf="@+id/line_four"
-        android:orientation="vertical">
+            <TextView
+                android:id="@+id/person_name_surname_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="2"
+                android:text="@string/name_surname"
+                android:textSize="10sp" />
 
+            <TextView
+                android:id="@+id/person_name_surname_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="@string/name_surname" />
+
+        </LinearLayout>
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
             android:src="@drawable/ic_baseline_more_horiz_24" />
-    </LinearLayout>
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</layout>
+

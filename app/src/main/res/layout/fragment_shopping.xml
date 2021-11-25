@@ -18,9 +18,9 @@
             android:layout_height="40dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/border"
+            android:background="@drawable/custom_input"
             android:padding="10dp"
-            android:hint="Enter an item here"
+            android:hint="@string/enter_the_product_name"
             android:inputType="text" />
 
         <ImageView
@@ -30,7 +30,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_baseline_keyboard_voice_24" />
+            android:src="@drawable/custom_voice" />
 
         <ImageButton
             android:id="@+id/btnAdd"
@@ -40,7 +40,7 @@
             android:layout_marginRight="10dp"
             android:layout_toRightOf="@+id/editText"
             android:layout_weight="1"
-            android:src="@drawable/baseline_add"
+            android:src="@drawable/custom_add"
             android:background="?android:attr/selectableItemBackground"
             android:textColor="@color/purple_700"
             android:textSize="16sp" />
@@ -53,7 +53,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/linearLayout"
-        android:layout_marginTop="20dp"
         android:clickable="true"
         android:longClickable="true" />
 

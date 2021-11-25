@@ -10,6 +10,8 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
@@ -44,9 +46,6 @@ class SalesFragment : Fragment() {
         cardListSales = DataStoreHandler.sales
         val view = inflater.inflate(R.layout.fragment_sales, container, false)
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
-        val atb = AnimationUtils.loadAnimation(context, R.anim.atb)
-        val btt = AnimationUtils.loadAnimation(context, R.anim.btt)
-        val btn = AnimationUtils.loadAnimation(context, R.anim.btn)
 
         recyclerViewSales = view.findViewById<RecyclerView>(R.id.recyclerViewSales)
         recyclerViewSales.startAnimation(ttb)
@@ -77,7 +76,7 @@ class SalesFragment : Fragment() {
 
             brand_tv = mItemViewSales.findViewById(R.id.brend_tv)
             thing_tv = mItemViewSales.findViewById(R.id.thing_name_tv)
-            sales_tv = mItemViewSales.findViewById(R.id.sales_price_tv)
+            sales_tv = mItemViewSales.findViewById(R.id.sales_tv)
             true_price_tv = mItemViewSales.findViewById(R.id.true_price_tv)
             economy_tv = mItemViewSales.findViewById(R.id.economy_tv)
 
@@ -127,13 +126,7 @@ class SalesFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         var id = item.itemId
         if (id == R.id.settings) {
-            val fragmentManager: FragmentManager = activity?.supportFragmentManager!!
-            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            val setFragment = SettingsFragment()
-            fragmentTransaction.replace(R.id.settings, setFragment)
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-            return true
+            return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
         }
         if (id == R.id.share) {
             val currentFragment = activity?.supportFragmentManager!!.fragments.first().childFragmentManager.fragments.first()

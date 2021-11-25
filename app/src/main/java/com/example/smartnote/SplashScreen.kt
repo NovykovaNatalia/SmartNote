@@ -19,7 +19,7 @@ class SplashScreen : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
         imageSmartNote = findViewById(R.id.imageSmartNote) as ImageView
         textViewSmartNote = findViewById(R.id.smart_note) as TextView
-        frameLayout = findViewById<FrameLayout>(R.id.layout)
+        frameLayout = findViewById(R.id.layout)
 
         val ttb = AnimationUtils.loadAnimation(this, R.anim.ttb)
         val atb = AnimationUtils.loadAnimation(this, R.anim.atb)

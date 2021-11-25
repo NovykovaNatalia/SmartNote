@@ -15,7 +15,7 @@
         android:queryBackground="@android:color/transparent"
         android:background="@drawable/radius"
         android:layout_marginLeft="10dp"
-        android:queryHint="Search Here" />
+        android:queryHint="@string/search_here" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewNote"

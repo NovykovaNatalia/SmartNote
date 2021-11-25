@@ -7,9 +7,12 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.view.animation.AnimationUtils
 import android.widget.*
 import android.widget.DatePicker
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
@@ -50,8 +53,9 @@ class EventsFragment : Fragment() {
         }
 
         val root = inflater.inflate(R.layout.fragment_event, container, false)
-
+        val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
         calendarView = root.findViewById(R.id.calendarView)
+        calendarView.startAnimation(ttb)
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             val calendar = Calendar.getInstance()
             calendar.set(year, month, dayOfMonth)
@@ -90,7 +94,9 @@ class EventsFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         var id = item.itemId
-
+        if (id == R.id.settings) {
+            return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+        }
         if (id == R.id.share) {
             val currentFragment = activity?.supportFragmentManager!!.fragments.first().childFragmentManager.fragments.first()
             when (currentFragment) {
@@ -130,7 +136,6 @@ class EventsFragment : Fragment() {
 
             val mBuilder = AlertDialog.Builder(context)
                     .setView(dialogEventV)
-                    .setTitle("Event")
             val mAlertDialog = mBuilder.show()
 
             val saveBtn: Button = dialogEventV.findViewById(R.id.save_dialog_event);
@@ -222,11 +227,10 @@ class EventsFragment : Fragment() {
 
         eventWeekTv.setOnClickListener {
             var calendar = Calendar.getInstance()
-
             calendar.clear()
-
             calendar.setTimeInMillis(calendarView.date)
             calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+
             var startWeek = calendar.getTimeInMillis()
             calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
             var endWeek = calendar.getTimeInMillis()
@@ -248,10 +252,10 @@ class EventsFragment : Fragment() {
 
         eventMonthTv.setOnClickListener {
             var calendar = Calendar.getInstance()
-
             calendar.clear()
             calendar.setTimeInMillis(calendarView.date)
             calendar.set(Calendar.DAY_OF_MONTH, 1)
+
             var startMonth = calendar.getTimeInMillis()
             calendar.add(Calendar.MONTH, 1)
             var endMonth = calendar.getTimeInMillis()

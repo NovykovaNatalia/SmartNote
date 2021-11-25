@@ -12,6 +12,8 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
@@ -131,13 +133,7 @@ class TextNoteFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         var id = item.itemId
         if (id == R.id.settings) {
-            val fragmentManager: FragmentManager = activity?.supportFragmentManager!!
-            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            val setFragment = SettingsFragment()
-            fragmentTransaction.replace(R.id.settings, setFragment)
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-            return true
+            return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
         }
         if (id == R.id.share) {
             val currentFragment = activity?.supportFragmentManager!!.fragments.first().childFragmentManager.fragments.first()
