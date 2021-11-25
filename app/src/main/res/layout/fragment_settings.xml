@@ -14,14 +14,22 @@
         android:layout_margin="20dp"
         android:text="@string/day_mode" />
 
-    <TextView
-        android:id="@+id/shared_tv_fr"
+    <Spinner
+        android:id="@+id/spinner"
         android:layout_width="wrap_content"
-        android:layout_height="29dp"
-        android:layout_below="@+id/switchModeFr"
+        android:layout_height="wrap_content"
+        android:text="@string/select_language"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contact"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/shared" />
+        android:layout_marginTop="100dp"
+        android:id="@+id/contact"/>
 
     <TextView
         android:id="@+id/about_sn_tv_fr"
@@ -29,21 +37,22 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/shared_tv_fr"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="130dp"
         android:text="@string/about_smart_note" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/contact"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="110dp"
-        android:id="@+id/contact"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/rate_us"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="160dp"
         android:id="@+id/rate"/>
+    <TextView
+        android:id="@+id/shared_tv_fr"
+        android:layout_width="wrap_content"
+        android:layout_height="29dp"
+        android:layout_below="@+id/switchModeFr"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="190dp"
+        android:text="@string/shared" />
 
 </FrameLayout>

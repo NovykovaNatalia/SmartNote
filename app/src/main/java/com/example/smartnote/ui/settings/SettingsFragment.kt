@@ -14,24 +14,63 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.smartnote.R
 import android.widget.ArrayAdapter
+import com.example.smartnote.MainActivity
+import java.util.*
+import kotlin.system.exitProcess
 
 class SettingsFragment : Fragment() {
+
+    lateinit var locale: Locale
+    private var currentLanguage = "en"
+    private var currentLang: String? = null
+
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
 
 
-    val  view =  inflater.inflate(R.layout.fragment_settings, container, false)
-    val viewRate = inflater.inflate(R.layout.rate_dialog, container, false)
+        val view = inflater.inflate(R.layout.fragment_settings, container, false)
+        val viewRate = inflater.inflate(R.layout.rate_dialog, container, false)
 
-       var switchModeFr : Switch = view.findViewById(R.id.switchModeFr)
-       var shareFr : TextView = view.findViewById(R.id.shared_tv_fr)
-       var about_snFr : TextView = view.findViewById(R.id.about_sn_tv_fr)
-       var contact : TextView = view.findViewById(R.id.contact)
-       var rate : TextView = view.findViewById(R.id.rate)
-       var select_lang : TextView = view.findViewById(R.id.select_lang)
+
+        var switchModeFr: Switch = view.findViewById(R.id.switchModeFr)
+        var shareFr: TextView = view.findViewById(R.id.shared_tv_fr)
+        var about_snFr: TextView = view.findViewById(R.id.about_sn_tv_fr)
+        var contact: TextView = view.findViewById(R.id.contact)
+        var rate: TextView = view.findViewById(R.id.rate)
+        var spinner: Spinner = view.findViewById(R.id.spinner)
+
+        var currentLang: String? = null
+        activity?.title = "KotlinApp"
+        currentLanguage = activity?.intent?.getStringExtra(currentLang).toString()
+        val list = ArrayList<String>()
+        list.add(getString(R.string.select_lang))
+        list.add(getString(R.string.english))
+        list.add(getString(R.string.ukrainian))
+        list.add(getString(R.string.russian))
+        list.add(getString(R.string.polish))
+
+        val adapter = activity?.let { ArrayAdapter(it, R.layout.support_simple_spinner_dropdown_item, list) }
+        adapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                when (position) {
+                    0 -> {
+                    }
+                    1 -> setLocale("en")
+                    2 -> setLocale("uk")
+                    3 -> setLocale("ru")
+                    4 -> setLocale("pl")
+                }
+                adapter?.notifyDataSetChanged()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
 
         about_snFr.setOnClickListener {
             val intent = Intent(activity, AboutSmartNote::class.java)
@@ -82,14 +121,8 @@ class SettingsFragment : Fragment() {
             true
         }
 
-        select_lang.setOnClickListener {
-            val intent = Intent(activity, Language::class.java)
-            intent.putExtra("key", "Kotlin")
-            startActivity(intent)
-        }
-
         val appSettingPref: SharedPreferences = activity?.getSharedPreferences("AppSettingPref", 0)!!
-        val sharedPrefsEdit:SharedPreferences.Editor = appSettingPref.edit()
+        val sharedPrefsEdit: SharedPreferences.Editor = appSettingPref.edit()
 
         val isNightModeOn: Boolean = appSettingPref.getBoolean("NightMode", false)
 
@@ -102,7 +135,7 @@ class SettingsFragment : Fragment() {
         }
 
         switchModeFr.setOnClickListener() {
-            if(isNightModeOn) {
+            if (isNightModeOn) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 sharedPrefsEdit.putBoolean("NightMode", false)
                 sharedPrefsEdit.apply()
@@ -114,8 +147,36 @@ class SettingsFragment : Fragment() {
                 switchModeFr.text = "Disable Dark Mode"
             }
         }
+        return view
+    }
 
-    return view
+    private fun setLocale(localeName: String) {
+        if (localeName != currentLanguage) {
+            locale = Locale(localeName)
+            val res = resources
+            val dm = res.displayMetrics
+            val conf = res.configuration
+            conf.locale = locale
+            res.updateConfiguration(conf, dm)
+            val refresh = Intent(
+                    context,
+                    MainActivity::class.java
+            )
+            refresh.putExtra(currentLang, localeName)
+            startActivity(refresh)
+        } else {
+            Toast.makeText(
+                    context, "Language already selected)!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    fun onBackPressed() {
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.addCategory(Intent.CATEGORY_HOME)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
+        activity?.finish()
+        exitProcess(0)
     }
 
 }

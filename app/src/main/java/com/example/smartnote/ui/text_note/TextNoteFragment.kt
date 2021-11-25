@@ -43,13 +43,8 @@ class TextNoteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         cardListNote = DataStoreHandler.notes
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_text_note, container, false)
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
-        val atb = AnimationUtils.loadAnimation(context, R.anim.atb)
-        val btt = AnimationUtils.loadAnimation(context, R.anim.btt)
-        val btn = AnimationUtils.loadAnimation(context, R.anim.btn)
-
         recyclerViewNote = view.findViewById<RecyclerView>(R.id.recyclerViewNote)
         recyclerViewNote.startAnimation(ttb)
 
@@ -61,7 +56,6 @@ class TextNoteFragment : Fragment() {
         searchViewNote.startAnimation(ttb)
         searchViewNote.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                // task HERE
                 return false
             }
             override fun onQueryTextChange(newText: String): Boolean {
@@ -81,7 +75,7 @@ class TextNoteFragment : Fragment() {
 
             val mBuilder = AlertDialog.Builder(context)
                     .setView(mDialogViewNote)
-                    .setTitle("Notes")
+                    .setTitle(getString(R.string.notes))
             val mAlertDialog = mBuilder.show()
 
             note = mDialogViewNote.findViewById(R.id.note)

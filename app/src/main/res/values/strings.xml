@@ -104,4 +104,21 @@
     <string name="good">Good</string>
     <string name="great">Great</string>
     <string name="awesome">Awesome. I love it</string>
+    <string name="notes">Notes</string>
+    <string name="select_lang">Select Language</string>
+    <string name="english">English</string>
+    <string name="ukrainian">Ukrainian</string>
+    <string name="russian">Russian</string>
+    <string name="polish">Polish</string>
+    <string name="delete_event">Delete the event?</string>
+    <string name="event_string">Event</string>
+    <string name="time_string">Time</string>
+    <string name="date_string">Data</string>
+    <string name="brend_string">Brend</string>
+    <string name="thing_string">Thing</string>
+    <string name="true_price_string">True price</string>
+    <string name="sale_string">Discount</string>
+    <string name="economy_string">Economy</string>
+    <string name="persentage_string">Persentage</string>
+
 </resources>

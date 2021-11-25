@@ -60,21 +60,21 @@ class AdapterEvent(private val items: ArrayList<Event>) :
             itemView.setOnClickListener {
                 val builder = AlertDialog.Builder(holder.date_tv.context)
 
-                builder.setMessage("Delete the god?")
+                builder.setMessage(context.getString(R.string.delete_event))
 
-                builder.setPositiveButton("YES") { dialog, which ->
+                builder.setPositiveButton(R.string.yes) { dialog, which ->
                     items.remove(items[position])
                     notifyDataSetChanged()
 
                 }
-                builder.setNegativeButton("No") { dialog, which ->
+                builder.setNegativeButton(R.string.no) { dialog, which ->
 
                 }
 
-                builder.setNeutralButton("Share") { dialog, which ->
+                builder.setNeutralButton(R.string.share) { dialog, which ->
                     val shareIntent = Intent(Intent.ACTION_SEND)
                     shareIntent.type = "text/plain"
-                    val shareBody = items[position].toString()
+                    val shareBody = customizeOutput(items[position].toString())
                     val shareSub = "items[position]"
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
@@ -88,6 +88,14 @@ class AdapterEvent(private val items: ArrayList<Event>) :
             }
 
         }
+
+    }
+
+    private fun customizeOutput(s: String): String? {
+        var s = s.replace("Date", context.getString(R.string.date_string))
+        s = s.replace("Time", context.getString(R.string.time_string))
+        s = s.replace("Event", context.getString(R.string.event_string))
+        return s
 
     }
 
