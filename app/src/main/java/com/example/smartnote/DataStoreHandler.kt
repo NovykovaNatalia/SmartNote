@@ -19,12 +19,12 @@ object DataStoreHandler {
     val SP_SALES_KEY = "SP_SALES"
     val SP_NOTES_KEY = "SP_NOTES"
     val SP_EVENTS_KEY = "SP_EVENTS"
-    lateinit var shoppingItems: ArrayList<ShoppingItem>
-    lateinit var cards: ArrayList<Card>
-    lateinit var credentials: ArrayList<Credentials>
-    lateinit var sales: ArrayList<Sale>
-    lateinit var notes: ArrayList<CardNote>
-    lateinit var events: ArrayList<Event>
+    var shoppingItems: ArrayList<ShoppingItem>
+    var cards: ArrayList<Card>
+    var credentials: ArrayList<Credentials>
+    var sales: ArrayList<Sale>
+    var notes: ArrayList<CardNote>
+    var events: ArrayList<Event>
 
     init {
         shoppingItems = getShoppings()

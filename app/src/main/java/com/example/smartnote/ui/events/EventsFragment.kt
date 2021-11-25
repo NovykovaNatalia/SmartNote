@@ -16,6 +16,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
+import com.example.smartnote.LanguageSupportUtils.Companion.castToLangEvent
 import com.example.smartnote.R
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import java.text.DateFormat
@@ -107,9 +108,10 @@ class EventsFragment : Fragment() {
                     sharStr = sharStr.replace('[', ' ')
                     sharStr = sharStr.replace(']', ' ')
                     sharStr = sharStr.replace(",", "")
-                    val shareBody = sharStr
-                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                    sharStr = context?.let { castToLangEvent(it, sharStr) }!!
+
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, sharStr)
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, sharStr)
                     startActivity(Intent.createChooser(shareIntent, "choose one"))
                 }
             }

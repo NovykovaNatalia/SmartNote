@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.smartnote.LanguageSupportUtils.Companion.castToLangEvent
 import com.example.smartnote.R
 import java.text.DateFormat
 import java.util.ArrayList
@@ -74,7 +75,7 @@ class AdapterEvent(private val items: ArrayList<Event>) :
                 builder.setNeutralButton(R.string.share) { dialog, which ->
                     val shareIntent = Intent(Intent.ACTION_SEND)
                     shareIntent.type = "text/plain"
-                    val shareBody = customizeOutput(items[position].toString())
+                    val shareBody = castToLangEvent(context, items[position].toString())
                     val shareSub = "items[position]"
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
@@ -90,13 +91,4 @@ class AdapterEvent(private val items: ArrayList<Event>) :
         }
 
     }
-
-    private fun customizeOutput(s: String): String? {
-        var s = s.replace("Date", context.getString(R.string.date_string))
-        s = s.replace("Time", context.getString(R.string.time_string))
-        s = s.replace("Event", context.getString(R.string.event_string))
-        return s
-
-    }
-
 }

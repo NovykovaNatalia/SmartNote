@@ -7,17 +7,17 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.view.animation.AnimationUtils
+import android.util.Log
 import android.widget.*
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
+import com.example.smartnote.LanguageSupportUtils.Companion.castToLangEvent
 import com.example.smartnote.R
-import com.example.smartnote.ui.settings.SettingsFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 
 class SalesFragment : Fragment() {
 
@@ -46,9 +46,6 @@ class SalesFragment : Fragment() {
         cardListSales = DataStoreHandler.sales
         val view = inflater.inflate(R.layout.fragment_sales, container, false)
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
-        val atb = AnimationUtils.loadAnimation(context, R.anim.atb)
-        val btt = AnimationUtils.loadAnimation(context, R.anim.btt)
-        val btn = AnimationUtils.loadAnimation(context, R.anim.btn)
 
         recyclerViewSales = view.findViewById<RecyclerView>(R.id.recyclerViewSales)
         recyclerViewSales.startAnimation(ttb)
@@ -123,7 +120,6 @@ class SalesFragment : Fragment() {
         inflater.inflate(R.menu.main, menu)
         menu.findItem(R.id.add).setVisible(false)
         super.onCreateOptionsMenu(menu, inflater)
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -137,13 +133,13 @@ class SalesFragment : Fragment() {
                 is SalesFragment -> {
                     val shareIntent = Intent(Intent.ACTION_SEND)
                     shareIntent.type = "text/plain"
-                    var sharStr = DataStoreHandler.sales.toString()
-                    sharStr = sharStr.replace('[', ' ')
-                    sharStr = sharStr.replace(']', ' ')
-                    sharStr = sharStr.replace(",", "")
-                    val shareBody = sharStr
-                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                    var shareStr = DataStoreHandler.sales.toString()
+                    shareStr = shareStr.replace('[', ' ')
+                    shareStr = shareStr.replace(']', ' ')
+                    shareStr = shareStr.replace(",", "")
+
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareStr)
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareStr)
                     startActivity(Intent.createChooser(shareIntent, "choose one"))
                 }
             }
