@@ -30,7 +30,6 @@ class SettingsFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
-        val viewRate = inflater.inflate(R.layout.rate_dialog, container, false)
 
         var switchModeFr: Switch = view.findViewById(R.id.switchModeFr)
         var shareFr: TextView = view.findViewById(R.id.shared_tv_fr)
@@ -49,11 +48,14 @@ class SettingsFragment : Fragment() {
         list.add(getString(R.string.russian))
         list.add(getString(R.string.polish))
 
-        val adapter = activity?.let { ArrayAdapter(it, R.layout.support_simple_spinner_dropdown_item, list) }
-        adapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val adapter: ArrayAdapter<String> = ArrayAdapter(context!!,R.layout.support_simple_spinner_dropdown_item, list)
         spinner.adapter = adapter
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 when (position) {
                     0 -> {
                     }
@@ -64,10 +66,23 @@ class SettingsFragment : Fragment() {
                 }
                 adapter?.notifyDataSetChanged()
             }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
         }
+//        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(parent: AdapterView<*>, view: View, position: int, id: Long) {
+//                when (position) {
+//                    0 -> {
+//                    }
+//                    1 -> setLocale("en")
+//                    2 -> setLocale("uk")
+//                    3 -> setLocale("ru")
+//                    4 -> setLocale("pl")
+//                }
+//                adapter?.notifyDataSetChanged()
+//            }
+//
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+//            }
+//        }
 
         about_snFr.setOnClickListener {
             val intent = Intent(activity, AboutSmartNote::class.java)
@@ -75,6 +90,7 @@ class SettingsFragment : Fragment() {
             startActivity(intent)
         }
 
+        val viewRate = inflater.inflate(R.layout.rate_dialog, container, false)
         val mRatingBar = viewRate.findViewById<View>(R.id.ratingBar) as RatingBar
         val mRatingScale = viewRate.findViewById<View>(R.id.tvRatingScale) as TextView
 

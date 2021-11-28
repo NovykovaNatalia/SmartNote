@@ -7,14 +7,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.R
 
-class CustomAdapter(val userList: ArrayList<User>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class PrivPolicyAdapter(val userList: ArrayList<User>) : RecyclerView.Adapter<PrivPolicyAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PrivPolicyAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_privacy_policy, parent, false)
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: CustomAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PrivPolicyAdapter.ViewHolder, position: Int) {
         holder.bindItems(userList[position])
     }
 

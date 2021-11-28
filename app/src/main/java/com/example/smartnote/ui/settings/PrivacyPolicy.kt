@@ -3,8 +3,6 @@ package com.example.smartnote.ui.settings
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.LinearLayout
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -107,7 +105,7 @@ class PrivacyPolicy : AppCompatActivity() {
                 "commercially acceptable means of protecting it. But remember that no method of transmission over the internet," +
                 " or method of electronic storage is 100% secure and reliable, and we cannot guarantee its absolute security.\n"))
 
-        val adapter = CustomAdapter(users)
+        val adapter = PrivPolicyAdapter(users)
         recyclerView.adapter = adapter
     }
 }
