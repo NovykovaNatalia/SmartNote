@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/bankAccounts"
-        android:name="com.example.smartnote.ui.bank_account.BankAccountFragment"
+        android:name="com.example.smartnote.ui.bankaccount.BankAccountFragment"
         android:label="@string/menu_bank_accounts"
         tools:layout="@layout/fragment_bank_account" />
     <fragment
@@ -29,7 +29,7 @@
         tools:layout="@layout/fragment_credentials" />
     <fragment
         android:id="@+id/sales"
-        android:name="com.example.smartnote.ui.sales.SalesFragment"
+        android:name="com.example.smartnote.ui.sales.DiscountFragment"
         android:label="@string/menu_sales"
         tools:layout="@layout/fragment_sales" />
     <fragment
@@ -39,7 +39,7 @@
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/textNote"
-        android:name="com.example.smartnote.ui.text_note.TextNoteFragment"
+        android:name="com.example.smartnote.ui.textnote.TextNoteFragment"
         android:label="@string/menu_notes"
         tools:layout="@layout/fragment_text_note" />
     <fragment

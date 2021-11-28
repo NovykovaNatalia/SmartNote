@@ -66,9 +66,9 @@
     <string name="pecentage">Procent</string>
     <string name="goods">Towary</string>
     <string name="note">Uwaga</string>
-    <string name="things">Rzeczy</string>
-    <string name="brand">Marka</string>
-    <string name="sales">Rabaty</string>
+    <string name="thing">Rzecz</string>
+    <string name="brend">Marka</string>
+    <string name="discount">Rabat</string>
     <string name="true_price">Prawdziwa cena</string>
     <string name="bank_name">Nazwa banku</string>
     <string name="account_number">Numer konta</string>
@@ -98,7 +98,7 @@
     <string name="good">Dobrze</string>
     <string name="great">Świetnie</string>
     <string name="awesome">Super. Kocham to</string>
-    <string name="notes">Notatki</string>
+    <string name="notes">Notatkа</string>
     <string name="select_lang">Wybierz Język</string>
     <string name="english">Angielski</string>
     <string name="ukrainian">Ukraiński</string>
@@ -109,7 +109,7 @@
     <string name="time_string">Czas</string>
     <string name="date_string">Data</string>
     <string name="brend_string">Marka</string>
-    <string name="thing_string">Rzeczy</string>
+    <string name="thing_string">Rzecz</string>
     <string name="true_price_string">Prawdziwa cena</string>
     <string name="sale_string">Rabat</string>
     <string name="economy_string">Oszczędność</string>
@@ -121,6 +121,9 @@
     <string name="credential_string">Poświadczenia</string>
     <string name="reference_string">Link</string>
     <string name="note_string">Notatka</string>
+    <string name="search">Szukaj tutaj</string>
+    <string name="disable_dark_mode">Wyłącz Tryb Ciemny</string>
+    <string name="enable_dark_mode">Włącz Tryb Ciemny</string>
 
 
 </resources>

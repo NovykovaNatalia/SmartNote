@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.smartnote.LanguageSupportUtils
 import com.example.smartnote.LanguageSupportUtils.Companion.castToLangBank
 import com.example.smartnote.R
-import com.example.smartnote.ui.bank_account.Card
+import com.example.smartnote.ui.bankaccount.Card
 
 class CardAdapter(private var items: ArrayList<Card>):
     RecyclerView.Adapter<CardAdapter.ViewHolder>() {

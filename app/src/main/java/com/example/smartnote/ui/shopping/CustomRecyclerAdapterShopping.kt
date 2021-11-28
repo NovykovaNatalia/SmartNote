@@ -1,26 +1,14 @@
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
-import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.content.ContextCompat.startActivity
-import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.smartnote.BuildConfig
-import com.example.smartnote.MyApplication
 import com.example.smartnote.R
-import com.example.smartnote.ui.bank_account.Card
-import com.example.smartnote.ui.sales.Sale
 import com.example.smartnote.ui.shopping.ShoppingItem
-import org.w3c.dom.Text
 
 
 class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
@@ -42,7 +30,6 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
 
 
         init {
-            // Define click listener for the ViewHolder's View.
             goods_tv = view.findViewById(R.id.good_tv)
             quantity_tv = view.findViewById(R.id.quantity_tv)
 
@@ -92,7 +79,6 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
                     if (quantity_adnp.value.toString().isNotEmpty()) {
                         quantity_tv.setText(quantity_adnp.value.toString())
                         items[position].quantity = quantity_adnp.value
-//                        quantity_np.value = quantity_adnp.value
                     } else {
                         Toast.makeText(context, context.getString(R.string.put_value), Toast.LENGTH_LONG).show()
                     }

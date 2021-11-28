@@ -1,20 +1,15 @@
-package com.example.smartnote.ui.text_note
+package com.example.smartnote.ui.textnote
 
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.speech.RecognizerIntent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.LanguageSupportUtils
 import com.example.smartnote.R
-import java.util.*
 import kotlin.collections.ArrayList
 
 class CustomAdapterNote(private val items: ArrayList<CardNote>) :
@@ -70,17 +65,15 @@ class CustomAdapterNote(private val items: ArrayList<CardNote>) :
                     val shareBody = LanguageSupportUtils.castToLangNotes(context, items[position].toString())
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
-                    context.startActivity(Intent.createChooser(shareIntent, "choose one"))
+                    context.startActivity(Intent.createChooser(shareIntent, R.string.choose_one.toString()))
                     true
                 }
                 val dialog: AlertDialog = builder.create()
-
                 dialog.show()
                 notifyDataSetChanged()
             }
 
         }
     }
-
 
 }

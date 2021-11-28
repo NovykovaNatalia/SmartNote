@@ -56,8 +56,6 @@ class ShoppingFragment : Fragment() {
 
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
         val atb = AnimationUtils.loadAnimation(context, R.anim.atb)
-        val btt = AnimationUtils.loadAnimation(context, R.anim.btt)
-        val btn = AnimationUtils.loadAnimation(context, R.anim.btn)
 
         btnSpeach.startAnimation(ttb)
         addBtn.startAnimation(ttb)
@@ -69,7 +67,6 @@ class ShoppingFragment : Fragment() {
 
         addBtn.setOnClickListener {
             addBtn.startAnimation(atb)
-            //create shopingitem
             if (editText.length() > 0) {
                 var shoppingItem = ShoppingItem()
                 shoppingItem.itemname = editText.text.toString()
@@ -90,7 +87,6 @@ class ShoppingFragment : Fragment() {
         inflater.inflate(R.menu.main, menu)
         menu.findItem(R.id.add).setVisible(false)
         super.onCreateOptionsMenu(menu, inflater)
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -163,7 +159,6 @@ class ShoppingFragment : Fragment() {
             }
         }
     }
-
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

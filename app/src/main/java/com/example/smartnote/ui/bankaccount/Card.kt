@@ -1,4 +1,4 @@
-package com.example.smartnote.ui.bank_account
+package com.example.smartnote.ui.bankaccount
 
 import java.io.Serializable
 

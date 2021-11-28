@@ -18,7 +18,7 @@
         android:background="@drawable/radius"
         android:iconifiedByDefault="false"
         android:queryBackground="@android:color/transparent"
-        android:queryHint="Search Here" />
+        android:queryHint="@string/search" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

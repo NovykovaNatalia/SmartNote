@@ -2,12 +2,12 @@ package com.example.smartnote
 
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import com.example.smartnote.ui.bank_account.Card
+import com.example.smartnote.ui.bankaccount.Card
 import com.example.smartnote.ui.credentials.Credentials
 import com.example.smartnote.ui.events.Event
-import com.example.smartnote.ui.sales.Sale
+import com.example.smartnote.ui.sales.Discount
 import com.example.smartnote.ui.shopping.ShoppingItem
-import com.example.smartnote.ui.text_note.CardNote
+import com.example.smartnote.ui.textnote.CardNote
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
@@ -22,7 +22,7 @@ object DataStoreHandler {
     var shoppingItems: ArrayList<ShoppingItem>
     var cards: ArrayList<Card>
     var credentials: ArrayList<Credentials>
-    var sales: ArrayList<Sale>
+    var discounts: ArrayList<Discount>
     var notes: ArrayList<CardNote>
     var events: ArrayList<Event>
 
@@ -30,7 +30,7 @@ object DataStoreHandler {
         shoppingItems = getShoppings()
         cards = getArrayListCards()
         credentials =  getArrayListCredentials()
-        sales = getArrayListSales()
+        discounts = getArrayListSales()
         notes =  getArrayListNotes()
         events = getArrayListEvents()
     }
@@ -116,16 +116,16 @@ object DataStoreHandler {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
         val editor: SharedPreferences.Editor = prefs.edit()
         val gson = Gson()
-        val json: String = gson.toJson(sales)
+        val json: String = gson.toJson(discounts)
         editor.putString(SP_SALES_KEY, json)
         editor.apply()
     }
 
-    fun getArrayListSales(): ArrayList<Sale> {
+    fun getArrayListSales(): ArrayList<Discount> {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
         val gson = Gson()
         val json: String? = prefs.getString(SP_SALES_KEY, null)
-        val type: Type = object : TypeToken<ArrayList<Sale?>?>() {}.getType()
+        val type: Type = object : TypeToken<ArrayList<Discount?>?>() {}.getType()
         if (json != null) {
             return gson.fromJson(json, type)
         }

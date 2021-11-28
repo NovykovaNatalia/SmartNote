@@ -1,4 +1,4 @@
-package com.example.smartnote.ui.text_note
+package com.example.smartnote.ui.textnote
 
 class CardNote {
     lateinit var note: String

@@ -66,9 +66,9 @@
     <string name="pecentage">Процент</string>
     <string name="goods">Товары</string>
     <string name="note">Примечание</string>
-    <string name="things">Вещи</string>
-    <string name="brand">Бренд</string>
-    <string name="sales">Скидки</string>
+    <string name="thing">Вещь</string>
+    <string name="brend">Бренд</string>
+    <string name="discount">Скидка</string>
     <string name="true_price">Истинная цена</string>
     <string name="bank_name">Название банка</string>
     <string name="account_number">Номер счета</string>
@@ -98,7 +98,7 @@
     <string name="good">Хорошо</string>
     <string name="great">Отличнo</string>
     <string name="awesome">Потрясающе. Я люблю это</string>
-    <string name="notes">Записи</string>
+    <string name="notes">Запись</string>
     <string name="select_lang">Выберите язык</string>
     <string name="english">Английский</string>
     <string name="ukrainian">Украинский</string>
@@ -121,6 +121,9 @@
     <string name="credential_string">Учетные данные</string>
     <string name="reference_string">Ссылка</string>
     <string name="note_string">Заметка</string>
+    <string name="search">Поиск здесь</string>
+    <string name="disable_dark_mode">Отключить Темный Режим</string>
+    <string name="enable_dark_mode">Включить Темный Режим</string>
 
 
 </resources>

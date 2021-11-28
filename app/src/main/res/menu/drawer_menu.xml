@@ -16,7 +16,7 @@
             android:title="@string/bank_accounts"
             android:icon="@drawable/ic_baseline_credit_card_24"/>
         <item android:id="@+id/sales"
-            android:title="@string/sales"
+            android:title="@string/discount"
             android:icon="@drawable/ic_baseline_attach_money_"/>
         <item android:id="@+id/credentials"
             android:title="@string/credentials"

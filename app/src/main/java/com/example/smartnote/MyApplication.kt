@@ -25,7 +25,6 @@ class MyApplication : Application() {
 
         fun setDayNightMode() {
             val appSettingPref: SharedPreferences = context.getSharedPreferences("AppSettingPref", 0)!!
-            val sharedPrefsEdit:SharedPreferences.Editor = appSettingPref.edit()
 
             val isNightModeOn: Boolean = appSettingPref.getBoolean("NightMode", false)
             if (isNightModeOn) {

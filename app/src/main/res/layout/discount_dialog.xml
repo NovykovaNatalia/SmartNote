@@ -8,7 +8,7 @@
     android:padding="10dp">
 
     <LinearLayout
-        android:id="@+id/line_one_sales"
+        android:id="@+id/line_one_discount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/searchView"
@@ -20,21 +20,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:hint="@string/things"
+            android:hint="@string/thing"
             android:textColor="@color/teal_700" />
 
         <EditText
-            android:id="@+id/brand"
+            android:id="@+id/brend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:hint="@string/brand"
+            android:hint="@string/brend"
             android:textColor="@color/teal_700" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/line_two_sales"
+        android:id="@+id/line_two_discount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/searchView"
@@ -42,11 +42,11 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/sales_price"
+            android:id="@+id/discount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:hint="@string/sales"
+            android:hint="@string/discount"
             android:numeric="decimal" />
 
         <EditText
@@ -66,7 +66,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/save_dialog_sales"
+            android:id="@+id/save_dialog_discount"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -82,7 +82,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/save_dialog_sales"
+            android:layout_toRightOf="@+id/save_dialog_discount"
             android:text="@string/cancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.849"

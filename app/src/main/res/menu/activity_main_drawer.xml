@@ -22,7 +22,7 @@
             <item
                 android:id="@+id/sales"
                 android:icon="@drawable/ic_baseline_attach_money_"
-                android:title="@string/sales" />
+                android:title="@string/discount" />
             <item
                 android:id="@+id/credentials"
                 android:icon="@drawable/ic_baseline_contact_mail"

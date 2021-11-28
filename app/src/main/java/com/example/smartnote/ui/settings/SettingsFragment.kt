@@ -29,11 +29,8 @@ class SettingsFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-
-
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
         val viewRate = inflater.inflate(R.layout.rate_dialog, container, false)
-
 
         var switchModeFr: Switch = view.findViewById(R.id.switchModeFr)
         var shareFr: TextView = view.findViewById(R.id.shared_tv_fr)
@@ -126,12 +123,13 @@ class SettingsFragment : Fragment() {
 
         val isNightModeOn: Boolean = appSettingPref.getBoolean("NightMode", false)
 
+
         if (isNightModeOn) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            switchModeFr.text = "Disable Dark Mode"
+            switchModeFr.text = getString(R.string.disable_dark_mode)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            switchModeFr.text = "Enable Dark Mode"
+            switchModeFr.text = getString(R.string.enable_dark_mode)
         }
 
         switchModeFr.setOnClickListener() {

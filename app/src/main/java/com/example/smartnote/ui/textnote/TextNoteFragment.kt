@@ -1,4 +1,4 @@
-package com.example.smartnote.ui.text_note
+package com.example.smartnote.ui.textnote
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -10,8 +10,6 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.view.animation.AnimationUtils
 import android.widget.*
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,23 +17,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
 import com.example.smartnote.LanguageSupportUtils
 import com.example.smartnote.R
-import com.example.smartnote.ui.settings.SettingsFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
 import kotlin.collections.ArrayList
 
 class TextNoteFragment : Fragment() {
-    lateinit var note: EditText
-    lateinit var note_tv: TextView
-    lateinit var floatingActionButtonNote: FloatingActionButton
-    lateinit var recyclerViewNote: RecyclerView
+    lateinit var noteEt: EditText
+    lateinit var recyclerView: RecyclerView
     lateinit var cardListNote:ArrayList<CardNote>
     lateinit var customAdapterNote: CustomAdapterNote
-    lateinit var saveActionButtonNote: Button
-    lateinit var cancelActionButtonNote: Button
-    lateinit var searchViewNote: SearchView
-    lateinit var image_voice: ImageView
-
     private val  REQUEST_CODE_SPEECH = 100
 
     @SuppressLint("WrongConstant")
@@ -46,67 +36,62 @@ class TextNoteFragment : Fragment() {
         cardListNote = DataStoreHandler.notes
         val view = inflater.inflate(R.layout.fragment_text_note, container, false)
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
-        recyclerViewNote = view.findViewById<RecyclerView>(R.id.recyclerViewNote)
-        recyclerViewNote.startAnimation(ttb)
+        recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewNote)
+        recyclerView.startAnimation(ttb)
 
-        recyclerViewNote.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         customAdapterNote = CustomAdapterNote(cardListNote, context)
-        recyclerViewNote.adapter = customAdapterNote
+        recyclerView.adapter = customAdapterNote
         customAdapterNote.notifyDataSetChanged()
-        searchViewNote = view.findViewById(R.id.searchViewNote)
-        searchViewNote.startAnimation(ttb)
-        searchViewNote.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        val sv : SearchView = view.findViewById(R.id.searchViewNote)
+        sv.startAnimation(ttb)
+        sv.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return false
             }
             override fun onQueryTextChange(newText: String): Boolean {
                 var filteredList:ArrayList<CardNote> = filter(cardListNote, newText)
-                recyclerViewNote.adapter = CustomAdapterNote(filteredList, context)
-                (recyclerViewNote.adapter as CustomAdapterNote).notifyDataSetChanged()
+                recyclerView.adapter = CustomAdapterNote(filteredList, context)
+                (recyclerView.adapter as CustomAdapterNote).notifyDataSetChanged()
                 return true
             }
 
         })
 
-        floatingActionButtonNote = view.findViewById(R.id.floating_btn_note)
-        floatingActionButtonNote.startAnimation(ttb)
-        floatingActionButtonNote.setOnClickListener{
+        val fab : FloatingActionButton = view.findViewById(R.id.floating_btn_note)
+        fab.startAnimation(ttb)
+        fab.setOnClickListener{
             val mDialogViewNote = LayoutInflater.from( context).inflate(R.layout.note_dialog, null);
-            val mItemViewNote = LayoutInflater.from(context).inflate(R.layout.item_note, null )
-
             val mBuilder = AlertDialog.Builder(context)
                     .setView(mDialogViewNote)
                     .setTitle(getString(R.string.notes))
             val mAlertDialog = mBuilder.show()
 
-            note = mDialogViewNote.findViewById(R.id.note)
-            note_tv = mItemViewNote.findViewById(R.id.note_tv)
-            image_voice = mDialogViewNote.findViewById(R.id.image_voice)
+            noteEt = mDialogViewNote.findViewById(R.id.note)
+            val image_voice : ImageView = mDialogViewNote.findViewById(R.id.image_voice)
 
             image_voice.setOnClickListener{
                 speak()
             }
 
-            cancelActionButtonNote = mDialogViewNote.findViewById(R.id.cancel_dialog_note)
-            saveActionButtonNote = mDialogViewNote.findViewById<Button>(R.id.save_dialog_note);
+            val cancelActionButtonNote : Button = mDialogViewNote.findViewById(R.id.cancel_dialog_note)
+            val saveActionButtonNote : Button = mDialogViewNote.findViewById(R.id.save_dialog_note);
 
             saveActionButtonNote.setOnClickListener {
                     mAlertDialog.dismiss()
-                if(note.text.isNotEmpty()) {
+                if(noteEt.text.isNotEmpty()) {
                     var cardNote = CardNote()
-                    cardNote.note = note.text.toString()
+                    cardNote.note = noteEt.text.toString()
 
                     cardListNote.add(cardNote)
                 } else {
-                    Toast.makeText(context, "Put value", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, R.string.put_values, Toast.LENGTH_LONG).show()
                 }
                 customAdapterNote.notifyDataSetChanged()
-
             }
             cancelActionButtonNote.setOnClickListener() {
                 mAlertDialog.dismiss()
             }
-
         }
 
         return view
@@ -181,18 +166,12 @@ class TextNoteFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
-            // Handle the result for our request code.
             REQUEST_CODE_SPEECH -> {
-                // Safety checks to ensure data is available.
                 if (resultCode == Activity.RESULT_OK && data != null) {
-                    // Retrieve the result array.
                     val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
-                    // Ensure result array is not null or empty to avoid errors.
                     if (!result.isNullOrEmpty()) {
-                        // Recognized text is in the first position.
                         val recognizedText = result[0]
-                        // Do what you want with the recognized text.
-                        note.setText(recognizedText)
+                        noteEt.setText(recognizedText)
                     }
                 }
             }

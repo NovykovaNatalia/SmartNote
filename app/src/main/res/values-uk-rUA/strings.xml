@@ -52,7 +52,7 @@
     <string name="month">Місяць</string>
     <string name="custom">Визначити період</string>
     <string name="search_here">Шукати тут</string>
-    <string name="shared">Поділилися</string>
+    <string name="shared">Поділитися</string>
     <string name="about_smart_note">Про Smart Note</string>
     <string name="contact">Контакти</string>
     <string name="rate_us">Оцініть нас</string>
@@ -65,10 +65,10 @@
     <string name="persentage">Відсоток</string>
     <string name="pecentage">Відсоток</string>
     <string name="goods">Одиниця товару</string>
-    <string name="note">Примітка</string>
-    <string name="things">Речі</string>
-    <string name="brand">Бренд</string>
-    <string name="sales">Знижки</string>
+    <string name="note">Замітка</string>
+    <string name="thing">Річ</string>
+    <string name="brend">Бренд</string>
+    <string name="discount">Знижка</string>
     <string name="true_price">Справжня ціна</string>
     <string name="bank_name">Назва банку</string>
     <string name="account_number">Номер рахунку</string>
@@ -98,7 +98,7 @@
     <string name="good">Добре</string>
     <string name="great">Чудово</string>
     <string name="awesome">Приголомшливо. Я люблю це</string>
-    <string name="notes">Замітки</string>
+    <string name="notes">Замітка</string>
     <string name="select_lang">Виберіть мову</string>
     <string name="english">Англійська</string>
     <string name="ukrainian">Українська</string>
@@ -109,7 +109,7 @@
     <string name="time_string">Час</string>
     <string name="date_string">Дата</string>
     <string name="brend_string">Марка</string>
-    <string name="thing_string">Речі</string>
+    <string name="thing_string">Річ</string>
     <string name="true_price_string">Справжня ціна</string>
     <string name="sale_string">Знижка</string>
     <string name="economy_string">Економія</string>
@@ -121,4 +121,7 @@
     <string name="credential_string">Облікові дані</string>
     <string name="reference_string">Посилання</string>
     <string name="note_string">Замітка</string>
+    <string name="search">Шукати тут</string>
+    <string name="disable_dark_mode">Вимкнути Темний Режим</string>
+    <string name="enable_dark_mode">Включити Темний Режим</string>
 </resources>

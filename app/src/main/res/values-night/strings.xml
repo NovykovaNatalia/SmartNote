@@ -32,9 +32,9 @@
     <string name="pecentage">Pecentage</string>
     <string name="goods">Goods</string>
     <string name="note">Note</string>
-    <string name="things">Things</string>
-    <string name="brand">Brend</string>
-    <string name="sales">Discounts</string>
+    <string name="thing">Thing</string>
+    <string name="brend">Brend</string>
+    <string name="discount">Discount</string>
     <string name="true_price">True price</string>
     <string name="bank_name">Bank name</string>
     <string name="name_surname">Name, Surname</string>
@@ -63,7 +63,7 @@
     <string name="good">Good</string>
     <string name="great">Great</string>
     <string name="awesome">Awesome. I love it</string>
-    <string name="notes">Notes</string>
+    <string name="notes">Note</string>
     <string name="select_lang">Select Language</string>
     <string name="english">English</string>
     <string name="ukrainian">Ukrainian</string>
@@ -86,5 +86,8 @@
     <string name="credential_string">Credential</string>
     <string name="reference_string">Reference</string>
     <string name="note_string">Note</string>
+    <string name="search">Search Here</string>
+    <string name="disable_dark_mode">Disable Dark Mode</string>
+    <string name="enable_dark_mode">Enable Dark Mode</string>
 
 </resources>

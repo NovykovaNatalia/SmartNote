@@ -16,14 +16,14 @@
         android:queryBackground="@android:color/transparent"
         android:background="@drawable/radius"
         android:iconifiedByDefault="false"
-        android:queryHint="@string/search_here" />
+        android:queryHint="@string/search" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSales"
         android:layout_width="match_parent"
         android:layout_height="450dp"
         android:layout_margin="5dp"
-        tools:listitem="@layout/item_sales" />
+        tools:listitem="@layout/item_discount" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_btn_sales"

@@ -18,16 +18,10 @@ class PrivacyPolicy : AppCompatActivity() {
         setContentView(R.layout.activity_privacy_policy)
 
         val recyclerView = findViewById(R.id.recyclerView) as RecyclerView
-
-        //adding a layoutmanager
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
 
-
-        //crating an arraylist to store users using the data class user
         val users = ArrayList<User>()
-
-        //adding some dummy data to the list
-        users.add(User("\n" + "Privacy Policy",  "Last updated: October 10, 2021\n" +
+        users.add(User("\n" + "Privacy Policy", "Last updated: October 10, 2021\n" +
                 "\n" +
                 "User privacy is the top priority. We (“3ND Tech Co, \"We\", \"Us\", or \"Our\") value your (\"User\", \"You\" or \"Your\") " +
                 "privacy and recognize the sensitivity of your personal information. We are committed to protecting your personal information " +
@@ -97,14 +91,14 @@ class PrivacyPolicy : AppCompatActivity() {
                 "We may use third-party service providers to show you advertisements to help support and maintain our services.\n" +
                 "Admob from Google: You can check their Privacy Policy at:https://policies.google.com/privacy\n" +
                 "\n" +
-                "Mopub from Twitter: You can check their Privacy Policy at:https://www.mopub.com/en/legal/privacy\n"+
+                "Mopub from Twitter: You can check their Privacy Policy at:https://www.mopub.com/en/legal/privacy\n" +
                 "\n" +
-                " Facebook Audience Network: You can check their Privacy Policy at:https://www.facebook.com/about/privacy/\n"+
+                " Facebook Audience Network: You can check their Privacy Policy at:https://www.facebook.com/about/privacy/\n" +
                 "\n" +
                 "We may use third-party service providers to monitor and analyze the usage of our services.Facebook Analytics: You can check their Privacy Policy at:" +
-                "https://www.facebook.com/about/privacy/\n"+
+                "https://www.facebook.com/about/privacy/\n" +
                 "Firebase and Google Analytics: You can check their Privacy Policy at:\n" +
-                "https://policies.google.com/privacy\n"+
+                "https://policies.google.com/privacy\n" +
                 "We provide optional functionalities which allow you to sync your contents to your iCloud or Google Drive.\n" +
                 "i Cloud from Apple: You can check their Privacy Policy at:\n" +
                 "https://www.apple.com/legal/internet-services/icloud/\n" +
@@ -112,10 +106,8 @@ class PrivacyPolicy : AppCompatActivity() {
         users.add(User("\n" + "Security\n", "We value your trust in providing us your information, thus we are striving to use " +
                 "commercially acceptable means of protecting it. But remember that no method of transmission over the internet," +
                 " or method of electronic storage is 100% secure and reliable, and we cannot guarantee its absolute security.\n"))
-        //creating our adapter
-        val adapter = CustomAdapter(users)
 
-        //now adding the adapter to recyclerview
+        val adapter = CustomAdapter(users)
         recyclerView.adapter = adapter
     }
 }

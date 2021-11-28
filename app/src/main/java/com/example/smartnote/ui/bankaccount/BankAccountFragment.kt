@@ -1,4 +1,4 @@
-package com.example.smartnote.ui.bank_account
+package com.example.smartnote.ui.bankaccount
 
 import CardAdapter
 import android.annotation.SuppressLint
@@ -47,8 +47,6 @@ class BankAccountFragment : Fragment() {
         fab.startAnimation(ttb)
         fab.setOnClickListener {
             val dialogView = LayoutInflater.from( context).inflate(R.layout.bank_account_dialog, null);
-            val itemView = LayoutInflater.from(context).inflate(R.layout.item_bank_account, null )
-
             val builder = AlertDialog.Builder(context)
                     .setView(dialogView)
                     .setTitle(getString(R.string.bank_account))
