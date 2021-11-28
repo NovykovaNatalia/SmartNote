@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.smartnote.LanguageSupportUtils.Companion.castToLangEvent
+import com.example.smartnote. LanguageSupportUtils.Companion.castToLangEvent
 import com.example.smartnote.R
 import java.text.DateFormat
 import java.util.ArrayList
@@ -76,7 +76,6 @@ class AdapterEvent(private val items: ArrayList<Event>) :
                     val shareIntent = Intent(Intent.ACTION_SEND)
                     shareIntent.type = "text/plain"
                     val shareBody = castToLangEvent(context, items[position].toString())
-                    val shareSub = "items[position]"
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
                     context.startActivity(Intent.createChooser(shareIntent, "choose one"))

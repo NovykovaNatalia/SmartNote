@@ -15,6 +15,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
+import com.example.smartnote.LanguageSupportUtils
 import com.example.smartnote.R
 import com.example.smartnote.ui.settings.SettingsFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -107,6 +108,7 @@ class CredentialsFragment : Fragment() {
                     sharStr = sharStr.replace('[', ' ')
                     sharStr = sharStr.replace(']', ' ')
                     sharStr = sharStr.replace(",", "")
+                    sharStr = context?.let { LanguageSupportUtils.castToLangCredentials(it, sharStr) }!!
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, sharStr)
                     shareIntent.putExtra(Intent.EXTRA_TEXT, sharStr)
                     startActivity(Intent.createChooser(shareIntent, getString(R.string.choose_one)))

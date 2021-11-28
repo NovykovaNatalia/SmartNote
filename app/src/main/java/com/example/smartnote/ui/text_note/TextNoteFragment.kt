@@ -17,6 +17,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
+import com.example.smartnote.LanguageSupportUtils
 import com.example.smartnote.R
 import com.example.smartnote.ui.settings.SettingsFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -139,9 +140,9 @@ class TextNoteFragment : Fragment() {
                     sharStr = sharStr.replace('[', ' ')
                     sharStr = sharStr.replace(']', ' ')
                     sharStr = sharStr.replace(",", "")
-                    val shareBody = sharStr
-                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                    sharStr = context?.let { LanguageSupportUtils.castToLangNotes(it, sharStr) }!!
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, sharStr)
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, sharStr)
                     startActivity(Intent.createChooser(shareIntent, "choose one"))
                 }
             }

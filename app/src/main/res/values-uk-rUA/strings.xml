@@ -106,6 +106,19 @@
     <string name="polish">Польська</string>
     <string name="delete_event">Видалити подію?</string>
     <string name="event_string">Подія</string>
-    <string name="time_string">Подія</string>
+    <string name="time_string">Час</string>
     <string name="date_string">Дата</string>
+    <string name="brend_string">Марка</string>
+    <string name="thing_string">Речі</string>
+    <string name="true_price_string">Справжня ціна</string>
+    <string name="sale_string">Знижка</string>
+    <string name="economy_string">Економія</string>
+    <string name="percentage_string">Відсоток</string>
+    <string name="bank_name_string">Назва банку</string>
+    <string name="account_string">Рахунок</string>
+    <string name="account_number_string">Номер рахунку</string>
+    <string name="name_sur_string">Ім\'я, Прізвище</string>
+    <string name="credential_string">Облікові дані</string>
+    <string name="reference_string">Посилання</string>
+    <string name="note_string">Замітка</string>
 </resources>

@@ -113,5 +113,14 @@
     <string name="true_price_string">Prawdziwa cena</string>
     <string name="sale_string">Rabat</string>
     <string name="economy_string">Oszczędność</string>
-    <string name="persentage_string">Procent</string>
+    <string name="account_string">Konto</string>
+    <string name="percentage_string">Procent</string>
+    <string name="bank_name_string">Nazwa banku</string>
+    <string name="account_number_string">Numer konta</string>
+    <string name="name_sur_string">Imię, Nazwisko</string>
+    <string name="credential_string">Poświadczenia</string>
+    <string name="reference_string">Link</string>
+    <string name="note_string">Notatka</string>
+
+
 </resources>

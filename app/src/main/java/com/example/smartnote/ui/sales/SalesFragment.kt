@@ -14,6 +14,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
+import com.example.smartnote.LanguageSupportUtils
 import com.example.smartnote.LanguageSupportUtils.Companion.castToLangEvent
 import com.example.smartnote.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -137,7 +138,7 @@ class SalesFragment : Fragment() {
                     shareStr = shareStr.replace('[', ' ')
                     shareStr = shareStr.replace(']', ' ')
                     shareStr = shareStr.replace(",", "")
-
+                    shareStr = context?.let { LanguageSupportUtils.castToLangSales(it, shareStr) }!!
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareStr)
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareStr)
                     startActivity(Intent.createChooser(shareIntent, "choose one"))

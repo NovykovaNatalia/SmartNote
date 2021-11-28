@@ -117,8 +117,14 @@
     <string name="brend_string">Brend</string>
     <string name="thing_string">Thing</string>
     <string name="true_price_string">True price</string>
-    <string name="sale_string">Discount</string>
+    <string name="sale_string">Sale</string>
     <string name="economy_string">Economy</string>
-    <string name="persentage_string">Persentage</string>
-
+    <string name="percentage_string">Percent</string>
+    <string name="bank_name_string">Bank name</string>
+    <string name="account_string">Account</string>
+    <string name="account_number_string">Account number</string>
+    <string name="name_sur_string">Name, Surname</string>
+    <string name="credential_string">Credential</string>
+    <string name="reference_string">Reference</string>
+    <string name="note_string">Note</string>
 </resources>

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.smartnote.LanguageSupportUtils
 import com.example.smartnote.R
 
 class CredentialsAdapter(private val items: ArrayList<Credentials> ) :
@@ -60,8 +61,7 @@ class CredentialsAdapter(private val items: ArrayList<Credentials> ) :
                 builder.setNeutralButton(context.getString(R.string.share)) { dialog, which ->
                     val shareIntent = Intent(Intent.ACTION_SEND)
                     shareIntent.type = "text/plain"
-                    val shareBody =  items[position].toString()
-                    val shareSub = "items[position]"
+                    val shareBody = LanguageSupportUtils.castToLangCredentials(context, items[position].toString())
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
                     context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.choose_one)))

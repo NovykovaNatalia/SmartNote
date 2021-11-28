@@ -15,12 +15,12 @@ class Sale {
 
     override fun toString(): String {
         val builder = StringBuilder()
-        builder.append("Brand" + " : " + brand + "\n")
+        builder.append("Brend" + " : " + brand + "\n")
             .append("Thing" + " : " + thing + "\n")
             .append("Sale" + " : " + sale.toInt() + "\n")
             .append("True price" + " : " + true_price.toInt() + "\n")
             .append("Economy" + " : " + economy.toInt() + "\n")
-            .append("Economy percentage" + " : " + percentage.toInt() + " %" + "\n" + "\n")
+            .append("Percentage" + " : " + percentage.toInt() + " %" + "\n" + "\n")
         return builder.toString()
     }
 }

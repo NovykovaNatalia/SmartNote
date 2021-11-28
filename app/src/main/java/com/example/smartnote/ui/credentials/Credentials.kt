@@ -6,7 +6,7 @@ class Credentials {
 
     override fun toString(): String {
         val builder = StringBuilder()
-        builder.append("Credentials" + " : " + credential + "\n")
+        builder.append("Credential" + " : " + credential + "\n")
             .append("Reference" + " : " + reference + "\n" + "\n")
         return builder.toString()
     }
