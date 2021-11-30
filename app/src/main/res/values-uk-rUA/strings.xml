@@ -62,8 +62,7 @@
     <string name="data">Дані</string>
     <string name="event">Подія</string>
     <string name="privacy_policy">Політика конфіденційності</string>
-    <string name="persentage">Відсоток</string>
-    <string name="pecentage">Відсоток</string>
+    <string name="percentage">Відсоток Економії</string>
     <string name="goods">Одиниця товару</string>
     <string name="note">Замітка</string>
     <string name="thing">Річ</string>

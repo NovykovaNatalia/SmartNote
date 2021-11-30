@@ -8,6 +8,11 @@
     android:background="@drawable/border"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/line_one"
+        android:orientation="vertical">
     <TextView
         android:id="@+id/thing_name"
         android:layout_width="wrap_content"
@@ -24,7 +29,6 @@
         android:layout_marginLeft="20dp"
         android:layout_below="@+id/thing_name"
         android:hint="@string/unit_of_goods" />
-
     <TextView
         android:id="@+id/brend"
         android:layout_below="@+id/thing_name_tv"
@@ -35,7 +39,6 @@
         android:text="@string/brend"
         android:textSize="10sp"
         app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/brend_tv"
         android:layout_width="wrap_content"
@@ -47,89 +50,92 @@
         app:layout_constraintEnd_toEndOf="@+id/true_price"
         android:layout_marginBottom="10dp"
         app:layout_constraintStart_toEndOf="@+id/true_price" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/true_price"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/thing_name"
-        android:text="@string/true_price"
-        android:textSize="10sp" />
+        android:orientation="vertical"
+        android:id="@+id/line_two"
+        android:layout_toRightOf="@+id/line_one">
+        <TextView
+            android:id="@+id/true_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/true_price"
+            android:textSize="10sp" />
 
-    <TextView
-        android:id="@+id/true_price_tv"
+        <TextView
+            android:id="@+id/true_price_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/true_price"
+            android:layout_marginStart="10dp"
+            android:hint="@string/true_price" />
+
+        <TextView
+            android:id="@+id/economy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/economy"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/economy_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/economy"
+            android:layout_marginStart="10dp"
+            android:text="@string/economy" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/true_price"
-        android:layout_marginLeft="3dp"
-        android:layout_toRightOf="@id/thing_name_tv"
-        android:hint="@string/true_price" />
-
-    <TextView
-        android:id="@+id/economy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/true_price_tv"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="62dp"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@+id/brend"
-        android:text="@string/economy"
-        android:textSize="10sp" />
-
-    <TextView
-        android:id="@+id/economy_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/economy"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="48dp"
-        android:layout_toRightOf="@+id/brend_tv"
-        android:text="@string/economy" />
-
-    <TextView
-        android:id="@+id/percentage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="53dp"
-        android:layout_toRightOf="@id/economy_tv"
-        android:text="@string/persentage"
-        android:textSize="10sp" />
-
-    <TextView
-        android:id="@+id/percenage_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/percentage"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="2dp"
-        android:layout_toRightOf="@+id/economy_tv"
-        android:text="@string/pecentage" />
+        android:id="@+id/line_three"
+        android:layout_toRightOf="@+id/line_two"
+        android:orientation="vertical">
 
 
-    <TextView
-        android:id="@+id/sales"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="29dp"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/true_price"
-        android:text="@string/discount"
-        android:textSize="10sp" />
+        <TextView
+            android:id="@+id/sales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/discount"
+            android:textSize="10sp" />
 
-    <TextView
-        android:id="@+id/sales_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/sales"
-        android:layout_marginStart="12dp"
-        android:layout_toRightOf="@+id/true_price_tv"
-        android:text="@string/discount" />
+        <TextView
+            android:id="@+id/discount_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sales"
+            android:layout_marginStart="10dp"
+            android:text="@string/discount" />
+        <TextView
+            android:id="@+id/percentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/percentage"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/percenage_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/percentage"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/percentage" />
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/more"

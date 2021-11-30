@@ -48,7 +48,7 @@ class SettingsFragment : Fragment() {
         list.add(getString(R.string.russian))
         list.add(getString(R.string.polish))
 
-        val adapter: ArrayAdapter<String> = ArrayAdapter(context!!,R.layout.support_simple_spinner_dropdown_item, list)
+        val adapter: ArrayAdapter<String> = ArrayAdapter(requireContext(),R.layout.support_simple_spinner_dropdown_item, list)
         spinner.adapter = adapter
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

@@ -62,8 +62,7 @@
     <string name="data">Данные</string>
     <string name="event">Мероприятие</string>
     <string name="privacy_policy">Политика конфиденциальности</string>
-    <string name="persentage">Процент</string>
-    <string name="pecentage">Процент</string>
+    <string name="percentage">Процент Экономии</string>
     <string name="goods">Товары</string>
     <string name="note">Примечание</string>
     <string name="thing">Вещь</string>

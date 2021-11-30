@@ -32,7 +32,7 @@ class DiscountAdapter(private val items: ArrayList<Discount> ):
         init {
             brend_tv = view.findViewById(R.id.brend_tv)
             thing_tv = view.findViewById(R.id.thing_name_tv)
-            discount_tv = view.findViewById(R.id.sales_tv)
+            discount_tv = view.findViewById(R.id.discount_tv)
             true_price_tv= view.findViewById(R.id.true_price_tv)
             economy_tv = view.findViewById(R.id.economy_tv)
             percentage_tv = view.findViewById(R.id.percenage_tv)
