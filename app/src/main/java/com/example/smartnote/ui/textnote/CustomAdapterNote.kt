@@ -6,6 +6,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.LanguageSupportUtils
@@ -47,30 +48,32 @@ class CustomAdapterNote(private val items: ArrayList<CardNote>) :
             note_tv.setText(items[position].note)
 
             itemView.setOnClickListener {
-                val builder = AlertDialog.Builder(holder.note_tv.context)
+                val dialogView = LayoutInflater.from( context).inflate(R.layout.delete_share_layout, null);
+                val builder = AlertDialog.Builder(context)
+                    .setView(dialogView)
+                    .setTitle(context.getString(R.string.delete_the_item))
+                val alertDialog = builder.show()
+                val imageShare : ImageView = dialogView.findViewById(R.id.shareIv)
+                val noBtn : TextView = dialogView.findViewById(R.id.noBtn)
+                val yesBtn : TextView = dialogView.findViewById(R.id.yesBtn)
 
-                builder.setMessage(context.getString(R.string.delete_the_note))
-
-                builder.setPositiveButton(R.string.yes) { dialog, which ->
-                    items.remove(items[position])
-                    notifyDataSetChanged()
-                }
-
-                builder.setNegativeButton(R.string.no) { dialog, which ->
-
-                }
-                builder.setNeutralButton(R.string.share) { dialog, which ->
+                imageShare.setOnClickListener {
                     val shareIntent = Intent(Intent.ACTION_SEND)
                     shareIntent.type = "text/plain"
-                    val shareBody = LanguageSupportUtils.castToLangNotes(context, items[position].toString())
+                    val shareBody =
+                        LanguageSupportUtils.castToLangNotes(context, items[position].toString())
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
-                    context.startActivity(Intent.createChooser(shareIntent, R.string.choose_one.toString()))
-                    true
+                    context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.choose_one)))
                 }
-                val dialog: AlertDialog = builder.create()
-                dialog.show()
-                notifyDataSetChanged()
+                noBtn.setOnClickListener{
+                    alertDialog.dismiss()
+                }
+                yesBtn.setOnClickListener {
+                    items.remove(items[position])
+                    notifyDataSetChanged()
+                    alertDialog.dismiss()
+                }
             }
 
         }

@@ -32,7 +32,7 @@ class DiscountFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         discountList = DataStoreHandler.discounts
-        val view = inflater.inflate(R.layout.fragment_sales, container, false)
+        val view = inflater.inflate(R.layout.fragment_discounts, container, false)
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
 
         var recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewSales)

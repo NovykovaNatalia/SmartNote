@@ -6,6 +6,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.LanguageSupportUtils
@@ -47,29 +48,32 @@ class CredentialsAdapter(private val items: ArrayList<Credentials> ) :
             referenceTv.setText(items[position].reference)
 
             itemView.setOnClickListener {
-                val builder = AlertDialog.Builder(holder.credentialsTv.context)
-                builder.setMessage(context.getString(R.string.delete_credentials))
-                builder.setPositiveButton(context.getString(R.string.yes)) { dialog, which ->
-                    items.remove(items[position])
-                    notifyDataSetChanged()
+                val dialogView = LayoutInflater.from( context).inflate(R.layout.delete_share_layout, null);
+                val builder = AlertDialog.Builder(context)
+                    .setView(dialogView)
+                    .setTitle(context.getString(R.string.delete_the_item))
+                val alertDialog = builder.show()
+                val imageShare : ImageView = dialogView.findViewById(R.id.shareIv)
+                val noBtn : TextView = dialogView.findViewById(R.id.noBtn)
+                val yesBtn : TextView = dialogView.findViewById(R.id.yesBtn)
 
-                }
-
-                builder.setNegativeButton(context.getString(R.string.no)) { dialog, which ->
-                }
-
-                builder.setNeutralButton(context.getString(R.string.share)) { dialog, which ->
+                imageShare.setOnClickListener {
                     val shareIntent = Intent(Intent.ACTION_SEND)
                     shareIntent.type = "text/plain"
-                    val shareBody = LanguageSupportUtils.castToLangCredentials(context, items[position].toString())
+                    val shareBody =
+                        LanguageSupportUtils.castToLangCredentials(context, items[position].toString())
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
                     context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.choose_one)))
                 }
-
-                val dialog: AlertDialog = builder.create()
-                dialog.show()
-                notifyDataSetChanged()
+                noBtn.setOnClickListener{
+                    alertDialog.dismiss()
+                }
+                yesBtn.setOnClickListener {
+                    items.remove(items[position])
+                    notifyDataSetChanged()
+                    alertDialog.dismiss()
+                }
             }
         }
     }
