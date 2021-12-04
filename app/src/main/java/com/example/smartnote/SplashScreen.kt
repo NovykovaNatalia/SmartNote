@@ -11,22 +11,18 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class SplashScreen : AppCompatActivity() {
-    lateinit var imageSmartNote: ImageView
-    lateinit var textViewSmartNote: TextView
-    lateinit var frameLayout: FrameLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
-        imageSmartNote = findViewById(R.id.imageSmartNote) as ImageView
-        textViewSmartNote = findViewById(R.id.smart_note) as TextView
-        frameLayout = findViewById(R.id.layout)
-
+        val imageSmartNote : ImageView = findViewById(R.id.imageSmartNote) as ImageView
+        val textViewSmartNote : TextView = findViewById(R.id.smart_note) as TextView
+        val imageLoading : ImageView = findViewById(R.id.loading) as ImageView
         val ttb = AnimationUtils.loadAnimation(this, R.anim.ttb)
         val atb = AnimationUtils.loadAnimation(this, R.anim.atb)
-        val btt = AnimationUtils.loadAnimation(this, R.anim.btt)
-        val btn = AnimationUtils.loadAnimation(this, R.anim.btn)
         textViewSmartNote.startAnimation(ttb)
         imageSmartNote.startAnimation(atb)
+        imageLoading.animate().rotation(360F).setDuration(3000)
+        imageLoading.startAnimation(ttb)
 
         window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
