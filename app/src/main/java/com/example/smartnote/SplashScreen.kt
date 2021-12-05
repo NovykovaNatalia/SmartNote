@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -16,14 +15,10 @@ class SplashScreen : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
         val imageSmartNote : ImageView = findViewById(R.id.imageSmartNote) as ImageView
         val textViewSmartNote : TextView = findViewById(R.id.smart_note) as TextView
-        val imageLoading : ImageView = findViewById(R.id.loading) as ImageView
         val ttb = AnimationUtils.loadAnimation(this, R.anim.ttb)
         val atb = AnimationUtils.loadAnimation(this, R.anim.atb)
         textViewSmartNote.startAnimation(ttb)
         imageSmartNote.startAnimation(atb)
-        imageLoading.animate().rotation(360F).setDuration(3000)
-        imageLoading.startAnimation(ttb)
-
         window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
