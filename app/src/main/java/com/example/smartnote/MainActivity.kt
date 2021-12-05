@@ -1,12 +1,17 @@
 package com.example.smartnote
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
-import androidx.navigation.ui.*
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setLocale()
         setContentView(R.layout.activity_main)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -47,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         DataStoreHandler.saveArrayListSales()
         DataStoreHandler.saveArrayListNotes()
         DataStoreHandler.saveArrayListEvents()
+        DataStoreHandler.saveCurrentLang()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -54,4 +61,12 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
+    fun setLocale() {
+        val locale = Locale(DataStoreHandler.currentLanguage)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        baseContext.resources.updateConfiguration(config,
+                baseContext.resources.displayMetrics)
+    }
 }

@@ -19,12 +19,14 @@ object DataStoreHandler {
     val SP_SALES_KEY = "SP_SALES"
     val SP_NOTES_KEY = "SP_NOTES"
     val SP_EVENTS_KEY = "SP_EVENTS"
+    val SP_CURRENT_LANGUAGE_KEY: String? = "SP_CURRENT_LANGUAGE"
     var shoppingItems: ArrayList<ShoppingItem>
     var cards: ArrayList<Card>
     var credentials: ArrayList<Credentials>
     var discounts: ArrayList<Discount>
     var notes: ArrayList<CardNote>
     var events: ArrayList<Event>
+    var currentLanguage: String = "en"
 
     init {
         shoppingItems = getShoppings()
@@ -33,8 +35,8 @@ object DataStoreHandler {
         discounts = getArrayListSales()
         notes =  getArrayListNotes()
         events = getArrayListEvents()
+        currentLanguage = getCurrentLang()
     }
-
 
     fun saveArrayListEvents() {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
@@ -149,5 +151,21 @@ object DataStoreHandler {
             return gson.fromJson(json, type)
         }
         return ArrayList()
+    }
+
+    fun getCurrentLang(): String {
+        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
+        var result = prefs.getString(SP_CURRENT_LANGUAGE_KEY, "en")
+        if(result != null) {
+            return result;
+        }
+        return "en";
+    }
+
+    fun saveCurrentLang() {
+        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
+        val editor: SharedPreferences.Editor = prefs.edit()
+        editor.putString(SP_CURRENT_LANGUAGE_KEY, currentLanguage)
+        editor.apply()
     }
 }

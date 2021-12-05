@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatDelegate
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        MyApplication.Companion.setContext(this);
-        setDayNightMode();
+        MyApplication.Companion.setContext(this)
+        setDayNightMode()
     }
 
     companion object {

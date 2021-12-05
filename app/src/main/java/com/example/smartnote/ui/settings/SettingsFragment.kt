@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.smartnote.R
 import android.widget.ArrayAdapter
+import com.example.smartnote.DataStoreHandler
 import com.example.smartnote.MainActivity
 import java.util.*
 import kotlin.system.exitProcess
@@ -21,8 +23,6 @@ import kotlin.system.exitProcess
 class SettingsFragment : Fragment() {
 
     lateinit var locale: Locale
-    private var currentLanguage = "en"
-    private var currentLang: String? = null
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -30,7 +30,6 @@ class SettingsFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
-
         var switchModeFr: Switch = view.findViewById(R.id.switchModeFr)
         var shareFr: TextView = view.findViewById(R.id.shared_tv_fr)
         var about_snFr: TextView = view.findViewById(R.id.about_sn_tv_fr)
@@ -38,9 +37,8 @@ class SettingsFragment : Fragment() {
         var rate: TextView = view.findViewById(R.id.rate)
         var spinner: Spinner = view.findViewById(R.id.spinner)
 
-        var currentLang: String? = null
         activity?.title = "KotlinApp"
-        currentLanguage = activity?.intent?.getStringExtra(currentLang).toString()
+
         val list = ArrayList<String>()
         list.add(getString(R.string.select_lang))
         list.add(getString(R.string.english))
@@ -48,7 +46,8 @@ class SettingsFragment : Fragment() {
         list.add(getString(R.string.russian))
         list.add(getString(R.string.polish))
 
-        val adapter: ArrayAdapter<String> = ArrayAdapter(requireContext(),R.layout.support_simple_spinner_dropdown_item, list)
+        val adapter: ArrayAdapter<String> = ArrayAdapter(requireContext(),
+                R.layout.support_simple_spinner_dropdown_item, list)
         spinner.adapter = adapter
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -67,22 +66,6 @@ class SettingsFragment : Fragment() {
                 adapter?.notifyDataSetChanged()
             }
         }
-//        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(parent: AdapterView<*>, view: View, position: int, id: Long) {
-//                when (position) {
-//                    0 -> {
-//                    }
-//                    1 -> setLocale("en")
-//                    2 -> setLocale("uk")
-//                    3 -> setLocale("ru")
-//                    4 -> setLocale("pl")
-//                }
-//                adapter?.notifyDataSetChanged()
-//            }
-//
-//            override fun onNothingSelected(p0: AdapterView<*>?) {
-//            }
-//        }
 
         about_snFr.setOnClickListener {
             val intent = Intent(activity, AboutSmartNote::class.java)
@@ -126,12 +109,10 @@ class SettingsFragment : Fragment() {
         shareFr.setOnClickListener {
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "text/plain"
-            val shareBody = "Your body here"
-            val shareSub = "Your subject here"
+            val shareBody = "Your body here"    //TODO: Will be implemented when app will be posted on Play market
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
             startActivity(Intent.createChooser(shareIntent, "choose one"))
-            true
         }
 
         val appSettingPref: SharedPreferences = activity?.getSharedPreferences("AppSettingPref", 0)!!
@@ -165,7 +146,7 @@ class SettingsFragment : Fragment() {
     }
 
     private fun setLocale(localeName: String) {
-        if (localeName != currentLanguage) {
+        if (localeName != DataStoreHandler.currentLanguage) {
             locale = Locale(localeName)
             val res = resources
             val dm = res.displayMetrics
@@ -176,7 +157,8 @@ class SettingsFragment : Fragment() {
                     context,
                     MainActivity::class.java
             )
-            refresh.putExtra(currentLang, localeName)
+            DataStoreHandler.currentLanguage = localeName
+            DataStoreHandler.saveCurrentLang()
             startActivity(refresh)
         } else {
             Toast.makeText(
@@ -192,5 +174,4 @@ class SettingsFragment : Fragment() {
         activity?.finish()
         exitProcess(0)
     }
-
 }
