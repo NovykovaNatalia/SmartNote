@@ -110,7 +110,6 @@
             android:id="@+id/cancel_date_btn"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/save_dialog_event"
             android:text="@string/cancel"
             android:layout_marginLeft="20dp"
             app:layout_constraintEnd_toEndOf="parent"
