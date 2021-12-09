@@ -1,48 +1,50 @@
 package com.example.smartnote.ui.events
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
+import com.example.smartnote.DateFormatUtils
 import com.example.smartnote.LanguageSupportUtils
-import com.example.smartnote. LanguageSupportUtils.Companion.castToLangEvent
 import com.example.smartnote.R
+import java.sql.Time
 import java.text.DateFormat
-import java.util.ArrayList
+import java.util.*
 
 class AdapterEvent(private val items: ArrayList<Event>) :
         RecyclerView.Adapter<AdapterEvent.ViewHolder>() {
     lateinit var context: Context
     lateinit var container : ViewGroup
-    lateinit var inflater : LayoutInflater
-
+    lateinit var adapterEvent: AdapterEvent
     companion object {
 
         const val MY_CONSTANT = 100
 
     }
 
-    constructor(items: java.util.ArrayList<Event>, context: Context?, container : ViewGroup?, inflater: LayoutInflater) : this(items) {
-        if (context != null && container != null && inflater != null) {
+    constructor(items: java.util.ArrayList<Event>, context: Context?, container : ViewGroup?) : this(items) {
+        if (context != null && container != null) {
             this.context = context
-            this.inflater = inflater
             this.container = container
+            this.adapterEvent = this
         }
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val date_tv: TextView
-        var event_tv: TextView
-        val time_tv: TextView
+        val dateTv: TextView
+        var eventTv: TextView
+        val timeTv: TextView
 
         init {
-            date_tv = view.findViewById(R.id.date_event_tv)
-            event_tv = view.findViewById(R.id.text_event_tv)
-            time_tv = view.findViewById(R.id.time_event_tv)
+            dateTv = view.findViewById(R.id.date_event_tv)
+            eventTv = view.findViewById(R.id.text_event_tv)
+            timeTv = view.findViewById(R.id.time_event_tv)
         }
     }
 
@@ -56,12 +58,13 @@ class AdapterEvent(private val items: ArrayList<Event>) :
         return items.size
     }
 
+    @SuppressLint("NewApi")
     override fun onBindViewHolder(holder: AdapterEvent.ViewHolder, position: Int) {
         holder.run {
             val dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
-            event_tv.setText(items[position].event)
-            date_tv.setText(dateFormatter.format(items[position].date_ev))
-            time_tv.setText(items[position].time)
+            eventTv.setText(items[position].event)
+            dateTv.setText(dateFormatter.format(items[position].date))
+            timeTv.setText(DateFormatUtils.getFormatedTime(items[position].hours, items[position].minutes))
 
             itemView.setOnClickListener {
                 val dialogView = LayoutInflater.from( context).inflate(R.layout.delete_share_layout, null);
@@ -84,34 +87,38 @@ class AdapterEvent(private val items: ArrayList<Event>) :
                     context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.choose_one)))
                 }
                 imageEdit.setOnClickListener {
-                    val dialogEventV = inflater.inflate(R.layout.event_dialog, container, false)
-                    val itemViewEvent = inflater.inflate(R.layout.item_event, container, false)
+                    val dialogEventV = LayoutInflater.from( context).inflate(R.layout.event_dialog, container, false)
+
                     var eventEd: EditText = dialogEventV.findViewById(R.id.event)
-                    var timeTv : TextView = itemViewEvent.findViewById(R.id.time_event_tv)
+                    var timeTp : TimePicker = dialogEventV.findViewById(R.id.timePicker)
 
                     eventEd.setText(items[position].event)
-                    timeTv.setText(items[position].time)
+                    var time:Time
+                    timeTp.currentHour = items[position].hours
+                    timeTp.currentMinute = items[position].minutes
 
-                    val mBuilder = AlertDialog.Builder(context)
+                    val builder = AlertDialog.Builder(context)
                             .setView(dialogEventV)
-                    val mAlertDialog = mBuilder.show()
+                    val ad = builder.show()
 
                     val saveBtn: Button = dialogEventV.findViewById(R.id.save_dialog_event)
 
                     saveBtn.setOnClickListener {
-                        mAlertDialog.dismiss()
-                        if (eventEd.text.isNotEmpty() && timeTv.text.isNotEmpty()) {
-                            event_tv.setText(items[position].event)
-                            time_tv.setText(items[position].time)
+                        ad.dismiss()
+                        if (eventEd.text.isNotEmpty()) {
+                            items[position].event = eventEd.text.toString()
+                            items[position].hours = timeTp.hour
+                            items[position].minutes = timeTp.minute
                         } else {
                             Toast.makeText(context, "Put values!", Toast.LENGTH_LONG).show()
                         }
+                        adapterEvent.notifyDataSetChanged();
                     }
                     alertDialog.dismiss()
 
                     val cancelBtn: Button = dialogEventV.findViewById(R.id.cancel_date_btn)
                     cancelBtn.setOnClickListener() {
-                        mAlertDialog.dismiss()
+                        ad.dismiss()
                     }
 
                 }
@@ -126,6 +133,5 @@ class AdapterEvent(private val items: ArrayList<Event>) :
             }
 
         }
-
     }
 }

@@ -5,7 +5,6 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.view.animation.AnimationUtils
 import android.widget.*
@@ -16,6 +15,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
+import com.example.smartnote.DateFormatUtils
 import com.example.smartnote.LanguageSupportUtils.Companion.castToLangEvent
 import com.example.smartnote.R
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -29,7 +29,7 @@ class EventsFragment : Fragment() {
     lateinit var eventsRv: RecyclerView
     lateinit var listEvent: ArrayList<Event>
     lateinit var eventAdapter: AdapterEvent
-    lateinit var timeTv: TextView
+//    lateinit var timeTv: TextView
     lateinit var inflater: LayoutInflater
     lateinit var container: ViewGroup
     lateinit var eventAllTv: TextView
@@ -76,7 +76,7 @@ class EventsFragment : Fragment() {
         eventsRv = root.findViewById(R.id.recyclerViewEvents)
         eventsRv.layoutManager =
                 LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        eventAdapter = AdapterEvent(listEvent, context,container, inflater)
+        eventAdapter = AdapterEvent(listEvent, context, container)
         eventsRv.adapter = eventAdapter
         eventAdapter.notifyDataSetChanged()
 
@@ -93,6 +93,7 @@ class EventsFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    @SuppressLint("NewApi")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         var id = item.itemId
         if (id == R.id.settings) {
@@ -131,10 +132,11 @@ class EventsFragment : Fragment() {
 
         if (id == R.id.add) {
             val dialogEventV = inflater.inflate(R.layout.event_dialog, container, false)
-            val itemViewEvent = inflater.inflate(R.layout.item_event, container, false)
+//            val itemViewEvent = inflater.inflate(R.layout.item_event, container, false)
             val eventEd: EditText = dialogEventV.findViewById(R.id.event)
-            timeTv = itemViewEvent.findViewById(R.id.time_event_tv)
-            OnClickTime(dialogEventV)
+            val timePicker: TimePicker = dialogEventV.findViewById(R.id.timePicker)
+//            timeTv = itemViewEvent.findViewById(R.id.time_event_tv)
+//            OnClickTime(dialogEventV)
 
             val mBuilder = AlertDialog.Builder(context)
                     .setView(dialogEventV)
@@ -144,13 +146,13 @@ class EventsFragment : Fragment() {
 
             saveBtn.setOnClickListener {
                 mAlertDialog.dismiss()
-                if (eventEd.text.isNotEmpty() && timeTv.text.isNotEmpty()) {
+                if (eventEd.text.isNotEmpty()) {
                     var newEvent = Event()
 
-
                     newEvent.event = eventEd.text.toString()
-                    newEvent.date_ev = calendarView.date
-                    newEvent.time = timeTv.text.toString()
+                    newEvent.date = calendarView.date
+                    newEvent.hours = timePicker.hour
+                    newEvent.minutes = timePicker.minute
                     listEvent.add(newEvent)
                 } else {
                     Toast.makeText(context, "Put values!", Toast.LENGTH_LONG).show()
@@ -167,31 +169,52 @@ class EventsFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun OnClickTime(dialogEventV : View) {
-        val timePicker: TimePicker = dialogEventV.findViewById(R.id.timePicker)
-        timePicker.setOnTimeChangedListener { _, hour, minute ->
-            var hour = hour
-            var am_pm = ""
-            // AM_PM decider logic
-            when {hour == 0 -> { hour += 12
-                am_pm = "AM"
-            }
-            hour == 12 -> am_pm = "PM"
-            hour > 12 -> { hour -= 12
-                am_pm = "PM"
-            }
-                else -> am_pm = "AM"
-            }
-            if (timeTv != null) {
-                val hour = if (hour < 10) "0" + hour else hour
-                val min = if (minute < 10) "0" + minute else minute
-                // display format of time
-                val msg = "$hour : $min $am_pm"
-                timeTv.text = msg
-                timeTv.visibility = ViewGroup.VISIBLE
-            }
-        }
-    }
+//    private fun getFormatedTime(hour:Int, minute:Int): String {
+//        var hour = hour
+//        var am_pm = ""
+//        when {
+//            hour == 0 -> {
+//                hour += 12
+//                am_pm = "AM"
+//            }
+//            hour == 12 -> am_pm = "PM"
+//            hour > 12 -> {
+//                hour -= 12
+//                am_pm = "PM"
+//            } else -> am_pm = "AM"
+//        }
+//        val msgHour = if (hour < 10) "0" + hour else hour
+//        val msgMin = if (minute < 10) "0" + minute else minute
+//        // display format of time
+//        val msg = "$msgHour : $msgMin $am_pm"
+//        return msg
+//    }
+
+//    private fun OnClickTime(dialogEventV : View) {
+//        val timePicker: TimePicker = dialogEventV.findViewById(R.id.timePicker)
+//        timePicker.setOnTimeChangedListener { _, hour, minute ->
+//            var hour = hour
+//            var am_pm = ""
+//            // AM_PM decider logic
+//            when {hour == 0 -> { hour += 12
+//                am_pm = "AM"
+//            }
+//            hour == 12 -> am_pm = "PM"
+//            hour > 12 -> { hour -= 12
+//                am_pm = "PM"
+//            }
+//                else -> am_pm = "AM"
+//            }
+////            if (timeTv != null) {
+//                val hour = if (hour < 10) "0" + hour else hour
+//                val min = if (minute < 10) "0" + minute else minute
+//                // display format of time
+//                val msg = "$hour : $min $am_pm"
+////                timeTv.text = msg
+////                timeTv.visibility = ViewGroup.VISIBLE
+////            }
+//        }
+//    }
 
     private fun setFiltersClickListeners() {
         color =  eventAllTv.textColors.defaultColor
@@ -204,7 +227,7 @@ class EventsFragment : Fragment() {
 
             eventAllTv.setTextColor(Color.WHITE)
 
-            eventAdapter = AdapterEvent(listEvent, context, container, inflater)
+            eventAdapter = AdapterEvent(listEvent, context, container)
             eventsRv.adapter = eventAdapter
             eventAdapter.notifyDataSetChanged()
         }
@@ -213,7 +236,7 @@ class EventsFragment : Fragment() {
             var filterCollectionByDay = ArrayList<Event>()
 
             for(event in listEvent) {
-                if(dateFormatter.format(event.date_ev).equals(dateFormatter.format(calendarView.date))) {
+                if(dateFormatter.format(event.date).equals(dateFormatter.format(calendarView.date))) {
                     filterCollectionByDay.add(event)
                 }
             }
@@ -222,7 +245,7 @@ class EventsFragment : Fragment() {
 
             eventDayTv.setTextColor(Color.WHITE)
 
-            eventAdapter = AdapterEvent(filterCollectionByDay, context, container, inflater)
+            eventAdapter = AdapterEvent(filterCollectionByDay, context, container)
             eventsRv.adapter = eventAdapter
             eventAdapter.notifyDataSetChanged()
         }
@@ -239,14 +262,14 @@ class EventsFragment : Fragment() {
             var filterCollectionByWeek = ArrayList<Event>()
 
             for(event in listEvent) {
-                if(event.date_ev >= startWeek && event.date_ev <= endWeek) {
+                if(event.date >= startWeek && event.date <= endWeek) {
                     filterCollectionByWeek.add(event)
                 }
             }
 
             resetHighlightFilter()
             eventWeekTv.setTextColor(Color.WHITE)
-            eventAdapter = AdapterEvent(filterCollectionByWeek, context, container, inflater)
+            eventAdapter = AdapterEvent(filterCollectionByWeek, context, container)
 
             eventsRv.adapter = eventAdapter
             eventAdapter.notifyDataSetChanged()
@@ -264,13 +287,13 @@ class EventsFragment : Fragment() {
             var filterCollectionByMonth = ArrayList<Event>()
 
             for(event in listEvent) {
-                if(event.date_ev >= startMonth && event.date_ev < endMonth) {
+                if(event.date >= startMonth && event.date < endMonth) {
                     filterCollectionByMonth.add(event)
                 }
             }
             resetHighlightFilter()
             eventMonthTv.setTextColor(Color.WHITE)
-            eventAdapter = AdapterEvent(filterCollectionByMonth, context, container, inflater)
+            eventAdapter = AdapterEvent(filterCollectionByMonth, context, container)
 
             eventsRv.adapter = eventAdapter
             eventAdapter.notifyDataSetChanged()
@@ -348,13 +371,13 @@ class EventsFragment : Fragment() {
                 var filterCollectionByCustom = ArrayList<Event>()
 
                 for(event in listEvent) {
-                    if(event.date_ev >= startDate && event.date_ev <= endDate) {
+                    if(event.date >= startDate && event.date <= endDate) {
                         filterCollectionByCustom.add(event)
                     }
                 }
                 resetHighlightFilter()
                 eventCustomTv.setTextColor(Color.WHITE)
-                eventAdapter = AdapterEvent(filterCollectionByCustom, context, container, inflater)
+                eventAdapter = AdapterEvent(filterCollectionByCustom, context, container)
 
                 eventsRv.adapter = eventAdapter
                 eventAdapter.notifyDataSetChanged()
