@@ -62,7 +62,7 @@
     <string name="data">Дата</string>
     <string name="event">Мероприятие</string>
     <string name="privacy_policy">Политика конфиденциальности</string>
-    <string name="percentage">Процент Экономии</string>
+    <string name="percentage">% Экономии</string>
     <string name="goods">Товары</string>
     <string name="note">Примечание</string>
     <string name="thing">Вещь</string>
@@ -77,7 +77,7 @@
     <string name="credentials">"Реквизиты "</string>
     <string name="reference">Ссылка</string>
     <string name="ok">Ok</string>
-    <string name="unit_of_goods">Единица товара</string>
+    <string name="unit_of_goods">Tовар</string>
     <string name="economy">Экономия</string>
     <string name="account_type">Тип аккаунта</string>
     <string name="shoppings">Шопинг</string>
@@ -123,6 +123,7 @@
     <string name="search">Поиск здесь</string>
     <string name="disable_dark_mode">Отключить Темный Режим</string>
     <string name="enable_dark_mode">Включить Темный Режим</string>
+    <string name="edit">Изменить</string>
 
 
 </resources>

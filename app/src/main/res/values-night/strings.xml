@@ -28,7 +28,7 @@
     <string name="data">Date</string>
     <string name="event">Event</string>
     <string name="privacy_policy">Privacy Policy</string>
-    <string name="percentage">Economy Percentage</string>
+    <string name="percentage">% Economy</string>
     <string name="goods">Goods</string>
     <string name="note">Note</string>
     <string name="thing">Thing</string>
@@ -88,5 +88,6 @@
     <string name="search">Search Here</string>
     <string name="disable_dark_mode">Disable Dark Mode</string>
     <string name="enable_dark_mode">Enable Dark Mode</string>
+    <string name="edit">Edit</string>
 
 </resources>

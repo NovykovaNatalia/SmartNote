@@ -62,7 +62,7 @@
     <string name="data">Data</string>
     <string name="event">Wydarzenie</string>
     <string name="privacy_policy">Polityka Prywatności</string>
-    <string name="percentage">Procent oszczędności</string>
+    <string name="percentage">% oszczędności</string>
     <string name="goods">Towary</string>
     <string name="note">Uwaga</string>
     <string name="thing">Rzecz</string>
@@ -77,7 +77,7 @@
     <string name="credentials">Referencje</string>
     <string name="reference">Link</string>
     <string name="ok">Ok</string>
-    <string name="unit_of_goods">Jednostka Towarowa</string>
+    <string name="unit_of_goods">Towar</string>
     <string name="economy">Oszczędność</string>
     <string name="account_type">Typ Konta</string>
     <string name="shoppings">Zakupy</string>
@@ -123,6 +123,7 @@
     <string name="search">Szukaj tutaj</string>
     <string name="disable_dark_mode">Wyłącz Tryb Ciemny</string>
     <string name="enable_dark_mode">Włącz Tryb Ciemny</string>
+    <string name="edit">Edytuj</string>
 
 
 </resources>

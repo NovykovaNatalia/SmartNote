@@ -62,7 +62,7 @@
     <string name="data">Дата</string>
     <string name="event">Подія</string>
     <string name="privacy_policy">Політика конфіденційності</string>
-    <string name="percentage">Відсоток Економії</string>
+    <string name="percentage">% Економії</string>
     <string name="goods">Одиниця товару</string>
     <string name="note">Замітка</string>
     <string name="thing">Річ</string>
@@ -77,7 +77,7 @@
     <string name="credentials">Облікові дані</string>
     <string name="reference">Посилання</string>
     <string name="ok">Ok</string>
-    <string name="unit_of_goods">Одиниця товару</string>
+    <string name="unit_of_goods">Товар</string>
     <string name="economy">Економія</string>
     <string name="account_type">Тип рахунку</string>
     <string name="shoppings">Покупки</string>
@@ -123,4 +123,5 @@
     <string name="search">Шукати тут</string>
     <string name="disable_dark_mode">Вимкнути Темний Режим</string>
     <string name="enable_dark_mode">Включити Темний Режим</string>
+    <string name="edit">Редагувати</string>
 </resources>

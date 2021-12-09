@@ -76,7 +76,7 @@ class EventsFragment : Fragment() {
         eventsRv = root.findViewById(R.id.recyclerViewEvents)
         eventsRv.layoutManager =
                 LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        eventAdapter = AdapterEvent(listEvent, context)
+        eventAdapter = AdapterEvent(listEvent, context,container, inflater)
         eventsRv.adapter = eventAdapter
         eventAdapter.notifyDataSetChanged()
 
@@ -204,7 +204,7 @@ class EventsFragment : Fragment() {
 
             eventAllTv.setTextColor(Color.WHITE)
 
-            eventAdapter = AdapterEvent(listEvent, context)
+            eventAdapter = AdapterEvent(listEvent, context, container, inflater)
             eventsRv.adapter = eventAdapter
             eventAdapter.notifyDataSetChanged()
         }
@@ -222,7 +222,7 @@ class EventsFragment : Fragment() {
 
             eventDayTv.setTextColor(Color.WHITE)
 
-            eventAdapter = AdapterEvent(filterCollectionByDay, context)
+            eventAdapter = AdapterEvent(filterCollectionByDay, context, container, inflater)
             eventsRv.adapter = eventAdapter
             eventAdapter.notifyDataSetChanged()
         }
@@ -246,7 +246,7 @@ class EventsFragment : Fragment() {
 
             resetHighlightFilter()
             eventWeekTv.setTextColor(Color.WHITE)
-            eventAdapter = AdapterEvent(filterCollectionByWeek, context)
+            eventAdapter = AdapterEvent(filterCollectionByWeek, context, container, inflater)
 
             eventsRv.adapter = eventAdapter
             eventAdapter.notifyDataSetChanged()
@@ -270,7 +270,7 @@ class EventsFragment : Fragment() {
             }
             resetHighlightFilter()
             eventMonthTv.setTextColor(Color.WHITE)
-            eventAdapter = AdapterEvent(filterCollectionByMonth, context)
+            eventAdapter = AdapterEvent(filterCollectionByMonth, context, container, inflater)
 
             eventsRv.adapter = eventAdapter
             eventAdapter.notifyDataSetChanged()
@@ -354,7 +354,7 @@ class EventsFragment : Fragment() {
                 }
                 resetHighlightFilter()
                 eventCustomTv.setTextColor(Color.WHITE)
-                eventAdapter = AdapterEvent(filterCollectionByCustom, context)
+                eventAdapter = AdapterEvent(filterCollectionByCustom, context, container, inflater)
 
                 eventsRv.adapter = eventAdapter
                 eventAdapter.notifyDataSetChanged()
