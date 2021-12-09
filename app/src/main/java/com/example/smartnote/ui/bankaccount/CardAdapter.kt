@@ -5,10 +5,7 @@ import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.LanguageSupportUtils.Companion.castToLangBank
 import com.example.smartnote.R
@@ -17,10 +14,12 @@ import com.example.smartnote.ui.bankaccount.Card
 class CardAdapter(private var items: ArrayList<Card>):
     RecyclerView.Adapter<CardAdapter.ViewHolder>() {
     lateinit var context: Context
+    lateinit var cardAdapter: CardAdapter
 
     constructor(items: ArrayList<Card>, context: Context?): this(items) {
         if (context != null ) {
             this.context = context
+            this.cardAdapter = this
         }
     }
 
@@ -61,6 +60,7 @@ class CardAdapter(private var items: ArrayList<Card>):
                     .setTitle(context.getString(R.string.delete_the_item))
                 val alertDialog = builder.show()
                 val imageShare : ImageView = dialogView.findViewById(R.id.shareIv)
+                val imageEdit : ImageView = dialogView.findViewById(R.id.editIv)
                 val noBtn : TextView = dialogView.findViewById(R.id.noBtn)
                 val yesBtn : TextView = dialogView.findViewById(R.id.yesBtn)
 
@@ -72,9 +72,50 @@ class CardAdapter(private var items: ArrayList<Card>):
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
                     context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.choose_one)))
                 }
+
+                imageEdit.setOnClickListener {
+                    val dialogView = LayoutInflater.from(context).inflate(R.layout.bank_account_dialog, null);
+                    val builder = AlertDialog.Builder(context)
+                            .setView(dialogView)
+                            .setTitle(context.getString(R.string.bank_account))
+                    val ad = builder.show()
+
+                    val salaryAccountEt : EditText = dialogView.findViewById(R.id.salary_account)
+                    salaryAccountEt.setText(items[position].account)
+                    val bankNameEt : EditText = dialogView.findViewById(R.id.bank_name)
+                    bankNameEt.setText(items[position].bankName)
+                    val numberEt : EditText = dialogView.findViewById(R.id.number)
+                    numberEt.setText(items[position].accountNumber)
+                    val nameSurnameEt : EditText = dialogView.findViewById(R.id.person_name_surname)
+                    nameSurnameEt.setText(items[position].nameSurname)
+
+                    val saveBtn : Button = dialogView.findViewById(R.id.save_dialog_bank)
+                    saveBtn.setOnClickListener {
+                        if(salaryAccountEt.text.isNotEmpty()
+                                && bankNameEt.text.isNotEmpty()
+                                && numberEt.text.isNotEmpty()
+                                && nameSurnameEt.text.isNotEmpty()) {
+                            ad.dismiss()
+                            items[position].account = salaryAccountEt.text.toString()
+                            items[position].bankName = bankNameEt.text.toString()
+                            items[position].accountNumber = numberEt.text.toString()
+                            items[position].nameSurname = nameSurnameEt.text.toString()
+                        } else {
+                            Toast.makeText(context, context.getString(R.string.put_values), Toast.LENGTH_LONG).show()
+                        }
+                        cardAdapter.notifyDataSetChanged()
+                    }
+                    alertDialog.dismiss()
+                    val cancelBtn: Button = dialogView.findViewById(R.id.cancel_dialog_bank)
+                    cancelBtn.setOnClickListener() {
+                        ad.dismiss()
+                    }
+                }
+
                 noBtn.setOnClickListener{
                     alertDialog.dismiss()
                 }
+
                 yesBtn.setOnClickListener {
                     items.remove(items[position])
                     notifyDataSetChanged()

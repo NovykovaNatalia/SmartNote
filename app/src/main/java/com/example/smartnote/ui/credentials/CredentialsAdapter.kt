@@ -6,8 +6,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.LanguageSupportUtils
 import com.example.smartnote.R
@@ -15,10 +14,12 @@ import com.example.smartnote.R
 class CredentialsAdapter(private val items: ArrayList<Credentials> ) :
         RecyclerView.Adapter<CredentialsAdapter.ViewHolder>() {
     lateinit var context: Context
+    lateinit var credentialsAdapter: CredentialsAdapter
 
     constructor(items: ArrayList<Credentials>, context: Context?): this(items) {
         if (context != null ) {
             this.context = context
+            this.credentialsAdapter = this
         }
     }
 
@@ -53,7 +54,9 @@ class CredentialsAdapter(private val items: ArrayList<Credentials> ) :
                     .setView(dialogView)
                     .setTitle(context.getString(R.string.delete_the_item))
                 val alertDialog = builder.show()
+
                 val imageShare : ImageView = dialogView.findViewById(R.id.shareIv)
+                val imageEdit : ImageView = dialogView.findViewById(R.id.editIv)
                 val noBtn : TextView = dialogView.findViewById(R.id.noBtn)
                 val yesBtn : TextView = dialogView.findViewById(R.id.yesBtn)
 
@@ -66,6 +69,41 @@ class CredentialsAdapter(private val items: ArrayList<Credentials> ) :
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
                     context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.choose_one)))
                 }
+
+                imageEdit.setOnClickListener {
+                    val credentialsDv = LayoutInflater.from(context)
+                            .inflate(R.layout.credentials_dialog, null);
+
+                    val builder = AlertDialog.Builder(context)
+                            .setView(credentialsDv)
+                            .setTitle(context.getString(R.string.credentials))
+                    val ad = builder.show()
+
+                    val dialogCredentialsEt: EditText = credentialsDv.findViewById(R.id.credential)
+                    dialogCredentialsEt.setText(items[position].credential)
+                    val dialogReferenceEt: EditText = credentialsDv.findViewById(R.id.reference)
+                    dialogReferenceEt.setText(items[position].reference)
+
+                    val saveBtn: Button = credentialsDv.findViewById(R.id.save_dialog_credentials);
+                    saveBtn.setOnClickListener {
+                        ad.dismiss()
+                        if(dialogCredentialsEt.text.isNotEmpty() && dialogReferenceEt.text.isNotEmpty()) {
+                            val credentials = Credentials()
+                            items[position].credential = dialogCredentialsEt.text.toString()
+                            items[position].reference = dialogReferenceEt.text.toString()
+
+                        } else {
+                            Toast.makeText(context, "Put value!", Toast.LENGTH_LONG).show()
+                        }
+                        credentialsAdapter.notifyDataSetChanged()
+                    }
+                    alertDialog.dismiss()
+                    val  cancelBtn: Button = credentialsDv.findViewById(R.id.cancel_dialog_credentials)
+                    cancelBtn.setOnClickListener() {
+                        ad.dismiss()
+                    }
+                }
+
                 noBtn.setOnClickListener{
                     alertDialog.dismiss()
                 }

@@ -1,4 +1,4 @@
-package com.example.smartnote.ui.sales
+package com.example.smartnote.ui.discount
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -68,7 +68,7 @@ class DiscountFragment : Fragment() {
                     cardSales.brand = brend.text.toString()
                     cardSales.thing = thing.text.toString()
                     cardSales.discount = discount.text.toString().toDouble()
-                    cardSales.true_price = truePrice.text.toString().toDouble()
+                    cardSales.truePrice = truePrice.text.toString().toDouble()
 
                     cardSales.calculateData()
 

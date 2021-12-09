@@ -29,7 +29,7 @@
         tools:layout="@layout/fragment_credentials" />
     <fragment
         android:id="@+id/sales"
-        android:name="com.example.smartnote.ui.sales.DiscountFragment"
+        android:name="com.example.smartnote.ui.discount.DiscountFragment"
         android:label="@string/menu_sales"
         tools:layout="@layout/fragment_discounts" />
     <fragment

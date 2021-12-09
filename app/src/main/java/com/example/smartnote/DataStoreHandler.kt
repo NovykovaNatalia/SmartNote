@@ -5,7 +5,7 @@ import android.preference.PreferenceManager
 import com.example.smartnote.ui.bankaccount.Card
 import com.example.smartnote.ui.credentials.Credentials
 import com.example.smartnote.ui.events.Event
-import com.example.smartnote.ui.sales.Discount
+import com.example.smartnote.ui.discount.Discount
 import com.example.smartnote.ui.shopping.ShoppingItem
 import com.example.smartnote.ui.textnote.CardNote
 import com.google.gson.Gson
