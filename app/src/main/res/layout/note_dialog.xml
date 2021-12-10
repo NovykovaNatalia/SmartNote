@@ -13,11 +13,15 @@
 
         <EditText
             android:id="@+id/note"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:hint="@string/note"
-            android:inputType="text" />
+            android:layout_margin="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/radius"
+            android:hint="@string/event"
+            android:padding="10dp"
+            />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -59,7 +63,6 @@
             tools:layout_editor_absoluteY="4dp"
             tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </LinearLayout>

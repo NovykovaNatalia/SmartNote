@@ -3,7 +3,6 @@ package com.example.smartnote.ui.textnote
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,20 +10,19 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.LanguageSupportUtils
 import com.example.smartnote.R
-import com.example.smartnote.ui.credentials.Credentials
 import kotlin.collections.ArrayList
 
-class CustomAdapterNote(private val items: ArrayList<CardNote>) :
-        RecyclerView.Adapter<CustomAdapterNote.ViewHolder>() {
+class TextNoteAdapter(private val items: ArrayList<CardNote>) :
+        RecyclerView.Adapter<TextNoteAdapter.ViewHolder>() {
 
     lateinit var context: Context;
-    lateinit var adapterNote: CustomAdapterNote
+    lateinit var adapterNoteAdapter: TextNoteAdapter
 
     constructor(items: ArrayList<CardNote>, context: Context?) : this(items) {
 
         if (context != null) {
             this.context = context
-            this.adapterNote = this
+            this.adapterNoteAdapter = this
         }
     }
 
@@ -36,7 +34,7 @@ class CustomAdapterNote(private val items: ArrayList<CardNote>) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapterNote.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextNoteAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_note, parent, false)
         return ViewHolder(view)
@@ -46,7 +44,7 @@ class CustomAdapterNote(private val items: ArrayList<CardNote>) :
         return items.size
     }
 
-    override fun onBindViewHolder(holder: CustomAdapterNote.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TextNoteAdapter.ViewHolder, position: Int) {
         holder.run {
             note_tv.setText(items[position].note)
 
@@ -91,7 +89,7 @@ class CustomAdapterNote(private val items: ArrayList<CardNote>) :
                         } else {
                             Toast.makeText(context, "Put value!", Toast.LENGTH_LONG).show()
                         }
-                        adapterNote.notifyDataSetChanged()
+                        adapterNoteAdapter.notifyDataSetChanged()
                     }
                     alertDialog.dismiss()
                     val  cancelBtn: Button = noteDv.findViewById(R.id.cancel_dialog_note)

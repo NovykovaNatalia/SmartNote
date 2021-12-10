@@ -25,7 +25,7 @@ class TextNoteFragment : Fragment() {
     lateinit var noteEt: EditText
     lateinit var recyclerView: RecyclerView
     lateinit var cardListNote:ArrayList<CardNote>
-    lateinit var customAdapterNote: CustomAdapterNote
+    lateinit var textNoteAdapter: TextNoteAdapter
     private val  REQUEST_CODE_SPEECH = 100
 
     @SuppressLint("WrongConstant")
@@ -40,9 +40,9 @@ class TextNoteFragment : Fragment() {
         recyclerView.startAnimation(ttb)
 
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        customAdapterNote = CustomAdapterNote(cardListNote, context)
-        recyclerView.adapter = customAdapterNote
-        customAdapterNote.notifyDataSetChanged()
+        textNoteAdapter = TextNoteAdapter(cardListNote, context)
+        recyclerView.adapter = textNoteAdapter
+        textNoteAdapter.notifyDataSetChanged()
         val sv : SearchView = view.findViewById(R.id.searchViewNote)
         sv.startAnimation(ttb)
         sv.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -51,8 +51,8 @@ class TextNoteFragment : Fragment() {
             }
             override fun onQueryTextChange(newText: String): Boolean {
                 var filteredList:ArrayList<CardNote> = filter(cardListNote, newText)
-                recyclerView.adapter = CustomAdapterNote(filteredList, context)
-                (recyclerView.adapter as CustomAdapterNote).notifyDataSetChanged()
+                recyclerView.adapter = TextNoteAdapter(filteredList, context)
+                (recyclerView.adapter as TextNoteAdapter).notifyDataSetChanged()
                 return true
             }
 
@@ -87,7 +87,7 @@ class TextNoteFragment : Fragment() {
                 } else {
                     Toast.makeText(context, R.string.put_values, Toast.LENGTH_LONG).show()
                 }
-                customAdapterNote.notifyDataSetChanged()
+                textNoteAdapter.notifyDataSetChanged()
             }
             cancelActionButtonNote.setOnClickListener() {
                 mAlertDialog.dismiss()
@@ -138,7 +138,7 @@ class TextNoteFragment : Fragment() {
             when (currentFragment) {
                 is TextNoteFragment -> {
                     DataStoreHandler.notes.removeAll(DataStoreHandler.notes)
-                    currentFragment.customAdapterNote.notifyDataSetChanged()
+                    currentFragment.textNoteAdapter.notifyDataSetChanged()
                     DataStoreHandler.saveArrayListNotes()
                 }
             }
