@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <NumberPicker
-        android:id="@+id/quantityNumberPickerDialog"
+    <EditText
+        android:id="@+id/goods_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:autofillHints="Put goods name" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/quantityNumberPickerDialog">
-
+        android:layout_below="@+id/goods_et">
         <Button
             android:id="@+id/save_dialog_shopping"
             android:layout_width="100dp"
@@ -29,9 +30,10 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_toRightOf="@+id/save_dialog_shopping"
             android:layout_weight="2"
+            android:layout_toRightOf="@+id/save_dialog_shopping"
             android:text="@string/cancel" />
     </LinearLayout>
-    
+
+
 </RelativeLayout>

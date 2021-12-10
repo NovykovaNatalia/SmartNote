@@ -62,18 +62,18 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
             quantity_tv.setText(items[position].quantity.toString())
 
             quantity_tv.setOnClickListener{
-                val mDialogViewShopping = LayoutInflater.from(context).inflate(R.layout.shopping_dialog, null)
-                val mBuilder = AlertDialog.Builder(context)
-                        .setView(mDialogViewShopping)
+                val dialogViewShopping = LayoutInflater.from(context).inflate(R.layout.shopping_dialog, null)
+                val builder = AlertDialog.Builder(context)
+                        .setView(dialogViewShopping)
                         .setTitle("Shopping")
-                val mAlertDialog = mBuilder.show()
+                val alertDialog = builder.show()
 
-                val quantity_adnp = mDialogViewShopping.findViewById<NumberPicker>(R.id.quantityNumberPickerDialog)
+                val quantity_adnp = dialogViewShopping.findViewById<NumberPicker>(R.id.quantityNumberPickerDialog)
                 quantity_adnp.minValue = 1
-                quantity_adnp.maxValue = 23
+                quantity_adnp.maxValue = 50
 
-                val cancelActionButtonShopping = mDialogViewShopping.findViewById<Button>(R.id.cancel_dialog_shopping)
-                val saveActionButtonShopping = mDialogViewShopping.findViewById<Button>(R.id.save_dialog_shopping)
+                val cancelActionButtonShopping = dialogViewShopping.findViewById<Button>(R.id.cancel_dialog_shopping)
+                val saveActionButtonShopping = dialogViewShopping.findViewById<Button>(R.id.save_dialog_shopping)
 
                 saveActionButtonShopping.setOnClickListener{
 
@@ -83,13 +83,14 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
                     } else {
                         Toast.makeText(context, context.getString(R.string.put_value), Toast.LENGTH_LONG).show()
                     }
-                    mAlertDialog.dismiss()
+                    alertDialog.dismiss()
                 }
                 cancelActionButtonShopping.setOnClickListener{
-                    mAlertDialog.dismiss()
+                    alertDialog.dismiss()
                 }
 
             }
+
 
             itemView.setOnClickListener {
                 val dialogView = LayoutInflater.from( context).inflate(R.layout.delete_share_layout, null);
@@ -98,6 +99,7 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
                     .setTitle(context.getString(R.string.delete_the_item))
                 val alertDialog = builder.show()
                 val imageShare : ImageView = dialogView.findViewById(R.id.shareIv)
+                val imageEdit : ImageView = dialogView.findViewById(R.id.editIv)
                 val noBtn : TextView = dialogView.findViewById(R.id.noBtn)
                 val yesBtn : TextView = dialogView.findViewById(R.id.yesBtn)
 
@@ -110,13 +112,33 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
                     context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.choose_one)))
                 }
-                noBtn.setOnClickListener{
-                    alertDialog.dismiss()
-                }
-                yesBtn.setOnClickListener {
-                    items.remove(items[position])
-                    notifyDataSetChanged()
-                    alertDialog.dismiss()
+
+                imageEdit.setOnClickListener {
+
+                    val dialogViewGoodsShopping = LayoutInflater.from(context).inflate(R.layout.shopping_goods_dialog, null)
+                    val builder = AlertDialog.Builder(context)
+                            .setView(dialogViewGoodsShopping)
+                            .setTitle("Shopping")
+                    val ad = builder.show()
+
+                    val goodsEt = dialogViewGoodsShopping.findViewById<EditText>(R.id.goods_et)
+                    goodsEt.setText(items[position].itemname)
+                    val cancelActionButtonShopping = dialogViewGoodsShopping.findViewById<Button>(R.id.cancel_dialog_shopping)
+                    val saveActionButtonShopping = dialogViewGoodsShopping.findViewById<Button>(R.id.save_dialog_shopping)
+
+                    saveActionButtonShopping.setOnClickListener{
+                        ad.dismiss()
+                        if (goodsEt.text.toString().isNotEmpty()) {
+                            goods_tv.setText(goodsEt.text.toString())
+                            items[position].itemname = goodsEt.text.toString()
+                        } else {
+                            Toast.makeText(context, context.getString(R.string.put_value), Toast.LENGTH_LONG).show()
+                        }
+                        alertDialog.dismiss()
+                    }
+                    cancelActionButtonShopping.setOnClickListener{
+                        ad.dismiss()
+                    }
                 }
             }
 

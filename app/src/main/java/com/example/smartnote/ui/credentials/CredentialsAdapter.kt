@@ -84,11 +84,10 @@ class CredentialsAdapter(private val items: ArrayList<Credentials> ) :
                     val dialogReferenceEt: EditText = credentialsDv.findViewById(R.id.reference)
                     dialogReferenceEt.setText(items[position].reference)
 
-                    val saveBtn: Button = credentialsDv.findViewById(R.id.save_dialog_credentials);
+                    val saveBtn: Button = credentialsDv.findViewById(R.id.save_dialog_credentials)
                     saveBtn.setOnClickListener {
                         ad.dismiss()
                         if(dialogCredentialsEt.text.isNotEmpty() && dialogReferenceEt.text.isNotEmpty()) {
-                            val credentials = Credentials()
                             items[position].credential = dialogCredentialsEt.text.toString()
                             items[position].reference = dialogReferenceEt.text.toString()
 

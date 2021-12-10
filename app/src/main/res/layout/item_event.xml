@@ -10,7 +10,7 @@
 
     <RelativeLayout
         android:id="@+id/line_one_events"
-        android:layout_width="320dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
@@ -44,13 +44,12 @@
 
     </RelativeLayout>
     <ImageView
-        android:layout_width="30dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:foregroundGravity="center_vertical"
         android:layout_marginTop="20dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         app:srcCompat="@drawable/ic_baseline_more_horiz_24" />
-
 
 </RelativeLayout>

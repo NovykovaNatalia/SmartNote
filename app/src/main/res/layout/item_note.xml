@@ -8,11 +8,11 @@
     android:background="@drawable/border"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/line_one_note"
-        android:layout_width="320dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
@@ -26,10 +26,11 @@
 
         <TextView
             android:id="@+id/note_tv"
+            android:layout_below="@id/note_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/note" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -37,5 +38,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_baseline_more_horiz_24" />
+        app:srcCompat="@drawable/ic_baseline_more_horiz_24" />
+
 </RelativeLayout>

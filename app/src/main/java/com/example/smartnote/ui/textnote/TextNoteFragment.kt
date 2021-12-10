@@ -61,21 +61,21 @@ class TextNoteFragment : Fragment() {
         val fab : FloatingActionButton = view.findViewById(R.id.floating_btn_note)
         fab.startAnimation(ttb)
         fab.setOnClickListener{
-            val mDialogViewNote = LayoutInflater.from( context).inflate(R.layout.note_dialog, null);
+            val dialogViewNote = LayoutInflater.from( context).inflate(R.layout.note_dialog, null);
             val mBuilder = AlertDialog.Builder(context)
-                    .setView(mDialogViewNote)
+                    .setView(dialogViewNote)
                     .setTitle(getString(R.string.notes))
             val mAlertDialog = mBuilder.show()
 
-            noteEt = mDialogViewNote.findViewById(R.id.note)
-            val image_voice : ImageView = mDialogViewNote.findViewById(R.id.image_voice)
+            noteEt = dialogViewNote.findViewById(R.id.note)
+            val image_voice : ImageView = dialogViewNote.findViewById(R.id.image_voice)
 
             image_voice.setOnClickListener{
                 speak()
             }
 
-            val cancelActionButtonNote : Button = mDialogViewNote.findViewById(R.id.cancel_dialog_note)
-            val saveActionButtonNote : Button = mDialogViewNote.findViewById(R.id.save_dialog_note);
+            val cancelActionButtonNote : Button = dialogViewNote.findViewById(R.id.cancel_dialog_note)
+            val saveActionButtonNote : Button = dialogViewNote.findViewById(R.id.save_dialog_note);
 
             saveActionButtonNote.setOnClickListener {
                     mAlertDialog.dismiss()
