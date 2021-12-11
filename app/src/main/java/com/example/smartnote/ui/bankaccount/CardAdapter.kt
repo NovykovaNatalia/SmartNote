@@ -26,11 +26,15 @@ class CardAdapter(private var items: ArrayList<Card>):
         val bankNameTV: TextView
         val numberTV: TextView
         val personNameSurnameTV: TextView
+        val dot3Image:ImageView
+        val ll: LinearLayout
         init {
             salaryAcountTV = view.findViewById(R.id.salary_account_tv)
             bankNameTV = view.findViewById(R.id.bank_name_tv)
             numberTV = view.findViewById(R.id.number_tv)
             personNameSurnameTV = view.findViewById(R.id.person_name_surname_tv)
+            dot3Image = view.findViewById(R.id.discount_3dot_image)
+            ll = view.findViewById(R.id.line_three)
         }
     }
 
@@ -51,7 +55,7 @@ class CardAdapter(private var items: ArrayList<Card>):
             bankNameTV.setText(items[position].bankName)
             personNameSurnameTV.setText(items[position].nameSurname)
 
-            itemView.setOnClickListener {
+            ll.setOnClickListener {
                 val dialogView = LayoutInflater.from( context).inflate(R.layout.delete_share_layout, null);
                 val builder = AlertDialog.Builder(context)
                     .setView(dialogView)

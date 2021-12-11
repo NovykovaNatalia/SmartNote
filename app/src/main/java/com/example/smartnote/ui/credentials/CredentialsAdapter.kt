@@ -24,10 +24,11 @@ class CredentialsAdapter(private val items: ArrayList<Credentials> ) :
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val credentialsTv: TextView
         val referenceTv: TextView
-
+        val ll: LinearLayout
         init {
             credentialsTv = view.findViewById(R.id.name_credentials_tv)
             referenceTv = view.findViewById(R.id.reference_credential_tv)
+            ll = view.findViewById(R.id.line_three)
         }
     }
 
@@ -46,7 +47,7 @@ class CredentialsAdapter(private val items: ArrayList<Credentials> ) :
             credentialsTv.setText(items[position].credential)
             referenceTv.setText(items[position].reference)
 
-            itemView.setOnClickListener {
+            ll.setOnClickListener {
                 val dialogView = LayoutInflater.from( context).inflate(R.layout.delete_share_layout, null);
                 val builder = AlertDialog.Builder(context)
                     .setView(dialogView)

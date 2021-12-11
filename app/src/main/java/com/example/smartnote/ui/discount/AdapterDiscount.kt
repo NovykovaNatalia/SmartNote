@@ -29,6 +29,7 @@ class DiscountAdapter(private val items: ArrayList<Discount> ):
         val true_price_tv: TextView
         val economy_tv: TextView
         val percentage_tv: TextView
+        val ll: LinearLayout
 
         init {
             brend_tv = view.findViewById(R.id.brend_tv)
@@ -37,6 +38,7 @@ class DiscountAdapter(private val items: ArrayList<Discount> ):
             true_price_tv= view.findViewById(R.id.true_price_tv)
             economy_tv = view.findViewById(R.id.economy_tv)
             percentage_tv = view.findViewById(R.id.percenage_tv)
+            ll = view.findViewById(R.id.line_four)
         }
     }
 
@@ -59,7 +61,7 @@ class DiscountAdapter(private val items: ArrayList<Discount> ):
             economy_tv.setText(items[position].economy.toInt().toString())
             percentage_tv.setText(items[position].percentage.toInt().toString() + "%")
 
-            itemView.setOnClickListener {
+            ll.setOnClickListener {
                 val dialogView = LayoutInflater.from( context).inflate(R.layout.delete_share_layout, null);
                 val builder = AlertDialog.Builder(context)
                     .setView(dialogView)

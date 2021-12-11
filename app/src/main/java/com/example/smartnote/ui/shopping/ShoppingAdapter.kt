@@ -27,15 +27,16 @@ class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
     class ViewHolder(view: View, ctx:Context) : RecyclerView.ViewHolder(view), NumberPicker.OnValueChangeListener {
         val goods_tv: TextView
         val  quantity_tv: TextView
-        lateinit var context:Context
+        val  ll: LinearLayout
+        var context:Context
 
 
         init {
             goods_tv = view.findViewById(R.id.good_tv)
             quantity_tv = view.findViewById(R.id.quantity_tv)
+            ll = view.findViewById(R.id.line_three)
 
             context= ctx;
-
         }
 
         override fun onValueChange(p0: NumberPicker?, p1: Int, p2: Int) {
@@ -91,7 +92,7 @@ class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
 
             }
 
-            itemView.setOnClickListener {
+            ll.setOnClickListener {
                 val dialogView = LayoutInflater.from( context).inflate(R.layout.delete_share_layout, null);
                 val builder = AlertDialog.Builder(context)
                     .setView(dialogView)

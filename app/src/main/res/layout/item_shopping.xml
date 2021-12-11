@@ -62,20 +62,15 @@
     <LinearLayout
         android:id="@+id/line_three"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight=".10"
-        android:layout_alignParentRight="true"
-        android:paddingTop="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:orientation="vertical">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center_vertical"
             app:srcCompat="@drawable/ic_baseline_more_horiz_24" />
     </LinearLayout>
 

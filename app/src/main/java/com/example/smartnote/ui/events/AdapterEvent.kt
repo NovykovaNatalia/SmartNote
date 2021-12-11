@@ -37,11 +37,13 @@ class AdapterEvent(private val items: ArrayList<Event>) :
         val dateTv: TextView
         var eventTv: TextView
         val timeTv: TextView
+        val ll: LinearLayout
 
         init {
             dateTv = view.findViewById(R.id.date_event_tv)
             eventTv = view.findViewById(R.id.text_event_tv)
             timeTv = view.findViewById(R.id.time_event_tv)
+            ll = view.findViewById(R.id.dot3_ll_id)
         }
     }
 
@@ -63,7 +65,7 @@ class AdapterEvent(private val items: ArrayList<Event>) :
             dateTv.setText(dateFormatter.format(items[position].date))
             timeTv.setText(DateFormatUtils.getFormatedTime(items[position].hours, items[position].minutes))
 
-            itemView.setOnClickListener {
+            ll.setOnClickListener {
                 val dialogView = LayoutInflater.from( context).inflate(R.layout.delete_share_layout, null);
                 val builder = AlertDialog.Builder(context)
                     .setView(dialogView)

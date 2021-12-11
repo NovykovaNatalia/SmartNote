@@ -26,9 +26,10 @@ class TextNoteAdapter(private val items: ArrayList<CardNote>) :
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val note_tv: TextView
-
+        val ll: LinearLayout
         init {
             note_tv = view.findViewById(R.id.note_tv)
+            ll = view.findViewById(R.id.dots3_ll_id)
         }
     }
 
@@ -46,7 +47,7 @@ class TextNoteAdapter(private val items: ArrayList<CardNote>) :
         holder.run {
             note_tv.setText(items[position].note)
 
-            itemView.setOnClickListener {
+            ll.setOnClickListener {
                 val dialogView = LayoutInflater.from( context).inflate(R.layout.delete_share_layout, null);
                 val builder = AlertDialog.Builder(context)
                     .setView(dialogView)
