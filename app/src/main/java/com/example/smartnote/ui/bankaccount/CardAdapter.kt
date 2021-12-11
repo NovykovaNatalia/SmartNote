@@ -14,12 +14,10 @@ import com.example.smartnote.ui.bankaccount.Card
 class CardAdapter(private var items: ArrayList<Card>):
     RecyclerView.Adapter<CardAdapter.ViewHolder>() {
     lateinit var context: Context
-    lateinit var cardAdapter: CardAdapter
 
     constructor(items: ArrayList<Card>, context: Context?): this(items) {
         if (context != null ) {
             this.context = context
-            this.cardAdapter = this
         }
     }
 
@@ -103,7 +101,7 @@ class CardAdapter(private var items: ArrayList<Card>):
                         } else {
                             Toast.makeText(context, context.getString(R.string.put_values), Toast.LENGTH_LONG).show()
                         }
-                        cardAdapter.notifyDataSetChanged()
+                        notifyDataSetChanged()
                     }
                     alertDialog.dismiss()
                     val cancelBtn: Button = dialogView.findViewById(R.id.cancel_dialog_bank)

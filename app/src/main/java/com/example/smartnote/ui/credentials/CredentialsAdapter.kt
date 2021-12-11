@@ -14,12 +14,10 @@ import com.example.smartnote.R
 class CredentialsAdapter(private val items: ArrayList<Credentials> ) :
         RecyclerView.Adapter<CredentialsAdapter.ViewHolder>() {
     lateinit var context: Context
-    lateinit var credentialsAdapter: CredentialsAdapter
 
     constructor(items: ArrayList<Credentials>, context: Context?): this(items) {
         if (context != null ) {
             this.context = context
-            this.credentialsAdapter = this
         }
     }
 
@@ -94,7 +92,7 @@ class CredentialsAdapter(private val items: ArrayList<Credentials> ) :
                         } else {
                             Toast.makeText(context, "Put value!", Toast.LENGTH_LONG).show()
                         }
-                        credentialsAdapter.notifyDataSetChanged()
+                        notifyDataSetChanged()
                     }
                     alertDialog.dismiss()
                     val  cancelBtn: Button = credentialsDv.findViewById(R.id.cancel_dialog_credentials)

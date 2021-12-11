@@ -1,6 +1,6 @@
 package com.example.smartnote.ui.shopping
 
-import CustomAdapterShopping
+import ShoppingAdapter
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
@@ -11,15 +11,12 @@ import android.view.*
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
 import com.example.smartnote.R
-import com.example.smartnote.ui.settings.SettingsFragment
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -29,7 +26,7 @@ class ShoppingFragment : Fragment() {
     lateinit var recyclerViewShopping: RecyclerView
     lateinit var addBtn: ImageButton
     lateinit var list: ArrayList<ShoppingItem>
-    lateinit var customAdapterShopping: CustomAdapterShopping
+    lateinit var shoppingAdapter: ShoppingAdapter
     lateinit var btnSpeach: ImageView
     private val REQUEST_CODE_STT = 1
 
@@ -45,9 +42,9 @@ class ShoppingFragment : Fragment() {
 
         recyclerViewShopping = root.findViewById(R.id.recyclerViewShopping)
         recyclerViewShopping.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        customAdapterShopping = CustomAdapterShopping(list, context)
-        recyclerViewShopping.adapter = customAdapterShopping
-        customAdapterShopping.notifyDataSetChanged()
+        shoppingAdapter = ShoppingAdapter(list, context)
+        recyclerViewShopping.adapter = shoppingAdapter
+        shoppingAdapter.notifyDataSetChanged()
         editText = root.findViewById(R.id.editText)
         btnSpeach = root.findViewById(R.id.btn_speach)
 
@@ -73,7 +70,7 @@ class ShoppingFragment : Fragment() {
                 list.add(shoppingItem)
             }
             editText.setText("")
-            customAdapterShopping.notifyDataSetChanged()
+            shoppingAdapter.notifyDataSetChanged()
         }
         return root
     }
@@ -117,7 +114,7 @@ class ShoppingFragment : Fragment() {
             when (currentFragment) {
                 is ShoppingFragment -> {
                     DataStoreHandler.shoppingItems.removeAll(DataStoreHandler.shoppingItems)
-                    currentFragment.customAdapterShopping.notifyDataSetChanged()
+                    currentFragment.shoppingAdapter.notifyDataSetChanged()
                     DataStoreHandler.saveShoppings()
                 }
             }

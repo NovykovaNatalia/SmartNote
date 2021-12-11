@@ -16,13 +16,11 @@ class TextNoteAdapter(private val items: ArrayList<CardNote>) :
         RecyclerView.Adapter<TextNoteAdapter.ViewHolder>() {
 
     lateinit var context: Context;
-    lateinit var adapterNoteAdapter: TextNoteAdapter
 
     constructor(items: ArrayList<CardNote>, context: Context?) : this(items) {
 
         if (context != null) {
             this.context = context
-            this.adapterNoteAdapter = this
         }
     }
 
@@ -89,7 +87,7 @@ class TextNoteAdapter(private val items: ArrayList<CardNote>) :
                         } else {
                             Toast.makeText(context, "Put value!", Toast.LENGTH_LONG).show()
                         }
-                        adapterNoteAdapter.notifyDataSetChanged()
+                        notifyDataSetChanged()
                     }
                     alertDialog.dismiss()
                     val  cancelBtn: Button = noteDv.findViewById(R.id.cancel_dialog_note)

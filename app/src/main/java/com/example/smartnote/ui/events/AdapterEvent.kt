@@ -20,7 +20,6 @@ class AdapterEvent(private val items: ArrayList<Event>) :
         RecyclerView.Adapter<AdapterEvent.ViewHolder>() {
     lateinit var context: Context
     lateinit var container : ViewGroup
-    lateinit var adapterEvent: AdapterEvent
     companion object {
 
         const val MY_CONSTANT = 100
@@ -31,7 +30,6 @@ class AdapterEvent(private val items: ArrayList<Event>) :
         if (context != null && container != null) {
             this.context = context
             this.container = container
-            this.adapterEvent = this
         }
     }
 
@@ -111,7 +109,7 @@ class AdapterEvent(private val items: ArrayList<Event>) :
                         } else {
                             Toast.makeText(context, "Put values!", Toast.LENGTH_LONG).show()
                         }
-                        adapterEvent.notifyDataSetChanged();
+                        notifyDataSetChanged();
                     }
                     alertDialog.dismiss()
 

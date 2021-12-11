@@ -14,13 +14,11 @@ import com.example.smartnote.R
 class DiscountAdapter(private val items: ArrayList<Discount> ):
         RecyclerView.Adapter<DiscountAdapter.ViewHolder>() {
     lateinit var context: Context
-    lateinit var discountAdapter: DiscountAdapter
 
     constructor(items: ArrayList<Discount>, context: Context?): this(items) {
 
         if (context != null ) {
             this.context = context
-            this.discountAdapter = this
         }
     }
 
@@ -112,7 +110,7 @@ class DiscountAdapter(private val items: ArrayList<Discount> ):
                         } else {
                             Toast.makeText(context, R.string.put_values, Toast.LENGTH_LONG).show()
                         }
-                        discountAdapter.notifyDataSetChanged()
+                        notifyDataSetChanged()
                     }
 
                     cancelBtn.setOnClickListener() {

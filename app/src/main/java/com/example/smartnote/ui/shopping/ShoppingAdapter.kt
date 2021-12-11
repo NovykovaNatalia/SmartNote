@@ -12,8 +12,8 @@ import com.example.smartnote.R
 import com.example.smartnote.ui.shopping.ShoppingItem
 
 
-class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
-    RecyclerView.Adapter<CustomAdapterShopping.ViewHolder>() {
+class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
+    RecyclerView.Adapter<ShoppingAdapter.ViewHolder>() {
 
     lateinit var context: Context;
 
@@ -46,7 +46,7 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): CustomAdapterShopping.ViewHolder {
+    ): ShoppingAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_shopping, parent, false)
         return ViewHolder(view, context)
@@ -56,7 +56,7 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
         return items.size
     }
 
-    override fun onBindViewHolder(holder: CustomAdapterShopping.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ShoppingAdapter.ViewHolder, position: Int) {
         holder.run {
             goods_tv.setText(items[position].itemname)
             quantity_tv.setText(items[position].quantity.toString())
@@ -91,13 +91,13 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
 
             }
 
-
             itemView.setOnClickListener {
                 val dialogView = LayoutInflater.from( context).inflate(R.layout.delete_share_layout, null);
                 val builder = AlertDialog.Builder(context)
                     .setView(dialogView)
                     .setTitle(context.getString(R.string.delete_the_item))
                 val alertDialog = builder.show()
+
                 val imageShare : ImageView = dialogView.findViewById(R.id.shareIv)
                 val imageEdit : ImageView = dialogView.findViewById(R.id.editIv)
                 val noBtn : TextView = dialogView.findViewById(R.id.noBtn)
@@ -145,20 +145,16 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
                         alertDialog.dismiss()
                     }
                 }
+
+                noBtn.setOnClickListener{
+                    alertDialog.dismiss()
+                }
+                yesBtn.setOnClickListener {
+                    items.remove(items[position])
+                    notifyDataSetChanged()
+                    alertDialog.dismiss()
+                }
             }
-
         }
-
     }
-
 }
-
-private fun NumberPicker.addOnLayoutChangeListener(textWatcher: TextWatcher) {
-
-}
-
-private fun NumberPicker.setOnValueChangedListener(toString: String) {
-
-}
-
-
