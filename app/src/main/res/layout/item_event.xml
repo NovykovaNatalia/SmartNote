@@ -22,6 +22,7 @@
             android:id="@+id/date_event_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textIsSelectable="true"
             android:hint="@string/data"
             android:textSize="12sp" />
 
@@ -29,6 +30,7 @@
             android:id="@+id/text_event_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textIsSelectable="true"
             android:layout_below="@+id/date_event_tv"
             android:hint="@string/event" />
 
@@ -36,6 +38,7 @@
             android:id="@+id/time_event_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textIsSelectable="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/date_event_tv"
             android:text="00 : 00 PM"

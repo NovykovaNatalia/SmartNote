@@ -20,6 +20,7 @@
         android:id="@+id/thing_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textIsSelectable="true"
         android:text="@string/unit_of_goods"
         android:textSize="10sp" />
 
@@ -27,17 +28,20 @@
         android:id="@+id/thing_name_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textIsSelectable="true"
         android:hint="@string/unit_of_goods" />
     <TextView
         android:id="@+id/brend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textIsSelectable="true"
         android:text="@string/brend"
         android:textSize="10sp"/>
     <TextView
         android:id="@+id/brend_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textIsSelectable="true"
         android:hint="@string/brend"/>
     </LinearLayout>
 
@@ -52,6 +56,7 @@
             android:id="@+id/true_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textIsSelectable="true"
             android:text="@string/true_price"
             android:textSize="10sp" />
 
@@ -59,12 +64,14 @@
             android:id="@+id/true_price_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textIsSelectable="true"
             android:hint="@string/true_price" />
 
         <TextView
             android:id="@+id/economy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textIsSelectable="true"
             android:text="@string/economy"
             android:textSize="10sp" />
 
@@ -72,6 +79,7 @@
             android:id="@+id/economy_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textIsSelectable="true"
             android:text="@string/economy" />
     </LinearLayout>
 
@@ -88,6 +96,7 @@
             android:id="@+id/sales"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textIsSelectable="true"
             android:text="@string/discount"
             android:textSize="10sp" />
 
@@ -95,12 +104,14 @@
             android:id="@+id/discount_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textIsSelectable="true"
             android:text="@string/discount" />
 
         <TextView
             android:id="@+id/percentage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textIsSelectable="true"
             android:text="@string/percentage"
             android:textSize="10sp" />
 
@@ -108,6 +119,7 @@
             android:id="@+id/percenage_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textIsSelectable="true"
             android:layout_below="@+id/percentage"
             android:text="@string/percentage" />
 
@@ -126,5 +138,4 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_baseline_more_horiz_24" />
     </LinearLayout>
-
 </LinearLayout>
