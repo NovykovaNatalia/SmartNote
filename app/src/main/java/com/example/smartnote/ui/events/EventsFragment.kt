@@ -15,7 +15,6 @@ import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartnote.DataStoreHandler
-import com.example.smartnote.DateFormatUtils
 import com.example.smartnote.LanguageSupportUtils.Companion.castToLangEvent
 import com.example.smartnote.R
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -160,7 +159,7 @@ class EventsFragment : Fragment() {
                 eventAdapter.notifyDataSetChanged()
             }
 
-            val cancelBtn: Button = dialogEventV.findViewById(R.id.cancel_date_btn)
+            val cancelBtn: Button = dialogEventV.findViewById(R.id.cancel_dialog_event)
             cancelBtn.setOnClickListener() {
                 mAlertDialog.dismiss()
             }
@@ -384,7 +383,7 @@ class EventsFragment : Fragment() {
                 alertdlg.dismiss()
             }
 
-            val dialogCancelBtn: Button = dialogDatePicker.findViewById(R.id.cancel_date_btn)
+            val dialogCancelBtn: Button = dialogDatePicker.findViewById(R.id.cancel_dialog_event)
             dialogCancelBtn.setOnClickListener {
                 alertdlg.dismiss()
             }

@@ -18,7 +18,7 @@
 
         <Button
             android:id="@+id/save_dialog_shopping"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="2"
@@ -26,12 +26,12 @@
 
         <Button
             android:id="@+id/cancel_dialog_shopping"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_toRightOf="@+id/save_dialog_shopping"
             android:layout_weight="2"
             android:text="@string/cancel" />
     </LinearLayout>
-    
+
 </RelativeLayout>

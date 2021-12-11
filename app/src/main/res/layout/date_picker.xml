@@ -100,14 +100,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="@string/filter"
-            app:layout_constraintEnd_toStartOf="@+id/cancel_date_btn"
+            app:layout_constraintEnd_toStartOf="@+id/cancel_dialog_event"
             app:layout_constraintHorizontal_bias="0.346"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="4dp" />
 
         <Button
-            android:id="@+id/cancel_date_btn"
+            android:id="@+id/cancel_dialog_event"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/cancel"

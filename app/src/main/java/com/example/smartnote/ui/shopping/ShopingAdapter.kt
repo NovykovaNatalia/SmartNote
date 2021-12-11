@@ -139,6 +139,11 @@ class CustomAdapterShopping(private val items: ArrayList<ShoppingItem>) :
                     cancelActionButtonShopping.setOnClickListener{
                         ad.dismiss()
                     }
+                    yesBtn.setOnClickListener {
+                        items.remove(items[position])
+                        notifyDataSetChanged()
+                        alertDialog.dismiss()
+                    }
                 }
             }
 

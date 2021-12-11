@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -116,7 +115,7 @@ class AdapterEvent(private val items: ArrayList<Event>) :
                     }
                     alertDialog.dismiss()
 
-                    val cancelBtn: Button = dialogEventV.findViewById(R.id.cancel_date_btn)
+                    val cancelBtn: Button = dialogEventV.findViewById(R.id.cancel_dialog_event)
                     cancelBtn.setOnClickListener() {
                         ad.dismiss()
                     }
