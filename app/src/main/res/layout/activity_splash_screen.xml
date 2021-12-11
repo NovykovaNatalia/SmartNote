@@ -21,14 +21,6 @@
         android:textSize="36sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/version_tv2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="20dp"
-        android:textAlignment="center"
-        android:text="@string/version_1_0_0" />
 
     <ImageView
         android:id="@+id/imageSmartNote"
@@ -38,6 +30,25 @@
         android:layout_marginTop="50dp"
         android:contentDescription="TODO"
         android:src="@drawable/robot" />
+
+    <ImageView
+        android:id="@+id/loading"
+        android:layout_width="40dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="270dp"
+        android:layout_marginBottom="80dp"
+        android:src="@drawable/loading" />
+
+    <TextView
+        android:id="@+id/version_tv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center"
+        android:text="@string/version_1_0_0"
+        tools:ignore="RtlCompat" />
 
 
 </FrameLayout>

@@ -17,7 +17,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/radius"
             android:autofillHints="Put goods name"
-            android:hint="@string/event"
+            android:hint="@string/goods"
             android:padding="10dp"
             android:lines="2"/>
     </LinearLayout>

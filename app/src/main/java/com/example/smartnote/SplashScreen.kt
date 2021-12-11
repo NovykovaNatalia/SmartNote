@@ -13,10 +13,13 @@ class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
-        val imageSmartNote : ImageView = findViewById(R.id.imageSmartNote) as ImageView
-        val textViewSmartNote : TextView = findViewById(R.id.smart_note) as TextView
+        val imageSmartNote : ImageView = findViewById(R.id.imageSmartNote)
+        val textViewSmartNote : TextView = findViewById(R.id.smart_note)
+        val loadingImageView : ImageView = findViewById(R.id.loading)
         val ttb = AnimationUtils.loadAnimation(this, R.anim.ttb)
         val atb = AnimationUtils.loadAnimation(this, R.anim.atb)
+        loadingImageView.startAnimation(ttb)
+        loadingImageView.animate().rotation(360F).setDuration(2000).setStartDelay(200)
         textViewSmartNote.startAnimation(ttb)
         imageSmartNote.startAnimation(atb)
         window.setFlags(

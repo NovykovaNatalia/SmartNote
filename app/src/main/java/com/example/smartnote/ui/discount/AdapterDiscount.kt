@@ -96,8 +96,8 @@ class DiscountAdapter(private val items: ArrayList<Discount> ):
                     var truePrice:EditText = salesDV.findViewById(R.id.true_price)
                     truePrice.setText(items[position].truePrice.toString())
 
-                    val cancelBtn: Button = salesDV.findViewById(R.id.cancel_dialog_sales)
-                    val saveBtn: Button = salesDV.findViewById<Button>(R.id.save_dialog_discount)
+                    val cancelBtn: Button = salesDV.findViewById(R.id.cancel_discount)
+                    val saveBtn: Button = salesDV.findViewById<Button>(R.id.save_discount)
 
                     saveBtn.setOnClickListener {
                         ad.dismiss()

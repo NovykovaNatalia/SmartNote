@@ -58,8 +58,8 @@ class DiscountFragment : Fragment() {
             thing = mDialogViewSales.findViewById(R.id.thing_name)
             discount = mDialogViewSales.findViewById(R.id.discount)
             truePrice = mDialogViewSales.findViewById(R.id.true_price)
-            val cancelBtn: Button = mDialogViewSales.findViewById(R.id.cancel_dialog_sales)
-            val saveBtn: Button = mDialogViewSales.findViewById<Button>(R.id.save_dialog_discount)
+            val cancelBtn: Button = mDialogViewSales.findViewById(R.id.cancel_discount)
+            val saveBtn: Button = mDialogViewSales.findViewById<Button>(R.id.save_discount)
 
             saveBtn.setOnClickListener {
                 mAlertDialog.dismiss()

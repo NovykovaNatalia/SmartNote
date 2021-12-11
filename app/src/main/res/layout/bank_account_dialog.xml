@@ -35,8 +35,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/number"
-                android:hint="@string/account_number"
                 android:lines="2"
+                android:hint="@string/account_number"
                 android:layout_weight="2"/>
             <EditText
                 android:layout_width="0dp"
