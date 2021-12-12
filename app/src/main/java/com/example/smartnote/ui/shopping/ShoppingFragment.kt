@@ -3,6 +3,7 @@ package com.example.smartnote.ui.shopping
 import ShoppingAdapter
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
@@ -113,9 +114,23 @@ class ShoppingFragment : Fragment() {
             val currentFragment = activity?.supportFragmentManager!!.fragments.first().childFragmentManager.fragments.first()
             when (currentFragment) {
                 is ShoppingFragment -> {
-                    DataStoreHandler.shoppingItems.removeAll(DataStoreHandler.shoppingItems)
-                    currentFragment.shoppingAdapter.notifyDataSetChanged()
-                    DataStoreHandler.saveShoppings()
+                    val dialogView = layoutInflater.inflate(R.layout.delete_list_layout, null);
+                    val builder = AlertDialog.Builder(context)
+                            .setView(dialogView)
+                            .setTitle(context?.getString(R.string.delete_the_list))
+                    val deleteListAd = builder.show()
+
+                    val noBtn : TextView = dialogView.findViewById(R.id.noBtn)
+                    val yesBtn : TextView = dialogView.findViewById(R.id.yesBtn)
+                    noBtn.setOnClickListener{
+                        deleteListAd.dismiss()
+                    }
+                    yesBtn.setOnClickListener {
+                        DataStoreHandler.shoppingItems.removeAll(DataStoreHandler.shoppingItems)
+                        currentFragment.shoppingAdapter.notifyDataSetChanged()
+                        DataStoreHandler.saveShoppings()
+                        deleteListAd.dismiss()
+                    }
                 }
             }
             return true

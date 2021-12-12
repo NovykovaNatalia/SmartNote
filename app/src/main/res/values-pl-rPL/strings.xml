@@ -90,6 +90,7 @@
     <string name="everyday_notes">Codzienne Notatki</string>
     <string name="delete_the_note">Usunąć notatkę?</string>
     <string name="delete_the_item">Usunąć element?</string>
+    <string name="delete_the_list">Usunąć listę?</string>
     <string name="select_language">Wybierz język</string>
     <string name="very_bad">Bardzo źle</string>
     <string name="need_some_impovement">Potrzebuje poprawy</string>

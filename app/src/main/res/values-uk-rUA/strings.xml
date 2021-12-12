@@ -90,6 +90,7 @@
     <string name="everyday_notes">Повсякденні нотатки</string>
     <string name="delete_the_note">Видалити нотатку?</string>
     <string name="delete_the_item">Видалити елемент?</string>
+    <string name="delete_the_list">Видалити список?</string>
     <string name="select_language">Оберіть мову</string>
     <string name="very_bad">Дуже погано</string>
     <string name="need_some_impovement">Потрібно трохи поліпшити</string>
