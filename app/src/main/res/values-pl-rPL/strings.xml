@@ -124,6 +124,7 @@
     <string name="disable_dark_mode">Wyłącz Tryb Ciemny</string>
     <string name="enable_dark_mode">Włącz Tryb Ciemny</string>
     <string name="edit">Edytuj</string>
+    <string name="list_is_empty">Lista jest pusta</string>
 
 
 </resources>

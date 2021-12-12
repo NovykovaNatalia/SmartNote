@@ -124,6 +124,7 @@
     <string name="disable_dark_mode">Отключить Темный Режим</string>
     <string name="enable_dark_mode">Включить Темный Режим</string>
     <string name="edit">Изменить</string>
+    <string name="list_is_empty">Список пуст!</string>
 
 
 </resources>

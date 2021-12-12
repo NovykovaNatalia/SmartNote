@@ -126,10 +126,14 @@ class ShoppingFragment : Fragment() {
                         deleteListAd.dismiss()
                     }
                     yesBtn.setOnClickListener {
-                        DataStoreHandler.shoppingItems.removeAll(DataStoreHandler.shoppingItems)
-                        currentFragment.shoppingAdapter.notifyDataSetChanged()
-                        DataStoreHandler.saveShoppings()
-                        deleteListAd.dismiss()
+                        if(!DataStoreHandler.shoppingItems.isEmpty()){
+                            DataStoreHandler.shoppingItems.removeAll(DataStoreHandler.shoppingItems)
+                            currentFragment.shoppingAdapter.notifyDataSetChanged()
+                            DataStoreHandler.saveShoppings()
+                            deleteListAd.dismiss()
+                        } else {
+                            Toast.makeText(context, getString(R.string.list_is_empty), Toast.LENGTH_LONG).show()
+                        }
                     }
                 }
             }

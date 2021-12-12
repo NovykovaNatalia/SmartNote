@@ -119,11 +119,29 @@ class BankAccountFragment : Fragment() {
             return true
         }
         if (id == R.id.delete) {
-            when (currentFragment) {
+            when (currentFragment ) {
                 is BankAccountFragment -> {
-                    DataStoreHandler.cards.removeAll(DataStoreHandler.cards)
-                    currentFragment.cardAdapter.notifyDataSetChanged()
-                    DataStoreHandler.saveArrayListCards()
+                    val dialogView = layoutInflater.inflate(R.layout.delete_list_layout, null);
+                    val builder = AlertDialog.Builder(context)
+                            .setView(dialogView)
+                            .setTitle(context?.getString(R.string.delete_the_list))
+                    val deleteListAd = builder.show()
+
+                    val noBtn : TextView = dialogView.findViewById(R.id.noBtn)
+                    val yesBtn : TextView = dialogView.findViewById(R.id.yesBtn)
+                    noBtn.setOnClickListener{
+                        deleteListAd.dismiss()
+                    }
+                    yesBtn.setOnClickListener {
+                        if(!DataStoreHandler.cards.isEmpty()){
+                            DataStoreHandler.cards.removeAll(DataStoreHandler.cards)
+                            currentFragment.cardAdapter.notifyDataSetChanged()
+                            DataStoreHandler.saveShoppings()
+                            deleteListAd.dismiss()
+                        } else {
+                            Toast.makeText(context, getString(R.string.list_is_empty), Toast.LENGTH_LONG).show()
+                        }
+                    }
                 }
             }
             return true

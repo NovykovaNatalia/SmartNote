@@ -119,9 +119,27 @@ class CredentialsFragment : Fragment() {
         if (id == R.id.delete) {
             when (currentFragment) {
                 is CredentialsFragment -> {
-                    DataStoreHandler.credentials.removeAll(DataStoreHandler.credentials)
-                    currentFragment.credentialsAdapter.notifyDataSetChanged()
-                    DataStoreHandler.saveArrayListCredentials()
+                    val dialogView = layoutInflater.inflate(R.layout.delete_list_layout, null);
+                    val builder = AlertDialog.Builder(context)
+                            .setView(dialogView)
+                            .setTitle(context?.getString(R.string.delete_the_list))
+                    val deleteListAd = builder.show()
+
+                    val noBtn : TextView = dialogView.findViewById(R.id.noBtn)
+                    val yesBtn : TextView = dialogView.findViewById(R.id.yesBtn)
+                    noBtn.setOnClickListener{
+                        deleteListAd.dismiss()
+                    }
+                    yesBtn.setOnClickListener {
+                        if(!DataStoreHandler.credentials.isEmpty()){
+                            DataStoreHandler.credentials.removeAll(DataStoreHandler.credentials)
+                            currentFragment.credentialsAdapter.notifyDataSetChanged()
+                            DataStoreHandler.saveShoppings()
+                            deleteListAd.dismiss()
+                        } else {
+                            Toast.makeText(context, getString(R.string.list_is_empty), Toast.LENGTH_LONG).show()
+                        }
+                    }
                 }
             }
             return true

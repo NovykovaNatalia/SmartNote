@@ -130,4 +130,5 @@
     <string name="disable_dark_mode">Disable Dark Mode</string>
     <string name="enable_dark_mode">Enable Dark Mode</string>
     <string name="edit">Edit</string>
+    <string name="list_is_empty">List is empty!</string>
 </resources>
