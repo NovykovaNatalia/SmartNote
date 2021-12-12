@@ -27,6 +27,7 @@ class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
     class ViewHolder(view: View, ctx:Context) : RecyclerView.ViewHolder(view), NumberPicker.OnValueChangeListener {
         val goods_tv: TextView
         val  quantity_tv: TextView
+        val ll2: LinearLayout
         val  ll: LinearLayout
         var context:Context
 
@@ -35,6 +36,7 @@ class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
             goods_tv = view.findViewById(R.id.good_tv)
             quantity_tv = view.findViewById(R.id.quantity_tv)
             ll = view.findViewById(R.id.line_three)
+            ll2 = view.findViewById(R.id.line_two)
 
             context= ctx;
         }
@@ -62,7 +64,7 @@ class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
             goods_tv.setText(items[position].itemname)
             quantity_tv.setText(items[position].quantity.toString())
 
-            quantity_tv.setOnClickListener{
+            ll2.setOnClickListener{
                 val dialogViewShopping = LayoutInflater.from(context).inflate(R.layout.shopping_dialog, null)
                 val builder = AlertDialog.Builder(context)
                         .setView(dialogViewShopping)
@@ -82,7 +84,7 @@ class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
                         quantity_tv.setText(quantity_adnp.value.toString())
                         items[position].quantity = quantity_adnp.value
                     } else {
-                        Toast.makeText(context, context.getString(R.string.put_value), Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, context.getString(R.string.put_values), Toast.LENGTH_LONG).show()
                     }
                     alertDialog.dismiss()
                 }
@@ -133,7 +135,7 @@ class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
                             goods_tv.setText(goodsEt.text.toString())
                             items[position].itemname = goodsEt.text.toString()
                         } else {
-                            Toast.makeText(context, context.getString(R.string.put_value), Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, context.getString(R.string.put_values), Toast.LENGTH_LONG).show()
                         }
                         alertDialog.dismiss()
                     }

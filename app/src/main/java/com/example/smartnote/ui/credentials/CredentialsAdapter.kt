@@ -91,7 +91,7 @@ class CredentialsAdapter(private val items: ArrayList<Credentials> ) :
                             items[position].reference = dialogReferenceEt.text.toString()
 
                         } else {
-                            Toast.makeText(context, "Put value!", Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, context.getString(R.string.put_values), Toast.LENGTH_LONG).show()
                         }
                         notifyDataSetChanged()
                     }

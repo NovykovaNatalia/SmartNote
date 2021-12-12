@@ -31,10 +31,9 @@
     <string name="we_hope_you_enjoyed_our_app">Сподіваємося, вам сподобався наш додаток</string>
     <string name="event_text">Додати подію..</string>
     <string name="amount">Кількість</string>
-    <string name="put_value">Введііть дані!</string>
     <string name="from">З</string>
     <string name="bank_account">Банківський рахунок</string>
-    <string name="put_values">Введііть дані!</string>
+    <string name="put_values">Введіть дані!</string>
     <string name="delete_goods">Видалити товар?</string>
     <string name="yes">Так</string>
     <string name="no">Ні</string>
@@ -57,7 +56,7 @@
     <string name="contact">Контакти</string>
     <string name="rate_us">Оцініть нас</string>
     <string name="enter_the_product_name">Введіть назву продукту</string>
-    <string name="salary_account">Рахунок заробітної плати</string>
+    <string name="salary_account">Вид рахунку</string>
     <string name="bank">Банк</string>
     <string name="data">Дата</string>
     <string name="event">Подія</string>
@@ -68,7 +67,7 @@
     <string name="thing">Річ</string>
     <string name="brend">Бренд</string>
     <string name="discount">Знижка</string>
-    <string name="true_price">Справжня ціна</string>
+    <string name="true_price">Ціна</string>
     <string name="bank_name">Назва банку</string>
     <string name="account_number">Номер рахунку</string>
     <string name="name_surname">Ім\'я, Прізвище</string>

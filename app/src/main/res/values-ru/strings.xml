@@ -31,7 +31,6 @@
     <string name="we_hope_you_enjoyed_our_app">Надеемся, вам понравилось наше приложение</string>
     <string name="event_text">Добавить мероприятие ..</string>
     <string name="amount">Количество</string>
-    <string name="put_value">Введите значения</string>
     <string name="from">Из</string>
     <string name="bank_account">Банковский счет</string>
     <string name="put_values">Введите значения!</string>
@@ -57,7 +56,7 @@
     <string name="contact">Контакт</string>
     <string name="rate_us">Оцените нас</string>
     <string name="enter_the_product_name">Введите название продукта</string>
-    <string name="salary_account">Счет заработной платы</string>
+    <string name="salary_account">Счет</string>
     <string name="bank">Банк</string>
     <string name="data">Дата</string>
     <string name="event">Мероприятие</string>
@@ -68,7 +67,7 @@
     <string name="thing">Вещь</string>
     <string name="brend">Бренд</string>
     <string name="discount">Скидка</string>
-    <string name="true_price">Истинная цена</string>
+    <string name="true_price">Цена</string>
     <string name="bank_name">Название банка</string>
     <string name="account_number">Номер счета</string>
     <string name="name_surname">Имя, Фамилия</string>
