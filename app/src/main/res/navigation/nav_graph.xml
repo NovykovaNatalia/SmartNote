@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.smartnote.ui.settings.FirstFragment"
+        android:name="com.nnnd.smartnote.ui.settings.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.smartnote.ui.settings.SecondFragment"
+        android:name="com.nnnd.smartnote.ui.settings.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 
@@ -26,7 +26,7 @@
             app:destination="@id/FirstFragment" />
     </fragment><fragment
         android:id="@+id/First2Fragment"
-        android:name="com.example.smartnote.ui.settings.First2Fragment"
+        android:name="com.nnnd.smartnote.ui.settings.First2Fragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first2" >
 
@@ -35,7 +35,7 @@
             app:destination="@id/Second2Fragment" />
     </fragment><fragment
         android:id="@+id/Second2Fragment"
-        android:name="com.example.smartnote.ui.settings.Second2Fragment"
+        android:name="com.nnnd.smartnote.ui.settings.Second2Fragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second2" >
 

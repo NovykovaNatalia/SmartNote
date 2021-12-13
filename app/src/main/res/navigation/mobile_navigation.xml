@@ -7,44 +7,44 @@
 
     <fragment
         android:id="@+id/events"
-        android:name="com.example.smartnote.ui.events.EventsFragment"
+        android:name="com.nnnd.smartnote.ui.events.EventsFragment"
         android:label="@string/menu_events"
         tools:layout="@layout/fragment_event" />
 
     <fragment
         android:id="@+id/shopping"
-        android:name="com.example.smartnote.ui.shopping.ShoppingFragment"
+        android:name="com.nnnd.smartnote.ui.shopping.ShoppingFragment"
         android:label="@string/menu_shopping"
         tools:layout="@layout/fragment_shopping" />
 
     <fragment
         android:id="@+id/bankAccounts"
-        android:name="com.example.smartnote.ui.bankaccount.BankAccountFragment"
+        android:name="com.nnnd.smartnote.ui.bankaccount.BankAccountFragment"
         android:label="@string/menu_bank_accounts"
         tools:layout="@layout/fragment_bank_account" />
     <fragment
         android:id="@+id/credentials"
-        android:name="com.example.smartnote.ui.credentials.CredentialsFragment"
+        android:name="com.nnnd.smartnote.ui.credentials.CredentialsFragment"
         android:label="@string/menu_credentias"
         tools:layout="@layout/fragment_credentials" />
     <fragment
         android:id="@+id/sales"
-        android:name="com.example.smartnote.ui.discount.DiscountFragment"
+        android:name="com.nnnd.smartnote.ui.discount.DiscountFragment"
         android:label="@string/menu_sales"
         tools:layout="@layout/fragment_discounts" />
     <fragment
         android:id="@+id/settings"
-        android:name="com.example.smartnote.ui.settings.SettingsFragment"
+        android:name="com.nnnd.smartnote.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/textNote"
-        android:name="com.example.smartnote.ui.textnote.TextNoteFragment"
+        android:name="com.nnnd.smartnote.ui.textnote.TextNoteFragment"
         android:label="@string/menu_notes"
         tools:layout="@layout/fragment_text_note" />
     <fragment
         android:id="@+id/share"
-        android:name="com.example.smartnote.ui.share.ShareFragment"
+        android:name="com.nnnd.smartnote.ui.share.ShareFragment"
         android:label="@string/menu_share"
         tools:layout="@layout/fragment_share" />
 
