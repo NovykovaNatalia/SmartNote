@@ -127,6 +127,7 @@
     <string name="list_is_empty">Lista jest pusta</string>
     <string name="bookmarks">Zakładki</string>
     <string name="filled">Wypełniono</string>
+    <string name="delete_checked_items">Usuń zaznaczone elementy</string>
 
 
 </resources>

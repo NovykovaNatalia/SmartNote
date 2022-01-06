@@ -119,7 +119,6 @@ class ShoppingFragment : Fragment() {
                             .setView(dialogView)
                             .setTitle(context?.getString(R.string.delete_the_list))
                     val deleteListAd = builder.show()
-
                     val noBtn : TextView = dialogView.findViewById(R.id.noBtn)
                     val yesBtn : TextView = dialogView.findViewById(R.id.yesBtn)
                     noBtn.setOnClickListener{
@@ -128,6 +127,38 @@ class ShoppingFragment : Fragment() {
                     yesBtn.setOnClickListener {
                         if(!DataStoreHandler.shoppingItems.isEmpty()){
                             DataStoreHandler.shoppingItems.removeAll(DataStoreHandler.shoppingItems)
+                            currentFragment.shoppingAdapter.notifyDataSetChanged()
+                            DataStoreHandler.saveShoppings()
+                            deleteListAd.dismiss()
+                        } else {
+                            Toast.makeText(context, getString(R.string.list_is_empty), Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            }
+            return true
+        }
+        if (id == R.id.delete_checked_list) {
+            val currentFragment = activity?.supportFragmentManager!!.fragments.first().childFragmentManager.fragments.first()
+            when (currentFragment) {
+                is ShoppingFragment -> {
+                    val dialogView = layoutInflater.inflate(R.layout.delete_list_layout, null);
+                    val builder = AlertDialog.Builder(context)
+                            .setView(dialogView)
+                            .setTitle(context?.getString(R.string.delete_the_list))
+                    val deleteListAd = builder.show()
+                    val noBtn : TextView = dialogView.findViewById(R.id.noBtn)
+                    val yesBtn : TextView = dialogView.findViewById(R.id.yesBtn)
+                    noBtn.setOnClickListener{
+                        deleteListAd.dismiss()
+                    }
+                    yesBtn.setOnClickListener {
+                        if(!DataStoreHandler.shoppingItems.isEmpty()){
+                            val filteredList = DataStoreHandler.shoppingItems
+                                    .filter { !it.isFilled }
+                            DataStoreHandler.shoppingItems.removeAll(DataStoreHandler.shoppingItems)
+                            DataStoreHandler.shoppingItems.addAll(filteredList)
+
                             currentFragment.shoppingAdapter.notifyDataSetChanged()
                             DataStoreHandler.saveShoppings()
                             deleteListAd.dismiss()

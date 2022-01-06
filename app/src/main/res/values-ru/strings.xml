@@ -127,6 +127,7 @@
     <string name="list_is_empty">Список пуст!</string>
     <string name="bookmarks">Закладки</string>
     <string name="filled">Заполнено</string>
+    <string name="delete_checked_items">Удалить отмеченные элементы</string>
 
 
 </resources>

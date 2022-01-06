@@ -16,6 +16,11 @@
         android:orderInCategory="100"
         android:title="@string/menu_delete"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/delete_checked_list"
+        android:orderInCategory="100"
+        android:title="@string/delete_checked_items"
+        app:showAsAction="never" />
     <item android:id="@+id/add"
         android:title="Add"
         app:showAsAction="always"

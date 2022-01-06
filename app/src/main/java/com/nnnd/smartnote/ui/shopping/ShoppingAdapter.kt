@@ -1,6 +1,7 @@
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,22 +27,29 @@ class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
     class ViewHolder(view: View, ctx:Context) : RecyclerView.ViewHolder(view), NumberPicker.OnValueChangeListener {
         val goods_tv: TextView
         val  quantity_tv: TextView
+        val  parentll: LinearLayout
         val ll2: LinearLayout
         val  ll: LinearLayout
+        val isFilled_cb: CheckBox
+        val date: TextView
+
         var context:Context
 
 
         init {
             goods_tv = view.findViewById(R.id.good_tv)
             quantity_tv = view.findViewById(R.id.quantity_tv)
+            parentll = view.findViewById(R.id.parent_linear_layout)
             ll = view.findViewById(R.id.line_three)
             ll2 = view.findViewById(R.id.line_two)
+            isFilled_cb = view.findViewById(R.id.isFilled)
+            date = view.findViewById(R.id.date)
 
             context= ctx;
         }
 
         override fun onValueChange(p0: NumberPicker?, p1: Int, p2: Int) {
-            quantity_tv.setText("" + p2)
+            quantity_tv.setText(p2.toString())
         }
     }
 
@@ -62,6 +70,12 @@ class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
         holder.run {
             goods_tv.setText(items[position].itemname)
             quantity_tv.setText(items[position].quantity.toString())
+            isFilled_cb.isChecked = items[position].isFilled
+            if(items[position].isFilled) {
+                parentll.setBackgroundColor(Color.LTGRAY)
+            } else {
+                parentll.setBackgroundColor(Color.TRANSPARENT)
+            }
 
             ll2.setOnClickListener{
                 val dialogViewShopping = LayoutInflater.from(context).inflate(R.layout.shopping_dialog, null)
@@ -92,7 +106,6 @@ class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
                 }
 
             }
-
             ll.setOnClickListener {
                 val dialogView = LayoutInflater.from( context).inflate(R.layout.delete_share_layout, null);
                 val builder = AlertDialog.Builder(context)
@@ -155,6 +168,14 @@ class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
                     items.remove(items[position])
                     notifyDataSetChanged()
                     alertDialog.dismiss()
+                }
+            }
+            isFilled_cb.setOnCheckedChangeListener { compoundButton: CompoundButton, b: Boolean ->
+                items[position].isFilled = b
+                if(b) {
+                    parentll.setBackgroundColor(Color.LTGRAY)
+                } else {
+                    parentll.setBackgroundColor(Color.TRANSPARENT)
                 }
             }
         }

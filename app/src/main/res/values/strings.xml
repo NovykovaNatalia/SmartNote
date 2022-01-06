@@ -133,4 +133,5 @@
     <string name="list_is_empty">List is empty!</string>
     <string name="bookmarks">Bookmarks</string>
     <string name="filled">Filled</string>
+    <string name="delete_checked_items">Delete checked items</string>
 </resources>
