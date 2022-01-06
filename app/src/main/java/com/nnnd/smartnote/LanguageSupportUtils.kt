@@ -32,7 +32,8 @@ class LanguageSupportUtils  {
             return s
         }
         fun castToLangNotes(context: Context, s: String): String? {
-            var s = s.replace("Note", context.getString(R.string.note_string))
+            var s = s.replace("Title", context.getString(R.string.title))
+            s = s.replace("Note", context.getString(R.string.note_string))
             return s
         }
     }

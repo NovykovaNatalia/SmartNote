@@ -79,7 +79,7 @@
     <string name="name_surname">Name, Surname</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
-    <string name="credentials">Credentials</string>
+    <string name="title">Title</string>
     <string name="reference">Reference</string>
     <string name="ok">Ok</string>
     <string name="unit_of_goods">Unit of goods</string>
@@ -131,4 +131,6 @@
     <string name="enable_dark_mode">Enable Dark Mode</string>
     <string name="edit">Edit</string>
     <string name="list_is_empty">List is empty!</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="filled">Filled</string>
 </resources>

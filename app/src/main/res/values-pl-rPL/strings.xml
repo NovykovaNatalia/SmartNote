@@ -35,8 +35,8 @@
     <string name="bank_account">Konto Bankowe</string>
     <string name="put_values">Wprowadź dane</string>
     <string name="delete_goods">Usunąć towar?</string>
-    <string name="yes">Tak</string>
-    <string name="no">Nie</string>
+    <string name="yes">TAK</string>
+    <string name="no">NIE</string>
     <string name="share">Podzielić się</string>
     <string name="delete_credentials">Usunąć te poświadczenia?</string>
     <string name="version_1_0_0">Wersja 1.0.0</string>
@@ -73,7 +73,7 @@
     <string name="name_surname">Imię, Nazwisko</string>
     <string name="save">Zapisz</string>
     <string name="cancel">Anuluj</string>
-    <string name="credentials">Referencje</string>
+    <string name="title">Tytuł</string>
     <string name="reference">Link</string>
     <string name="ok">Ok</string>
     <string name="unit_of_goods">Towar</string>
@@ -125,6 +125,8 @@
     <string name="enable_dark_mode">Włącz Tryb Ciemny</string>
     <string name="edit">Edytuj</string>
     <string name="list_is_empty">Lista jest pusta</string>
+    <string name="bookmarks">Zakładki</string>
+    <string name="filled">Wypełniono</string>
 
 
 </resources>

@@ -31,7 +31,6 @@
             android:lines="2"
             android:hint="@string/brend"
             android:textColor="@color/teal_700" />
-
     </LinearLayout>
 
     <LinearLayout

@@ -25,9 +25,11 @@ class TextNoteAdapter(private val items: ArrayList<CardNote>) :
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val title_tv : TextView
         val note_tv: TextView
         val ll: LinearLayout
         init {
+            title_tv = view.findViewById(R.id.title_tv)
             note_tv = view.findViewById(R.id.note_tv)
             ll = view.findViewById(R.id.dots3_ll_id)
         }
@@ -45,6 +47,9 @@ class TextNoteAdapter(private val items: ArrayList<CardNote>) :
 
     override fun onBindViewHolder(holder: TextNoteAdapter.ViewHolder, position: Int) {
         holder.run {
+            if(items[position].title != null) {
+                title_tv.setText(items[position].title)
+            }
             note_tv.setText(items[position].note)
 
             ll.setOnClickListener {
@@ -77,14 +82,19 @@ class TextNoteAdapter(private val items: ArrayList<CardNote>) :
                             .setTitle(context.getString(R.string.note))
                     val ad = builder.show()
 
+                    val dialogTitleEt: EditText = noteDv.findViewById(R.id.title_note)
                     val dialogNoteEt: EditText = noteDv.findViewById(R.id.note)
+                    if(items[position].title != null) {
+                        dialogNoteEt.setText(items[position].title)
+                    }
                     dialogNoteEt.setText(items[position].note)
 
                     val saveBtn: Button = noteDv.findViewById(R.id.save_dialog_note)
                     saveBtn.setOnClickListener {
                         ad.dismiss()
-                        if(dialogNoteEt.text.isNotEmpty()) {
+                        if(dialogNoteEt.text.isNotEmpty() && dialogTitleEt.text.isNotEmpty()) {
                             items[position].note = dialogNoteEt.text.toString()
+                            items[position].title = dialogNoteEt.text.toString()
                         } else {
                             Toast.makeText(context, "Put value!", Toast.LENGTH_LONG).show()
                         }

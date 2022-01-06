@@ -23,6 +23,7 @@ import kotlin.collections.ArrayList
 
 class TextNoteFragment : Fragment() {
     lateinit var noteEt: EditText
+    lateinit var titleEt : EditText
     lateinit var recyclerView: RecyclerView
     lateinit var cardListNote:ArrayList<CardNote>
     lateinit var textNoteAdapter: TextNoteAdapter
@@ -68,20 +69,17 @@ class TextNoteFragment : Fragment() {
             val mAlertDialog = mBuilder.show()
 
             noteEt = dialogViewNote.findViewById(R.id.note)
-            val image_voice : ImageView = dialogViewNote.findViewById(R.id.image_voice)
-
-            image_voice.setOnClickListener{
-                speak()
-            }
+            titleEt = dialogViewNote.findViewById(R.id.title_note)
 
             val cancelActionButtonNote : Button = dialogViewNote.findViewById(R.id.cancel_dialog_note)
             val saveActionButtonNote : Button = dialogViewNote.findViewById(R.id.save_dialog_note);
 
             saveActionButtonNote.setOnClickListener {
                     mAlertDialog.dismiss()
-                if(noteEt.text.isNotEmpty()) {
+                if(noteEt.text.isNotEmpty() && titleEt.text.isNotEmpty()) {
                     var cardNote = CardNote()
                     cardNote.note = noteEt.text.toString()
+                    cardNote.title = titleEt.text.toString()
 
                     cardListNote.add(cardNote)
                 } else {
@@ -200,7 +198,7 @@ class TextNoteFragment : Fragment() {
         var resultList:ArrayList<CardNote> = java.util.ArrayList()
 
         for (cardNote in cardList) {
-            if(cardNote.note.contains(query.toLowerCase())) {
+            if(cardNote.note.contains(query.toLowerCase()) && cardNote.title.contains(query.toLowerCase())) {
                 resultList.add(cardNote)
             }
         }

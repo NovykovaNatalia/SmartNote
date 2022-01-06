@@ -35,8 +35,8 @@
     <string name="bank_account">Банковский счет</string>
     <string name="put_values">Введите значения!</string>
     <string name="delete_goods">Удалить товар?</string>
-    <string name="yes">Да</string>
-    <string name="no">Нет</string>
+    <string name="yes">ДА</string>
+    <string name="no">НЕТ</string>
     <string name="share">Поделиться</string>
     <string name="delete_credentials">Удалить эти учетные данные?</string>
     <string name="version_1_0_0">Версия 1.0.0</string>
@@ -73,7 +73,7 @@
     <string name="name_surname">Имя, Фамилия</string>
     <string name="save">Сохранить</string>
     <string name="cancel">Отмена</string>
-    <string name="credentials">"Реквизиты "</string>
+    <string name="title">Заглавие</string>
     <string name="reference">Ссылка</string>
     <string name="ok">Ok</string>
     <string name="unit_of_goods">Tовар</string>
@@ -125,6 +125,8 @@
     <string name="enable_dark_mode">Включить Темный Режим</string>
     <string name="edit">Изменить</string>
     <string name="list_is_empty">Список пуст!</string>
+    <string name="bookmarks">Закладки</string>
+    <string name="filled">Заполнено</string>
 
 
 </resources>

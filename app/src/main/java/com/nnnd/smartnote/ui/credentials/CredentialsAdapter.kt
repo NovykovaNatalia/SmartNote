@@ -75,7 +75,7 @@ class CredentialsAdapter(private val items: ArrayList<Credentials> ) :
 
                     val builder = AlertDialog.Builder(context)
                             .setView(credentialsDv)
-                            .setTitle(context.getString(R.string.credentials))
+                            .setTitle(context.getString(R.string.title))
                     val ad = builder.show()
 
                     val dialogCredentialsEt: EditText = credentialsDv.findViewById(R.id.credential)

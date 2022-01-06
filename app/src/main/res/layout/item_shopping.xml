@@ -7,11 +7,51 @@
     android:background="@drawable/border"
     tools:context=".MainActivity">
     <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_weight="0.1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="fill_vertical"
+            android:rotation="-90"
+            android:text="01/10/2110:00"
+            android:textSize="8sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="0.1">
+        <TextView
+            android:id="@+id/checkbox_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:text="@string/filled"
+            android:textSize="10sp" />
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:button="@drawable/checkbox" />
+
+
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/line_one"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight=".65"
-        android:layout_marginLeft="20dp"
+        android:layout_weight=".40"
+        android:layout_marginLeft="10dp"
         android:paddingTop="10dp"
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
@@ -37,7 +77,7 @@
         android:id="@+id/line_two"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight=".25"
+        android:layout_weight=".20"
         android:layout_marginLeft="20dp"
         android:paddingTop="10dp"
         android:orientation="vertical">

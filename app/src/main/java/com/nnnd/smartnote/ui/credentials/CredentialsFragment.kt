@@ -50,7 +50,7 @@ class CredentialsFragment : Fragment() {
 
             val builder = AlertDialog.Builder(context)
                     .setView(credentialsDv)
-                    .setTitle(getString(R.string.credentials))
+                    .setTitle(getString(R.string.title))
             val alertDialog = builder.show()
 
             val dialogCredentialsEt: EditText = credentialsDv.findViewById(R.id.credential)

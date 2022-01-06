@@ -35,8 +35,8 @@
     <string name="bank_account">Банківський рахунок</string>
     <string name="put_values">Введіть дані!</string>
     <string name="delete_goods">Видалити товар?</string>
-    <string name="yes">Так</string>
-    <string name="no">Ні</string>
+    <string name="yes">ТАК</string>
+    <string name="no">НІ</string>
     <string name="share">Поширити</string>
     <string name="delete_credentials">Видалити ці облікові дані?</string>
     <string name="version_1_0_0">Версія 1.0.0</string>
@@ -73,7 +73,7 @@
     <string name="name_surname">Ім\'я, Прізвище</string>
     <string name="save">Зберегти</string>
     <string name="cancel">Скасувати</string>
-    <string name="credentials">Облікові дані</string>
+    <string name="title">Назва</string>
     <string name="reference">Посилання</string>
     <string name="ok">Ok</string>
     <string name="unit_of_goods">Товар</string>
@@ -125,4 +125,6 @@
     <string name="enable_dark_mode">Включити Темний Режим</string>
     <string name="edit">Редагувати</string>
     <string name="list_is_empty">List is empty!</string>
+    <string name="bookmarks">Закладки</string>
+    <string name="filled">Заповнено</string>
 </resources>
