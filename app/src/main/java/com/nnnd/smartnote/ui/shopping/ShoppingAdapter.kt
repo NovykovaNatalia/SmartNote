@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nnnd.smartnote.LanguageSupportUtils
 import com.nnnd.smartnote.R
 import com.nnnd.smartnote.ui.shopping.ShoppingItem
+import java.text.SimpleDateFormat
+import kotlin.collections.ArrayList
 
 
 class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
@@ -45,7 +47,7 @@ class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
             isFilled_cb = view.findViewById(R.id.isFilled)
             date = view.findViewById(R.id.date)
 
-            context= ctx;
+            context= ctx
         }
 
         override fun onValueChange(p0: NumberPicker?, p1: Int, p2: Int) {
@@ -72,10 +74,12 @@ class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
             quantity_tv.setText(items[position].quantity.toString())
             isFilled_cb.isChecked = items[position].isFilled
             if(items[position].isFilled) {
-                parentll.setBackgroundColor(Color.LTGRAY)
+                parentll.setBackgroundColor(0x55C1E1C1)
             } else {
                 parentll.setBackgroundColor(Color.TRANSPARENT)
             }
+
+            setFormatDate(date, position)
 
             ll2.setOnClickListener{
                 val dialogViewShopping = LayoutInflater.from(context).inflate(R.layout.shopping_dialog, null)
@@ -173,11 +177,18 @@ class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
             isFilled_cb.setOnCheckedChangeListener { compoundButton: CompoundButton, b: Boolean ->
                 items[position].isFilled = b
                 if(b) {
-                    parentll.setBackgroundColor(Color.LTGRAY)
+                    parentll.setBackgroundColor(0x55C1E1C1)
                 } else {
                     parentll.setBackgroundColor(Color.TRANSPARENT)
                 }
             }
         }
     }
+
+    fun setFormatDate(date: TextView, position: Int) {
+        val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+        val currentDate = sdf.format(items[position].date)
+        date.setText(currentDate)
+    }
+
 }

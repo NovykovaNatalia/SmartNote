@@ -68,6 +68,7 @@ class ShoppingFragment : Fragment() {
             if (editText.length() > 0) {
                 var shoppingItem = ShoppingItem()
                 shoppingItem.itemname = editText.text.toString()
+                shoppingItem.date = Date()
                 list.add(shoppingItem)
             }
             editText.setText("")

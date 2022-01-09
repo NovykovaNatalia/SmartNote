@@ -7,29 +7,13 @@
     android:layout_margin="5dp"
     android:background="@drawable/border"
     tools:context=".MainActivity">
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="5dp"
-        android:layout_weight="0.1">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:gravity="fill_vertical"
-            android:rotation="-90"
-            android:id="@+id/date"
-            android:text="01/10/2110:00"
-            android:textSize="8sp" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="10dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginBottom="10dp"
         android:layout_weight="0.1">
         <TextView
@@ -47,7 +31,6 @@
             android:checked="false"
             android:button="@drawable/checkbox" />
 
-
     </LinearLayout>
     <LinearLayout
         android:id="@+id/line_one"
@@ -58,14 +41,29 @@
         android:paddingTop="10dp"
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/goods_name_tv"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
             android:layout_height="wrap_content"
             android:textIsSelectable="true"
             android:text="@string/goods"
             android:textSize="10sp" />
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:text="21/10/21/10:00"
+            android:textSize="10sp" />
+
+    </LinearLayout>
+
         <TextView
             android:id="@+id/good_tv"
             android:layout_width="match_parent"
