@@ -54,6 +54,7 @@ class ShoppingFragment : Fragment() {
 
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
         val atb = AnimationUtils.loadAnimation(context, R.anim.atb)
+        val addAn = AnimationUtils.loadAnimation(context, R.anim.add)
 
         btnSpeach.startAnimation(ttb)
         addBtn.startAnimation(ttb)
@@ -61,6 +62,13 @@ class ShoppingFragment : Fragment() {
         recyclerViewShopping.startAnimation(ttb)
         btnSpeach.setOnClickListener {
             speak()
+        }
+        editText.setOnFocusChangeListener {view, b ->
+            if(b) {
+                addBtn.startAnimation(addAn)
+            } else {
+                addBtn.clearAnimation()
+            }
         }
 
         addBtn.setOnClickListener {
