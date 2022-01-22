@@ -10,6 +10,7 @@ import com.nnnd.smartnote.ui.shopping.ShoppingItem
 import com.nnnd.smartnote.ui.textnote.CardNote
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.nnnd.smartnote.ui.draws.PaintItem
 import java.lang.reflect.Type
 
 object DataStoreHandler {
@@ -26,6 +27,7 @@ object DataStoreHandler {
     var discounts: ArrayList<Discount>
     var notes: ArrayList<CardNote>
     var events: ArrayList<Event>
+//    var draws: ArrayList<PaintItem>
     var currentLanguage: String = "en"
 
     init {

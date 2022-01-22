@@ -2,7 +2,7 @@ package com.nnnd.smartnote.ui.draws
 
 import android.graphics.Path
 
-class FingerPath(
+class FingerPathItem (
     var color: Int,
     var emboss: Boolean,
     var blur: Boolean,

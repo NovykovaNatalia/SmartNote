@@ -4,9 +4,9 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import com.nnnd.smartnote.DataStoreHandler
 import java.util.*
 
 class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null) :
@@ -14,19 +14,51 @@ class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
     private var mX = 0f
     private var mY = 0f
     lateinit var mPath: Path
-    private val mPaint: Paint
-    private val paths = ArrayList<FingerPath>()
+    lateinit private var mPaint: Paint
+    private val paths = ArrayList<FingerPathItem>()
     private var currentColor = 0
     private var color = DEFAULT_BG_COLOR
     private var strokeWidth = 0
     private var emboss = false
     private var blur = false
-    private val mEmboss: MaskFilter
-    private val mBlur: MaskFilter
+    lateinit private var mEmboss: MaskFilter
+    lateinit private var mBlur: MaskFilter
     lateinit var mBitmap: Bitmap
     private var mCanvas: Canvas? = null
     private val mBitmapPaint = Paint(Paint.DITHER_FLAG)
-    fun init(metrics: DisplayMetrics) {
+
+    init {
+    }
+
+    fun prepearePaint() {
+        mPaint.isAntiAlias = true
+        mPaint.isDither = true
+        mPaint.color = DEFAULT_COLOR
+        mPaint.style = Paint.Style.STROKE
+        mPaint.strokeJoin = Paint.Join.ROUND
+        mPaint.strokeCap = Paint.Cap.ROUND
+        mPaint.xfermode = null
+        mPaint.alpha = 0xff
+        mEmboss = EmbossMaskFilter(floatArrayOf(1f, 1f, 1f), 0.4f, 6f, 3.5f)
+        mBlur = BlurMaskFilter(5f, BlurMaskFilter.Blur.NORMAL)
+    }
+
+    fun setColor(color: Int) {
+        currentColor = color
+    }
+
+    fun getBGColor(): Int {
+        return DEFAULT_BG_COLOR
+    }
+
+    fun setBrushSize(size: Int) {
+        BRUSH_SIZE = size;
+    }
+    fun init(metrics: DisplayMetrics, paint: Paint) {
+        if(paint != null) {
+            mPaint = paint
+        }
+        prepearePaint();
         val height = metrics.heightPixels
         val width = metrics.widthPixels
         mBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
@@ -38,25 +70,32 @@ class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
     fun normal() {
         emboss = false
         blur = false
+        resetDefaultParams()
     }
 
     fun emboss() {
         emboss = true
         blur = false
+        resetDefaultParams()
     }
 
     fun blur() {
         emboss = false
         blur = true
+        resetDefaultParams()
     }
 
     fun clear() {
         color = DEFAULT_BG_COLOR
         paths.clear()
         normal()
+        resetDefaultParams()
         invalidate()
     }
 
+    fun resetDefaultParams() {
+        BRUSH_SIZE = 20
+    }
     override fun onDraw(canvas: Canvas) {
         canvas.save()
         mCanvas!!.drawColor(color)
@@ -73,7 +112,7 @@ class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
 
     private fun touchStart(x: Float, y: Float) {
         mPath = Path()
-        val fp = FingerPath(currentColor, emboss, blur, strokeWidth, mPath)
+        val fp = FingerPathItem(currentColor, emboss, blur, strokeWidth, mPath)
         paths.add(fp)
         mPath.reset()
         mPath.moveTo(x, y)
@@ -115,24 +154,18 @@ class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
         return true
     }
 
+    fun save() {
+        //TODO: create our item, copy all paths to this item, and save this item in array dataStoreHandler
+//        var paintItem = PaintItem()
+//        paintItem.paint = mPaint
+//        DataStoreHandler.draws.add(paintItem)
+        //TODO: or it will save mPaints.
+    }
+
     companion object {
         var BRUSH_SIZE = 20
         const val DEFAULT_COLOR = Color.RED
         const val DEFAULT_BG_COLOR = Color.WHITE
         private const val TOUCH_TOLERANCE = 4f
-    }
-
-    init {
-        mPaint = Paint()
-        mPaint.isAntiAlias = true
-        mPaint.isDither = true
-        mPaint.color = DEFAULT_COLOR
-        mPaint.style = Paint.Style.STROKE
-        mPaint.strokeJoin = Paint.Join.ROUND
-        mPaint.strokeCap = Paint.Cap.ROUND
-        mPaint.xfermode = null
-        mPaint.alpha = 0xff
-        mEmboss = EmbossMaskFilter(floatArrayOf(1f, 1f, 1f), 0.4f, 6f, 3.5f)
-        mBlur = BlurMaskFilter(5f, BlurMaskFilter.Blur.NORMAL)
     }
 }

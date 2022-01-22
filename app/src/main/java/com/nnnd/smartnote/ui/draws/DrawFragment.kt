@@ -1,20 +1,17 @@
 package com.nnnd.smartnote.ui.draws
 
-import android.content.Intent
-import android.graphics.Bitmap
-import android.net.Uri
+import android.graphics.Color
+import android.graphics.Paint
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.nnnd.smartnote.DataStoreHandler
 import com.nnnd.smartnote.R
-import java.io.File
-import java.io.FileOutputStream
-import java.util.*
 
-
+//TODO: should be called by another drawFragment (from menu)
 class DrawFragment : Fragment() {
     lateinit var drawView: DrawView
 
@@ -24,10 +21,15 @@ class DrawFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.paint, container, false)
-        drawView = rootView.findViewById(R.id.paintView)
+        drawView = rootView.findViewById(R.id.drawView)
         val metrics = DisplayMetrics()
             activity?.getWindowManager()?.getDefaultDisplay()?.getMetrics(metrics)
-        drawView.init(metrics)
+//        if(position != null) {
+////            drawView.init(metrics, DataStoreHandler.draws.get(position))
+//        } else {
+////        drawView.init(metrics, Paint())
+//        }
+        drawView.init(metrics, Paint())
         return rootView
     }
 
@@ -65,10 +67,21 @@ class DrawFragment : Fragment() {
             drawView.clear()
             return true
         }
+//        if (item.itemId == R.id.color) {
+            //TODO: show allert dialog with colors. after click ok. should be used setted color.
+            //add listener (will it be drop list? or what) and depend on chouse, call
+//            drawView.setColor(Color.GREEN)
+//            return true
+//        }
+//        if (item.itemId == R.id.rubber) {
+//          drawView.setColor(drawView.getBGColor())
+//        drawView.setBrashSize(100)
+//        }
+
+
         if (item.itemId == R.id.share) {
 
         }
-
 
         return super.onOptionsItemSelected(item)
     }

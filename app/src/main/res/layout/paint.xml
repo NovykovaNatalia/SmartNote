@@ -7,7 +7,7 @@
     tools:context="com.nnnd.smartnote.ui.draws.DrawFragment">
 
     <com.nnnd.smartnote.ui.draws.DrawView
-        android:id="@+id/paintView"
+        android:id="@+id/drawView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </RelativeLayout>
