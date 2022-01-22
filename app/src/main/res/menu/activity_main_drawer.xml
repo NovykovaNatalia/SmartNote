@@ -22,11 +22,16 @@
             <item
                 android:id="@+id/sales"
                 android:icon="@drawable/ic_baseline_attach_money_"
-                android:title="@string/discount" />
+                android:title="@string/menu_sales" />
             <item
                 android:id="@+id/credentials"
                 android:icon="@drawable/ic_baseline_contact_mail"
-                android:title="@string/title" />
+                android:title="@string/bookmarks" />
+            <item
+                android:id="@+id/painting"
+                android:icon="@drawable/ic_baseline_draw_24"
+                android:title="@string/drawable" />
+
         </menu>
     </item>
     <item android:title="@string/text_notes">

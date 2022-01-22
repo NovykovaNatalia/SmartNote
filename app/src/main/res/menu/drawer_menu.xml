@@ -16,14 +16,18 @@
             android:title="@string/bank_accounts"
             android:icon="@drawable/ic_baseline_credit_card_24"/>
         <item android:id="@+id/sales"
-            android:title="@string/discount"
+            android:title="@string/menu_sales"
             android:icon="@drawable/ic_baseline_attach_money_"/>
         <item android:id="@+id/credentials"
             android:title="@string/bookmarks"
             android:icon="@drawable/ic_baseline_contact_mail"/>
+       <item
+           android:id="@+id/painting"
+           android:icon="@drawable/ic_baseline_draw_24"
+           android:title="@string/drawable" />
     </menu>
     </item>
-    <item android:title="Text Notes">
+    <item android:title="@string/text_note">
         <menu>
             <item android:id="@+id/textNote"
                 android:title="@string/text_note"

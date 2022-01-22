@@ -89,6 +89,11 @@ class EventsFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main, menu)
+        menu.findItem(R.id.normal).setVisible(false)
+        menu.findItem(R.id.emboss).setVisible(false)
+        menu.findItem(R.id.blur).setVisible(false)
+        menu.findItem(R.id.clear).setVisible(false)
+        menu.findItem(R.id.delete_checked_list).setVisible(false)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -183,52 +188,6 @@ class EventsFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-//    private fun getFormatedTime(hour:Int, minute:Int): String {
-//        var hour = hour
-//        var am_pm = ""
-//        when {
-//            hour == 0 -> {
-//                hour += 12
-//                am_pm = "AM"
-//            }
-//            hour == 12 -> am_pm = "PM"
-//            hour > 12 -> {
-//                hour -= 12
-//                am_pm = "PM"
-//            } else -> am_pm = "AM"
-//        }
-//        val msgHour = if (hour < 10) "0" + hour else hour
-//        val msgMin = if (minute < 10) "0" + minute else minute
-//        // display format of time
-//        val msg = "$msgHour : $msgMin $am_pm"
-//        return msg
-//    }
-
-//    private fun OnClickTime(dialogEventV : View) {
-//        val timePicker: TimePicker = dialogEventV.findViewById(R.id.timePicker)
-//        timePicker.setOnTimeChangedListener { _, hour, minute ->
-//            var hour = hour
-//            var am_pm = ""
-//            // AM_PM decider logic
-//            when {hour == 0 -> { hour += 12
-//                am_pm = "AM"
-//            }
-//            hour == 12 -> am_pm = "PM"
-//            hour > 12 -> { hour -= 12
-//                am_pm = "PM"
-//            }
-//                else -> am_pm = "AM"
-//            }
-////            if (timeTv != null) {
-//                val hour = if (hour < 10) "0" + hour else hour
-//                val min = if (minute < 10) "0" + minute else minute
-//                // display format of time
-//                val msg = "$hour : $min $am_pm"
-////                timeTv.text = msg
-////                timeTv.visibility = ViewGroup.VISIBLE
-////            }
-//        }
-//    }
 
     private fun setFiltersClickListeners() {
         color =  eventAllTv.textColors.defaultColor

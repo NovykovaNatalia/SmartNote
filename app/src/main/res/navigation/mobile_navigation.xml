@@ -43,9 +43,9 @@
         android:label="@string/menu_notes"
         tools:layout="@layout/fragment_text_note" />
     <fragment
-        android:id="@+id/share"
-        android:name="com.nnnd.smartnote.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
+        android:id="@+id/painting"
+        android:name="com.nnnd.smartnote.ui.draws.DrawFragment"
+        android:label="Drawable"
+        tools:layout="@layout/paint" />
 
 </navigation>

@@ -2,10 +2,12 @@ package com.nnnd.smartnote.ui.settings
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -82,6 +84,21 @@ class SettingsFragment : Fragment() {
                     .setView(mDialogViewRate)
                     .setTitle(R.string.rate_us)
             mBuilder.show()
+            val rate : Button = mDialogViewRate.findViewById(R.id.btnSubbmit)
+            rate.setOnClickListener {
+                val uri: Uri = Uri.parse("https://play.google.com/store/apps/details?id=com.nnnd.smartnote")
+                val goToMarket = Intent(Intent.ACTION_VIEW, uri)
+                goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or
+                        Intent.FLAG_ACTIVITY_NEW_DOCUMENT or
+                        Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+                try {
+                    startActivity(goToMarket)
+                } catch (e: ActivityNotFoundException) {
+                    startActivity(Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://play.google.com/store/apps/details?id=com.nnnd.smartnote")))
+                }
+            }
+
 
             mRatingBar.onRatingBarChangeListener = RatingBar.OnRatingBarChangeListener { ratingBar, v, b ->
                 mRatingScale.text = v.toString()
@@ -96,19 +113,20 @@ class SettingsFragment : Fragment() {
             }
         }
 
+
         contact.setOnClickListener {
             val intent = Intent(Intent.ACTION_SENDTO)
             intent.data = Uri.parse("mailto:")
             intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("natlight.todo@gmail.com"))
-            intent.putExtra(Intent.EXTRA_SUBJECT, "Your subject here...")
-            intent.putExtra(Intent.EXTRA_TEXT, "Your message here...")
+            intent.putExtra(Intent.EXTRA_SUBJECT, "")
+            intent.putExtra(Intent.EXTRA_TEXT, "")
             startActivity(intent)
         }
 
         shareFr.setOnClickListener {
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "text/plain"
-            val shareBody = "Your body here"    //TODO: Will be implemented when app will be posted on Play market
+            val shareBody = "https://play.google.com/store/apps/details?id=com.nnnd.smartnote"
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
             startActivity(Intent.createChooser(shareIntent, "choose one"))

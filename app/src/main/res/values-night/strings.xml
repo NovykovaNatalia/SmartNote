@@ -83,7 +83,7 @@
     <string name="account_string">Account</string>
     <string name="account_number_string">Account number</string>
     <string name="name_sur_string">Name, Surname</string>
-    <string name="credential_string">Credential</string>
+    <string name="credential_string">Bookmarks</string>
     <string name="reference_string">Reference</string>
     <string name="note_string">Note</string>
     <string name="search">Search Here</string>
@@ -91,8 +91,14 @@
     <string name="enable_dark_mode">Enable Dark Mode</string>
     <string name="edit">Edit</string>
     <string name="list_is_empty">List is empty!</string>
-    <string name="bookmarks">Bookmarks</string>
+    <string name="bookmark">Bookmark</string>
     <string name="filled">Filled</string>
     <string name="delete_checked_items">Delete checked items</string>
+    <string name="normal">Normal</string>
+    <string name="Emboss">Emboss</string>
+    <string name="blur">Blur</string>
+    <string name="clear">Clear</string>
+    <string name="drawable">Drawable</string>
+    <string name="bookmarks">Bookmarks</string>
 
 </resources>

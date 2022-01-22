@@ -50,7 +50,7 @@ class CredentialsFragment : Fragment() {
 
             val builder = AlertDialog.Builder(context)
                     .setView(credentialsDv)
-                    .setTitle(getString(R.string.title))
+                    .setTitle(getString(R.string.bookmark))
             val alertDialog = builder.show()
 
             val dialogCredentialsEt: EditText = credentialsDv.findViewById(R.id.credential)
@@ -86,7 +86,11 @@ class CredentialsFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main, menu)
-        menu.findItem(R.id.add).setVisible(false)
+        menu.findItem(R.id.normal).setVisible(false)
+        menu.findItem(R.id.emboss).setVisible(false)
+        menu.findItem(R.id.blur).setVisible(false)
+        menu.findItem(R.id.clear).setVisible(false)
+        menu.findItem(R.id.delete_checked_list).setVisible(false)
         super.onCreateOptionsMenu(menu, inflater)
     }
 

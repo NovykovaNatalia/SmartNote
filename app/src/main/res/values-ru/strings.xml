@@ -17,7 +17,7 @@
     <string name="menu_share">Поделиться</string>
     <string name="menu_delete">Удалить список</string>
     <string name="menu_bank_accounts">Банковские счета</string>
-    <string name="menu_credentias">"Реквизиты "</string>
+    <string name="menu_credentias">Закладки</string>
     <string name="title_activity_version">Версия</string>
     <string name="first_fragment_label">Первый фрагмент</string>
     <string name="second_fragment_label">Второй фрагмент</string>
@@ -117,7 +117,7 @@
     <string name="account_string">Счет</string>
     <string name="account_number_string">Номер счета</string>
     <string name="name_sur_string">Имя,Фамилия</string>
-    <string name="credential_string">Учетные данные</string>
+    <string name="credential_string">Закладки</string>
     <string name="reference_string">Ссылка</string>
     <string name="note_string">Заметка</string>
     <string name="search">Поиск здесь</string>
@@ -125,9 +125,15 @@
     <string name="enable_dark_mode">Включить Темный Режим</string>
     <string name="edit">Изменить</string>
     <string name="list_is_empty">Список пуст!</string>
-    <string name="bookmarks">Закладки</string>
+    <string name="bookmark">Закладка</string>
     <string name="filled">Заполнено</string>
     <string name="delete_checked_items">Удалить отмеченные элементы</string>
+    <string name="normal">Обычный</string>
+    <string name="Emboss">Штампование</string>
+    <string name="blur">Размытие</string>
+    <string name="clear">Удалить</string>
+    <string name="drawable">Рисование</string>
+    <string name="bookmarks">Закладки</string>
 
 
 </resources>

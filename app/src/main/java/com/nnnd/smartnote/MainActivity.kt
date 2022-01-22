@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
                         R.id.credentials,
                         R.id.sales,
                         R.id.textNote,
+                        R.id.painting,
                         R.id.settings
                 ),
                 drawerLayout
