@@ -25,7 +25,6 @@ class DrawActivity : AppCompatActivity(){
 //        }
         drawView.init(metrics, Paint())
 
-
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu to use in the action bar

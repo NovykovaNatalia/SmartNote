@@ -58,6 +58,7 @@ class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
         mCanvas = Canvas(mBitmap)
         currentColor = DEFAULT_COLOR
         strokeWidth = BRUSH_SIZE
+        drawPaths(mCanvas!!)
     }
 
     fun normal() {
@@ -76,7 +77,8 @@ class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
         strokeWidth = 20
         currentColor = Color.BLACK
     }
-    override fun onDraw(canvas: Canvas) {
+
+    fun drawPaths(canvas: Canvas) {
         canvas.save()
         mCanvas!!.drawColor(color)
         for (fp in paths) {
@@ -87,6 +89,10 @@ class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
         }
         canvas.drawBitmap(mBitmap, 0f, 0f, mBitmapPaint)
         canvas.restore()
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        drawPaths(canvas)
     }
 
     private fun touchStart(x: Float, y: Float) {
