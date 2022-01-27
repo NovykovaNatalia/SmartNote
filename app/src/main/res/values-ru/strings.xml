@@ -137,6 +137,5 @@
     <string name="draws">Draws</string>
     <string name="save_and_store">Save and Store</string>
     <string name="rubber">Rubber</string>
-
-
+    <string name="draw">Draw</string>
 </resources>

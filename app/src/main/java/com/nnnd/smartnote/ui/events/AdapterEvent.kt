@@ -85,6 +85,7 @@ class AdapterEvent(private val items: ArrayList<Event>) :
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
                     context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.choose_one)))
                 }
+
                 imageEdit.setOnClickListener {
                     val dialogEventV = LayoutInflater.from( context).inflate(R.layout.event_dialog, container, false)
 
@@ -92,7 +93,7 @@ class AdapterEvent(private val items: ArrayList<Event>) :
                     var timeTp : TimePicker = dialogEventV.findViewById(R.id.timePicker)
 
                     eventEd.setText(items[position].event)
-                    var time:Time
+
                     timeTp.currentHour = items[position].hours
                     timeTp.currentMinute = items[position].minutes
 
@@ -119,11 +120,12 @@ class AdapterEvent(private val items: ArrayList<Event>) :
                     cancelBtn.setOnClickListener() {
                         ad.dismiss()
                     }
-
                 }
+
                 noBtn.setOnClickListener{
                     alertDialog.dismiss()
                 }
+
                 yesBtn.setOnClickListener {
                     items.remove(items[position])
                     notifyDataSetChanged()

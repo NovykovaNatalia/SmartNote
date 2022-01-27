@@ -34,18 +34,6 @@
         android:icon="@drawable/baseline_add"
         android:title="@string/normal"/>
     <item
-        android:id="@+id/emboss"
-        android:orderInCategory="100"
-        android:icon="@drawable/ic_baseline_draw_24"
-        app:showAsAction="always"
-        android:title="@string/Emboss"/>
-    <item
-        android:id="@+id/blur"
-        android:orderInCategory="100"
-        app:showAsAction="always"
-        android:icon="@drawable/ic_baseline_blur_circular_24"
-        android:title="@string/blur"/>
-    <item
         android:id="@+id/clear"
         android:orderInCategory="100"
         app:showAsAction="never"

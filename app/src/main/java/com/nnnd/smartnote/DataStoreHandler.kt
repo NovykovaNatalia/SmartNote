@@ -20,18 +20,19 @@ object DataStoreHandler {
     val SP_CREDENTIALS_KEY = "SP_CREDENTIALS"
     val SP_SALES_KEY = "SP_SALES"
     val SP_NOTES_KEY = "SP_NOTES"
-    val SP_DRAW_KEY = "SP_DRAW"
+//    val SP_DRAW_KEY = "SP_DRAW"
+    val SP_DRAWS_KEY = "SP_DRAWS"
     val SP_EVENTS_KEY = "SP_EVENTS"
     val SP_CURRENT_LANGUAGE_KEY: String? = "SP_CURRENT_LANGUAGE"
+
     var shoppingItems: ArrayList<ShoppingItem>
     var cards: ArrayList<Card>
     var credentials: ArrayList<Credentials>
     var discounts: ArrayList<Discount>
     var notes: ArrayList<CardNote>
     var events: ArrayList<Event>
-    //Todo change later on PainItem
-    lateinit var draws: ArrayList<PaintItem>
-    var draw: ArrayList<CardDraw>
+    var draws: ArrayList<PaintItem>
+//    var draw: ArrayList<CardDraw>
     var currentLanguage: String = "en"
 
     init {
@@ -42,7 +43,8 @@ object DataStoreHandler {
         notes =  getArrayListNotes()
         events = getArrayListEvents()
         currentLanguage = getCurrentLang()
-        draw = getArrayListDraw()
+//        draw = getArrayListDraw()
+        draws = getArrayListDraws()
     }
 
     fun saveArrayListEvents() {
@@ -64,6 +66,7 @@ object DataStoreHandler {
         }
         return ArrayList()
     }
+
     fun saveShoppings() {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
         val editor: SharedPreferences.Editor = prefs.edit()
@@ -83,6 +86,7 @@ object DataStoreHandler {
         }
         return ArrayList()
     }
+
     fun saveArrayListCards() {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
         val editor: SharedPreferences.Editor = prefs.edit()
@@ -102,6 +106,7 @@ object DataStoreHandler {
         }
         return ArrayList()
     }
+
     fun saveArrayListCredentials() {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
         val editor: SharedPreferences.Editor = prefs.edit()
@@ -121,6 +126,7 @@ object DataStoreHandler {
         }
         return ArrayList()
     }
+
     fun saveArrayListSales() {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
         val editor: SharedPreferences.Editor = prefs.edit()
@@ -140,6 +146,7 @@ object DataStoreHandler {
         }
         return ArrayList()
     }
+
     fun saveArrayListNotes() {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
         val editor: SharedPreferences.Editor = prefs.edit()
@@ -159,25 +166,46 @@ object DataStoreHandler {
         }
         return ArrayList()
     }
-    fun saveArrayListDraw() {
-            val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
-            val editor: SharedPreferences.Editor = prefs.edit()
-            val gson = Gson()
-            val json: String = gson.toJson(draw)
-            editor.putString(SP_NOTES_KEY, json)
-            editor.apply()
-        }
 
-        fun getArrayListDraw(): ArrayList<CardDraw> {
-            val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
-            val gson = Gson()
-            val json: String? = prefs.getString(SP_DRAW_KEY, null)
-            val type: Type = object : TypeToken<ArrayList<CardDraw?>?>() {}.getType()
-            if (json != null) {
-                return gson.fromJson(json, type)
-            }
-            return ArrayList()
+//    fun saveArrayListDraw() {
+//            val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
+//            val editor: SharedPreferences.Editor = prefs.edit()
+//            val gson = Gson()
+//            val json: String = gson.toJson(draw)
+//            editor.putString(SP_NOTES_KEY, json)
+//            editor.apply()
+//    }
+
+//    fun getArrayListDraw(): ArrayList<CardDraw> {
+//        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
+//        val gson = Gson()
+//        val json: String? = prefs.getString(SP_DRAW_KEY, null)
+//        val type: Type = object : TypeToken<ArrayList<CardDraw?>?>() {}.getType()
+//        if (json != null) {
+//            return gson.fromJson(json, type)
+//        }
+//        return ArrayList()
+//    }
+
+    fun saveArrayListDraws() {
+        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
+        val editor: SharedPreferences.Editor = prefs.edit()
+        val gson = Gson()
+        val json: String = gson.toJson(draws)
+        editor.putString(SP_DRAWS_KEY, json)
+        editor.apply()
+    }
+
+    fun getArrayListDraws(): ArrayList<PaintItem> {
+        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
+        val gson = Gson()
+        val json: String? = prefs.getString(SP_DRAWS_KEY, null)
+        val type: Type = object : TypeToken<ArrayList<PaintItem?>?>() {}.getType()
+        if (json != null) {
+            return gson.fromJson(json, type)
         }
+        return ArrayList()
+    }
 
     fun getCurrentLang(): String {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())

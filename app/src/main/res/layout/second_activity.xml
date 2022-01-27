@@ -24,7 +24,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.nnnd.smartnote.ui.draws.DrawView
-        android:id="@+id/drawViews"
+        android:id="@+id/drawView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"

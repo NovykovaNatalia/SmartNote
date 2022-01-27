@@ -85,7 +85,7 @@ class TextNoteAdapter(private val items: ArrayList<CardNote>) :
                     val dialogTitleEt: EditText = noteDv.findViewById(R.id.title_note)
                     val dialogNoteEt: EditText = noteDv.findViewById(R.id.note)
                     if(items[position].title != null) {
-                        dialogNoteEt.setText(items[position].title)
+                        dialogTitleEt.setText(items[position].title)
                     }
                     dialogNoteEt.setText(items[position].note)
 
@@ -94,7 +94,7 @@ class TextNoteAdapter(private val items: ArrayList<CardNote>) :
                         ad.dismiss()
                         if(dialogNoteEt.text.isNotEmpty() && dialogTitleEt.text.isNotEmpty()) {
                             items[position].note = dialogNoteEt.text.toString()
-                            items[position].title = dialogNoteEt.text.toString()
+                            items[position].title = dialogTitleEt.text.toString()
                         } else {
                             Toast.makeText(context, "Put value!", Toast.LENGTH_LONG).show()
                         }

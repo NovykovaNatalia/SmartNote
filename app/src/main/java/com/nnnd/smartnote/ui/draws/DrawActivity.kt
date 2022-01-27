@@ -10,12 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.nnnd.smartnote.R
 import kotlinx.android.synthetic.main.second_activity.*
 
-class SecondActivity : AppCompatActivity(){
+class DrawActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.second_activity)
         setSupportActionBar(findViewById(R.id.my_toolbar))
-        var drawViews : DrawView = findViewById(R.id.drawViews)
+        var drawView : DrawView = findViewById(R.id.drawView)
         val metrics = DisplayMetrics()
         this?.getWindowManager()?.getDefaultDisplay()?.getMetrics(metrics)
 //        if(position != null) {
@@ -23,7 +23,7 @@ class SecondActivity : AppCompatActivity(){
 //        } else {
 ////        drawView.init(metrics, Paint())
 //        }
-        drawViews.init(metrics, Paint())
+        drawView.init(metrics, Paint())
 
 
     }
@@ -36,8 +36,6 @@ class SecondActivity : AppCompatActivity(){
         menu.findItem(R.id.share_image).setVisible(false)
         menu.findItem(R.id.share).setVisible(false)
         menu.findItem(R.id.delete).setVisible(false)
-        menu.findItem(R.id.blur).setVisible(false)
-        menu.findItem(R.id.emboss).setVisible(false)
         menu.findItem(R.id.add).setVisible(false)
         return super.onCreateOptionsMenu(menu)
     }
@@ -45,19 +43,11 @@ class SecondActivity : AppCompatActivity(){
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         if (item.itemId == R.id.normal) {
-            drawViews.normal()
-            return true
-        }
-        if(item.itemId == R.id.emboss){
-            drawViews.emboss()
-            return true
-        }
-        if (item.itemId == R.id.blur) {
-            drawViews.blur()
+            drawView.normal()
             return true
         }
         if (item.itemId == R.id.clear) {
-            drawViews.clear()
+            drawView.clear()
             return true
         }
         //Todo implement store images to recycler view
@@ -65,8 +55,8 @@ class SecondActivity : AppCompatActivity(){
             return true
         }
         if (item.itemId == R.id.rubber) {
-            drawViews.setColor(drawViews.getBGColor(Color.WHITE))
-            drawViews.setBrushSize(120)
+            drawView.setColor(drawView.getBGColor(Color.WHITE))
+            drawView.setBrushSize(120)
         }
 
 //        if (item.itemId == R.id.color) {
@@ -75,8 +65,6 @@ class SecondActivity : AppCompatActivity(){
 //            drawView.setColor(Color.GREEN)
 //            return true
 //        }
-
-
 
         if (item.itemId == R.id.share) {
 

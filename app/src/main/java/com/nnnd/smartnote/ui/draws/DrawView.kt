@@ -18,10 +18,6 @@ class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
     private var currentColor = 0
     private var color = DEFAULT_BG_COLOR
     private var strokeWidth = 0
-    private var emboss = false
-    private var blur = false
-    lateinit private var mEmboss: MaskFilter
-    lateinit private var mBlur: MaskFilter
     lateinit var mBitmap: Bitmap
     private var mCanvas: Canvas? = null
     private val mBitmapPaint = Paint(Paint.DITHER_FLAG)
@@ -38,8 +34,6 @@ class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
         mPaint.strokeCap = Paint.Cap.ROUND
         mPaint.xfermode = null
         mPaint.alpha = 0xff
-        mEmboss = EmbossMaskFilter(floatArrayOf(1f, 1f, 1f), 0.4f, 6f, 3.5f)
-        mBlur = BlurMaskFilter(5f, BlurMaskFilter.Blur.NORMAL)
     }
 
     fun setColor(color: Int) {
@@ -67,20 +61,6 @@ class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
     }
 
     fun normal() {
-        emboss = false
-        blur = false
-        resetDefaultParams()
-    }
-
-    fun emboss() {
-        emboss = true
-        blur = false
-        resetDefaultParams()
-    }
-
-    fun blur() {
-        emboss = false
-        blur = true
         resetDefaultParams()
     }
 
@@ -103,7 +83,6 @@ class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
             mPaint.color = fp.color
             mPaint.strokeWidth = fp.strokeWidth.toFloat()
             mPaint.maskFilter = null
-            if (fp.emboss) mPaint.maskFilter = mEmboss else if (fp.blur) mPaint.maskFilter = mBlur
             mCanvas!!.drawPath(fp.path, mPaint)
         }
         canvas.drawBitmap(mBitmap, 0f, 0f, mBitmapPaint)
@@ -112,7 +91,7 @@ class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
 
     private fun touchStart(x: Float, y: Float) {
         mPath = Path()
-        val fp = FingerPathItem(currentColor, emboss, blur, strokeWidth, mPath)
+        val fp = FingerPathItem(currentColor, strokeWidth, mPath)
         paths.add(fp)
         mPath.reset()
         mPath.moveTo(x, y)

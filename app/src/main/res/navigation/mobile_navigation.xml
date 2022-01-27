@@ -50,7 +50,7 @@
 <!--        tools:layout="@layout/fragment_draw" />-->
     <fragment
         android:id="@+id/painting"
-        android:name="com.nnnd.smartnote.ui.draws.DrawFragmentFirst"
+        android:name="com.nnnd.smartnote.ui.draws.DrawFragment"
         android:label="Drawable"
         tools:layout="@layout/fragment_draw" />
 
