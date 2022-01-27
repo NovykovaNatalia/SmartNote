@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.View
-import com.nnnd.smartnote.DataStoreHandler
 import java.util.*
 
 class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null) :
@@ -47,12 +46,12 @@ class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
         currentColor = color
     }
 
-    fun getBGColor(): Int {
+    fun getBGColor(white: Int): Int {
         return DEFAULT_BG_COLOR
     }
 
     fun setBrushSize(size: Int) {
-        BRUSH_SIZE = size;
+        strokeWidth = size
     }
     fun init(metrics: DisplayMetrics, paint: Paint) {
         if(paint != null) {
@@ -94,7 +93,8 @@ class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
     }
 
     fun resetDefaultParams() {
-        BRUSH_SIZE = 20
+        strokeWidth = 20
+        currentColor = Color.BLACK
     }
     override fun onDraw(canvas: Canvas) {
         canvas.save()
@@ -164,7 +164,7 @@ class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
 
     companion object {
         var BRUSH_SIZE = 20
-        const val DEFAULT_COLOR = Color.RED
+        const val DEFAULT_COLOR = Color.BLACK
         const val DEFAULT_BG_COLOR = Color.WHITE
         private const val TOUCH_TOLERANCE = 4f
     }

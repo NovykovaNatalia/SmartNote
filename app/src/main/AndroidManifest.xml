@@ -28,6 +28,16 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SmartNote.NoActionBar" />
         <activity
+            android:name=".ui.draws.DrawFragment"
+            android:label="@string/draws"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SmartNote.NoActionBar" />
+        <activity
+            android:name=".ui.draws.SecondActivity"
+            android:label="@string/draws"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SmartNote.NoActionBar" />
+        <activity
             android:name=".ui.events.DatePicker"
             android:label="Date Picker"
             android:screenOrientation="portrait"

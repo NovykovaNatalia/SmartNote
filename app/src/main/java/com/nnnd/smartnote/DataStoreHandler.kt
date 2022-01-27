@@ -10,6 +10,7 @@ import com.nnnd.smartnote.ui.shopping.ShoppingItem
 import com.nnnd.smartnote.ui.textnote.CardNote
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.nnnd.smartnote.ui.draws.CardDraw
 import com.nnnd.smartnote.ui.draws.PaintItem
 import java.lang.reflect.Type
 
@@ -19,6 +20,7 @@ object DataStoreHandler {
     val SP_CREDENTIALS_KEY = "SP_CREDENTIALS"
     val SP_SALES_KEY = "SP_SALES"
     val SP_NOTES_KEY = "SP_NOTES"
+    val SP_DRAW_KEY = "SP_DRAW"
     val SP_EVENTS_KEY = "SP_EVENTS"
     val SP_CURRENT_LANGUAGE_KEY: String? = "SP_CURRENT_LANGUAGE"
     var shoppingItems: ArrayList<ShoppingItem>
@@ -27,7 +29,9 @@ object DataStoreHandler {
     var discounts: ArrayList<Discount>
     var notes: ArrayList<CardNote>
     var events: ArrayList<Event>
-//    var draws: ArrayList<PaintItem>
+    //Todo change later on PainItem
+    lateinit var draws: ArrayList<PaintItem>
+    var draw: ArrayList<CardDraw>
     var currentLanguage: String = "en"
 
     init {
@@ -38,6 +42,7 @@ object DataStoreHandler {
         notes =  getArrayListNotes()
         events = getArrayListEvents()
         currentLanguage = getCurrentLang()
+        draw = getArrayListDraw()
     }
 
     fun saveArrayListEvents() {
@@ -154,6 +159,25 @@ object DataStoreHandler {
         }
         return ArrayList()
     }
+    fun saveArrayListDraw() {
+            val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
+            val editor: SharedPreferences.Editor = prefs.edit()
+            val gson = Gson()
+            val json: String = gson.toJson(draw)
+            editor.putString(SP_NOTES_KEY, json)
+            editor.apply()
+        }
+
+        fun getArrayListDraw(): ArrayList<CardDraw> {
+            val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())
+            val gson = Gson()
+            val json: String? = prefs.getString(SP_DRAW_KEY, null)
+            val type: Type = object : TypeToken<ArrayList<CardDraw?>?>() {}.getType()
+            if (json != null) {
+                return gson.fromJson(json, type)
+            }
+            return ArrayList()
+        }
 
     fun getCurrentLang(): String {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext())

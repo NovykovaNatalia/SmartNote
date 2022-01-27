@@ -11,16 +11,18 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import com.nnnd.smartnote.DataStoreHandler
+import com.nnnd.smartnote.R
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLocale()
         setContentView(R.layout.activity_main)
+
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -31,14 +33,14 @@ class MainActivity : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration(
                 setOf(
-                        R.id.shopping,
-                        R.id.events,
-                        R.id.bankAccounts,
-                        R.id.credentials,
-                        R.id.sales,
-                        R.id.textNote,
-                        R.id.painting,
-                        R.id.settings
+                    R.id.shopping,
+                    R.id.events,
+                    R.id.bankAccounts,
+                    R.id.credentials,
+                    R.id.sales,
+                    R.id.textNote,
+                    R.id.painting,
+                    R.id.settings
                 ),
                 drawerLayout
         )

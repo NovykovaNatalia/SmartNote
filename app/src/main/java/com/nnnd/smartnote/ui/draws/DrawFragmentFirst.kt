@@ -1,4 +1,4 @@
-package com.nnnd.smartnote.ui.textnote
+package com.nnnd.smartnote.ui.draws
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -7,91 +7,67 @@ import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.view.animation.AnimationUtils
 import android.widget.*
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.nnnd.smartnote.DataStoreHandler
 import com.nnnd.smartnote.LanguageSupportUtils
 import com.nnnd.smartnote.R
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.nnnd.smartnote.ui.textnote.TextNoteAdapter
 import java.util.*
-import kotlin.collections.ArrayList
 
-class TextNoteFragment : Fragment() {
+class DrawFragmentFirst : Fragment() {
     lateinit var noteEt: EditText
     lateinit var titleEt : EditText
     lateinit var recyclerView: RecyclerView
-    lateinit var cardListNote:ArrayList<CardNote>
-    lateinit var textNoteAdapter: TextNoteAdapter
+    lateinit var cardDraw:ArrayList<CardDraw>
+    lateinit var textDrawAdapter: DrawAdapter
     private val  REQUEST_CODE_SPEECH = 100
 
     @SuppressLint("WrongConstant")
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
-        cardListNote = DataStoreHandler.notes
-        val view = inflater.inflate(R.layout.fragment_text_note, container, false)
+        cardDraw = DataStoreHandler.draw
+        val view = inflater.inflate(R.layout.fragment_draw, container, false)
         val ttb = AnimationUtils.loadAnimation(context, R.anim.ttb)
         recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewDraw)
         recyclerView.startAnimation(ttb)
 
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        textNoteAdapter = TextNoteAdapter(cardListNote, context)
-        recyclerView.adapter = textNoteAdapter
-        textNoteAdapter.notifyDataSetChanged()
+        textDrawAdapter = DrawAdapter(cardDraw, context)
+        recyclerView.adapter = textDrawAdapter
+        textDrawAdapter.notifyDataSetChanged()
         val sv : SearchView = view.findViewById(R.id.searchViewDraw)
         sv.startAnimation(ttb)
         sv.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return false
             }
+
             override fun onQueryTextChange(newText: String): Boolean {
-                var filteredList:ArrayList<CardNote> = filter(cardListNote, newText)
-                recyclerView.adapter = TextNoteAdapter(filteredList, context)
-                (recyclerView.adapter as TextNoteAdapter).notifyDataSetChanged()
+                var filteredList: ArrayList<CardDraw> = filter(cardDraw, newText)
+                recyclerView.adapter = DrawAdapter(filteredList, context)
+                (recyclerView.adapter as DrawAdapter).notifyDataSetChanged()
                 return true
             }
 
         })
 
-        val fab : FloatingActionButton = view.findViewById(R.id.floating_btn_draw)
-        fab.startAnimation(ttb)
-        fab.setOnClickListener{
-            val dialogViewNote = LayoutInflater.from( context).inflate(R.layout.note_dialog, null);
-            val mBuilder = AlertDialog.Builder(context)
-                    .setView(dialogViewNote)
-                    .setTitle(getString(R.string.notes))
-            val mAlertDialog = mBuilder.show()
+        val fab_sec : FloatingActionButton = view.findViewById(R.id.floating_btn_second_activity)
+        fab_sec.startAnimation(ttb)
 
-            noteEt = dialogViewNote.findViewById(R.id.note)
-            titleEt = dialogViewNote.findViewById(R.id.title_note)
+        fab_sec.setOnClickListener{
+            val a = Intent(activity, SecondActivity::class.java)
+            startActivity(a)
 
-            val cancelActionButtonNote : Button = dialogViewNote.findViewById(R.id.cancel_dialog_note)
-            val saveActionButtonNote : Button = dialogViewNote.findViewById(R.id.save_dialog_note);
-
-            saveActionButtonNote.setOnClickListener {
-                    mAlertDialog.dismiss()
-                if(noteEt.text.isNotEmpty() && titleEt.text.isNotEmpty()) {
-                    var cardNote = CardNote()
-                    cardNote.note = noteEt.text.toString()
-                    cardNote.title = titleEt.text.toString()
-
-                    cardListNote.add(cardNote)
-                } else {
-                    Toast.makeText(context, R.string.put_values, Toast.LENGTH_LONG).show()
-                }
-                textNoteAdapter.notifyDataSetChanged()
-            }
-            cancelActionButtonNote.setOnClickListener() {
-                mAlertDialog.dismiss()
-            }
         }
-
         return view
     }
 
@@ -107,8 +83,8 @@ class TextNoteFragment : Fragment() {
         menu.findItem(R.id.emboss).setVisible(false)
         menu.findItem(R.id.blur).setVisible(false)
         menu.findItem(R.id.clear).setVisible(false)
-        menu.findItem(R.id.delete_checked_list).setVisible(false)
         menu.findItem(R.id.rubber).setVisible(false)
+        menu.findItem(R.id.delete_checked_list).setVisible(false)
         menu.findItem(R.id.add).setVisible(false)
         super.onCreateOptionsMenu(menu, inflater)
 
@@ -122,7 +98,7 @@ class TextNoteFragment : Fragment() {
         if (id == R.id.share) {
             val currentFragment = activity?.supportFragmentManager!!.fragments.first().childFragmentManager.fragments.first()
             when (currentFragment) {
-                is TextNoteFragment -> {
+                is DrawFragmentFirst -> {
                     val shareIntent = Intent(Intent.ACTION_SEND)
                     shareIntent.type = "text/plain"
                     var sharStr = DataStoreHandler.notes.toString()
@@ -140,22 +116,22 @@ class TextNoteFragment : Fragment() {
         if (id == R.id.delete) {
             val currentFragment = activity?.supportFragmentManager!!.fragments.first().childFragmentManager.fragments.first()
             when (currentFragment) {
-                is TextNoteFragment -> {
+                is DrawFragmentFirst -> {
                     val dialogView = layoutInflater.inflate(R.layout.delete_list_layout, null);
                     val builder = AlertDialog.Builder(context)
                             .setView(dialogView)
                             .setTitle(context?.getString(R.string.delete_the_list))
                     val deleteListAd = builder.show()
 
-                    val noBtn : TextView = dialogView.findViewById(R.id.noBtn)
-                    val yesBtn : TextView = dialogView.findViewById(R.id.yesBtn)
-                    noBtn.setOnClickListener{
+                    val noBtn: TextView = dialogView.findViewById(R.id.noBtn)
+                    val yesBtn: TextView = dialogView.findViewById(R.id.yesBtn)
+                    noBtn.setOnClickListener {
                         deleteListAd.dismiss()
                     }
                     yesBtn.setOnClickListener {
-                        if(!DataStoreHandler.notes.isEmpty()){
+                        if (!DataStoreHandler.notes.isEmpty()) {
                             DataStoreHandler.notes.removeAll(DataStoreHandler.notes)
-                            currentFragment.textNoteAdapter.notifyDataSetChanged()
+                            currentFragment.textDrawAdapter.notifyDataSetChanged()
                             DataStoreHandler.saveShoppings()
                             deleteListAd.dismiss()
                         } else {
@@ -200,12 +176,12 @@ class TextNoteFragment : Fragment() {
         }
     }
 
-    private fun filter (cardList:ArrayList<CardNote>, query: String): ArrayList<CardNote> {
-        var resultList:ArrayList<CardNote> = java.util.ArrayList()
+    private fun filter(cardList: ArrayList<CardDraw>, query: String): ArrayList<CardDraw> {
+        var resultList:ArrayList<CardDraw> = java.util.ArrayList()
 
-        for (cardNote in cardList) {
-            if(cardNote.note.contains(query.toLowerCase()) && cardNote.title.contains(query.toLowerCase())) {
-                resultList.add(cardNote)
+        for (cardDraw in cardList) {
+            if(cardDraw.note.contains(query.toLowerCase()) && cardDraw.title.contains(query.toLowerCase())) {
+                resultList.add(cardDraw)
             }
         }
         return resultList

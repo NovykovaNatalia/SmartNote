@@ -96,6 +96,8 @@ class ShoppingFragment : Fragment() {
         menu.findItem(R.id.emboss).setVisible(false)
         menu.findItem(R.id.blur).setVisible(false)
         menu.findItem(R.id.clear).setVisible(false)
+        menu.findItem(R.id.rubber).setVisible(false)
+        menu.findItem(R.id.add).setVisible(false)
         super.onCreateOptionsMenu(menu, inflater)
     }
 

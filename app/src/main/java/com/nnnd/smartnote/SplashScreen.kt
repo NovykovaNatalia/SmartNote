@@ -19,7 +19,7 @@ class SplashScreen : AppCompatActivity() {
         val ttb = AnimationUtils.loadAnimation(this, R.anim.ttb)
         val atb = AnimationUtils.loadAnimation(this, R.anim.atb)
         loadingImageView.startAnimation(ttb)
-        loadingImageView.animate().rotation(360F).setDuration(2000).setStartDelay(200)
+        loadingImageView.animate().rotation(360F).setDuration(3500).setStartDelay(200)
         textViewSmartNote.startAnimation(ttb)
         imageSmartNote.startAnimation(atb)
         window.setFlags(
