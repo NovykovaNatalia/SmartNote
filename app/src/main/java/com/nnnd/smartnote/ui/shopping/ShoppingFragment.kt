@@ -96,6 +96,7 @@ class ShoppingFragment : Fragment() {
         menu.findItem(R.id.clear).setVisible(false)
         menu.findItem(R.id.rubber).setVisible(false)
         menu.findItem(R.id.add).setVisible(false)
+        menu.findItem(R.id.save_end_store).setVisible(false)
         super.onCreateOptionsMenu(menu, inflater)
     }
 

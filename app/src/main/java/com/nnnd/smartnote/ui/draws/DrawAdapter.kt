@@ -80,7 +80,7 @@ class DrawAdapter(private val items: ArrayList<PaintItem>) :
 
                     val builder = AlertDialog.Builder(context)
                             .setView(drawDv)
-                            .setTitle(context.getString(R.string.draw))
+                            .setTitle(context.getString(R.string.draws))
                     val ad = builder.show()
 
                     val dialogTitleEt: EditText = drawDv.findViewById(R.id.title_note)
@@ -94,7 +94,7 @@ class DrawAdapter(private val items: ArrayList<PaintItem>) :
                         if(dialogTitleEt.text.isNotEmpty()) {
                             items[position].title = dialogTitleEt.text.toString()
                         } else {
-                            Toast.makeText(context, "Put value!", Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, R.string.put_values, Toast.LENGTH_LONG).show()
                         }
                         notifyDataSetChanged()
                     }

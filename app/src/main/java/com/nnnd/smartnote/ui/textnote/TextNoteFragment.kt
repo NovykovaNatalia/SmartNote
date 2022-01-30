@@ -108,6 +108,7 @@ class TextNoteFragment : Fragment() {
         menu.findItem(R.id.delete_checked_list).setVisible(false)
         menu.findItem(R.id.rubber).setVisible(false)
         menu.findItem(R.id.add).setVisible(false)
+        menu.findItem(R.id.save_end_store).setVisible(false)
         super.onCreateOptionsMenu(menu, inflater)
 
     }

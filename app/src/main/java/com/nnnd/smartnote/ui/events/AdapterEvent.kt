@@ -110,7 +110,7 @@ class AdapterEvent(private val items: ArrayList<Event>) :
                             items[position].hours = timeTp.hour
                             items[position].minutes = timeTp.minute
                         } else {
-                            Toast.makeText(context, "Put values!", Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, R.string.put_values, Toast.LENGTH_LONG).show()
                         }
                         notifyDataSetChanged();
                     }

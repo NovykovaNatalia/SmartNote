@@ -25,7 +25,8 @@
         android:id="@+id/normal"
         android:orderInCategory="100"
         app:showAsAction="always"
-        android:icon="@drawable/ic_baseline_auto_fix_normal_24"
+        android:checked="true"
+        android:icon="@drawable/pen_black"
         android:title="@string/normal"/>
     <item
         android:id="@+id/add"
@@ -51,8 +52,9 @@
     <item
         android:id="@+id/rubber"
         android:orderInCategory="100"
+        android:checked="false"
         app:showAsAction="always"
-        android:icon="@drawable/ic_baseline_crop_portrait_24"
+        android:icon="@drawable/rubber_white"
         android:title="@string/rubber"/>
 
 

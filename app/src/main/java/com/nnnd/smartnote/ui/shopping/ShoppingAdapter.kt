@@ -85,7 +85,7 @@ class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
                 val dialogViewShopping = LayoutInflater.from(context).inflate(R.layout.shopping_dialog, null)
                 val builder = AlertDialog.Builder(context)
                         .setView(dialogViewShopping)
-                        .setTitle("Shopping")
+                        .setTitle(R.string.shoppings)
                 val alertDialog = builder.show()
 
                 val quantity_adnp = dialogViewShopping.findViewById<NumberPicker>(R.id.quantityNumberPickerDialog)

@@ -134,8 +134,7 @@
     <string name="clear">Usunąć</string>
     <string name="drawable">Rysowania</string>
     <string name="bookmarks">Zakładki</string>
-    <string name="draws">Draws</string>
-    <string name="save_and_store">Save and Store</string>
-    <string name="rubber">Rubber</string>
-    <string name="draw">Draw</string>
+    <string name="draws">Rysować</string>
+    <string name="save_and_store">Przechować</string>
+    <string name="rubber">Gumka</string>
 </resources>

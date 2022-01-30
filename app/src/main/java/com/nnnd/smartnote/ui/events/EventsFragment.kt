@@ -93,6 +93,7 @@ class EventsFragment : Fragment() {
         menu.findItem(R.id.clear).setVisible(false)
         menu.findItem(R.id.delete_checked_list).setVisible(false)
         menu.findItem(R.id.rubber).setVisible(false)
+        menu.findItem(R.id.save_end_store).setVisible(false)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -173,7 +174,7 @@ class EventsFragment : Fragment() {
                     newEvent.minutes = timePicker.minute
                     listEvent.add(newEvent)
                 } else {
-                    Toast.makeText(context, "Put values!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, R.string.put_values, Toast.LENGTH_LONG).show()
                 }
                 eventAdapter.notifyDataSetChanged()
             }
