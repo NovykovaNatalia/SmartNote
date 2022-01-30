@@ -129,7 +129,7 @@ class DrawFragment : Fragment() {
                         if (!DataStoreHandler.notes.isEmpty()) {
                             DataStoreHandler.notes.removeAll(DataStoreHandler.notes)
                             currentFragment.drawAdapter.notifyDataSetChanged()
-                            DataStoreHandler.saveShoppings()
+                            DataStoreHandler.saveArrayListDraws()
                             deleteListAd.dismiss()
                         } else {
                             Toast.makeText(context, getString(R.string.list_is_empty), Toast.LENGTH_LONG).show()

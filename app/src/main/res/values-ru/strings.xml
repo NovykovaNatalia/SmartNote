@@ -10,7 +10,7 @@
     <string name="action_settings">Настройки</string>
     <string name="menu_events">События</string>
     <string name="myKey">nov_key</string>
-    <string name="menu_shopping">Шопинг</string>
+    <string name="menu_shopping">Покупки</string>
     <string name="menu_settings">Настройки</string>
     <string name="menu_sales">Скидки</string>
     <string name="menu_notes">Текстовые заметки</string>
@@ -39,7 +39,7 @@
     <string name="no">НЕТ</string>
     <string name="share">Поделиться</string>
     <string name="delete_credentials">Удалить эти учетные данные?</string>
-    <string name="version_1_0_0">Версия 1.0.0</string>
+    <string name="version_1_0_0">Версия 1.2.0</string>
     <string name="smart_note">Smart Note</string>
     <string name="please_recomend_our_app">Пожалуйста, порекомендуйте наше приложение</string>
     <string name="to">По</string>
@@ -79,11 +79,11 @@
     <string name="unit_of_goods">Tовар</string>
     <string name="economy">Экономия</string>
     <string name="account_type">Тип аккаунта</string>
-    <string name="shoppings">Шопинг</string>
+    <string name="shoppings">Покупки</string>
     <string name="events">События</string>
     <string name="bank_accounts">Банковские счета</string>
     <string name="text_notes">Текстовые заметки</string>
-    <string name="text_note">Текстовое примечание</string>
+    <string name="text_note">Текстовые заметки</string>
     <string name="another">Другие</string>
     <string name="settings">Настройки</string>
     <string name="delete_the_goods">Удалить товар?</string>
@@ -97,7 +97,7 @@
     <string name="good">Хорошо</string>
     <string name="great">Отличнo</string>
     <string name="awesome">Потрясающе. Я люблю это</string>
-    <string name="notes">Запись</string>
+    <string name="notes">Заметка</string>
     <string name="select_lang">Выберите язык</string>
     <string name="english">Английский</string>
     <string name="ukrainian">Украинский</string>

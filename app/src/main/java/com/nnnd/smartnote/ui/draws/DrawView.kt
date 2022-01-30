@@ -13,8 +13,8 @@ class DrawView @JvmOverloads constructor(context: Context?, attrs: AttributeSet?
     private var mX = 0f
     private var mY = 0f
     lateinit var mPath: Path
-    lateinit private var mPaint: Paint
-    private val paths = ArrayList<FingerPathItem>()
+    lateinit var mPaint: Paint
+    var paths = ArrayList<FingerPathItem>()
     private var currentColor = 0
     private var color = DEFAULT_BG_COLOR
     private var strokeWidth = 0

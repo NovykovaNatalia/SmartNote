@@ -1,14 +1,22 @@
 package com.nnnd.smartnote.ui.draws
 
+import android.app.AlertDialog
 import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.nnnd.smartnote.DataStoreHandler
 import com.nnnd.smartnote.R
+import kotlinx.android.synthetic.main.item_draw.*
+import kotlinx.android.synthetic.main.item_shopping.*
 import kotlinx.android.synthetic.main.second_activity.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DrawActivity : AppCompatActivity() {
     lateinit var pen: MenuItem
@@ -60,8 +68,30 @@ class DrawActivity : AppCompatActivity() {
         }
         //Todo implement store images to recycler view
         if (item.itemId == R.id.save_end_store) {
-            return true
+            val dialogView = layoutInflater.inflate(R.layout.draw_dialog, null);
+            val builder = AlertDialog.Builder(this)
+                .setView(dialogView)
+                .setTitle("")
+            val ad = builder.show()
+
+            val title: EditText = dialogView.findViewById(R.id.title_draw)
+            val cancelBtn: TextView = dialogView.findViewById(R.id.cancel_dialog_draw)
+            val saveBtn: TextView = dialogView.findViewById(R.id.save_dialog_draw)
+
+            cancelBtn.setOnClickListener {
+                ad.dismiss()
+            }
+            saveBtn.setOnClickListener {
+                ad.dismiss()
+                var paintItem : PaintItem = PaintItem()
+                paintItem.title = title.text.toString()
+                paintItem.paths = drawView.paths
+                paintItem.date = Date().time
+                DataStoreHandler.draws.add(paintItem)
+                finish()
+            }
         }
+
 
         if (item.itemId == R.id.rubber) {
             item.setIcon(R.drawable.rubber_black)

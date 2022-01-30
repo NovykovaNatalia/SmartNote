@@ -25,12 +25,12 @@ class DrawAdapter(private val items: ArrayList<PaintItem>) :
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val title_tv : TextView
-        val date_tv: TextView
+        val title: TextView
+        val date: TextView
         val ll: LinearLayout
         init {
-            title_tv = view.findViewById(R.id.title_tv)
-            date_tv = view.findViewById(R.id.note_tv)
+            title= view.findViewById(R.id.title)
+            date = view.findViewById(R.id.date_draw)
             ll = view.findViewById(R.id.dots3_ll_id)
         }
     }
@@ -48,10 +48,10 @@ class DrawAdapter(private val items: ArrayList<PaintItem>) :
     override fun onBindViewHolder(holder: DrawAdapter.ViewHolder, position: Int) {
         holder.run {
             if(items[position].title != null) {
-                title_tv.setText(items[position].title)
+                title.setText(items[position].title)
             }
             val dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
-            date_tv.setText(dateFormatter.format(items[position].date))
+            date.setText(dateFormatter.format(items[position].date))
 
             ll.setOnClickListener {
                 val dialogView = LayoutInflater.from( context).inflate(R.layout.delete_share_layout, null);

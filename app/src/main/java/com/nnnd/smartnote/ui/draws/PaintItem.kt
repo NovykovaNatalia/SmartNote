@@ -6,7 +6,7 @@ import java.util.*
 
 class PaintItem {
     lateinit var paint: Paint
-//    lateinit var paths: ArrayList<FingerPathItem>
+    lateinit var paths: ArrayList<FingerPathItem>
     var date: Long = 0L;
     lateinit var title: String
 

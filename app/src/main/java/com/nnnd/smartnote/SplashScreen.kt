@@ -1,6 +1,7 @@
 package com.nnnd.smartnote
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
@@ -8,6 +9,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import java.util.*
 
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +34,8 @@ class SplashScreen : AppCompatActivity() {
             startActivity(intent)
             finish()
         }, 3000) // 3000 is the delayed time in milliseconds.
+
     }
+
 }
 

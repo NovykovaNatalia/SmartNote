@@ -137,7 +137,7 @@ class ShoppingAdapter(private val items: ArrayList<ShoppingItem>) :
                     val dialogViewGoodsShopping = LayoutInflater.from(context).inflate(R.layout.shopping_goods_dialog, null)
                     val builder = AlertDialog.Builder(context)
                             .setView(dialogViewGoodsShopping)
-                            .setTitle("Shopping")
+                            .setTitle(context.getString(R.string.shoppings))
                     val ad = builder.show()
 
                     val goodsEt = dialogViewGoodsShopping.findViewById<EditText>(R.id.goods_et)

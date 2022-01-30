@@ -56,6 +56,4 @@
         app:showAsAction="always"
         android:icon="@drawable/rubber_white"
         android:title="@string/rubber"/>
-
-
 </menu>

@@ -28,11 +28,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SmartNote.NoActionBar" />
         <activity
-            android:name=".ui.draws.DrawFragment"
-            android:label="@string/draws"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.SmartNote.NoActionBar" />
-        <activity
             android:name=".ui.draws.DrawActivity"
             android:label="@string/draws"
             android:screenOrientation="portrait"

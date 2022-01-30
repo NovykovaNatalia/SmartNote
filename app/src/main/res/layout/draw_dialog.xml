@@ -23,7 +23,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/quantityNumberPickerDialog">
+        android:layout_below="@+id/title_draw">
 
         <Button
             android:id="@+id/save_dialog_draw"
